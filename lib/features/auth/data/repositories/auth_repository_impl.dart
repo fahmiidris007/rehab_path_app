@@ -57,7 +57,8 @@ class AuthRepositoryImpl implements AuthRepository {
         return Left(Failure.validation(
             message: 'An account with this email already exists.'));
       }
-      // Create new user
+      // Create new user in Hive — no session is stored here.
+      // The user must log in manually after registration.
       final id = 'user_${DateTime.now().millisecondsSinceEpoch}';
       final newUser = UserHiveModel(
         id: id,
@@ -70,10 +71,6 @@ class AuthRepositoryImpl implements AuthRepository {
         emergencyContacts: [],
       );
       await _hiveDataSource.saveUser(newUser);
-      // Store session
-      await _prefsDataSource.setString(PrefKeys.sessionToken, 'token_$id');
-      await _prefsDataSource.setString(PrefKeys.sessionUserId, id);
-      await _prefsDataSource.setBool(PrefKeys.isGuest, false);
       return Right(newUser.toEntity());
     } catch (e, st) {
       _logger.e('Register failed', error: e, stackTrace: st);

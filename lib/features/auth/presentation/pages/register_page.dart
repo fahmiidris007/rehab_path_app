@@ -100,7 +100,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthError) {
+        if (state is AuthRegistrationSuccess) {
+          // Account created — redirect to login with a success message.
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Account created! Please log in to continue.'),
+              backgroundColor: Color(0xFF00609B),
+            ),
+          );
+          context.go('/login');
+        } else if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.message),

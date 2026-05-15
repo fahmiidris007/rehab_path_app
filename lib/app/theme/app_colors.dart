@@ -30,6 +30,7 @@ class AppColors {
 
   // ── Semantic ─────────────────────────────────────────────────────────────
   static const Color error = Color(0xFFBA1A1A);
+  static const Color success = Color(0xFF2E7D32);
   static const Color neutralGray = Color(0xFFE2E2E2);
 
   // ── Dark-theme overrides ─────────────────────────────────────────────────
