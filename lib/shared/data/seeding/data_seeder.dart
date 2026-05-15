@@ -30,6 +30,15 @@ class DataSeeder {
     if (_prefsDataSource.getBool(PrefKeys.seedingComplete) == true) return;
 
     try {
+      // On a truly fresh install the seeding flag is absent. However, Android
+      // backup may have restored SharedPreferences from a previous install,
+      // including a stale session token. Clear any leftover session data so
+      // the app always starts at the Welcome screen on first launch.
+      await _prefsDataSource.remove(PrefKeys.sessionToken);
+      await _prefsDataSource.remove(PrefKeys.sessionUserId);
+      await _prefsDataSource.remove(PrefKeys.isGuest);
+      await _prefsDataSource.remove(PrefKeys.onboardingComplete);
+
       // Seed users
       final users = await _dummyDataSource.loadUsers();
       for (final user in users) {

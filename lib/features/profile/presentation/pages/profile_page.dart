@@ -8,8 +8,6 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_emergency_button.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/app_loading_widget.dart';
-import '../../../../core/widgets/app_outline_button.dart';
-import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';

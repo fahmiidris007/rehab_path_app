@@ -37,8 +37,12 @@ class AuthCubit extends Cubit<AuthState> {
         if (user == null) {
           // No session token at all — brand new user, show welcome screen.
           emit(const AuthState.unauthenticated());
+        } else if (user.id == 'guest') {
+          // Guest sessions are not persisted across launches.
+          // Treat as unauthenticated so the welcome screen is shown.
+          emit(const AuthState.unauthenticated());
         } else {
-          // A previous session exists — require the user to log in again.
+          // A real previous session exists — require the user to log in again.
           // Show the login screen directly (skip the welcome carousel).
           emit(const AuthState.requiresLogin());
         }
