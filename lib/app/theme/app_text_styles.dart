@@ -60,6 +60,14 @@ class AppTextStyles {
         letterSpacing: 0.36,
       );
 
+  /// Label / tag — SemiBold (w600) 15sp, lh 24/18, ls 0.36
+  static TextStyle get labelBottomNavBar => GoogleFonts.publicSans(
+        fontWeight: FontWeight.w600,
+        fontSize: 15,
+        height: 24 / 18,
+        letterSpacing: 0.36,
+      );
+
   /// Button text — Bold 18sp, lh 24/18
   static TextStyle get button => GoogleFonts.publicSans(
         fontWeight: FontWeight.bold,
