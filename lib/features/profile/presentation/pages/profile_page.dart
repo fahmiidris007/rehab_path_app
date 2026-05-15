@@ -168,16 +168,16 @@ class _ProfileContent extends StatelessWidget {
           ],
 
           // ── Actions ──────────────────────────────────────────────────────
-          AppPrimaryButton(
-            label: 'Edit Profile',
-            onPressed: () => context.pushNamed('edit-profile'),
-          ),
-          const SizedBox(height: 12),
-          AppOutlineButton(
-            label: 'Update Goals',
-            onPressed: () => context.push('/onboarding'),
-          ),
-          const SizedBox(height: 12),
+          // AppPrimaryButton(
+          //   label: 'Edit Profile',
+          //   onPressed: () => context.pushNamed('edit-profile'),
+          // ),
+          // const SizedBox(height: 12),
+          // AppOutlineButton(
+          //   label: 'Update Goals',
+          //   onPressed: () => context.push('/onboarding'),
+          // ),
+          // const SizedBox(height: 12),
           AppEmergencyButton(
             label: 'Emergency Contacts',
             onPressed: () => context.pushNamed('sos'),
