@@ -1,0 +1,757 @@
+[
+  {
+    "id": "ex_001",
+    "name": "Ankle Circles",
+    "category": "warmUp",
+    "description": "Gentle rotation of the ankles to improve circulation and flexibility before exercise.",
+    "steps": [
+      "Sit comfortably in a chair with feet flat on the floor.",
+      "Lift one foot slightly off the floor.",
+      "Rotate the ankle slowly in a clockwise circle 10 times.",
+      "Reverse direction and rotate 10 times counter-clockwise.",
+      "Repeat with the other foot."
+    ],
+    "durationSeconds": 120,
+    "sets": 2,
+    "reps": 10,
+    "difficulty": 1,
+    "safetyTips": [
+      "Keep movements slow and controlled.",
+      "Stop if you feel any pain or discomfort."
+    ],
+    "imagePath": "assets/images/exercises/ankle_circles.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_002",
+    "name": "Shoulder Rolls",
+    "category": "warmUp",
+    "description": "Rolling the shoulders forward and backward to release tension and warm up the upper body.",
+    "steps": [
+      "Sit or stand with your back straight.",
+      "Slowly roll both shoulders forward in a circular motion 5 times.",
+      "Reverse and roll shoulders backward 5 times.",
+      "Keep your neck relaxed throughout."
+    ],
+    "durationSeconds": 90,
+    "sets": 2,
+    "reps": 5,
+    "difficulty": 1,
+    "safetyTips": [
+      "Do not hunch your back.",
+      "Keep movements smooth and gentle."
+    ],
+    "imagePath": "assets/images/exercises/shoulder_rolls.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_003",
+    "name": "Neck Side Stretch",
+    "category": "warmUp",
+    "description": "Gentle lateral neck stretches to release tension and improve range of motion.",
+    "steps": [
+      "Sit upright in a chair.",
+      "Slowly tilt your head to the right, bringing your ear toward your shoulder.",
+      "Hold for 10 seconds.",
+      "Return to center and repeat on the left side.",
+      "Perform 3 repetitions on each side."
+    ],
+    "durationSeconds": 120,
+    "sets": 1,
+    "reps": 3,
+    "difficulty": 1,
+    "safetyTips": [
+      "Never force the stretch.",
+      "Stop if you feel dizziness or sharp pain."
+    ],
+    "imagePath": "assets/images/exercises/neck_side_stretch.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_004",
+    "name": "Wrist Flexion and Extension",
+    "category": "warmUp",
+    "description": "Bending and extending the wrists to warm up the joints and improve flexibility.",
+    "steps": [
+      "Extend one arm in front of you with palm facing down.",
+      "Use the other hand to gently bend the wrist downward. Hold 10 seconds.",
+      "Then gently bend the wrist upward. Hold 10 seconds.",
+      "Repeat with the other wrist."
+    ],
+    "durationSeconds": 120,
+    "sets": 2,
+    "reps": 5,
+    "difficulty": 1,
+    "safetyTips": [
+      "Apply gentle pressure only.",
+      "Avoid this exercise if you have wrist injuries."
+    ],
+    "imagePath": "assets/images/exercises/wrist_flexion.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_005",
+    "name": "Single Leg Stand",
+    "category": "balanceTraining",
+    "description": "Standing on one leg to improve balance and strengthen stabilizing muscles.",
+    "steps": [
+      "Stand behind a sturdy chair and hold the back for support.",
+      "Slowly lift one foot off the floor.",
+      "Hold the position for 10 seconds.",
+      "Lower the foot and repeat on the other side.",
+      "Perform 3 repetitions on each side."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Keep a chair or wall nearby for support.",
+      "Focus your gaze on a fixed point to help with balance.",
+      "Do not lock your standing knee."
+    ],
+    "imagePath": "assets/images/exercises/single_leg_stand.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_006",
+    "name": "Tandem Stand",
+    "category": "balanceTraining",
+    "description": "Standing with one foot directly in front of the other to challenge balance.",
+    "steps": [
+      "Stand near a wall or chair for support.",
+      "Place one foot directly in front of the other, heel touching toe.",
+      "Hold this position for 10 seconds.",
+      "Switch feet and repeat.",
+      "Perform 3 repetitions on each side."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Have support nearby at all times.",
+      "Look straight ahead, not down at your feet."
+    ],
+    "imagePath": "assets/images/exercises/tandem_stand.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_007",
+    "name": "Weight Shifting",
+    "category": "balanceTraining",
+    "description": "Shifting body weight from side to side to improve dynamic balance.",
+    "steps": [
+      "Stand with feet shoulder-width apart, holding a chair for support.",
+      "Slowly shift your weight to the right foot.",
+      "Hold for 5 seconds, then shift to the left foot.",
+      "Repeat 10 times on each side."
+    ],
+    "durationSeconds": 150,
+    "sets": 2,
+    "reps": 10,
+    "difficulty": 1,
+    "safetyTips": [
+      "Move slowly and deliberately.",
+      "Keep your core engaged."
+    ],
+    "imagePath": "assets/images/exercises/weight_shifting.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_008",
+    "name": "Heel-to-Toe Walk",
+    "category": "balanceTraining",
+    "description": "Walking in a straight line placing heel directly in front of toe to challenge balance.",
+    "steps": [
+      "Stand at one end of a clear path.",
+      "Place your right heel directly in front of your left toe.",
+      "Continue walking heel-to-toe for 10 steps.",
+      "Turn around carefully and walk back.",
+      "Perform 3 lengths."
+    ],
+    "durationSeconds": 240,
+    "sets": 3,
+    "reps": 10,
+    "difficulty": 3,
+    "safetyTips": [
+      "Walk near a wall for support if needed.",
+      "Look ahead, not at your feet."
+    ],
+    "imagePath": "assets/images/exercises/heel_to_toe_walk.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_009",
+    "name": "Seated Leg Press",
+    "category": "strengthTraining",
+    "description": "Pressing legs against resistance while seated to strengthen quadriceps and glutes.",
+    "steps": [
+      "Sit upright in a sturdy chair.",
+      "Place a resistance band around both feet.",
+      "Slowly extend both legs forward against the resistance.",
+      "Hold for 2 seconds, then slowly return.",
+      "Repeat 10 times."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 10,
+    "difficulty": 2,
+    "safetyTips": [
+      "Keep your back straight throughout.",
+      "Do not lock your knees at full extension."
+    ],
+    "imagePath": "assets/images/exercises/seated_leg_press.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_010",
+    "name": "Chair Squats",
+    "category": "strengthTraining",
+    "description": "Sitting down and standing up from a chair to strengthen leg muscles.",
+    "steps": [
+      "Stand in front of a sturdy chair with feet shoulder-width apart.",
+      "Slowly lower yourself toward the chair as if sitting down.",
+      "Lightly touch the seat, then stand back up.",
+      "Keep your weight in your heels.",
+      "Repeat 10 times."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 10,
+    "difficulty": 2,
+    "safetyTips": [
+      "Use armrests for support if needed.",
+      "Keep your knees behind your toes.",
+      "Do not drop heavily into the chair."
+    ],
+    "imagePath": "assets/images/exercises/chair_squats.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_011",
+    "name": "Calf Raises",
+    "category": "strengthTraining",
+    "description": "Rising up on the toes to strengthen calf muscles and improve ankle stability.",
+    "steps": [
+      "Stand behind a chair, holding the back for support.",
+      "Slowly rise up onto your toes.",
+      "Hold for 2 seconds.",
+      "Slowly lower back down.",
+      "Repeat 15 times."
+    ],
+    "durationSeconds": 150,
+    "sets": 3,
+    "reps": 15,
+    "difficulty": 1,
+    "safetyTips": [
+      "Rise and lower slowly for maximum benefit.",
+      "Keep your core engaged."
+    ],
+    "imagePath": "assets/images/exercises/calf_raises.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_012",
+    "name": "Step-Ups",
+    "category": "strengthTraining",
+    "description": "Stepping up and down on a low step to strengthen legs and improve coordination.",
+    "steps": [
+      "Stand in front of a low, stable step.",
+      "Step up with your right foot, then bring your left foot up.",
+      "Step down with your right foot, then your left.",
+      "Repeat 10 times leading with the right foot.",
+      "Then repeat 10 times leading with the left foot."
+    ],
+    "durationSeconds": 240,
+    "sets": 2,
+    "reps": 10,
+    "difficulty": 3,
+    "safetyTips": [
+      "Hold a railing if available.",
+      "Ensure the step is stable and non-slip.",
+      "Place the whole foot on the step."
+    ],
+    "imagePath": "assets/images/exercises/step_ups.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_013",
+    "name": "Marching in Place",
+    "category": "enduranceAerobic",
+    "description": "Lifting knees alternately while standing to improve cardiovascular fitness.",
+    "steps": [
+      "Stand behind a chair, holding the back for support.",
+      "Lift your right knee to hip height.",
+      "Lower it and lift your left knee.",
+      "Continue alternating for 2 minutes.",
+      "Maintain a steady, comfortable pace."
+    ],
+    "durationSeconds": 120,
+    "sets": 2,
+    "reps": 20,
+    "difficulty": 1,
+    "safetyTips": [
+      "Do not lift knees higher than comfortable.",
+      "Breathe steadily throughout."
+    ],
+    "imagePath": "assets/images/exercises/marching_in_place.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_014",
+    "name": "Seated Cycling",
+    "category": "enduranceAerobic",
+    "description": "Pedaling motion with the legs while seated to improve cardiovascular endurance.",
+    "steps": [
+      "Sit upright in a sturdy chair.",
+      "Lift both feet slightly off the floor.",
+      "Pedal your legs in a cycling motion.",
+      "Continue for 3 minutes at a comfortable pace.",
+      "Rest and repeat."
+    ],
+    "durationSeconds": 180,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 1,
+    "safetyTips": [
+      "Keep your back supported against the chair.",
+      "Stop if you feel short of breath."
+    ],
+    "imagePath": "assets/images/exercises/seated_cycling.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_015",
+    "name": "Side Steps",
+    "category": "enduranceAerobic",
+    "description": "Stepping side to side to improve lateral movement and cardiovascular fitness.",
+    "steps": [
+      "Stand with feet together.",
+      "Step to the right with your right foot, then bring your left foot to meet it.",
+      "Step to the left with your left foot, then bring your right foot to meet it.",
+      "Continue for 2 minutes.",
+      "Increase speed gradually as you feel comfortable."
+    ],
+    "durationSeconds": 120,
+    "sets": 3,
+    "reps": 20,
+    "difficulty": 2,
+    "safetyTips": [
+      "Keep a chair nearby for support.",
+      "Wear non-slip footwear."
+    ],
+    "imagePath": "assets/images/exercises/side_steps.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_016",
+    "name": "Brisk Walking Intervals",
+    "category": "enduranceAerobic",
+    "description": "Alternating between normal and brisk walking pace to build cardiovascular endurance.",
+    "steps": [
+      "Walk at a normal pace for 2 minutes.",
+      "Increase to a brisk pace for 1 minute.",
+      "Return to normal pace for 2 minutes.",
+      "Repeat the cycle 3 times.",
+      "Cool down with a slow walk for 2 minutes."
+    ],
+    "durationSeconds": 480,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 3,
+    "safetyTips": [
+      "Wear supportive footwear.",
+      "Walk on a flat, even surface.",
+      "Stop if you feel chest pain or dizziness."
+    ],
+    "imagePath": "assets/images/exercises/brisk_walking.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_017",
+    "name": "Tai Chi Wave Hands",
+    "category": "taiChi",
+    "description": "A flowing Tai Chi movement involving gentle arm waves to improve coordination and relaxation.",
+    "steps": [
+      "Stand with feet shoulder-width apart, knees slightly bent.",
+      "Raise both arms to shoulder height, palms facing down.",
+      "Slowly wave arms to the right while shifting weight to the right foot.",
+      "Wave arms to the left while shifting weight to the left foot.",
+      "Continue flowing side to side for 2 minutes."
+    ],
+    "durationSeconds": 180,
+    "sets": 2,
+    "reps": 10,
+    "difficulty": 1,
+    "safetyTips": [
+      "Move slowly and breathe deeply.",
+      "Keep knees soft, never locked."
+    ],
+    "imagePath": "assets/images/exercises/tai_chi_wave_hands.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_018",
+    "name": "Tai Chi Cloud Hands",
+    "category": "taiChi",
+    "description": "A circular arm movement in Tai Chi that promotes upper body coordination and mindfulness.",
+    "steps": [
+      "Stand with feet shoulder-width apart.",
+      "Raise your right hand to eye level, palm facing you.",
+      "Move your right hand in a large circle to the right while your left hand moves in a circle to the left.",
+      "Shift your weight as your hands move.",
+      "Continue for 10 repetitions on each side."
+    ],
+    "durationSeconds": 240,
+    "sets": 2,
+    "reps": 10,
+    "difficulty": 2,
+    "safetyTips": [
+      "Focus on smooth, continuous movement.",
+      "Breathe in through the nose, out through the mouth."
+    ],
+    "imagePath": "assets/images/exercises/tai_chi_cloud_hands.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_019",
+    "name": "Tai Chi Grasp the Sparrow's Tail",
+    "category": "taiChi",
+    "description": "A foundational Tai Chi sequence combining ward-off, roll-back, press, and push movements.",
+    "steps": [
+      "Begin in a relaxed standing position.",
+      "Step forward with your right foot into a bow stance.",
+      "Perform the ward-off movement with your right arm.",
+      "Transition to roll-back, drawing both hands back.",
+      "Press forward with both palms.",
+      "Push forward with both palms.",
+      "Repeat on the left side."
+    ],
+    "durationSeconds": 300,
+    "sets": 2,
+    "reps": 5,
+    "difficulty": 3,
+    "safetyTips": [
+      "Learn each movement slowly before combining them.",
+      "Keep your spine upright throughout."
+    ],
+    "imagePath": "assets/images/exercises/tai_chi_sparrow.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_020",
+    "name": "Tai Chi Single Whip",
+    "category": "taiChi",
+    "description": "A Tai Chi posture that stretches the arms wide and improves shoulder flexibility and balance.",
+    "steps": [
+      "Stand with feet shoulder-width apart.",
+      "Extend your right arm to the right with fingers pointing down (hook hand).",
+      "Extend your left arm to the left with palm facing forward.",
+      "Shift your weight to the left foot.",
+      "Hold for 5 seconds, then return to center.",
+      "Repeat on the other side."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 5,
+    "difficulty": 2,
+    "safetyTips": [
+      "Do not overextend your arms.",
+      "Keep your shoulders relaxed."
+    ],
+    "imagePath": "assets/images/exercises/tai_chi_single_whip.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_021",
+    "name": "Indoor Walking Circuit",
+    "category": "walkingProgram",
+    "description": "Walking a set circuit indoors to build endurance and practice safe walking patterns.",
+    "steps": [
+      "Clear a safe walking path indoors (hallway or large room).",
+      "Walk at a comfortable pace from one end to the other.",
+      "Turn carefully at each end.",
+      "Complete 5 laps.",
+      "Rest for 1 minute, then complete 5 more laps."
+    ],
+    "durationSeconds": 300,
+    "sets": 2,
+    "reps": 5,
+    "difficulty": 1,
+    "safetyTips": [
+      "Ensure the path is clear of obstacles.",
+      "Wear supportive, non-slip footwear.",
+      "Use a walking aid if needed."
+    ],
+    "imagePath": "assets/images/exercises/indoor_walking.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_022",
+    "name": "Outdoor Walk — Flat Surface",
+    "category": "walkingProgram",
+    "description": "A structured outdoor walk on a flat surface to build cardiovascular fitness and confidence.",
+    "steps": [
+      "Choose a flat, even outdoor path.",
+      "Walk for 10 minutes at a comfortable pace.",
+      "Rest if needed, then continue.",
+      "Gradually increase duration by 2 minutes each week.",
+      "Return home safely."
+    ],
+    "durationSeconds": 600,
+    "sets": 1,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Carry a mobile phone.",
+      "Inform someone of your route.",
+      "Wear a hat and sunscreen in hot weather."
+    ],
+    "imagePath": "assets/images/exercises/outdoor_walk_flat.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_023",
+    "name": "Outdoor Walk — Incline",
+    "category": "walkingProgram",
+    "description": "Walking on a gentle incline to increase exercise intensity and strengthen leg muscles.",
+    "steps": [
+      "Find a gentle hill or inclined path.",
+      "Walk uphill for 5 minutes at a comfortable pace.",
+      "Turn around and walk downhill slowly.",
+      "Repeat 2 times.",
+      "Cool down with 5 minutes of flat walking."
+    ],
+    "durationSeconds": 900,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 3,
+    "safetyTips": [
+      "Take shorter steps going uphill.",
+      "Lean slightly forward on inclines.",
+      "Use a walking stick for extra support."
+    ],
+    "imagePath": "assets/images/exercises/outdoor_walk_incline.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_024",
+    "name": "Timed Up and Go Practice",
+    "category": "walkingProgram",
+    "description": "Practicing the Timed Up and Go test to improve functional mobility.",
+    "steps": [
+      "Sit in a chair with armrests.",
+      "On a signal, stand up from the chair.",
+      "Walk 3 meters to a marked point.",
+      "Turn around and walk back.",
+      "Sit back down in the chair.",
+      "Repeat 3 times, resting between attempts."
+    ],
+    "durationSeconds": 180,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Have someone nearby to assist if needed.",
+      "Ensure the path is clear.",
+      "Use your walking aid if you normally use one."
+    ],
+    "imagePath": "assets/images/exercises/timed_up_and_go.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_025",
+    "name": "Floor to Chair Recovery",
+    "category": "gettingUpFromFloor",
+    "description": "Practicing the safe technique for getting up from the floor after a fall.",
+    "steps": [
+      "Start lying on your back on a mat.",
+      "Roll onto your side.",
+      "Push yourself up to a hands-and-knees position.",
+      "Crawl to a sturdy chair.",
+      "Place both hands on the seat of the chair.",
+      "Bring one foot forward into a kneeling lunge position.",
+      "Push up to standing using the chair for support."
+    ],
+    "durationSeconds": 300,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Practice on a soft mat.",
+      "Have someone nearby the first few times.",
+      "Take your time — there is no rush."
+    ],
+    "imagePath": "assets/images/exercises/floor_to_chair.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_026",
+    "name": "Controlled Lowering to Floor",
+    "category": "gettingUpFromFloor",
+    "description": "Practicing how to lower yourself safely to the floor in a controlled manner.",
+    "steps": [
+      "Stand next to a sturdy chair.",
+      "Hold the chair with both hands.",
+      "Slowly lower yourself to one knee.",
+      "Lower the other knee to the floor.",
+      "Gently lower yourself to a sitting position.",
+      "Then lie down slowly.",
+      "Reverse the steps to get back up."
+    ],
+    "durationSeconds": 240,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Use a padded mat.",
+      "Never rush the movement.",
+      "Have a helper present initially."
+    ],
+    "imagePath": "assets/images/exercises/controlled_lowering.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_027",
+    "name": "Post-Fall Confidence Drill",
+    "category": "gettingUpFromFloor",
+    "description": "A drill combining floor recovery with balance exercises to build confidence after a fall.",
+    "steps": [
+      "Practice the floor-to-chair recovery technique.",
+      "Once standing, perform 5 single-leg stands.",
+      "Walk 5 meters and return.",
+      "Repeat the full sequence 2 times.",
+      "Focus on calm, controlled movements throughout."
+    ],
+    "durationSeconds": 480,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 3,
+    "safetyTips": [
+      "Only attempt when feeling confident.",
+      "Have a carer or family member present.",
+      "Stop if you feel dizzy or unwell."
+    ],
+    "imagePath": "assets/images/exercises/post_fall_drill.png",
+    "recommendedLevel": "advanced"
+  },
+  {
+    "id": "ex_028",
+    "name": "Seated Floor Sit Practice",
+    "category": "gettingUpFromFloor",
+    "description": "Practicing sitting on the floor and getting up using a chair for support.",
+    "steps": [
+      "Place a sturdy chair against a wall.",
+      "Hold the chair seat and slowly lower to the floor.",
+      "Sit comfortably on the floor for 30 seconds.",
+      "Roll to one side and get back to kneeling.",
+      "Use the chair to push up to standing."
+    ],
+    "durationSeconds": 180,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 1,
+    "safetyTips": [
+      "Use a non-slip mat.",
+      "Ensure the chair is stable and against a wall."
+    ],
+    "imagePath": "assets/images/exercises/seated_floor_sit.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_029",
+    "name": "Seated Forward Bend",
+    "category": "coolDown",
+    "description": "A gentle seated stretch to cool down the hamstrings and lower back after exercise.",
+    "steps": [
+      "Sit on the edge of a chair with legs extended.",
+      "Slowly lean forward from the hips.",
+      "Reach toward your feet as far as comfortable.",
+      "Hold for 20 seconds.",
+      "Slowly return to upright.",
+      "Repeat 3 times."
+    ],
+    "durationSeconds": 120,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 1,
+    "safetyTips": [
+      "Do not bounce during the stretch.",
+      "Breathe out as you lean forward."
+    ],
+    "imagePath": "assets/images/exercises/seated_forward_bend.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_030",
+    "name": "Standing Quad Stretch",
+    "category": "coolDown",
+    "description": "Stretching the quadriceps while standing to reduce muscle tension after exercise.",
+    "steps": [
+      "Stand behind a chair, holding the back for support.",
+      "Bend your right knee and bring your heel toward your buttock.",
+      "Hold your ankle with your right hand.",
+      "Hold for 20 seconds.",
+      "Lower the foot and repeat on the left side."
+    ],
+    "durationSeconds": 120,
+    "sets": 2,
+    "reps": 1,
+    "difficulty": 2,
+    "safetyTips": [
+      "Keep your standing knee slightly bent.",
+      "Do not pull your ankle forcefully."
+    ],
+    "imagePath": "assets/images/exercises/standing_quad_stretch.png",
+    "recommendedLevel": "intermediate"
+  },
+  {
+    "id": "ex_031",
+    "name": "Deep Breathing Cool Down",
+    "category": "coolDown",
+    "description": "Slow, deep breathing to lower heart rate and promote relaxation after exercise.",
+    "steps": [
+      "Sit comfortably in a chair.",
+      "Place one hand on your chest and one on your abdomen.",
+      "Breathe in slowly through your nose for 4 counts.",
+      "Hold for 2 counts.",
+      "Breathe out slowly through your mouth for 6 counts.",
+      "Repeat 10 times."
+    ],
+    "durationSeconds": 180,
+    "sets": 1,
+    "reps": 10,
+    "difficulty": 1,
+    "safetyTips": [
+      "Do not force your breath.",
+      "Stop if you feel lightheaded."
+    ],
+    "imagePath": "assets/images/exercises/deep_breathing.png",
+    "recommendedLevel": "beginner"
+  },
+  {
+    "id": "ex_032",
+    "name": "Seated Spinal Twist",
+    "category": "coolDown",
+    "description": "A gentle seated rotation to stretch the spine and release tension after exercise.",
+    "steps": [
+      "Sit upright in a chair with feet flat on the floor.",
+      "Place your right hand on your left knee.",
+      "Slowly rotate your torso to the left.",
+      "Hold for 15 seconds.",
+      "Return to center and repeat on the other side.",
+      "Perform 3 repetitions on each side."
+    ],
+    "durationSeconds": 120,
+    "sets": 3,
+    "reps": 1,
+    "difficulty": 1,
+    "safetyTips": [
+      "Rotate only as far as comfortable.",
+      "Keep your hips facing forward."
+    ],
+    "imagePath": "assets/images/exercises/seated_spinal_twist.png",
+    "recommendedLevel": "beginner"
+  }
+]

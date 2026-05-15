@@ -1,0 +1,20 @@
+import 'dart:async';
+import 'package:flutter/foundation.dart';
+
+/// Converts a [Stream] into a [ChangeNotifier] so that [GoRouter]'s
+/// `refreshListenable` can react to stream events (e.g. BLoC/Cubit state
+/// changes).
+class GoRouterRefreshStream extends ChangeNotifier {
+  late final StreamSubscription<dynamic> _subscription;
+
+  GoRouterRefreshStream(Stream<dynamic> stream) {
+    notifyListeners();
+    _subscription = stream.asBroadcastStream().listen((_) => notifyListeners());
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+}

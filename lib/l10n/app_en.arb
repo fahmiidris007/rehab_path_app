@@ -1,0 +1,632 @@
+{
+  "@@locale": "en",
+
+  "appName": "RehabPath",
+  "@appName": {
+    "description": "The name of the application"
+  },
+
+  "appTitle": "RehabPath — Fall Prevention Rehabilitation",
+  "@appTitle": {
+    "description": "The full title of the application"
+  },
+
+  "authSplashTagline": "Your journey to better balance starts here.",
+  "@authSplashTagline": {
+    "description": "Tagline shown on the splash screen"
+  },
+
+  "authWelcomeTitle": "Welcome to RehabPath",
+  "@authWelcomeTitle": {
+    "description": "Title on the welcome/onboarding carousel"
+  },
+
+  "authWelcomeSubtitle": "Evidence-based exercises to help you stay steady and confident.",
+  "@authWelcomeSubtitle": {
+    "description": "Subtitle on the welcome screen"
+  },
+
+  "authLoginTitle": "Log In",
+  "@authLoginTitle": {
+    "description": "Title of the login page"
+  },
+
+  "authLoginEmailHint": "Email address",
+  "@authLoginEmailHint": {
+    "description": "Hint text for the email field on login"
+  },
+
+  "authLoginEmailError": "Please enter a valid email address.",
+  "@authLoginEmailError": {
+    "description": "Validation error for invalid email on login"
+  },
+
+  "authLoginPasswordHint": "Password",
+  "@authLoginPasswordHint": {
+    "description": "Hint text for the password field on login"
+  },
+
+  "authLoginPasswordError": "Password must be 8–64 characters.",
+  "@authLoginPasswordError": {
+    "description": "Validation error for invalid password on login"
+  },
+
+  "authLoginButton": "Log In",
+  "@authLoginButton": {
+    "description": "Label for the login button"
+  },
+
+  "authRegisterTitle": "Create Account",
+  "@authRegisterTitle": {
+    "description": "Title of the registration page"
+  },
+
+  "authRegisterNameHint": "Full name",
+  "@authRegisterNameHint": {
+    "description": "Hint text for the name field on registration"
+  },
+
+  "authRegisterNameError": "Name must be 1–50 characters.",
+  "@authRegisterNameError": {
+    "description": "Validation error for invalid name on registration"
+  },
+
+  "authRegisterEmailHint": "Email address",
+  "@authRegisterEmailHint": {
+    "description": "Hint text for the email field on registration"
+  },
+
+  "authRegisterEmailError": "Please enter a valid email address.",
+  "@authRegisterEmailError": {
+    "description": "Validation error for invalid email on registration"
+  },
+
+  "authRegisterPasswordHint": "Password",
+  "@authRegisterPasswordHint": {
+    "description": "Hint text for the password field on registration"
+  },
+
+  "authRegisterPasswordError": "Password must be 8–64 characters.",
+  "@authRegisterPasswordError": {
+    "description": "Validation error for invalid password on registration"
+  },
+
+  "authRegisterConfirmPasswordHint": "Confirm password",
+  "@authRegisterConfirmPasswordHint": {
+    "description": "Hint text for the confirm password field on registration"
+  },
+
+  "authRegisterConfirmPasswordError": "Passwords do not match.",
+  "@authRegisterConfirmPasswordError": {
+    "description": "Validation error when passwords do not match"
+  },
+
+  "authRegisterButton": "Create Account",
+  "@authRegisterButton": {
+    "description": "Label for the register button"
+  },
+
+  "authForgotPasswordTitle": "Forgot Password",
+  "@authForgotPasswordTitle": {
+    "description": "Title of the forgot password page"
+  },
+
+  "authForgotPasswordMessage": "Enter your email address and we will send you a link to reset your password.",
+  "@authForgotPasswordMessage": {
+    "description": "Instructional message on the forgot password page"
+  },
+
+  "authForgotPasswordButton": "Send Reset Link",
+  "@authForgotPasswordButton": {
+    "description": "Label for the send reset link button"
+  },
+
+  "authGuestButton": "Continue as Guest",
+  "@authGuestButton": {
+    "description": "Label for the continue as guest button"
+  },
+
+  "authGuestBannerMessage": "You are browsing as a guest. Create an account to save your progress.",
+  "@authGuestBannerMessage": {
+    "description": "Banner message shown to guest users"
+  },
+
+  "authLogoutButton": "Log Out",
+  "@authLogoutButton": {
+    "description": "Label for the logout button"
+  },
+
+  "onboardingTitle": "Tell Us About Yourself",
+  "@onboardingTitle": {
+    "description": "Title shown on the onboarding flow"
+  },
+
+  "onboardingStepIndicator": "Step {current} of {total}",
+  "@onboardingStepIndicator": {
+    "description": "Step indicator label during onboarding",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+
+  "onboardingStep1Title": "Age & Gender",
+  "@onboardingStep1Title": {
+    "description": "Title for onboarding step 1"
+  },
+
+  "onboardingStep2Title": "Falls History",
+  "@onboardingStep2Title": {
+    "description": "Title for onboarding step 2"
+  },
+
+  "onboardingStep3Title": "Health Conditions",
+  "@onboardingStep3Title": {
+    "description": "Title for onboarding step 3"
+  },
+
+  "onboardingStep4Title": "Walking Aid",
+  "@onboardingStep4Title": {
+    "description": "Title for onboarding step 4"
+  },
+
+  "onboardingStep5Title": "Fear of Falling",
+  "@onboardingStep5Title": {
+    "description": "Title for onboarding step 5"
+  },
+
+  "onboardingStep6Title": "Exercise Preferences",
+  "@onboardingStep6Title": {
+    "description": "Title for onboarding step 6"
+  },
+
+  "onboardingStep7Title": "Your Goals",
+  "@onboardingStep7Title": {
+    "description": "Title for onboarding step 7"
+  },
+
+  "onboardingContinueButton": "Continue",
+  "@onboardingContinueButton": {
+    "description": "Label for the continue button during onboarding"
+  },
+
+  "onboardingBackButton": "Back",
+  "@onboardingBackButton": {
+    "description": "Label for the back button during onboarding"
+  },
+
+  "onboardingFinishButton": "Finish",
+  "@onboardingFinishButton": {
+    "description": "Label for the finish button on the last onboarding step"
+  },
+
+  "onboardingValidationRequired": "This field is required.",
+  "@onboardingValidationRequired": {
+    "description": "Validation message when a required onboarding field is empty"
+  },
+
+  "homeGreetingMorning": "Good morning",
+  "@homeGreetingMorning": {
+    "description": "Morning greeting on the home dashboard"
+  },
+
+  "homeGreetingAfternoon": "Good afternoon",
+  "@homeGreetingAfternoon": {
+    "description": "Afternoon greeting on the home dashboard"
+  },
+
+  "homeGreetingEvening": "Good evening",
+  "@homeGreetingEvening": {
+    "description": "Evening greeting on the home dashboard"
+  },
+
+  "homeStreakDays": "{count, plural, =1{1 day streak} other{{count} day streak}}",
+  "@homeStreakDays": {
+    "description": "Streak days label on the home dashboard",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
+
+  "homeTodayActivity": "Today's Activity",
+  "@homeTodayActivity": {
+    "description": "Section title for today's activity on the home dashboard"
+  },
+
+  "homeStartExercise": "Start Exercise",
+  "@homeStartExercise": {
+    "description": "Button label to start today's exercise"
+  },
+
+  "homeNoProgram": "No program assigned yet. Complete onboarding to get started.",
+  "@homeNoProgram": {
+    "description": "Message shown when no exercise program is assigned"
+  },
+
+  "homeRecommendedTitle": "Recommended for You",
+  "@homeRecommendedTitle": {
+    "description": "Section title for recommended exercises"
+  },
+
+  "homeTotalMinutes": "Total Minutes",
+  "@homeTotalMinutes": {
+    "description": "Label for total minutes stat on home dashboard"
+  },
+
+  "homeTotalSessions": "Total Sessions",
+  "@homeTotalSessions": {
+    "description": "Label for total sessions stat on home dashboard"
+  },
+
+  "exerciseListTitle": "Exercises",
+  "@exerciseListTitle": {
+    "description": "Title of the exercise list page"
+  },
+
+  "exerciseDifficulty": "Difficulty: {level}",
+  "@exerciseDifficulty": {
+    "description": "Difficulty label on exercise cards",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Beginner"
+      }
+    }
+  },
+
+  "exerciseStartButton": "Start Exercise",
+  "@exerciseStartButton": {
+    "description": "Button label to start an exercise"
+  },
+
+  "exerciseMarkComplete": "Mark as Complete",
+  "@exerciseMarkComplete": {
+    "description": "Button label to mark an exercise as complete"
+  },
+
+  "exercisePause": "Pause",
+  "@exercisePause": {
+    "description": "Button label to pause an exercise"
+  },
+
+  "exerciseResume": "Resume",
+  "@exerciseResume": {
+    "description": "Button label to resume a paused exercise"
+  },
+
+  "exerciseSkip": "Skip",
+  "@exerciseSkip": {
+    "description": "Button label to skip an exercise"
+  },
+
+  "exerciseSelfReportTitle": "How did it go?",
+  "@exerciseSelfReportTitle": {
+    "description": "Title of the self-report form after completing an exercise"
+  },
+
+  "exerciseSelfReportBodyCondition": "Body condition during exercise",
+  "@exerciseSelfReportBodyCondition": {
+    "description": "Label for the body condition field in the self-report form"
+  },
+
+  "exerciseSelfReportSitting": "Sitting",
+  "@exerciseSelfReportSitting": {
+    "description": "Option label for sitting body condition"
+  },
+
+  "exerciseSelfReportStanding": "Standing",
+  "@exerciseSelfReportStanding": {
+    "description": "Option label for standing body condition"
+  },
+
+  "exerciseSelfReportSupport": "Support used",
+  "@exerciseSelfReportSupport": {
+    "description": "Label for the support used field in the self-report form"
+  },
+
+  "exerciseSelfReportWalkingAid": "Walking aid",
+  "@exerciseSelfReportWalkingAid": {
+    "description": "Option label for walking aid support"
+  },
+
+  "exerciseSelfReportKitchenWorktop": "Kitchen worktop",
+  "@exerciseSelfReportKitchenWorktop": {
+    "description": "Option label for kitchen worktop support"
+  },
+
+  "exerciseSelfReportNoSupport": "No support",
+  "@exerciseSelfReportNoSupport": {
+    "description": "Option label for no support used"
+  },
+
+  "exerciseSelfReportSubmit": "Submit",
+  "@exerciseSelfReportSubmit": {
+    "description": "Button label to submit the self-report form"
+  },
+
+  "progressTitle": "Progress",
+  "@progressTitle": {
+    "description": "Title of the progress page"
+  },
+
+  "progressWeeklyAdherence": "Weekly Adherence",
+  "@progressWeeklyAdherence": {
+    "description": "Label for weekly adherence metric on progress page"
+  },
+
+  "progressMonthlyAdherence": "Monthly Adherence",
+  "@progressMonthlyAdherence": {
+    "description": "Label for monthly adherence metric on progress page"
+  },
+
+  "progressBalanceScore": "Balance Score",
+  "@progressBalanceScore": {
+    "description": "Label for balance score metric on progress page"
+  },
+
+  "progressFallsDiary": "Falls Diary",
+  "@progressFallsDiary": {
+    "description": "Label for the falls diary section on progress page"
+  },
+
+  "progressAchievements": "Achievements",
+  "@progressAchievements": {
+    "description": "Label for the achievements section on progress page"
+  },
+
+  "progressBodyAreas": "Body Areas Trained",
+  "@progressBodyAreas": {
+    "description": "Label for the body areas trained section on progress page"
+  },
+
+  "progressNoData": "No data available yet. Complete exercises to see your progress.",
+  "@progressNoData": {
+    "description": "Message shown when no progress data is available"
+  },
+
+  "profileTitle": "Profile",
+  "@profileTitle": {
+    "description": "Title of the profile page"
+  },
+
+  "profileEditButton": "Edit Profile",
+  "@profileEditButton": {
+    "description": "Button label to edit the user profile"
+  },
+
+  "profileUpdateGoals": "Update Goals",
+  "@profileUpdateGoals": {
+    "description": "Button label to update user goals"
+  },
+
+  "profileProgramLevel": "Program Level",
+  "@profileProgramLevel": {
+    "description": "Label for the program level field on the profile page"
+  },
+
+  "profileHealthConditions": "Health Conditions",
+  "@profileHealthConditions": {
+    "description": "Label for the health conditions field on the profile page"
+  },
+
+  "profileGoals": "Goals",
+  "@profileGoals": {
+    "description": "Label for the goals field on the profile page"
+  },
+
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title of the settings page"
+  },
+
+  "settingsAppearance": "Appearance",
+  "@settingsAppearance": {
+    "description": "Section header for appearance settings"
+  },
+
+  "settingsTheme": "Theme",
+  "@settingsTheme": {
+    "description": "Label for the theme setting"
+  },
+
+  "settingsThemeLight": "Light",
+  "@settingsThemeLight": {
+    "description": "Option label for light theme"
+  },
+
+  "settingsThemeDark": "Dark",
+  "@settingsThemeDark": {
+    "description": "Option label for dark theme"
+  },
+
+  "settingsThemeSystem": "System default",
+  "@settingsThemeSystem": {
+    "description": "Option label for system default theme"
+  },
+
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Label for the language setting"
+  },
+
+  "settingsLanguageEn": "English",
+  "@settingsLanguageEn": {
+    "description": "Option label for English language"
+  },
+
+  "settingsLanguageId": "Indonesian",
+  "@settingsLanguageId": {
+    "description": "Option label for Indonesian language"
+  },
+
+  "settingsFontSize": "Font Size",
+  "@settingsFontSize": {
+    "description": "Label for the font size setting"
+  },
+
+  "settingsFontSizeDefault": "Default",
+  "@settingsFontSizeDefault": {
+    "description": "Option label for default font size"
+  },
+
+  "settingsFontSizeLarge": "Large",
+  "@settingsFontSizeLarge": {
+    "description": "Option label for large font size"
+  },
+
+  "settingsFontSizeExtraLarge": "Extra Large",
+  "@settingsFontSizeExtraLarge": {
+    "description": "Option label for extra large font size"
+  },
+
+  "settingsNotifications": "Notifications",
+  "@settingsNotifications": {
+    "description": "Section header for notification settings"
+  },
+
+  "settingsDailyReminder": "Daily Reminder",
+  "@settingsDailyReminder": {
+    "description": "Label for the daily reminder toggle in settings"
+  },
+
+  "settingsPrivacyPolicy": "Privacy Policy",
+  "@settingsPrivacyPolicy": {
+    "description": "Label for the privacy policy link in settings"
+  },
+
+  "settingsTermsOfService": "Terms of Service",
+  "@settingsTermsOfService": {
+    "description": "Label for the terms of service link in settings"
+  },
+
+  "settingsLogout": "Log Out",
+  "@settingsLogout": {
+    "description": "Label for the logout option in settings"
+  },
+
+  "sosTitle": "Emergency SOS",
+  "@sosTitle": {
+    "description": "Title of the SOS page"
+  },
+
+  "sosSafetyReminder": "If you have fallen and cannot get up, call emergency services immediately.",
+  "@sosSafetyReminder": {
+    "description": "Safety reminder message on the SOS page"
+  },
+
+  "sosCallButton": "Call",
+  "@sosCallButton": {
+    "description": "Button label to call an emergency contact"
+  },
+
+  "sosNoContacts": "No emergency contacts added. Please update your profile.",
+  "@sosNoContacts": {
+    "description": "Message shown when no emergency contacts are set"
+  },
+
+  "sosEmergencyButton": "Call Emergency Services",
+  "@sosEmergencyButton": {
+    "description": "Button label to call emergency services"
+  },
+
+  "notificationDailyReminderTitle": "Time to Exercise!",
+  "@notificationDailyReminderTitle": {
+    "description": "Title of the daily reminder notification"
+  },
+
+  "notificationDailyReminderBody": "Your daily rehabilitation session is ready. Keep up the great work!",
+  "@notificationDailyReminderBody": {
+    "description": "Body text of the daily reminder notification"
+  },
+
+  "notificationStreakTitle": "Streak Milestone!",
+  "@notificationStreakTitle": {
+    "description": "Title of the streak milestone notification"
+  },
+
+  "notificationStreakBody": "Amazing! You have kept a {days}-day exercise streak. Keep it up!",
+  "@notificationStreakBody": {
+    "description": "Body text of the streak milestone notification",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+
+  "notificationReEngagementTitle": "We Miss You!",
+  "@notificationReEngagementTitle": {
+    "description": "Title of the re-engagement notification"
+  },
+
+  "notificationReEngagementBody": "It has been a while since your last session. Come back and continue your progress!",
+  "@notificationReEngagementBody": {
+    "description": "Body text of the re-engagement notification"
+  },
+
+  "notificationWeeklySummaryTitle": "Weekly Summary",
+  "@notificationWeeklySummaryTitle": {
+    "description": "Title of the weekly summary notification"
+  },
+
+  "notificationWeeklySummaryBody": "You completed {rate}% of your exercises this week. Great effort!",
+  "@notificationWeeklySummaryBody": {
+    "description": "Body text of the weekly summary notification",
+    "placeholders": {
+      "rate": {
+        "type": "int",
+        "example": "80"
+      }
+    }
+  },
+
+  "notificationPermissionDeniedMessage": "Notification permission was denied. Enable notifications in your device settings to receive reminders.",
+  "@notificationPermissionDeniedMessage": {
+    "description": "Message shown when notification permission is denied"
+  },
+
+  "errorServer": "A server error occurred. Please try again later.",
+  "@errorServer": {
+    "description": "Generic server error message"
+  },
+
+  "errorCache": "Could not load data from local storage. Please restart the app.",
+  "@errorCache": {
+    "description": "Cache/local storage error message"
+  },
+
+  "errorUnexpected": "An unexpected error occurred. Please try again.",
+  "@errorUnexpected": {
+    "description": "Generic unexpected error message"
+  },
+
+  "errorSeedingFailed": "Failed to load initial data. Please restart the app.",
+  "@errorSeedingFailed": {
+    "description": "Error message when data seeding fails"
+  },
+
+  "errorPhoneNotSupported": "Phone calls are not supported on this device.",
+  "@errorPhoneNotSupported": {
+    "description": "Error message when phone calls are not supported"
+  },
+
+  "errorSaveProfile": "Failed to save profile. Please try again.",
+  "@errorSaveProfile": {
+    "description": "Error message when saving profile fails"
+  },
+
+  "errorLoadData": "Failed to load data. Please try again.",
+  "@errorLoadData": {
+    "description": "Generic error message when loading data fails"
+  }
+}
