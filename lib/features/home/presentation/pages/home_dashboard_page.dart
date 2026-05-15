@@ -207,15 +207,20 @@ class _LoadedDashboard extends StatelessWidget {
                     // ── Today's workout card ──────────────────────────
                     TodayWorkoutCard(
                       exerciseCount: data.todaySchedule.length,
+                      completedCount: data.completedToday,
                       totalMinutes: todayTotalMinutes,
                       onStartPressed: () {
                         final cubit = context.read<HomeCubit>();
-                        if (cubit.canNavigate && data.todaySchedule.isNotEmpty) {
-                          cubit.startNavigation();
-                          final firstExercise = data.todaySchedule.first;
+                        if (!cubit.canNavigate) return;
+                        cubit.startNavigation();
+
+                        // Navigate to the next incomplete exercise, or the
+                        // first one if all are done (restart scenario).
+                        final nextExercise = cubit.getNextIncompleteExercise();
+                        if (nextExercise != null) {
                           context.goNamed(
                             RouteNames.exerciseDetail,
-                            pathParameters: {'id': firstExercise.id},
+                            pathParameters: {'id': nextExercise.id},
                           );
                         }
                       },

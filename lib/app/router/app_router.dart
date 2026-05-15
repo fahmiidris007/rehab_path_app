@@ -208,9 +208,19 @@ class AppRouter {
       case AuthInitial() || AuthLoading():
         return location == '/' ? null : '/';
 
+      case AuthRegistrationSuccess():
+        // Stay on /register — RegisterPage's BlocListener handles navigation to /login.
+        return null;
+
+      case AuthRequiresLogin():
+        // Had a previous session — go straight to login, skip welcome carousel.
+        if (location == '/login') return null;
+        if (_publicRoutes.contains(location)) return null;
+        return '/login';
+
       case AuthNeedsOnboarding():
-        // Allow the onboarding route itself (both /onboarding and /onboarding/:step).
         if (location.startsWith('/onboarding')) return null;
+        if (_unauthOnlyRoutes.contains(location)) return null;
         return '/onboarding';
 
       case AuthUnauthenticated() || AuthError():

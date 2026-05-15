@@ -60,20 +60,88 @@ class HomeCubit extends Cubit<HomeState> {
         (v) => v as List<ExerciseEntity>,
       );
 
+      // Compute stats from existing Hive sessions on initial load
+      final allSessions = _hiveDataSource
+          .getAllSessions()
+          .where((s) => s.userId == user.id)
+          .toList();
+
+      final totalSessions = allSessions.length;
+
+      final exerciseDurationMap = <String, int>{
+        for (final e in todaySchedule) e.id: (e.durationSeconds / 60).ceil(),
+      };
+      final totalMinutes = allSessions.fold<int>(0, (sum, s) {
+        final mins = exerciseDurationMap[s.exerciseId] ?? 10;
+        return sum + mins;
+      });
+
+      final today = DateTime.now();
+      final todayStart = DateTime(today.year, today.month, today.day);
+      final completedToday = allSessions
+          .where((s) => s.completedAt.isAfter(todayStart))
+          .length;
+
+      final monday = today.subtract(Duration(days: today.weekday - 1));
+      final mondayStart = DateTime(monday.year, monday.month, monday.day);
+      final completedDaysThisWeek = allSessions
+          .where((s) => s.completedAt.isAfter(mondayStart))
+          .map((s) {
+            final d = s.completedAt;
+            return DateTime(d.year, d.month, d.day);
+          })
+          .toSet()
+          .toList();
+
       emit(HomeState.loaded(HomeData(
         user: user,
         streakDays: streak,
         todaySchedule: todaySchedule,
-        completedToday: 0, // Will be updated as sessions are completed
+        completedToday: completedToday,
         recommendedExercises: recommended.take(5).toList(),
         motivationalMessage: message,
-        completedDaysThisWeek: [],
-        totalMinutes: 0,
-        totalSessions: 0,
+        completedDaysThisWeek: completedDaysThisWeek,
+        totalMinutes: totalMinutes,
+        totalSessions: totalSessions,
       )));
     } catch (e) {
       emit(HomeState.error(e.toString()));
     }
+  }
+
+  /// Returns the next exercise in today's schedule that has not been completed
+  /// today, or `null` if all exercises are done.
+  ///
+  /// "Completed today" means there is at least one [ExerciseSessionEntity] in
+  /// Hive for this user whose [exerciseId] matches and whose [completedAt] is
+  /// after midnight today.
+  ExerciseEntity? getNextIncompleteExercise() {
+    if (state is! HomeLoaded) return null;
+    final data = (state as HomeLoaded).data;
+    if (data.todaySchedule.isEmpty) return null;
+
+    final userId = data.user.id;
+    final today = DateTime.now();
+    final todayStart = DateTime(today.year, today.month, today.day);
+
+    final completedExerciseIds = _hiveDataSource
+        .getAllSessions()
+        .where((s) => s.userId == userId && s.completedAt.isAfter(todayStart))
+        .map((s) => s.exerciseId)
+        .toSet();
+
+    return data.todaySchedule.firstWhere(
+      (e) => !completedExerciseIds.contains(e.id),
+      orElse: () => data.todaySchedule.last, // all done — return last as fallback
+    );
+  }
+
+  /// Returns `true` if all exercises in today's schedule have been completed.
+  bool get allTodayExercisesDone {
+    if (state is! HomeLoaded) return false;
+    final data = (state as HomeLoaded).data;
+    if (data.todaySchedule.isEmpty) return false;
+    return data.completedToday >= data.todaySchedule.length;
   }
 
   /// Debounced navigation guard — prevents duplicate taps within 300ms.

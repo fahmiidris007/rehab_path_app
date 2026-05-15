@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
@@ -8,6 +9,9 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../features/home/presentation/cubit/home_cubit.dart';
+import '../../../../features/home/presentation/cubit/home_state.dart';
+import '../../../../shared/data/datasources/hive_data_source.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
 
@@ -101,89 +105,199 @@ class _ExerciseDetailView extends StatelessWidget {
 
   final ExerciseEntity exercise;
 
+  /// Returns true if this exercise has been completed today by the current user.
+  bool _isCompletedToday(BuildContext context) {
+    try {
+      final homeCubit = getIt<HomeCubit>();
+      if (homeCubit.state is! HomeLoaded) return false;
+      final data = (homeCubit.state as HomeLoaded).data;
+      final userId = data.user.id;
+
+      final today = DateTime.now();
+      final todayStart = DateTime(today.year, today.month, today.day);
+
+      return getIt<HiveDataSource>()
+          .getAllSessions()
+          .any((s) =>
+              s.userId == userId &&
+              s.exerciseId == exercise.id &&
+              s.completedAt.isAfter(todayStart));
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Returns the next exercise in today's schedule after this one, or null.
+  ExerciseEntity? _getNextExercise(BuildContext context) {
+    try {
+      final homeCubit = getIt<HomeCubit>();
+      if (homeCubit.state is! HomeLoaded) return null;
+      final schedule = (homeCubit.state as HomeLoaded).data.todaySchedule;
+      final idx = schedule.indexWhere((e) => e.id == exercise.id);
+      if (idx == -1 || idx >= schedule.length - 1) return null;
+      return schedule[idx + 1];
+    } catch (_) {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        foregroundColor: AppColors.textPrimary,
-        elevation: 0,
-        scrolledUnderElevation: 1,
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.screenPaddingH,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8),
-                    // Exercise name
-                    Text(
-                      exercise.name,
-                      style: AppTextStyles.displayH1.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
+    // Listen to HomeCubit so the UI updates when refreshAfterSession fires.
+    return BlocBuilder<HomeCubit, HomeState>(
+      bloc: getIt<HomeCubit>(),
+      builder: (context, _) {
+        final isCompleted = _isCompletedToday(context);
+        final nextExercise = _getNextExercise(context);
+
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: AppBar(
+            backgroundColor: AppColors.background,
+            foregroundColor: AppColors.textPrimary,
+            elevation: 0,
+            scrolledUnderElevation: 1,
+          ),
+          body: SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimensions.screenPaddingH,
                     ),
-                    const SizedBox(height: 20),
-                    // Placeholder video area
-                    _VideoPlaceholder(),
-                    const SizedBox(height: 24),
-                    // Stats row: duration, sets, reps
-                    _StatsRow(exercise: exercise),
-                    const SizedBox(height: 24),
-                    // Difficulty
-                    _SectionLabel(label: 'Difficulty'),
-                    const SizedBox(height: 8),
-                    _DifficultyIndicator(difficulty: exercise.difficulty),
-                    const SizedBox(height: 24),
-                    // Step-by-step description
-                    _SectionLabel(label: 'How to do it'),
-                    const SizedBox(height: 8),
-                    if (exercise.steps.isNotEmpty)
-                      _StepList(steps: exercise.steps)
-                    else
-                      Text(
-                        exercise.description,
-                        style: AppTextStyles.body.copyWith(
-                          color: AppColors.textSecondary,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        // Exercise name
+                        Text(
+                          exercise.name,
+                          style: AppTextStyles.displayH1.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                        // Completed badge
+                        if (isCompleted) ...[
+                          const SizedBox(height: 8),
+                          _CompletedBadge(),
+                        ],
+                        const SizedBox(height: 20),
+                        // Placeholder video area
+                        _VideoPlaceholder(),
+                        const SizedBox(height: 24),
+                        // Stats row: duration, sets, reps
+                        _StatsRow(exercise: exercise),
+                        const SizedBox(height: 24),
+                        // Difficulty
+                        _SectionLabel(label: 'Difficulty'),
+                        const SizedBox(height: 8),
+                        _DifficultyIndicator(difficulty: exercise.difficulty),
+                        const SizedBox(height: 24),
+                        // Step-by-step description
+                        _SectionLabel(label: 'How to do it'),
+                        const SizedBox(height: 8),
+                        if (exercise.steps.isNotEmpty)
+                          _StepList(steps: exercise.steps)
+                        else
+                          Text(
+                            exercise.description,
+                            style: AppTextStyles.body.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                        const SizedBox(height: 24),
+                        // Safety tips
+                        if (exercise.safetyTips.isNotEmpty) ...[
+                          _SectionLabel(label: 'Safety Tips'),
+                          const SizedBox(height: 8),
+                          _SafetyTipsList(tips: exercise.safetyTips),
+                          const SizedBox(height: 24),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+                // Action buttons
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    AppDimensions.screenPaddingH,
+                    12,
+                    AppDimensions.screenPaddingH,
+                    24,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Primary action: start or redo
+                      AppPrimaryButton(
+                        label: isCompleted ? 'Redo Exercise' : 'Start Exercise',
+                        onPressed: () => context.pushNamed(
+                          RouteNames.exercisePlayer,
+                          pathParameters: {'id': exercise.id},
                         ),
                       ),
-                    const SizedBox(height: 24),
-                    // Safety tips
-                    if (exercise.safetyTips.isNotEmpty) ...[
-                      _SectionLabel(label: 'Safety Tips'),
-                      const SizedBox(height: 8),
-                      _SafetyTipsList(tips: exercise.safetyTips),
-                      const SizedBox(height: 24),
+                      // Secondary: skip to next (only if in today's schedule and not last)
+                      if (nextExercise != null) ...[
+                        const SizedBox(height: 12),
+                        OutlinedButton(
+                          onPressed: () => context.goNamed(
+                            RouteNames.exerciseDetail,
+                            pathParameters: {'id': nextExercise.id},
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(
+                              double.infinity,
+                              AppDimensions.primaryButtonH,
+                            ),
+                            foregroundColor: AppColors.primary,
+                            side: const BorderSide(color: AppColors.primary),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  AppDimensions.radiusButton),
+                            ),
+                          ),
+                          child: Text('Next: ${nextExercise.name}'),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-            // Start Exercise button
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppDimensions.screenPaddingH,
-                12,
-                AppDimensions.screenPaddingH,
-                24,
-              ),
-              child: AppPrimaryButton(
-                label: 'Start Exercise',
-                onPressed: () => context.pushNamed(
-                  RouteNames.exercisePlayer,
-                  pathParameters: {'id': exercise.id},
-                ),
-              ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ── Completed badge ───────────────────────────────────────────────────────────
+
+class _CompletedBadge extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: AppColors.success.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(AppDimensions.radiusPill),
+        border: Border.all(color: AppColors.success.withValues(alpha: 0.4)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.check_circle, size: 16, color: AppColors.success),
+          const SizedBox(width: 6),
+          Text(
+            'Completed today',
+            style: AppTextStyles.body.copyWith(
+              fontSize: 13,
+              color: AppColors.success,
+              fontWeight: FontWeight.w600,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

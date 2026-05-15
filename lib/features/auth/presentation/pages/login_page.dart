@@ -166,16 +166,16 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: AppDimensions.cardGap),
 
                   // Continue as Guest
-                  TextButton(
-                    onPressed: () =>
-                        context.read<AuthCubit>().continueAsGuest(),
-                    child: Text(
-                      'Continue as Guest',
-                      style: AppTextStyles.body.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () =>
+                  //       context.read<AuthCubit>().continueAsGuest(),
+                  //   child: Text(
+                  //     'Continue as Guest',
+                  //     style: AppTextStyles.body.copyWith(
+                  //       color: AppColors.textSecondary,
+                  //     ),
+                  //   ),
+                  // ),
 
                   // Register link
                   Row(

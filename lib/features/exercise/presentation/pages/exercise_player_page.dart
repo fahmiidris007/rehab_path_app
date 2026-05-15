@@ -123,6 +123,30 @@ class _PlayerView extends StatefulWidget {
 class _PlayerViewState extends State<_PlayerView> {
   bool _selfReportShown = false;
 
+  /// After a session is saved, navigate to the next incomplete exercise in
+  /// today's schedule, or back to home if all exercises are done.
+  void _navigateAfterSave(BuildContext context) {
+    try {
+      final homeCubit = getIt<HomeCubit>();
+      final nextExercise = homeCubit.getNextIncompleteExercise();
+
+      if (nextExercise != null && !homeCubit.allTodayExercisesDone) {
+        // Go to the detail page of the next exercise.
+        // Use goNamed to replace the current player in the stack with the
+        // next exercise detail, keeping the shell nav bar visible.
+        context.goNamed(
+          RouteNames.exerciseDetail,
+          pathParameters: {'id': nextExercise.id},
+        );
+      } else {
+        // All done — go back to home dashboard.
+        context.goNamed(RouteNames.home);
+      }
+    } catch (_) {
+      context.goNamed(RouteNames.home);
+    }
+  }
+
   /// Triggers a data refresh on HomeCubit and ProgressCubit after a session
   /// is saved, so both the dashboard and progress page reflect the new data.
   void _refreshDashboardAndProgress(BuildContext context) {
@@ -159,11 +183,10 @@ class _PlayerViewState extends State<_PlayerView> {
               });
             }
           case PlayerSaved():
-            // Navigate to home first, then refresh data.
-            // refreshAfterSession() will wait for HomeCubit to finish
-            // its initial loadDashboard before applying the update.
-            context.goNamed(RouteNames.home);
+            // Refresh data first, then navigate to the next incomplete exercise
+            // or back to home if all are done.
             _refreshDashboardAndProgress(context);
+            _navigateAfterSave(context);
           case PlayerError(:final message):
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message)),

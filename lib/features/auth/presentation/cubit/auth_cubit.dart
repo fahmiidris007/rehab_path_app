@@ -35,18 +35,12 @@ class AuthCubit extends Cubit<AuthState> {
       (failure) => emit(const AuthState.unauthenticated()),
       (user) {
         if (user == null) {
+          // No session token at all — brand new user, show welcome screen.
           emit(const AuthState.unauthenticated());
-        } else if (user.id == 'guest') {
-          emit(const AuthState.guest());
         } else {
-          // Check if the user has completed onboarding.
-          final onboardingDone =
-              _prefsDataSource.getBool(PrefKeys.onboardingComplete) ?? false;
-          if (onboardingDone) {
-            emit(AuthState.authenticated(user));
-          } else {
-            emit(AuthState.needsOnboarding(user));
-          }
+          // A previous session exists — require the user to log in again.
+          // Show the login screen directly (skip the welcome carousel).
+          emit(const AuthState.requiresLogin());
         }
       },
     );
@@ -87,8 +81,9 @@ class AuthCubit extends Cubit<AuthState> {
         validation: (msg, _) => msg,
         unexpected: (msg) => msg,
       ))),
-      // After registration, send the user to onboarding before the dashboard.
-      (user) => emit(AuthState.needsOnboarding(user)),
+      // Registration succeeded — user must now log in manually.
+      // No session is created here.
+      (_) => emit(const AuthState.registrationSuccess()),
     );
   }
 

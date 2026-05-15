@@ -22,8 +22,10 @@ mixin _$AuthState {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,8 +35,10 @@ mixin _$AuthState {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -44,8 +48,10 @@ mixin _$AuthState {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -56,8 +62,11 @@ mixin _$AuthState {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,8 +76,10 @@ mixin _$AuthState {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,8 +89,10 @@ mixin _$AuthState {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) =>
@@ -145,8 +158,10 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -159,8 +174,10 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -173,8 +190,10 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -191,8 +210,11 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return initial(this);
@@ -205,8 +227,10 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return initial?.call(this);
@@ -219,8 +243,10 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -277,8 +303,10 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -291,8 +319,10 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -305,8 +335,10 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -323,8 +355,11 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return loading(this);
@@ -337,8 +372,10 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return loading?.call(this);
@@ -351,8 +388,10 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -446,8 +485,10 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return authenticated(user);
@@ -460,8 +501,10 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return authenticated?.call(user);
@@ -474,8 +517,10 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -492,8 +537,11 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return authenticated(this);
@@ -506,8 +554,10 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return authenticated?.call(this);
@@ -520,8 +570,10 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -621,8 +673,10 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return needsOnboarding(user);
@@ -635,8 +689,10 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return needsOnboarding?.call(user);
@@ -649,8 +705,10 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -667,8 +725,11 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return needsOnboarding(this);
@@ -681,8 +742,10 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return needsOnboarding?.call(this);
@@ -695,8 +758,10 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -715,6 +780,154 @@ abstract class AuthNeedsOnboarding implements AuthState {
   @JsonKey(ignore: true)
   _$$AuthNeedsOnboardingImplCopyWith<_$AuthNeedsOnboardingImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthRegistrationSuccessImplCopyWith<$Res> {
+  factory _$$AuthRegistrationSuccessImplCopyWith(
+          _$AuthRegistrationSuccessImpl value,
+          $Res Function(_$AuthRegistrationSuccessImpl) then) =
+      __$$AuthRegistrationSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthRegistrationSuccessImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthRegistrationSuccessImpl>
+    implements _$$AuthRegistrationSuccessImplCopyWith<$Res> {
+  __$$AuthRegistrationSuccessImplCopyWithImpl(
+      _$AuthRegistrationSuccessImpl _value,
+      $Res Function(_$AuthRegistrationSuccessImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
+  const _$AuthRegistrationSuccessImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.registrationSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthRegistrationSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+  }) {
+    return registrationSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+  }) {
+    return registrationSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (registrationSuccess != null) {
+      return registrationSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+  }) {
+    return registrationSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+  }) {
+    return registrationSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    required TResult orElse(),
+  }) {
+    if (registrationSuccess != null) {
+      return registrationSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthRegistrationSuccess implements AuthState {
+  const factory AuthRegistrationSuccess() = _$AuthRegistrationSuccessImpl;
 }
 
 /// @nodoc
@@ -759,8 +972,10 @@ class _$AuthGuestImpl implements AuthGuest {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return guest();
@@ -773,8 +988,10 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return guest?.call();
@@ -787,8 +1004,10 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -805,8 +1024,11 @@ class _$AuthGuestImpl implements AuthGuest {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return guest(this);
@@ -819,8 +1041,10 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return guest?.call(this);
@@ -833,8 +1057,10 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -892,8 +1118,10 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return unauthenticated();
@@ -906,8 +1134,10 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return unauthenticated?.call();
@@ -920,8 +1150,10 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -938,8 +1170,11 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return unauthenticated(this);
@@ -952,8 +1187,10 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return unauthenticated?.call(this);
@@ -966,8 +1203,10 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {
@@ -980,6 +1219,151 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
 
 abstract class AuthUnauthenticated implements AuthState {
   const factory AuthUnauthenticated() = _$AuthUnauthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthRequiresLoginImplCopyWith<$Res> {
+  factory _$$AuthRequiresLoginImplCopyWith(_$AuthRequiresLoginImpl value,
+          $Res Function(_$AuthRequiresLoginImpl) then) =
+      __$$AuthRequiresLoginImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthRequiresLoginImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthRequiresLoginImpl>
+    implements _$$AuthRequiresLoginImplCopyWith<$Res> {
+  __$$AuthRequiresLoginImplCopyWithImpl(_$AuthRequiresLoginImpl _value,
+      $Res Function(_$AuthRequiresLoginImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
+  const _$AuthRequiresLoginImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.requiresLogin()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AuthRequiresLoginImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+  }) {
+    return requiresLogin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+  }) {
+    return requiresLogin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (requiresLogin != null) {
+      return requiresLogin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+  }) {
+    return requiresLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+  }) {
+    return requiresLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    required TResult orElse(),
+  }) {
+    if (requiresLogin != null) {
+      return requiresLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthRequiresLogin implements AuthState {
+  const factory AuthRequiresLogin() = _$AuthRequiresLoginImpl;
 }
 
 /// @nodoc
@@ -1050,8 +1434,10 @@ class _$AuthErrorImpl implements AuthError {
     required TResult Function() loading,
     required TResult Function(UserEntity user) authenticated,
     required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
     required TResult Function() guest,
     required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1064,8 +1450,10 @@ class _$AuthErrorImpl implements AuthError {
     TResult? Function()? loading,
     TResult? Function(UserEntity user)? authenticated,
     TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
     TResult? Function()? guest,
     TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1078,8 +1466,10 @@ class _$AuthErrorImpl implements AuthError {
     TResult Function()? loading,
     TResult Function(UserEntity user)? authenticated,
     TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
     TResult Function()? guest,
     TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1096,8 +1486,11 @@ class _$AuthErrorImpl implements AuthError {
     required TResult Function(AuthLoading value) loading,
     required TResult Function(AuthAuthenticated value) authenticated,
     required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
     required TResult Function(AuthGuest value) guest,
     required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
   }) {
     return error(this);
@@ -1110,8 +1503,10 @@ class _$AuthErrorImpl implements AuthError {
     TResult? Function(AuthLoading value)? loading,
     TResult? Function(AuthAuthenticated value)? authenticated,
     TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult? Function(AuthGuest value)? guest,
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
   }) {
     return error?.call(this);
@@ -1124,8 +1519,10 @@ class _$AuthErrorImpl implements AuthError {
     TResult Function(AuthLoading value)? loading,
     TResult Function(AuthAuthenticated value)? authenticated,
     TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
     TResult Function(AuthGuest value)? guest,
     TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
     required TResult orElse(),
   }) {

@@ -53,9 +53,11 @@ class _AppView extends StatelessWidget {
             locale: _toLocale(state.locale),
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
+            // Always use light theme — the app design is optimised for light
+            // mode only. Forcing ThemeMode.light prevents the device dark-mode
+            // setting from breaking the UI.
             theme: AppTheme.light(),
-            darkTheme: AppTheme.dark(),
-            themeMode: _toThemeMode(state.themeMode),
+            themeMode: ThemeMode.light,
           ),
         );
       },
@@ -66,14 +68,6 @@ class _AppView extends StatelessWidget {
     return switch (appLocale) {
       AppLocale.en => const Locale('en'),
       AppLocale.id => const Locale('id'),
-    };
-  }
-
-  ThemeMode _toThemeMode(AppThemeMode appThemeMode) {
-    return switch (appThemeMode) {
-      AppThemeMode.light => ThemeMode.light,
-      AppThemeMode.dark => ThemeMode.dark,
-      AppThemeMode.system => ThemeMode.system,
     };
   }
 }

@@ -168,19 +168,56 @@ class _ProfileContent extends StatelessWidget {
           ],
 
           // ── Actions ──────────────────────────────────────────────────────
-          AppPrimaryButton(
-            label: 'Edit Profile',
-            onPressed: () => context.pushNamed('edit-profile'),
-          ),
-          const SizedBox(height: 12),
-          AppOutlineButton(
-            label: 'Update Goals',
-            onPressed: () => context.push('/onboarding'),
-          ),
-          const SizedBox(height: 12),
+          // AppPrimaryButton(
+          //   label: 'Edit Profile',
+          //   onPressed: () => context.pushNamed('edit-profile'),
+          // ),
+          // const SizedBox(height: 12),
+          // AppOutlineButton(
+          //   label: 'Update Goals',
+          //   onPressed: () => context.push('/onboarding'),
+          // ),
+          // const SizedBox(height: 12),
           AppEmergencyButton(
             label: 'Emergency Contacts',
             onPressed: () => context.pushNamed('sos'),
+          ),
+          const SizedBox(height: AppDimensions.sectionGap),
+
+          // ── Logout ───────────────────────────────────────────────────────
+          const Divider(),
+          const SizedBox(height: 8),
+          ListTile(
+            leading: const Icon(Icons.logout, color: AppColors.error),
+            title: Text(
+              'Log Out',
+              style: AppTextStyles.body.copyWith(color: AppColors.error),
+            ),
+            onTap: () async {
+              final confirmed = await showDialog<bool>(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text('Log Out'),
+                  content: const Text('Are you sure you want to log out?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(ctx).pop(false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(ctx).pop(true),
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.error,
+                      ),
+                      child: const Text('Log Out'),
+                    ),
+                  ],
+                ),
+              );
+              if (confirmed == true && context.mounted) {
+                context.read<AuthCubit>().logout();
+              }
+            },
           ),
           const SizedBox(height: AppDimensions.sectionGap),
         ],
