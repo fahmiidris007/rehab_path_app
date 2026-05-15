@@ -8,32 +8,56 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_loading_widget.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
+import '../../../../di/injection.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../../../auth/presentation/cubit/auth_state.dart';
 import '../cubit/profile_cubit.dart';
 
-class EditProfilePage extends StatefulWidget {
+/// Edit profile page.
+///
+/// Provides its own [ProfileCubit] so it can be pushed as a standalone route
+/// without depending on a parent [ProfileCubit] in the widget tree.
+class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  Widget build(BuildContext context) {
+    final authState = context.read<AuthCubit>().state;
+    final userId =
+        authState is AuthAuthenticated ? authState.user.id : '';
+
+    return BlocProvider<ProfileCubit>(
+      create: (_) => getIt<ProfileCubit>()..loadProfile(userId),
+      child: const _EditProfileView(),
+    );
+  }
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
-  final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _nameController;
-  bool _isSaving = false;
+class _EditProfileView extends StatefulWidget {
+  const _EditProfileView();
 
   @override
-  void initState() {
-    super.initState();
-    final state = context.read<ProfileCubit>().state;
-    final currentName = state is ProfileLoaded ? state.user.name : '';
-    _nameController = TextEditingController(text: currentName);
-  }
+  State<_EditProfileView> createState() => _EditProfileViewState();
+}
+
+class _EditProfileViewState extends State<_EditProfileView> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController? _nameController;
+  bool _isSaving = false;
+  bool _initialized = false;
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _nameController?.dispose();
     super.dispose();
+  }
+
+  /// Lazily initialise the controller once the profile is loaded.
+  void _initController(String currentName) {
+    if (!_initialized) {
+      _nameController = TextEditingController(text: currentName);
+      _initialized = true;
+    }
   }
 
   Future<void> _save() async {
@@ -45,7 +69,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     setState(() => _isSaving = true);
 
-    final updatedUser = state.user.copyWith(name: _nameController.text.trim());
+    final updatedUser =
+        state.user.copyWith(name: _nameController!.text.trim());
     final success = await cubit.updateProfile(updatedUser);
 
     if (!mounted) return;
@@ -73,6 +98,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
         if (state is ProfileLoading) {
           return const Scaffold(body: AppLoadingWidget());
         }
+
+        if (state is ProfileError) {
+          return Scaffold(
+            appBar: const AppTopAppBar(title: 'Edit Profile'),
+            body: Center(
+              child: Text(
+                state.message,
+                style: AppTextStyles.body
+                    .copyWith(color: AppColors.textSecondary),
+              ),
+            ),
+          );
+        }
+
+        final loaded = state as ProfileLoaded;
+        _initController(loaded.user.name);
 
         return Scaffold(
           appBar: const AppTopAppBar(title: 'Edit Profile'),
@@ -113,12 +154,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       border: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(AppDimensions.radiusCard),
-                        borderSide: const BorderSide(color: AppColors.border),
+                        borderSide:
+                            const BorderSide(color: AppColors.border),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(AppDimensions.radiusCard),
-                        borderSide: const BorderSide(color: AppColors.border),
+                        borderSide:
+                            const BorderSide(color: AppColors.border),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius:
@@ -131,7 +174,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       errorBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(AppDimensions.radiusCard),
-                        borderSide: const BorderSide(color: AppColors.error),
+                        borderSide:
+                            const BorderSide(color: AppColors.error),
                       ),
                     ),
                     validator: (value) {

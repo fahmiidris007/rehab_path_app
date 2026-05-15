@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/usecases/use_case.dart';
+import '../../../../shared/data/datasources/shared_preferences_data_source.dart';
+import '../../../../core/constants/pref_keys.dart';
 import '../../domain/usecases/login_use_case.dart';
 import '../../domain/usecases/register_use_case.dart';
 import '../../domain/usecases/logout_use_case.dart';
@@ -8,13 +10,14 @@ import '../../domain/usecases/get_session_use_case.dart';
 import '../../domain/usecases/create_guest_session_use_case.dart';
 import 'auth_state.dart';
 
-@injectable
+@lazySingleton
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase _loginUseCase;
   final RegisterUseCase _registerUseCase;
   final LogoutUseCase _logoutUseCase;
   final GetSessionUseCase _getSessionUseCase;
   final CreateGuestSessionUseCase _createGuestSessionUseCase;
+  final SharedPreferencesDataSource _prefsDataSource;
 
   AuthCubit(
     this._loginUseCase,
@@ -22,6 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
     this._logoutUseCase,
     this._getSessionUseCase,
     this._createGuestSessionUseCase,
+    this._prefsDataSource,
   ) : super(const AuthState.initial());
 
   Future<void> checkSession() async {
@@ -35,7 +39,14 @@ class AuthCubit extends Cubit<AuthState> {
         } else if (user.id == 'guest') {
           emit(const AuthState.guest());
         } else {
-          emit(AuthState.authenticated(user));
+          // Check if the user has completed onboarding.
+          final onboardingDone =
+              _prefsDataSource.getBool(PrefKeys.onboardingComplete) ?? false;
+          if (onboardingDone) {
+            emit(AuthState.authenticated(user));
+          } else {
+            emit(AuthState.needsOnboarding(user));
+          }
         }
       },
     );
@@ -52,7 +63,16 @@ class AuthCubit extends Cubit<AuthState> {
         validation: (msg, _) => msg,
         unexpected: (msg) => msg,
       ))),
-      (user) => emit(AuthState.authenticated(user)),
+      (user) {
+        // Login: check if onboarding was previously completed.
+        final onboardingDone =
+            _prefsDataSource.getBool(PrefKeys.onboardingComplete) ?? false;
+        if (onboardingDone) {
+          emit(AuthState.authenticated(user));
+        } else {
+          emit(AuthState.needsOnboarding(user));
+        }
+      },
     );
   }
 
@@ -67,8 +87,18 @@ class AuthCubit extends Cubit<AuthState> {
         validation: (msg, _) => msg,
         unexpected: (msg) => msg,
       ))),
-      (user) => emit(AuthState.authenticated(user)),
+      // After registration, send the user to onboarding before the dashboard.
+      (user) => emit(AuthState.needsOnboarding(user)),
     );
+  }
+
+  /// Called by [OnboardingPage] when the user finishes the questionnaire.
+  /// Transitions from [AuthNeedsOnboarding] to [AuthAuthenticated].
+  void completeOnboarding() {
+    if (state is AuthNeedsOnboarding) {
+      final user = (state as AuthNeedsOnboarding).user;
+      emit(AuthState.authenticated(user));
+    }
   }
 
   Future<void> logout() async {

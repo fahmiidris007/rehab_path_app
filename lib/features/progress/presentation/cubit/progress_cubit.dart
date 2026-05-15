@@ -15,7 +15,7 @@ import '../../domain/usecases/log_fall_event_use_case.dart';
 import '../../domain/usecases/remove_fall_event_use_case.dart';
 import 'progress_state.dart';
 
-@injectable
+@lazySingleton
 class ProgressCubit extends Cubit<ProgressState> {
   final GetWeeklyAdherenceUseCase _weeklyAdherenceUseCase;
   final GetMonthlyAdherenceUseCase _monthlyAdherenceUseCase;

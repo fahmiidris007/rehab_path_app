@@ -242,7 +242,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () => context.go('/login'),
+                      onPressed: () => context.push('/login'),
                       child: Text(
                         'Log In',
                         style: AppTextStyles.bodySemiBold.copyWith(

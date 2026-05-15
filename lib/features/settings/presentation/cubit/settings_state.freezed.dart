@@ -20,6 +20,7 @@ mixin _$SettingsData {
   AppLocale get locale => throw _privateConstructorUsedError;
   FontSizeLevel get fontSizeLevel => throw _privateConstructorUsedError;
   bool get notificationsEnabled => throw _privateConstructorUsedError;
+  bool get voiceCuesEnabled => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsDataCopyWith<SettingsData> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $SettingsDataCopyWith<$Res> {
       {AppThemeMode themeMode,
       AppLocale locale,
       FontSizeLevel fontSizeLevel,
-      bool notificationsEnabled});
+      bool notificationsEnabled,
+      bool voiceCuesEnabled});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$SettingsDataCopyWithImpl<$Res, $Val extends SettingsData>
     Object? locale = null,
     Object? fontSizeLevel = null,
     Object? notificationsEnabled = null,
+    Object? voiceCuesEnabled = null,
   }) {
     return _then(_value.copyWith(
       themeMode: null == themeMode
@@ -74,6 +77,10 @@ class _$SettingsDataCopyWithImpl<$Res, $Val extends SettingsData>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      voiceCuesEnabled: null == voiceCuesEnabled
+          ? _value.voiceCuesEnabled
+          : voiceCuesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -90,7 +97,8 @@ abstract class _$$SettingsDataImplCopyWith<$Res>
       {AppThemeMode themeMode,
       AppLocale locale,
       FontSizeLevel fontSizeLevel,
-      bool notificationsEnabled});
+      bool notificationsEnabled,
+      bool voiceCuesEnabled});
 }
 
 /// @nodoc
@@ -108,6 +116,7 @@ class __$$SettingsDataImplCopyWithImpl<$Res>
     Object? locale = null,
     Object? fontSizeLevel = null,
     Object? notificationsEnabled = null,
+    Object? voiceCuesEnabled = null,
   }) {
     return _then(_$SettingsDataImpl(
       themeMode: null == themeMode
@@ -126,6 +135,10 @@ class __$$SettingsDataImplCopyWithImpl<$Res>
           ? _value.notificationsEnabled
           : notificationsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      voiceCuesEnabled: null == voiceCuesEnabled
+          ? _value.voiceCuesEnabled
+          : voiceCuesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,7 +150,8 @@ class _$SettingsDataImpl implements _SettingsData {
       {required this.themeMode,
       required this.locale,
       required this.fontSizeLevel,
-      required this.notificationsEnabled});
+      required this.notificationsEnabled,
+      this.voiceCuesEnabled = false});
 
   @override
   final AppThemeMode themeMode;
@@ -147,10 +161,13 @@ class _$SettingsDataImpl implements _SettingsData {
   final FontSizeLevel fontSizeLevel;
   @override
   final bool notificationsEnabled;
+  @override
+  @JsonKey()
+  final bool voiceCuesEnabled;
 
   @override
   String toString() {
-    return 'SettingsData(themeMode: $themeMode, locale: $locale, fontSizeLevel: $fontSizeLevel, notificationsEnabled: $notificationsEnabled)';
+    return 'SettingsData(themeMode: $themeMode, locale: $locale, fontSizeLevel: $fontSizeLevel, notificationsEnabled: $notificationsEnabled, voiceCuesEnabled: $voiceCuesEnabled)';
   }
 
   @override
@@ -164,12 +181,14 @@ class _$SettingsDataImpl implements _SettingsData {
             (identical(other.fontSizeLevel, fontSizeLevel) ||
                 other.fontSizeLevel == fontSizeLevel) &&
             (identical(other.notificationsEnabled, notificationsEnabled) ||
-                other.notificationsEnabled == notificationsEnabled));
+                other.notificationsEnabled == notificationsEnabled) &&
+            (identical(other.voiceCuesEnabled, voiceCuesEnabled) ||
+                other.voiceCuesEnabled == voiceCuesEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, themeMode, locale, fontSizeLevel, notificationsEnabled);
+  int get hashCode => Object.hash(runtimeType, themeMode, locale, fontSizeLevel,
+      notificationsEnabled, voiceCuesEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +202,8 @@ abstract class _SettingsData implements SettingsData {
       {required final AppThemeMode themeMode,
       required final AppLocale locale,
       required final FontSizeLevel fontSizeLevel,
-      required final bool notificationsEnabled}) = _$SettingsDataImpl;
+      required final bool notificationsEnabled,
+      final bool voiceCuesEnabled}) = _$SettingsDataImpl;
 
   @override
   AppThemeMode get themeMode;
@@ -193,6 +213,8 @@ abstract class _SettingsData implements SettingsData {
   FontSizeLevel get fontSizeLevel;
   @override
   bool get notificationsEnabled;
+  @override
+  bool get voiceCuesEnabled;
   @override
   @JsonKey(ignore: true)
   _$$SettingsDataImplCopyWith<_$SettingsDataImpl> get copyWith =>

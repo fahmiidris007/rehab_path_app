@@ -77,8 +77,8 @@ class AppRouter {
           path: '/onboarding/:step',
           name: RouteNames.onboardingStep,
           builder: (context, state) {
-            final step = state.pathParameters['step'] ?? '1';
-            return _PlaceholderPage(name: 'Onboarding Step $step');
+            final step = int.tryParse(state.pathParameters['step'] ?? '1') ?? 1;
+            return OnboardingPage(initialStep: step);
           },
         ),
 
@@ -192,6 +192,7 @@ class AppRouter {
   ///
   /// Rules:
   /// - [AuthInitial] / [AuthLoading] → stay on splash ('/') while resolving.
+  /// - [AuthNeedsOnboarding] → '/onboarding' (after register or unfinished onboarding).
   /// - [AuthUnauthenticated] accessing an auth-required route → '/welcome'.
   /// - [AuthGuest] accessing a fully-authenticated-only route → '/welcome'.
   /// - [AuthAuthenticated] / [AuthGuest] accessing an unauth-only route → '/home'.
@@ -205,20 +206,18 @@ class AppRouter {
 
     switch (authState) {
       case AuthInitial() || AuthLoading():
-        // Stay on splash while auth state is being resolved.
         return location == '/' ? null : '/';
 
+      case AuthNeedsOnboarding():
+        // Allow the onboarding route itself (both /onboarding and /onboarding/:step).
+        if (location.startsWith('/onboarding')) return null;
+        return '/onboarding';
+
       case AuthUnauthenticated() || AuthError():
-        // Send unauthenticated users to welcome unless already on an
-        // unauth-only or public route.
-        if (_unauthOnlyRoutes.contains(location) || location == '/') {
-          return null;
-        }
+        if (_unauthOnlyRoutes.contains(location)) return null;
         return '/welcome';
 
       case AuthGuest():
-        // Guests can access unauth-only routes and the splash, but not
-        // routes that require a full account.
         if (_unauthOnlyRoutes.contains(location) || location == '/') {
           return '/home';
         }
@@ -228,7 +227,6 @@ class AppRouter {
         return null;
 
       case AuthAuthenticated():
-        // Fully authenticated users should not see unauth-only screens.
         if (_unauthOnlyRoutes.contains(location) || location == '/') {
           return '/home';
         }
@@ -237,17 +235,4 @@ class AppRouter {
   }
 }
 
-// ── Placeholder widget ────────────────────────────────────────────────────────
 
-class _PlaceholderPage extends StatelessWidget {
-  final String name;
-  const _PlaceholderPage({required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(name)),
-      body: Center(child: Text(name)),
-    );
-  }
-}

@@ -175,7 +175,7 @@ class _ProfileContent extends StatelessWidget {
           const SizedBox(height: 12),
           AppOutlineButton(
             label: 'Update Goals',
-            onPressed: () => context.go('/onboarding/7'),
+            onPressed: () => context.push('/onboarding'),
           ),
           const SizedBox(height: 12),
           AppEmergencyButton(

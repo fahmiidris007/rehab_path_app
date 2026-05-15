@@ -92,4 +92,12 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void clearError() => emit(state.copyWith(errorMessage: null));
+
+  /// Jumps directly to the given [step] without loading partial profile data.
+  ///
+  /// Used when navigating to a specific step via the `/onboarding/:step` route.
+  void jumpToStep(int step) {
+    final clamped = step.clamp(1, 7);
+    emit(state.copyWith(currentStep: clamped));
+  }
 }

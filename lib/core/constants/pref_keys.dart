@@ -18,6 +18,7 @@ class PrefKeys {
 
   // Notifications
   static const String notificationsEnabled = 'notifications_enabled';
+  static const String voiceCuesEnabled = 'voice_cues_enabled';
 
   // Streak milestone notification flags
   static const String streakMilestone3 = 'streak_milestone_3_sent';

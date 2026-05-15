@@ -121,4 +121,27 @@ class SettingsRepositoryImpl implements SettingsRepository {
       return Left(Failure.cache(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> saveVoiceCuesEnabled(bool enabled) async {
+    try {
+      await _prefsDataSource.setBool(PrefKeys.voiceCuesEnabled, enabled);
+      return const Right(unit);
+    } catch (e, st) {
+      _logger.e('SaveVoiceCuesEnabled failed', error: e, stackTrace: st);
+      return Left(Failure.cache(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> getVoiceCuesEnabled() async {
+    try {
+      final value =
+          _prefsDataSource.getBool(PrefKeys.voiceCuesEnabled) ?? false;
+      return Right(value);
+    } catch (e, st) {
+      _logger.e('GetVoiceCuesEnabled failed', error: e, stackTrace: st);
+      return Left(Failure.cache(message: e.toString()));
+    }
+  }
 }

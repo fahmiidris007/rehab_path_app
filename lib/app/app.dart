@@ -17,7 +17,13 @@ class RehabPathApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppCubit>(
-          create: (_) => AppCubit(),
+          create: (_) {
+            final cubit = AppCubit();
+            // Load persisted settings asynchronously so the UI reflects
+            // the user's last saved preferences as early as possible.
+            cubit.loadPersistedSettings();
+            return cubit;
+          },
         ),
         BlocProvider<AuthCubit>(
           create: (_) => getIt<AuthCubit>(),

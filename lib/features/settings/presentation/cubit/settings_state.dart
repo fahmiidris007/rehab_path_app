@@ -11,6 +11,7 @@ class SettingsData with _$SettingsData {
     required AppLocale locale,
     required FontSizeLevel fontSizeLevel,
     required bool notificationsEnabled,
+    @Default(false) bool voiceCuesEnabled,
   }) = _SettingsData;
 }
 

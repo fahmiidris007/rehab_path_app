@@ -8,10 +8,12 @@ import '../../domain/usecases/get_font_size_level_use_case.dart';
 import '../../domain/usecases/get_locale_use_case.dart';
 import '../../domain/usecases/get_notifications_enabled_use_case.dart';
 import '../../domain/usecases/get_theme_mode_use_case.dart';
+import '../../domain/usecases/get_voice_cues_enabled_use_case.dart';
 import '../../domain/usecases/save_font_size_level_use_case.dart';
 import '../../domain/usecases/save_locale_use_case.dart';
 import '../../domain/usecases/save_notifications_enabled_use_case.dart';
 import '../../domain/usecases/save_theme_mode_use_case.dart';
+import '../../domain/usecases/save_voice_cues_enabled_use_case.dart';
 import '../../../notifications/domain/usecases/request_notification_permission_use_case.dart';
 import 'settings_state.dart';
 
@@ -29,6 +31,8 @@ class SettingsCubit extends Cubit<SettingsState> {
   final SaveNotificationsEnabledUseCase _saveNotificationsEnabledUseCase;
   final RequestNotificationPermissionUseCase
       _requestNotificationPermissionUseCase;
+  final GetVoiceCuesEnabledUseCase _getVoiceCuesEnabledUseCase;
+  final SaveVoiceCuesEnabledUseCase _saveVoiceCuesEnabledUseCase;
   final AppCubit _appCubit;
 
   SettingsCubit(
@@ -41,6 +45,8 @@ class SettingsCubit extends Cubit<SettingsState> {
     this._getNotificationsEnabledUseCase,
     this._saveNotificationsEnabledUseCase,
     this._requestNotificationPermissionUseCase,
+    this._getVoiceCuesEnabledUseCase,
+    this._saveVoiceCuesEnabledUseCase,
     this._appCubit,
   ) : super(const SettingsState.loading());
 
@@ -50,17 +56,20 @@ class SettingsCubit extends Cubit<SettingsState> {
     final localeResult = await _getLocaleUseCase(const NoParams());
     final fontResult = await _getFontSizeLevelUseCase(const NoParams());
     final notifResult = await _getNotificationsEnabledUseCase(const NoParams());
+    final voiceResult = await _getVoiceCuesEnabledUseCase(const NoParams());
 
     final theme = themeResult.getOrElse(() => AppThemeMode.system);
     final locale = localeResult.getOrElse(() => AppLocale.en);
     final font = fontResult.getOrElse(() => FontSizeLevel.defaultSize);
     final notif = notifResult.getOrElse(() => false);
+    final voice = voiceResult.getOrElse(() => false);
 
     emit(SettingsState.loaded(SettingsData(
       themeMode: theme,
       locale: locale,
       fontSizeLevel: font,
       notificationsEnabled: notif,
+      voiceCuesEnabled: voice,
     )));
   }
 
@@ -119,6 +128,15 @@ class SettingsCubit extends Cubit<SettingsState> {
           : (state as SettingsNotificationPermissionDenied).data;
       emit(SettingsState.loaded(
           currentData.copyWith(notificationsEnabled: enabled)));
+    }
+  }
+
+  Future<void> toggleVoiceCues(bool enabled) async {
+    await _saveVoiceCuesEnabledUseCase(
+        SaveVoiceCuesEnabledParams(enabled: enabled));
+    if (state is SettingsLoaded) {
+      emit(SettingsState.loaded(
+          (state as SettingsLoaded).data.copyWith(voiceCuesEnabled: enabled)));
     }
   }
 }

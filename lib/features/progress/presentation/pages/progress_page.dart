@@ -27,22 +27,37 @@ import '../widgets/badge_card.dart';
 /// 3. Falls Diary
 /// 4. Achievements
 /// 5. Body Areas Worked
-class ProgressPage extends StatelessWidget {
+class ProgressPage extends StatefulWidget {
   const ProgressPage({super.key});
 
   @override
+  State<ProgressPage> createState() => _ProgressPageState();
+}
+
+class _ProgressPageState extends State<ProgressPage> {
+  late final ProgressCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = getIt<ProgressCubit>();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
+  }
+
+  void _load() {
+    if (!mounted) return;
+    final authState = context.read<AuthCubit>().state;
+    final userId = switch (authState) {
+      AuthAuthenticated(:final user) => user.id,
+      _ => 'guest',
+    };
+    _cubit.loadProgress(userId);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProgressCubit>(
-      create: (_) {
-        final cubit = getIt<ProgressCubit>();
-        final authState = context.read<AuthCubit>().state;
-        final userId = switch (authState) {
-          AuthAuthenticated(:final user) => user.id,
-          _ => 'guest',
-        };
-        cubit.loadProgress(userId);
-        return cubit;
-      },
+    return BlocProvider<ProgressCubit>.value(
+      value: _cubit,
       child: const _ProgressView(),
     );
   }
@@ -148,21 +163,32 @@ class _AdherenceSection extends StatelessWidget {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _AdherenceBar(
-                      label: 'This Week',
-                      value: weeklyRate,
+                    Text('This Week', style: AppTextStyles.bodySemiBold),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      height: 120,
+                      child: _AdherenceBarChart(
+                        label: 'Weekly',
+                        value: weeklyRate,
+                        color: AppColors.primary,
+                      ),
                     ),
-                    const SizedBox(height: 20),
-                    _AdherenceBar(
-                      label: 'This Month',
-                      value: monthlyRate,
+                    const SizedBox(height: 16),
+                    Text('This Month', style: AppTextStyles.bodySemiBold),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      height: 120,
+                      child: _AdherenceBarChart(
+                        label: 'Monthly',
+                        value: monthlyRate,
+                        color: AppColors.accent,
+                      ),
                     ),
                   ],
                 )
               : const ZeroStateWidget(
                   title: 'No data yet',
-                  subtitle:
-                      'Complete exercises to see your progress.',
+                  subtitle: 'Complete exercises to see your progress.',
                 ),
         ),
       ],
@@ -170,41 +196,76 @@ class _AdherenceSection extends StatelessWidget {
   }
 }
 
-class _AdherenceBar extends StatelessWidget {
-  const _AdherenceBar({required this.label, required this.value});
+class _AdherenceBarChart extends StatelessWidget {
+  const _AdherenceBarChart({
+    required this.label,
+    required this.value,
+    required this.color,
+  });
 
   final String label;
   final double value;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     final pct = (value * 100).round();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(label,
+    return BarChart(
+      BarChartData(
+        maxY: 100,
+        minY: 0,
+        barGroups: [
+          BarChartGroupData(
+            x: 0,
+            barRods: [
+              BarChartRodData(
+                toY: pct.toDouble(),
+                color: color,
+                width: 40,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ],
+          ),
+        ],
+        titlesData: FlTitlesData(
+          topTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false)),
+          rightTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false)),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: (value, meta) => Text(
+                '$pct%',
                 style: AppTextStyles.bodySemiBold
-                    .copyWith(color: AppColors.textPrimary)),
-            Text('$pct%',
-                style: AppTextStyles.bodySemiBold
-                    .copyWith(color: AppColors.primary)),
-          ],
-        ),
-        const SizedBox(height: 8),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusPill),
-          child: LinearProgressIndicator(
-            value: value.clamp(0.0, 1.0),
-            minHeight: AppDimensions.progressBarH,
-            backgroundColor: AppColors.neutralGray,
-            valueColor:
-                const AlwaysStoppedAnimation<Color>(AppColors.primary),
+                    .copyWith(color: AppColors.textPrimary),
+              ),
+            ),
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 32,
+              interval: 25,
+              getTitlesWidget: (value, meta) => Text(
+                '${value.toInt()}%',
+                style: const TextStyle(
+                    fontSize: 10, color: AppColors.textSecondary),
+              ),
+            ),
           ),
         ),
-      ],
+        gridData: FlGridData(
+          show: true,
+          drawVerticalLine: false,
+          horizontalInterval: 25,
+          getDrawingHorizontalLine: (_) => FlLine(
+            color: AppColors.border.withValues(alpha: 0.5),
+            strokeWidth: 1,
+          ),
+        ),
+        borderData: FlBorderData(show: false),
+      ),
     );
   }
 }

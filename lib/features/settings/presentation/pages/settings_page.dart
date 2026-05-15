@@ -136,6 +136,22 @@ class _SettingsContent extends StatelessWidget {
           activeThumbColor: AppColors.primary,
           onChanged: (enabled) => cubit.toggleNotifications(enabled),
         ),
+        SwitchListTile(
+          title: Text(
+            'Voice Cues',
+            style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+          ),
+          subtitle: Text(
+            'Play audio prompts during exercises',
+            style: AppTextStyles.body.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 14,
+            ),
+          ),
+          value: data.voiceCuesEnabled,
+          activeThumbColor: AppColors.primary,
+          onChanged: (enabled) => cubit.toggleVoiceCues(enabled),
+        ),
 
         // ── Account ──────────────────────────────────────────────────────
         _SectionHeader(title: 'Account'),

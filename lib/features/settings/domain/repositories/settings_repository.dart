@@ -12,4 +12,6 @@ abstract class SettingsRepository {
   Future<Either<Failure, FontSizeLevel>> getFontSizeLevel();
   Future<Either<Failure, Unit>> saveNotificationsEnabled(bool enabled);
   Future<Either<Failure, bool>> getNotificationsEnabled();
+  Future<Either<Failure, Unit>> saveVoiceCuesEnabled(bool enabled);
+  Future<Either<Failure, bool>> getVoiceCuesEnabled();
 }

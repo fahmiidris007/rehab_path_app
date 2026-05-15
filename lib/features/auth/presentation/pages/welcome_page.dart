@@ -98,11 +98,11 @@ class _WelcomePageState extends State<WelcomePage> {
                 children: [
                   AppPillButton(
                     label: 'Get Started',
-                    onPressed: () => context.go('/register'),
+                    onPressed: () => context.push('/register'),
                   ),
                   const SizedBox(height: 12),
                   TextButton(
-                    onPressed: () => context.go('/login'),
+                    onPressed: () => context.push('/login'),
                     child: Text(
                       'Log In',
                       style: AppTextStyles.bodySemiBold.copyWith(

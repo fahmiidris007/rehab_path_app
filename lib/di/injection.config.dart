@@ -137,6 +137,8 @@ import 'package:rehab_path_app/features/settings/domain/usecases/get_notificatio
     as _i460;
 import 'package:rehab_path_app/features/settings/domain/usecases/get_theme_mode_use_case.dart'
     as _i682;
+import 'package:rehab_path_app/features/settings/domain/usecases/get_voice_cues_enabled_use_case.dart'
+    as _i656;
 import 'package:rehab_path_app/features/settings/domain/usecases/save_font_size_level_use_case.dart'
     as _i801;
 import 'package:rehab_path_app/features/settings/domain/usecases/save_locale_use_case.dart'
@@ -145,6 +147,8 @@ import 'package:rehab_path_app/features/settings/domain/usecases/save_notificati
     as _i587;
 import 'package:rehab_path_app/features/settings/domain/usecases/save_theme_mode_use_case.dart'
     as _i40;
+import 'package:rehab_path_app/features/settings/domain/usecases/save_voice_cues_enabled_use_case.dart'
+    as _i299;
 import 'package:rehab_path_app/features/settings/presentation/cubit/settings_cubit.dart'
     as _i866;
 import 'package:rehab_path_app/features/sos/presentation/cubit/sos_cubit.dart'
@@ -274,6 +278,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i587.SaveNotificationsEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i40.SaveThemeModeUseCase>(
         () => _i40.SaveThemeModeUseCase(gh<_i400.SettingsRepository>()));
+    gh.factory<_i656.GetVoiceCuesEnabledUseCase>(
+        () => _i656.GetVoiceCuesEnabledUseCase(gh<_i400.SettingsRepository>()));
+    gh.factory<_i299.SaveVoiceCuesEnabledUseCase>(() =>
+        _i299.SaveVoiceCuesEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i310.CreateGuestSessionUseCase>(
         () => _i310.CreateGuestSessionUseCase(gh<_i9.AuthRepository>()));
     gh.factory<_i1056.GetSessionUseCase>(
@@ -309,18 +317,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i153.SharedPreferencesDataSource>(),
           gh<_i974.Logger>(),
         ));
-    gh.factory<_i866.SettingsCubit>(() => _i866.SettingsCubit(
-          gh<_i682.GetThemeModeUseCase>(),
-          gh<_i40.SaveThemeModeUseCase>(),
-          gh<_i46.GetLocaleUseCase>(),
-          gh<_i598.SaveLocaleUseCase>(),
-          gh<_i133.GetFontSizeLevelUseCase>(),
-          gh<_i801.SaveFontSizeLevelUseCase>(),
-          gh<_i460.GetNotificationsEnabledUseCase>(),
-          gh<_i587.SaveNotificationsEnabledUseCase>(),
-          gh<_i242.RequestNotificationPermissionUseCase>(),
-          gh<_i768.AppCubit>(),
-        ));
     gh.factory<_i484.GetStreakUseCase>(
         () => _i484.GetStreakUseCase(gh<_i190.ProgressRepository>()));
     gh.factory<_i969.GetBadgesUseCase>(
@@ -339,6 +335,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1018.LogFallEventUseCase(gh<_i190.ProgressRepository>()));
     gh.factory<_i639.RemoveFallEventUseCase>(
         () => _i639.RemoveFallEventUseCase(gh<_i190.ProgressRepository>()));
+    gh.factory<_i866.SettingsCubit>(() => _i866.SettingsCubit(
+          gh<_i682.GetThemeModeUseCase>(),
+          gh<_i40.SaveThemeModeUseCase>(),
+          gh<_i46.GetLocaleUseCase>(),
+          gh<_i598.SaveLocaleUseCase>(),
+          gh<_i133.GetFontSizeLevelUseCase>(),
+          gh<_i801.SaveFontSizeLevelUseCase>(),
+          gh<_i460.GetNotificationsEnabledUseCase>(),
+          gh<_i587.SaveNotificationsEnabledUseCase>(),
+          gh<_i242.RequestNotificationPermissionUseCase>(),
+          gh<_i656.GetVoiceCuesEnabledUseCase>(),
+          gh<_i299.SaveVoiceCuesEnabledUseCase>(),
+          gh<_i768.AppCubit>(),
+        ));
     gh.factory<_i489.OnboardingCubit>(() => _i489.OnboardingCubit(
           gh<_i561.SaveOnboardingProfileUseCase>(),
           gh<_i465.GetPartialOnboardingUseCase>(),
@@ -366,16 +376,24 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i852.GetProfileUseCase>(),
           gh<_i695.UpdateProfileUseCase>(),
         ));
-    gh.factory<_i565.ExercisePlayerCubit>(() => _i565.ExercisePlayerCubit(
-          gh<_i277.SaveExerciseSessionUseCase>(),
-          gh<_i535.DeletePartialSessionUseCase>(),
-        ));
-    gh.factory<_i761.AuthCubit>(() => _i761.AuthCubit(
+    gh.lazySingleton<_i761.AuthCubit>(() => _i761.AuthCubit(
           gh<_i457.LoginUseCase>(),
           gh<_i569.RegisterUseCase>(),
           gh<_i134.LogoutUseCase>(),
           gh<_i1056.GetSessionUseCase>(),
           gh<_i310.CreateGuestSessionUseCase>(),
+          gh<_i153.SharedPreferencesDataSource>(),
+        ));
+    gh.factory<_i565.ExercisePlayerCubit>(() => _i565.ExercisePlayerCubit(
+          gh<_i277.SaveExerciseSessionUseCase>(),
+          gh<_i535.DeletePartialSessionUseCase>(),
+        ));
+    gh.lazySingleton<_i343.HomeCubit>(() => _i343.HomeCubit(
+          gh<_i467.GetRandomMessageUseCase>(),
+          gh<_i484.GetStreakUseCase>(),
+          gh<_i547.GetTodayScheduleUseCase>(),
+          gh<_i774.GetExercisesByLevelUseCase>(),
+          gh<_i217.HiveDataSource>(),
         ));
     gh.factory<_i145.CheckAndAwardBadgesUseCase>(
         () => _i145.CheckAndAwardBadgesUseCase(
@@ -384,15 +402,9 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i938.ExerciseCubit>(
         () => _i938.ExerciseCubit(gh<_i30.GetAllExercisesUseCase>()));
-    gh.factory<_i343.HomeCubit>(() => _i343.HomeCubit(
-          gh<_i467.GetRandomMessageUseCase>(),
-          gh<_i484.GetStreakUseCase>(),
-          gh<_i547.GetTodayScheduleUseCase>(),
-          gh<_i774.GetExercisesByLevelUseCase>(),
-        ));
     gh.factory<_i37.SosCubit>(
         () => _i37.SosCubit(gh<_i852.GetProfileUseCase>()));
-    gh.factory<_i414.ProgressCubit>(() => _i414.ProgressCubit(
+    gh.lazySingleton<_i414.ProgressCubit>(() => _i414.ProgressCubit(
           gh<_i725.GetWeeklyAdherenceUseCase>(),
           gh<_i528.GetMonthlyAdherenceUseCase>(),
           gh<_i246.GetBalanceScoresUseCase>(),

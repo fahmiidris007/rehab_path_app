@@ -8,6 +8,7 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_outline_button.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../di/injection.dart';
+import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../cubit/onboarding_state.dart';
@@ -23,13 +24,30 @@ import '../widgets/step7_goals_widget.dart';
 ///
 /// Provides [OnboardingCubit] and loads any partial profile saved from a
 /// previous session before rendering the step view.
+///
+/// An optional [initialStep] can be provided to start the flow at a specific
+/// step (e.g. when navigating via the `/onboarding/:step` route).
 class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
+  const OnboardingPage({super.key, this.initialStep});
+
+  /// The 1-based step index to start at. Defaults to restoring from saved
+  /// partial profile when null.
+  final int? initialStep;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<OnboardingCubit>(
-      create: (_) => getIt<OnboardingCubit>()..loadPartialProfile(),
+      create: (_) {
+        final cubit = getIt<OnboardingCubit>();
+        final step = initialStep;
+        if (step != null && step > 1) {
+          // Jump directly to the requested step without loading partial data.
+          cubit.jumpToStep(step);
+        } else {
+          cubit.loadPartialProfile();
+        }
+        return cubit;
+      },
       child: const _OnboardingView(),
     );
   }
@@ -151,6 +169,10 @@ class _OnboardingViewState extends State<_OnboardingView> {
       listenWhen: (prev, curr) => curr.isComplete && !prev.isComplete,
       listener: (context, state) {
         if (state.isComplete) {
+          // Notify AuthCubit that onboarding is done so the router
+          // transitions from AuthNeedsOnboarding → AuthAuthenticated → /home.
+          getIt<AuthCubit>().completeOnboarding();
+          // Fallback direct navigation in case AuthCubit is already authenticated.
           context.go('/home');
         }
       },

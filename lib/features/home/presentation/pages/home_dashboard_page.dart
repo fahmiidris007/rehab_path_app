@@ -32,25 +32,43 @@ import '../widgets/weekly_calendar_strip.dart';
 /// Provides [HomeCubit] via [BlocProvider], loads dashboard data on init
 /// using the current user from [AuthCubit], and renders the full dashboard
 /// layout once data is available.
-class HomeDashboardPage extends StatelessWidget {
+///
+/// Because [HomeCubit] is `@injectable` (not a singleton), a fresh instance
+/// is created every time this page is pushed/replaced, ensuring the dashboard
+/// always shows up-to-date data after returning from the exercise player.
+class HomeDashboardPage extends StatefulWidget {
   const HomeDashboardPage({super.key});
 
   @override
+  State<HomeDashboardPage> createState() => _HomeDashboardPageState();
+}
+
+class _HomeDashboardPageState extends State<HomeDashboardPage> {
+  late final HomeCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = getIt<HomeCubit>();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
+  }
+
+  void _load() {
+    if (!mounted) return;
+    final authState = context.read<AuthCubit>().state;
+    if (authState is AuthAuthenticated) {
+      _cubit.loadDashboard(authState.user);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeCubit>(
-      create: (_) {
-        final cubit = getIt<HomeCubit>();
-        final authState = context.read<AuthCubit>().state;
-        if (authState is AuthAuthenticated) {
-          cubit.loadDashboard(authState.user);
-        }
-        return cubit;
-      },
+    return BlocProvider<HomeCubit>.value(
+      value: _cubit,
       child: const _HomeDashboardView(),
     );
   }
 }
-
 class _HomeDashboardView extends StatelessWidget {
   const _HomeDashboardView();
 
@@ -112,8 +130,8 @@ class _LoadedDashboard extends StatelessWidget {
         ? (data.completedToday / data.todaySchedule.length).clamp(0.0, 1.0)
         : 0.0;
 
-    // Total duration in minutes.
-    final totalMinutes = data.todaySchedule.fold<int>(
+    // Total duration of TODAY's scheduled exercises in minutes (for TodayWorkoutCard).
+    final todayTotalMinutes = data.todaySchedule.fold<int>(
       0,
       (sum, e) => sum + (e.durationSeconds / 60).ceil(),
     );
@@ -125,6 +143,14 @@ class _LoadedDashboard extends StatelessWidget {
           AppTopAppBar(
             title: 'RehabPath',
             actions: [
+              // IconButton(
+              //   icon: const Icon(Icons.emergency, color: AppColors.error),
+              //   onPressed: () => context.pushNamed(RouteNames.sos),
+              //   tooltip: 'SOS',
+              //   style: IconButton.styleFrom(
+              //     minimumSize: const Size(56, 56),
+              //   ),
+              // ),
               AppStreakBadge(
                 streakDays: data.streakDays,
                 label: 'Day Streak',
@@ -147,8 +173,8 @@ class _LoadedDashboard extends StatelessWidget {
           ),
           if (isGuest)
             GuestBanner(
-              message: 'You are browsing as a guest. Register to save progress.',
-              onRegisterTap: () => context.goNamed(RouteNames.register),
+              message: 'You are in Guest mode. Register or log in to save your progress.',
+              onRegisterTap: () => context.pushNamed(RouteNames.register),
             ),
           Expanded(
             child: SingleChildScrollView(
@@ -181,12 +207,16 @@ class _LoadedDashboard extends StatelessWidget {
                     // ── Today's workout card ──────────────────────────
                     TodayWorkoutCard(
                       exerciseCount: data.todaySchedule.length,
-                      totalMinutes: totalMinutes,
+                      totalMinutes: todayTotalMinutes,
                       onStartPressed: () {
                         final cubit = context.read<HomeCubit>();
-                        if (cubit.canNavigate) {
+                        if (cubit.canNavigate && data.todaySchedule.isNotEmpty) {
                           cubit.startNavigation();
-                          context.goNamed(RouteNames.exerciseList);
+                          final firstExercise = data.todaySchedule.first;
+                          context.goNamed(
+                            RouteNames.exerciseDetail,
+                            pathParameters: {'id': firstExercise.id},
+                          );
                         }
                       },
                     ),

@@ -11,10 +11,10 @@ class _NavTab {
   final String label;
 }
 
-/// Custom bottom navigation bar with 3 tabs.
+/// Custom bottom navigation bar with 4 tabs.
 ///
 /// [currentIndex] selects the active tab (0 = Home, 1 = Exercise/Map,
-/// 2 = Profile). [onTap] is called with the tapped index.
+/// 2 = Progress, 3 = Profile). [onTap] is called with the tapped index.
 class AppBottomNavBar extends StatelessWidget {
   const AppBottomNavBar({
     super.key,
@@ -33,6 +33,10 @@ class AppBottomNavBar extends StatelessWidget {
     _NavTab(
       icon: Icon(Icons.map_outlined),
       label: 'Exercise',
+    ),
+    _NavTab(
+      icon: Icon(Icons.bar_chart_outlined),
+      label: 'Progress',
     ),
     _NavTab(
       icon: Icon(Icons.person_outline),

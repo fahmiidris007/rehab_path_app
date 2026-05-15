@@ -25,7 +25,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
   int _locationToIndex(String location) {
     if (location.startsWith('/home')) return 0;
     if (location.startsWith('/exercise')) return 1;
-    if (location.startsWith('/profile')) return 2;
+    if (location.startsWith('/progress')) return 2;
+    if (location.startsWith('/profile')) return 3;
     return 0;
   }
 
@@ -36,6 +37,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
       case 1:
         context.goNamed(RouteNames.exerciseList);
       case 2:
+        context.goNamed(RouteNames.progress);
+      case 3:
         context.goNamed(RouteNames.profile);
     }
   }

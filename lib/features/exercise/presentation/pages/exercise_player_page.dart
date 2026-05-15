@@ -9,6 +9,10 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../features/auth/presentation/cubit/auth_state.dart';
+import '../../../../features/home/presentation/cubit/home_cubit.dart';
+import '../../../../features/progress/presentation/cubit/progress_cubit.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
 import '../cubit/exercise_player_cubit.dart';
 import '../cubit/player_state.dart';
@@ -119,6 +123,29 @@ class _PlayerView extends StatefulWidget {
 class _PlayerViewState extends State<_PlayerView> {
   bool _selfReportShown = false;
 
+  /// Triggers a data refresh on HomeCubit and ProgressCubit after a session
+  /// is saved, so both the dashboard and progress page reflect the new data.
+  void _refreshDashboardAndProgress(BuildContext context) {
+    // Both cubits are @lazySingleton — we can access them via getIt and
+    // call refresh methods directly, regardless of where we are in the tree.
+    try {
+      final authState = getIt<AuthCubit>().state;
+      final userId = switch (authState) {
+        AuthAuthenticated(:final user) => user.id,
+        _ => null,
+      };
+      if (userId != null) {
+        // Refresh home dashboard stats (streak, completedToday, etc.)
+        getIt<HomeCubit>().refreshAfterSession();
+
+        // Reload progress data (adherence, badges, etc.)
+        getIt<ProgressCubit>().loadProgress(userId);
+      }
+    } catch (_) {
+      // Silently ignore if cubits are not yet registered
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ExercisePlayerCubit, PlayerState>(
@@ -132,8 +159,11 @@ class _PlayerViewState extends State<_PlayerView> {
               });
             }
           case PlayerSaved():
-            // Navigate back to the exercise list, clearing the player stack.
-            context.goNamed(RouteNames.exerciseList);
+            // Navigate to home first, then refresh data.
+            // refreshAfterSession() will wait for HomeCubit to finish
+            // its initial loadDashboard before applying the update.
+            context.goNamed(RouteNames.home);
+            _refreshDashboardAndProgress(context);
           case PlayerError(:final message):
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(message)),
