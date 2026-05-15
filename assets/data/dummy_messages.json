@@ -1,0 +1,146 @@
+[
+  {
+    "id": "msg_001",
+    "textEn": "Every step forward is progress. Keep going!",
+    "textId": "Setiap langkah maju adalah kemajuan. Terus semangat!",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_002",
+    "textEn": "You showed up today — that is already a win.",
+    "textId": "Kamu hadir hari ini — itu sudah sebuah kemenangan.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_003",
+    "textEn": "Small steps lead to big changes. You are doing great!",
+    "textId": "Langkah kecil membawa perubahan besar. Kamu luar biasa!",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_004",
+    "textEn": "Your body is stronger than you think. Trust the process.",
+    "textId": "Tubuhmu lebih kuat dari yang kamu kira. Percayai prosesnya.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_005",
+    "textEn": "Consistency is the key to lasting improvement. Keep it up!",
+    "textId": "Konsistensi adalah kunci perbaikan yang bertahan lama. Terus lakukan!",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_006",
+    "textEn": "Every exercise you complete brings you closer to your goal.",
+    "textId": "Setiap latihan yang kamu selesaikan membawamu lebih dekat ke tujuanmu.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_007",
+    "textEn": "You have completed 7 days in a row! Amazing dedication!",
+    "textId": "Kamu telah menyelesaikan 7 hari berturut-turut! Dedikasi yang luar biasa!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_008",
+    "textEn": "Congratulations on completing your first week of exercises!",
+    "textId": "Selamat telah menyelesaikan minggu pertama latihan kamu!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_009",
+    "textEn": "You have reached 10 completed sessions. Keep building that momentum!",
+    "textId": "Kamu telah menyelesaikan 10 sesi. Terus jaga momentumnya!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_010",
+    "textEn": "One month of consistent exercise — you should be very proud!",
+    "textId": "Satu bulan latihan konsisten — kamu patut sangat bangga!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_011",
+    "textEn": "Your balance score has improved! Your hard work is paying off.",
+    "textId": "Skor keseimbanganmu meningkat! Kerja kerasmu membuahkan hasil.",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_012",
+    "textEn": "50 sessions completed! You are a true champion of your health.",
+    "textId": "50 sesi selesai! Kamu adalah juara sejati untuk kesehatanmu.",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_013",
+    "textEn": "Time for your morning exercise! Your body will thank you.",
+    "textId": "Waktunya latihan pagi! Tubuhmu akan berterima kasih.",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_014",
+    "textEn": "Don't forget your exercise session today. Just 30 minutes makes a difference!",
+    "textId": "Jangan lupa sesi latihan hari ini. Hanya 30 menit sudah membuat perbedaan!",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_015",
+    "textEn": "It has been 2 days since your last session. Ready to get moving again?",
+    "textId": "Sudah 2 hari sejak sesi terakhirmu. Siap bergerak lagi?",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_016",
+    "textEn": "Your weekly goal is waiting. Let's complete today's exercises!",
+    "textId": "Target mingguanmu menunggu. Ayo selesaikan latihan hari ini!",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_017",
+    "textEn": "A gentle reminder: regular exercise helps prevent falls. Stay safe!",
+    "textId": "Pengingat lembut: olahraga teratur membantu mencegah jatuh. Tetap aman!",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_018",
+    "textEn": "Your preferred exercise time is coming up. Get ready to move!",
+    "textId": "Waktu latihan pilihanmu sudah dekat. Bersiaplah untuk bergerak!",
+    "category": "reminder"
+  },
+  {
+    "id": "msg_019",
+    "textEn": "Believe in yourself. Every day you exercise is a day you invest in your future.",
+    "textId": "Percayalah pada dirimu. Setiap hari kamu berolahraga adalah hari kamu berinvestasi untuk masa depanmu.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_020",
+    "textEn": "You are not just exercising — you are building a healthier, more independent life.",
+    "textId": "Kamu tidak hanya berolahraga — kamu sedang membangun kehidupan yang lebih sehat dan mandiri.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_021",
+    "textEn": "Rest days are important too. Listen to your body and recover well.",
+    "textId": "Hari istirahat juga penting. Dengarkan tubuhmu dan pulihkan diri dengan baik.",
+    "category": "encouragement"
+  },
+  {
+    "id": "msg_022",
+    "textEn": "You have completed your 3-week streak! Incredible commitment!",
+    "textId": "Kamu telah menyelesaikan streak 3 minggu! Komitmen yang luar biasa!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_023",
+    "textEn": "Your balance is improving week by week. Keep up the excellent work!",
+    "textId": "Keseimbanganmu meningkat dari minggu ke minggu. Terus pertahankan kerja kerasmu!",
+    "category": "milestone"
+  },
+  {
+    "id": "msg_024",
+    "textEn": "You missed yesterday's session. No worries — today is a fresh start!",
+    "textId": "Kamu melewatkan sesi kemarin. Tidak apa-apa — hari ini adalah awal yang baru!",
+    "category": "reminder"
+  }
+]

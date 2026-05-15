@@ -1,0 +1,118 @@
+[
+  {
+    "id": "user_001",
+    "name": "Siti Rahayu",
+    "email": "siti.rahayu@example.com",
+    "age": 72,
+    "gender": "female",
+    "programLevel": "beginner",
+    "healthConditions": ["musculoskeletal", "circulatory"],
+    "avatarPath": "assets/images/avatars/avatar_01.png",
+    "emergencyContacts": [
+      {
+        "name": "Ahmad Rahayu",
+        "relationship": "Son",
+        "phoneNumber": "+6281234567890"
+      },
+      {
+        "name": "Dewi Rahayu",
+        "relationship": "Daughter",
+        "phoneNumber": "+6289876543210"
+      },
+      {
+        "name": "Dr. Hendra Wijaya",
+        "relationship": "Doctor",
+        "phoneNumber": "+6281122334455"
+      }
+    ],
+    "onboardingProfile": {
+      "age": 72,
+      "gender": "female",
+      "fallsInLastYear": 2,
+      "healthConditions": ["musculoskeletal", "circulatory"],
+      "usesWalkingAid": true,
+      "fearOfFallingScore": 4,
+      "preferredExerciseTime": "08:00",
+      "sessionDurationMinutes": 30,
+      "weeklyFrequencyTarget": 3,
+      "outcomeGoal": "Bisa berjalan ke pasar sendiri tanpa bantuan",
+      "behaviouralGoal": "Olahraga setiap pagi sebelum sarapan",
+      "programLevel": "beginner",
+      "lastCompletedStep": 7
+    }
+  },
+  {
+    "id": "user_002",
+    "name": "Budi Santoso",
+    "email": "budi.santoso@example.com",
+    "age": 67,
+    "gender": "male",
+    "programLevel": "intermediate",
+    "healthConditions": ["musculoskeletal"],
+    "avatarPath": "assets/images/avatars/avatar_02.png",
+    "emergencyContacts": [
+      {
+        "name": "Rina Santoso",
+        "relationship": "Wife",
+        "phoneNumber": "+6285678901234"
+      },
+      {
+        "name": "Doni Santoso",
+        "relationship": "Son",
+        "phoneNumber": "+6287654321098"
+      }
+    ],
+    "onboardingProfile": {
+      "age": 67,
+      "gender": "male",
+      "fallsInLastYear": 1,
+      "healthConditions": ["musculoskeletal"],
+      "usesWalkingAid": false,
+      "fearOfFallingScore": 3,
+      "preferredExerciseTime": "07:00",
+      "sessionDurationMinutes": 45,
+      "weeklyFrequencyTarget": 4,
+      "outcomeGoal": "Bisa bermain dengan cucu tanpa merasa lelah",
+      "behaviouralGoal": "Latihan setiap pagi setelah sholat subuh",
+      "programLevel": "intermediate",
+      "lastCompletedStep": 7
+    }
+  },
+  {
+    "id": "user_003",
+    "name": "Dewi Kusuma",
+    "email": "dewi.kusuma@example.com",
+    "age": 62,
+    "gender": "female",
+    "programLevel": "advanced",
+    "healthConditions": [],
+    "avatarPath": "assets/images/avatars/avatar_03.png",
+    "emergencyContacts": [
+      {
+        "name": "Hendra Kusuma",
+        "relationship": "Husband",
+        "phoneNumber": "+6281987654321"
+      },
+      {
+        "name": "Sari Kusuma",
+        "relationship": "Daughter",
+        "phoneNumber": "+6283456789012"
+      }
+    ],
+    "onboardingProfile": {
+      "age": 62,
+      "gender": "female",
+      "fallsInLastYear": 0,
+      "healthConditions": [],
+      "usesWalkingAid": false,
+      "fearOfFallingScore": 2,
+      "preferredExerciseTime": "06:30",
+      "sessionDurationMinutes": 60,
+      "weeklyFrequencyTarget": 5,
+      "outcomeGoal": "Tetap aktif dan mandiri hingga usia lanjut",
+      "behaviouralGoal": "Latihan setiap hari sebelum berangkat kerja",
+      "programLevel": "advanced",
+      "lastCompletedStep": 7
+    }
+  }
+]
