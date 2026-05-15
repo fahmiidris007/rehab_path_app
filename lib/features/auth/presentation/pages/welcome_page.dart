@@ -110,16 +110,16 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () =>
-                        context.read<AuthCubit>().continueAsGuest(),
-                    child: Text(
-                      'Continue as Guest',
-                      style: AppTextStyles.body.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () =>
+                  //       context.read<AuthCubit>().continueAsGuest(),
+                  //   child: Text(
+                  //     'Continue as Guest',
+                  //     style: AppTextStyles.body.copyWith(
+                  //       color: AppColors.textSecondary,
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 8),
                 ],
               ),
