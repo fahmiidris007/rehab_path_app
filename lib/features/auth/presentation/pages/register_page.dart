@@ -6,6 +6,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/validators/confirm_password_input.dart';
 import '../../domain/validators/email_input.dart';
 import '../../domain/validators/name_input.dart';
@@ -54,7 +55,6 @@ class _RegisterPageState extends State<RegisterPage> {
   void _onPasswordChanged(String value) {
     setState(() {
       _password = PasswordInput.dirty(value);
-      // Re-validate confirm password when password changes
       _confirmPassword = ConfirmPasswordInput.dirty(
         password: value,
         value: _confirmPasswordController.text,
@@ -98,14 +98,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthRegistrationSuccess) {
-          // Account created — redirect to login with a success message.
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Account created! Please log in to continue.'),
-              backgroundColor: Color(0xFF00609B),
+            SnackBar(
+              content: Text(l10n.authRegisterSuccessMessage),
+              backgroundColor: const Color(0xFF00609B),
             ),
           );
           context.go('/login');
@@ -135,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Create Account',
+                  l10n.authRegisterTitle,
                   style: AppTextStyles.displayH1.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -150,9 +151,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   textCapitalization: TextCapitalization.words,
                   onChanged: _onNameChanged,
                   decoration: InputDecoration(
-                    labelText: 'Full Name',
+                    labelText: l10n.authRegisterNameHint,
                     errorText: _name.displayError != null
-                        ? 'Name must be 1–50 characters'
+                        ? l10n.authRegisterNameError
                         : null,
                   ),
                 ),
@@ -165,9 +166,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   textInputAction: TextInputAction.next,
                   onChanged: _onEmailChanged,
                   decoration: InputDecoration(
-                    labelText: 'Email',
+                    labelText: l10n.authRegisterEmailHint,
                     errorText: _email.displayError != null
-                        ? 'Please enter a valid email address'
+                        ? l10n.authRegisterEmailError
                         : null,
                   ),
                 ),
@@ -180,9 +181,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   textInputAction: TextInputAction.next,
                   onChanged: _onPasswordChanged,
                   decoration: InputDecoration(
-                    labelText: 'Password',
+                    labelText: l10n.authRegisterPasswordHint,
                     errorText: _password.displayError != null
-                        ? 'Password must be 8–64 characters'
+                        ? l10n.authRegisterPasswordError
                         : null,
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -206,9 +207,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   onChanged: _onConfirmPasswordChanged,
                   onFieldSubmitted: (_) => _submit(),
                   decoration: InputDecoration(
-                    labelText: 'Confirm Password',
+                    labelText: l10n.authRegisterConfirmPasswordHint,
                     errorText: _confirmPassword.displayError != null
-                        ? 'Passwords do not match'
+                        ? l10n.authRegisterConfirmPasswordError
                         : null,
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -232,7 +233,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   builder: (context, state) {
                     final isLoading = state is AuthLoading;
                     return AppPrimaryButton(
-                      label: 'Create Account',
+                      label: l10n.authRegisterButton,
                       isLoading: isLoading,
                       onPressed: isLoading ? null : _submit,
                     );
@@ -245,7 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account?',
+                      l10n.authRegisterHaveAccount,
                       style: AppTextStyles.body.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -253,7 +254,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextButton(
                       onPressed: () => context.push('/login'),
                       child: Text(
-                        'Log In',
+                        l10n.authRegisterLoginLink,
                         style: AppTextStyles.bodySemiBold.copyWith(
                           color: AppColors.primary,
                         ),

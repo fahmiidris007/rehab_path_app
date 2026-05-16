@@ -8,6 +8,7 @@ import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../cubit/exercise_cubit.dart';
@@ -15,10 +16,6 @@ import '../cubit/exercise_state.dart';
 import '../widgets/exercise_card.dart';
 
 /// Displays all exercises grouped by [ExerciseCategory].
-///
-/// Provides its own [ExerciseCubit] via [BlocProvider] and loads exercises
-/// on initialisation. Uses a [CustomScrollView] with [SliverList] so that
-/// category headers can be made sticky.
 class ExerciseListPage extends StatelessWidget {
   const ExerciseListPage({super.key});
 
@@ -36,6 +33,7 @@ class _ExerciseListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: BlocBuilder<ExerciseCubit, ExerciseState>(
@@ -50,23 +48,23 @@ class _ExerciseListView extends StatelessWidget {
                   color: AppColors.error,
                   size: 64,
                 ),
-                title: 'Something went wrong',
+                title: l10n.exerciseSomethingWentWrong,
                 subtitle: message,
                 action: TextButton(
                   onPressed: () =>
                       context.read<ExerciseCubit>().loadExercises(),
-                  child: const Text('Retry'),
+                  child: Text(l10n.commonRetry),
                 ),
               ),
             ExerciseLoaded(:final exercises) when exercises.isEmpty =>
-              const ZeroStateWidget(
-                icon: Icon(
+              ZeroStateWidget(
+                icon: const Icon(
                   Icons.fitness_center,
                   color: AppColors.textDisabled,
                   size: 64,
                 ),
-                title: 'No exercises yet',
-                subtitle: 'Check back soon for your personalised programme.',
+                title: l10n.exerciseNoExercisesYet,
+                subtitle: l10n.exerciseCheckBackSoon,
               ),
             ExerciseLoaded(:final exercises) =>
               _ExerciseGroupedList(exercises: exercises),
@@ -84,7 +82,6 @@ class _ExerciseGroupedList extends StatelessWidget {
 
   final List<ExerciseEntity> exercises;
 
-  /// Returns exercises grouped by category, preserving enum declaration order.
   Map<ExerciseCategory, List<ExerciseEntity>> _groupByCategory() {
     final map = <ExerciseCategory, List<ExerciseEntity>>{};
     for (final exercise in exercises) {
@@ -95,11 +92,11 @@ class _ExerciseGroupedList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final grouped = _groupByCategory();
-    // Build a flat list of sliver delegates: one header + N cards per category.
     final slivers = <Widget>[
-      const SliverAppBar(
-        title: Text('Exercises'),
+      SliverAppBar(
+        title: Text(l10n.exerciseListTitle),
         floating: true,
         snap: true,
         backgroundColor: AppColors.background,
@@ -113,7 +110,6 @@ class _ExerciseGroupedList extends StatelessWidget {
       final category = entry.key;
       final items = entry.value;
 
-      // Sticky category header
       slivers.add(
         SliverPersistentHeader(
           pinned: true,
@@ -124,7 +120,6 @@ class _ExerciseGroupedList extends StatelessWidget {
         ),
       );
 
-      // Exercise cards for this category
       slivers.add(
         SliverPadding(
           padding: const EdgeInsets.symmetric(
@@ -184,6 +179,7 @@ class _CategoryHeaderDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       height: _height,
       color: AppColors.background,
@@ -195,7 +191,7 @@ class _CategoryHeaderDelegate extends SliverPersistentHeaderDelegate {
         children: [
           Expanded(
             child: Text(
-              _categoryLabel(category),
+              _categoryLabel(category, l10n),
               style: AppTextStyles.bodySemiBold.copyWith(
                 color: AppColors.textPrimary,
               ),
@@ -224,24 +220,30 @@ class _CategoryHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(_CategoryHeaderDelegate oldDelegate) =>
       oldDelegate.category != category || oldDelegate.count != count;
 
-  static String _categoryLabel(ExerciseCategory category) {
+  static String _categoryLabel(ExerciseCategory category, AppLocalizations l10n) {
     switch (category) {
       case ExerciseCategory.warmUp:
-        return 'Warm Up';
+        return l10n.exerciseCategoryWarmUp;
       case ExerciseCategory.balanceTraining:
-        return 'Balance Training';
+        return l10n.exerciseCategoryBalanceTraining;
       case ExerciseCategory.strengthTraining:
-        return 'Strength Training';
+        return l10n.exerciseCategoryStrengthTraining;
       case ExerciseCategory.enduranceAerobic:
-        return 'Endurance / Aerobic';
+        return l10n.exerciseCategoryEnduranceAerobic;
       case ExerciseCategory.taiChi:
-        return 'Tai Chi';
+        return l10n.exerciseCategoryTaiChi;
       case ExerciseCategory.walkingProgram:
-        return 'Walking Program';
+        return l10n.exerciseCategoryWalkingProgram;
       case ExerciseCategory.gettingUpFromFloor:
-        return 'Getting Up From Floor';
+        return l10n.exerciseCategoryGettingUpFromFloor;
       case ExerciseCategory.coolDown:
-        return 'Cool Down';
+        return l10n.exerciseCategoryCoolDown;
     }
   }
 }
+
+/// Displays all exercises grouped by [ExerciseCategory].
+///
+/// Provides its own [ExerciseCubit] via [BlocProvider] and loads exercises
+/// on initialisation. Uses a [CustomScrollView] with [SliverList] so that
+/// category headers can be made sticky.

@@ -10,21 +10,17 @@ import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../features/auth/presentation/cubit/auth_state.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../cubit/sos_cubit.dart';
 import '../cubit/sos_state.dart';
 import '../widgets/emergency_contact_card.dart';
 
 /// Emergency SOS page.
-///
-/// Provides [SosCubit] via [BlocProvider], loads the current user's emergency
-/// contacts on init, and renders them in a [ListView] of [EmergencyContactCard]
-/// widgets. A safety reminder is always visible above the list.
 class SosPage extends StatelessWidget {
   const SosPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Resolve the current user ID from AuthCubit.
     final authState = context.read<AuthCubit>().state;
     final userId = switch (authState) {
       AuthAuthenticated(:final user) => user.id,
@@ -41,15 +37,13 @@ class SosPage extends StatelessWidget {
 class _SosView extends StatelessWidget {
   const _SosView();
 
-  static const String _safetyReminder =
-      'If you have fallen and cannot get up, remain calm and stay on the floor '
-      'until help arrives. Call emergency services or a contact below.';
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: const AppTopAppBar(title: 'Emergency SOS'),
+      appBar: AppTopAppBar(title: l10n.sosTitle),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -62,7 +56,7 @@ class _SosView extends StatelessWidget {
               16,
             ),
             child: Text(
-              _safetyReminder,
+              l10n.sosSafetyReminderFull,
               style: AppTextStyles.body.copyWith(
                 fontSize: 18,
                 color: AppColors.error,
@@ -99,21 +93,19 @@ class _SosView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppDimensions.screenPaddingH,
                       ),
-                      child: const AppErrorWidget(
-                        message:
-                            'Calling is not supported on this device.',
+                      child: AppErrorWidget(
+                        message: l10n.sosCallingNotSupported,
                       ),
                     ),
                   SosLoaded(:final contacts) when contacts.isEmpty =>
-                    const ZeroStateWidget(
-                      icon: Icon(
+                    ZeroStateWidget(
+                      icon: const Icon(
                         Icons.contacts_outlined,
                         color: AppColors.textDisabled,
                         size: 64,
                       ),
-                      title: 'No emergency contacts',
-                      subtitle:
-                          'Add emergency contacts in your profile to use this feature.',
+                      title: l10n.sosNoEmergencyContacts,
+                      subtitle: l10n.sosAddContactsMessage,
                     ),
                   SosLoaded(:final contacts) => ListView.separated(
                       padding: const EdgeInsets.symmetric(
@@ -136,3 +128,9 @@ class _SosView extends StatelessWidget {
     );
   }
 }
+
+/// Emergency SOS page.
+///
+/// Provides [SosCubit] via [BlocProvider], loads the current user's emergency
+/// contacts on init, and renders them in a [ListView] of [EmergencyContactCard]
+/// widgets. A safety reminder is always visible above the list.

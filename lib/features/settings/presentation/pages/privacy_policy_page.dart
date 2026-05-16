@@ -4,14 +4,16 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   const PrivacyPolicyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: const AppTopAppBar(title: 'Privacy Policy'),
+      appBar: AppTopAppBar(title: l10n.settingsPrivacyPolicy),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
           horizontal: AppDimensions.screenPaddingH,

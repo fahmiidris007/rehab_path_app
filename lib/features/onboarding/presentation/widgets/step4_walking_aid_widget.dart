@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_option_card.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
@@ -55,22 +56,23 @@ class _Step4WalkingAidWidgetState extends State<Step4WalkingAidWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Do you use a walking aid?',
+          l10n.onboardingStep4Question,
           style: AppTextStyles.bodySemiBold,
         ),
         const SizedBox(height: 24),
         AppOptionCard(
-          label: 'Yes',
+          label: l10n.onboardingYes,
           isSelected: _usesWalkingAid == true,
           onTap: () => _select(true),
         ),
         const SizedBox(height: 12),
         AppOptionCard(
-          label: 'No',
+          label: l10n.onboardingNo,
           isSelected: _usesWalkingAid == false,
           onTap: () => _select(false),
         ),

@@ -9,6 +9,7 @@ import '../../../../core/widgets/app_outline_button.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../cubit/onboarding_state.dart';
@@ -274,6 +275,7 @@ class _StepIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final progress = currentStep / totalSteps;
 
     return Padding(
@@ -287,7 +289,7 @@ class _StepIndicator extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Step $currentStep of $totalSteps',
+            l10n.onboardingStepIndicator(currentStep, totalSteps),
             style: AppTextStyles.bodySemiBold.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -328,6 +330,7 @@ class _NavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isLastStep = currentStep == totalSteps;
     final showBack = currentStep > 1;
 
@@ -343,7 +346,7 @@ class _NavigationButtons extends StatelessWidget {
           if (showBack) ...[
             Expanded(
               child: AppOutlineButton(
-                label: 'Back',
+                label: l10n.onboardingBackButton,
                 onPressed: isLoading ? null : onBack,
               ),
             ),
@@ -352,7 +355,7 @@ class _NavigationButtons extends StatelessWidget {
           Expanded(
             flex: showBack ? 2 : 1,
             child: AppPrimaryButton(
-              label: isLastStep ? 'Finish' : 'Continue',
+              label: isLastStep ? l10n.onboardingFinishButton : l10n.onboardingContinueButton,
               isLoading: isLoading,
               onPressed: isLoading ? null : onContinue,
             ),

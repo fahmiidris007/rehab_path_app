@@ -400,4 +400,374 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadData => 'Failed to load data. Please try again.';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navExercise => 'Exercise';
+
+  @override
+  String get navProgress => 'Progress';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
+  String get selectLanguage => 'Select Language';
+
+  @override
+  String get authLoginNoAccount => 'Don\'t have an account?';
+
+  @override
+  String get authLoginRegisterLink => 'Register';
+
+  @override
+  String get authLoginForgotPassword => 'Forgot Password?';
+
+  @override
+  String get authRegisterHaveAccount => 'Already have an account?';
+
+  @override
+  String get authRegisterLoginLink => 'Log In';
+
+  @override
+  String get authRegisterSuccessMessage =>
+      'Account created! Please log in to continue.';
+
+  @override
+  String get authForgotPasswordResetSent => 'Reset link sent!';
+
+  @override
+  String get authForgotPasswordResetBody =>
+      'Check your email for a link to reset your password. If it doesn\'t appear within a few minutes, check your spam folder.';
+
+  @override
+  String get authForgotPasswordBackToLogin => 'Back to Log In';
+
+  @override
+  String get welcomeGetStarted => 'Get Started';
+
+  @override
+  String get welcomeSlide1Title => 'Stay Steady';
+
+  @override
+  String get welcomeSlide1Subtitle =>
+      'Build confidence and reduce your risk of falls with guided balance exercises designed for you.';
+
+  @override
+  String get welcomeSlide2Title => 'Exercise Daily';
+
+  @override
+  String get welcomeSlide2Subtitle =>
+      'Follow evidence-based FaME and Otago programs tailored to your fitness level and goals.';
+
+  @override
+  String get welcomeSlide3Title => 'Track Progress';
+
+  @override
+  String get welcomeSlide3Subtitle =>
+      'Monitor your improvement over time and celebrate milestones on your rehabilitation journey.';
+
+  @override
+  String get homeNoExercisesToday => 'No exercises today';
+
+  @override
+  String get homeRestDayMessage =>
+      'Enjoy your rest day or browse recommended exercises below.';
+
+  @override
+  String get homeNoRecommendations => 'No recommendations available.';
+
+  @override
+  String get homeRecommendedFor => 'Recommended for You';
+
+  @override
+  String get homeTodayWorkout => 'Today\'s Workout';
+
+  @override
+  String get homeExerciseSingular => 'Exercise';
+
+  @override
+  String get homeExercisePlural => 'Exercises';
+
+  @override
+  String get homeMinutes => 'Minutes';
+
+  @override
+  String get homeDone => 'Done';
+
+  @override
+  String get homeAllDoneToday => 'All Done Today 🎉';
+
+  @override
+  String homeContinueLeft(int remaining) {
+    return 'Continue ($remaining left)';
+  }
+
+  @override
+  String get homeStatMinutes => 'Minutes';
+
+  @override
+  String get homeStatSessions => 'Sessions';
+
+  @override
+  String get homeStatDayStreak => 'Day Streak';
+
+  @override
+  String get homeGuestBannerMessage =>
+      'You are in Guest mode. Register or log in to save your progress.';
+
+  @override
+  String get guestBannerRegister => 'Register';
+
+  @override
+  String get exerciseCompletedToday => 'Completed today';
+
+  @override
+  String get exerciseRedoButton => 'Redo Exercise';
+
+  @override
+  String get exerciseCouldNotLoad => 'Could not load exercise';
+
+  @override
+  String get exerciseDifficultyLabel => 'Difficulty';
+
+  @override
+  String get exerciseHowToDoIt => 'How to do it';
+
+  @override
+  String get exerciseSafetyTips => 'Safety Tips';
+
+  @override
+  String exerciseNext(String name) {
+    return 'Next: $name';
+  }
+
+  @override
+  String exerciseDurationMin(int duration) {
+    return '$duration min';
+  }
+
+  @override
+  String exerciseSets(int sets) {
+    return '$sets sets';
+  }
+
+  @override
+  String exerciseReps(int reps) {
+    return '$reps reps';
+  }
+
+  @override
+  String get exerciseDifficultyEasy => 'Easy';
+
+  @override
+  String get exerciseDifficultyMedium => 'Medium';
+
+  @override
+  String get exerciseDifficultyHard => 'Hard';
+
+  @override
+  String get exercisePlayerPaused => 'Paused';
+
+  @override
+  String get exerciseSomethingWentWrong => 'Something went wrong';
+
+  @override
+  String get exerciseNoExercisesYet => 'No exercises yet';
+
+  @override
+  String get exerciseCheckBackSoon =>
+      'Check back soon for your personalised programme.';
+
+  @override
+  String get exerciseCategoryWarmUp => 'Warm Up';
+
+  @override
+  String get exerciseCategoryBalanceTraining => 'Balance Training';
+
+  @override
+  String get exerciseCategoryStrengthTraining => 'Strength Training';
+
+  @override
+  String get exerciseCategoryEnduranceAerobic => 'Endurance / Aerobic';
+
+  @override
+  String get exerciseCategoryTaiChi => 'Tai Chi';
+
+  @override
+  String get exerciseCategoryWalkingProgram => 'Walking Program';
+
+  @override
+  String get exerciseCategoryGettingUpFromFloor => 'Getting Up From Floor';
+
+  @override
+  String get exerciseCategoryCoolDown => 'Cool Down';
+
+  @override
+  String get exerciseSelfReportBodyPosition => 'Body position';
+
+  @override
+  String get progressMyProgress => 'My Progress';
+
+  @override
+  String get progressAdherence => 'Adherence';
+
+  @override
+  String get progressThisWeek => 'This Week';
+
+  @override
+  String get progressThisMonth => 'This Month';
+
+  @override
+  String get progressNoDataYet => 'No data yet';
+
+  @override
+  String get progressCompleteExercises =>
+      'Complete exercises to see your progress.';
+
+  @override
+  String get progressBalanceScoreTrend => 'Balance Score Trend';
+
+  @override
+  String get progressNoBalanceData => 'No balance data yet';
+
+  @override
+  String get progressCompleteAssessments =>
+      'Complete balance assessments to track your trend.';
+
+  @override
+  String get progressFallRecorded => 'Fall recorded — tap to remove';
+
+  @override
+  String get progressNoBadgesYet => 'No badges yet';
+
+  @override
+  String get progressKeepExercising =>
+      'Keep exercising to earn your first badge!';
+
+  @override
+  String get progressBodyAreasThisWeek => 'Body Areas Worked This Week';
+
+  @override
+  String get progressNoAreasTracked => 'No areas tracked yet';
+
+  @override
+  String get progressCompleteThisWeek =>
+      'Complete exercises this week to see which muscle groups you\'ve worked.';
+
+  @override
+  String profileYearsOld(int age) {
+    return '$age years old';
+  }
+
+  @override
+  String get profileProgramLevelBeginner => 'Beginner';
+
+  @override
+  String get profileProgramLevelIntermediate => 'Intermediate';
+
+  @override
+  String get profileProgramLevelAdvanced => 'Advanced';
+
+  @override
+  String get profileOutcomeGoal => 'Outcome Goal';
+
+  @override
+  String get profileBehaviouralGoal => 'Behavioural Goal';
+
+  @override
+  String get profileEmergencyContacts => 'Emergency Contacts';
+
+  @override
+  String get profileLogOut => 'Log Out';
+
+  @override
+  String get profileLogOutConfirmTitle => 'Log Out';
+
+  @override
+  String get profileLogOutConfirmMessage => 'Are you sure you want to log out?';
+
+  @override
+  String get profileLogOutConfirmCancel => 'Cancel';
+
+  @override
+  String get profileLogOutConfirmButton => 'Log Out';
+
+  @override
+  String get editProfileTitle => 'Edit Profile';
+
+  @override
+  String get editProfileFullName => 'Full Name';
+
+  @override
+  String get editProfileNameHint => 'Enter your full name';
+
+  @override
+  String get editProfileNameEmpty => 'Name cannot be empty';
+
+  @override
+  String get editProfileSave => 'Save';
+
+  @override
+  String get editProfileFailedToUpdate =>
+      'Failed to update profile. Please try again.';
+
+  @override
+  String get settingsVoiceCues => 'Voice Cues';
+
+  @override
+  String get settingsVoiceCuesSubtitle => 'Play audio prompts during exercises';
+
+  @override
+  String get settingsDailyReminderSubtitle =>
+      'Receive a daily reminder to complete your exercises';
+
+  @override
+  String get settingsAccount => 'Account';
+
+  @override
+  String get settingsNotificationPermissionDeniedTitle =>
+      'Notification Permission Denied';
+
+  @override
+  String get settingsNotificationPermissionDeniedMessage =>
+      'Notification permission was denied. Please enable notifications in your device settings to receive reminders.';
+
+  @override
+  String get sosNoEmergencyContacts => 'No emergency contacts';
+
+  @override
+  String get sosAddContactsMessage =>
+      'Add emergency contacts in your profile to use this feature.';
+
+  @override
+  String get sosCallingNotSupported =>
+      'Calling is not supported on this device.';
+
+  @override
+  String get sosSafetyReminderFull =>
+      'If you have fallen and cannot get up, remain calm and stay on the floor until help arrives. Call emergency services or a contact below.';
+
+  @override
+  String get commonRetry => 'Retry';
+
+  @override
+  String get commonOk => 'OK';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get loadingDashboard => 'Loading dashboard…';
+
+  @override
+  String get onboardingStep4Question => 'Do you use a walking aid?';
+
+  @override
+  String get onboardingYes => 'Yes';
+
+  @override
+  String get onboardingNo => 'No';
 }

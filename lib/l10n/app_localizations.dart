@@ -811,6 +811,684 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to load data. Please try again.'**
   String get errorLoadData;
+
+  /// Bottom nav label for Home tab
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// Bottom nav label for Exercise tab
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get navExercise;
+
+  /// Bottom nav label for Progress tab
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get navProgress;
+
+  /// Bottom nav label for Profile tab
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get navProfile;
+
+  /// Label for language selector on login page
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get selectLanguage;
+
+  /// Text before register link on login page
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get authLoginNoAccount;
+
+  /// Register link text on login page
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get authLoginRegisterLink;
+
+  /// Forgot password link on login page
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get authLoginForgotPassword;
+
+  /// Text before login link on register page
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get authRegisterHaveAccount;
+
+  /// Log in link text on register page
+  ///
+  /// In en, this message translates to:
+  /// **'Log In'**
+  String get authRegisterLoginLink;
+
+  /// Success message after registration
+  ///
+  /// In en, this message translates to:
+  /// **'Account created! Please log in to continue.'**
+  String get authRegisterSuccessMessage;
+
+  /// Title shown after reset link is sent
+  ///
+  /// In en, this message translates to:
+  /// **'Reset link sent!'**
+  String get authForgotPasswordResetSent;
+
+  /// Body text after reset link is sent
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email for a link to reset your password. If it doesn\'t appear within a few minutes, check your spam folder.'**
+  String get authForgotPasswordResetBody;
+
+  /// Back to login link on forgot password page
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Log In'**
+  String get authForgotPasswordBackToLogin;
+
+  /// Get started button on welcome page
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get welcomeGetStarted;
+
+  /// Title of first welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Stay Steady'**
+  String get welcomeSlide1Title;
+
+  /// Subtitle of first welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Build confidence and reduce your risk of falls with guided balance exercises designed for you.'**
+  String get welcomeSlide1Subtitle;
+
+  /// Title of second welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise Daily'**
+  String get welcomeSlide2Title;
+
+  /// Subtitle of second welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Follow evidence-based FaME and Otago programs tailored to your fitness level and goals.'**
+  String get welcomeSlide2Subtitle;
+
+  /// Title of third welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Track Progress'**
+  String get welcomeSlide3Title;
+
+  /// Subtitle of third welcome slide
+  ///
+  /// In en, this message translates to:
+  /// **'Monitor your improvement over time and celebrate milestones on your rehabilitation journey.'**
+  String get welcomeSlide3Subtitle;
+
+  /// Title when no exercises scheduled today
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises today'**
+  String get homeNoExercisesToday;
+
+  /// Message on rest day
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy your rest day or browse recommended exercises below.'**
+  String get homeRestDayMessage;
+
+  /// Message when no recommendations
+  ///
+  /// In en, this message translates to:
+  /// **'No recommendations available.'**
+  String get homeNoRecommendations;
+
+  /// Section title for recommended exercises
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for You'**
+  String get homeRecommendedFor;
+
+  /// Title of today's workout card
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Workout'**
+  String get homeTodayWorkout;
+
+  /// Singular label for exercise count
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get homeExerciseSingular;
+
+  /// Plural label for exercise count
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get homeExercisePlural;
+
+  /// Minutes label in workout card
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get homeMinutes;
+
+  /// Done label in workout card
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get homeDone;
+
+  /// Button label when all exercises done
+  ///
+  /// In en, this message translates to:
+  /// **'All Done Today 🎉'**
+  String get homeAllDoneToday;
+
+  /// Continue button with remaining count
+  ///
+  /// In en, this message translates to:
+  /// **'Continue ({remaining} left)'**
+  String homeContinueLeft(int remaining);
+
+  /// Minutes stat label in quick stats row
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get homeStatMinutes;
+
+  /// Sessions stat label in quick stats row
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions'**
+  String get homeStatSessions;
+
+  /// Day streak stat label in quick stats row
+  ///
+  /// In en, this message translates to:
+  /// **'Day Streak'**
+  String get homeStatDayStreak;
+
+  /// Guest banner message on home page
+  ///
+  /// In en, this message translates to:
+  /// **'You are in Guest mode. Register or log in to save your progress.'**
+  String get homeGuestBannerMessage;
+
+  /// Register button in guest banner
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get guestBannerRegister;
+
+  /// Badge shown when exercise is completed today
+  ///
+  /// In en, this message translates to:
+  /// **'Completed today'**
+  String get exerciseCompletedToday;
+
+  /// Button to redo a completed exercise
+  ///
+  /// In en, this message translates to:
+  /// **'Redo Exercise'**
+  String get exerciseRedoButton;
+
+  /// Error title when exercise cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load exercise'**
+  String get exerciseCouldNotLoad;
+
+  /// Section label for difficulty
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get exerciseDifficultyLabel;
+
+  /// Section label for exercise steps
+  ///
+  /// In en, this message translates to:
+  /// **'How to do it'**
+  String get exerciseHowToDoIt;
+
+  /// Section label for safety tips
+  ///
+  /// In en, this message translates to:
+  /// **'Safety Tips'**
+  String get exerciseSafetyTips;
+
+  /// Next exercise button label
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {name}'**
+  String exerciseNext(String name);
+
+  /// Duration in minutes
+  ///
+  /// In en, this message translates to:
+  /// **'{duration} min'**
+  String exerciseDurationMin(int duration);
+
+  /// Sets count
+  ///
+  /// In en, this message translates to:
+  /// **'{sets} sets'**
+  String exerciseSets(int sets);
+
+  /// Reps count
+  ///
+  /// In en, this message translates to:
+  /// **'{reps} reps'**
+  String exerciseReps(int reps);
+
+  /// Easy difficulty label
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get exerciseDifficultyEasy;
+
+  /// Medium difficulty label
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get exerciseDifficultyMedium;
+
+  /// Hard difficulty label
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get exerciseDifficultyHard;
+
+  /// Paused label in exercise player
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get exercisePlayerPaused;
+
+  /// Error title in exercise list
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get exerciseSomethingWentWrong;
+
+  /// Empty state title in exercise list
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises yet'**
+  String get exerciseNoExercisesYet;
+
+  /// Empty state subtitle in exercise list
+  ///
+  /// In en, this message translates to:
+  /// **'Check back soon for your personalised programme.'**
+  String get exerciseCheckBackSoon;
+
+  /// Exercise category: Warm Up
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Up'**
+  String get exerciseCategoryWarmUp;
+
+  /// Exercise category: Balance Training
+  ///
+  /// In en, this message translates to:
+  /// **'Balance Training'**
+  String get exerciseCategoryBalanceTraining;
+
+  /// Exercise category: Strength Training
+  ///
+  /// In en, this message translates to:
+  /// **'Strength Training'**
+  String get exerciseCategoryStrengthTraining;
+
+  /// Exercise category: Endurance / Aerobic
+  ///
+  /// In en, this message translates to:
+  /// **'Endurance / Aerobic'**
+  String get exerciseCategoryEnduranceAerobic;
+
+  /// Exercise category: Tai Chi
+  ///
+  /// In en, this message translates to:
+  /// **'Tai Chi'**
+  String get exerciseCategoryTaiChi;
+
+  /// Exercise category: Walking Program
+  ///
+  /// In en, this message translates to:
+  /// **'Walking Program'**
+  String get exerciseCategoryWalkingProgram;
+
+  /// Exercise category: Getting Up From Floor
+  ///
+  /// In en, this message translates to:
+  /// **'Getting Up From Floor'**
+  String get exerciseCategoryGettingUpFromFloor;
+
+  /// Exercise category: Cool Down
+  ///
+  /// In en, this message translates to:
+  /// **'Cool Down'**
+  String get exerciseCategoryCoolDown;
+
+  /// Body position label in self report
+  ///
+  /// In en, this message translates to:
+  /// **'Body position'**
+  String get exerciseSelfReportBodyPosition;
+
+  /// Title of progress page
+  ///
+  /// In en, this message translates to:
+  /// **'My Progress'**
+  String get progressMyProgress;
+
+  /// Adherence section title
+  ///
+  /// In en, this message translates to:
+  /// **'Adherence'**
+  String get progressAdherence;
+
+  /// This week label
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get progressThisWeek;
+
+  /// This month label
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get progressThisMonth;
+
+  /// No data yet title
+  ///
+  /// In en, this message translates to:
+  /// **'No data yet'**
+  String get progressNoDataYet;
+
+  /// Complete exercises subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Complete exercises to see your progress.'**
+  String get progressCompleteExercises;
+
+  /// Balance score trend section title
+  ///
+  /// In en, this message translates to:
+  /// **'Balance Score Trend'**
+  String get progressBalanceScoreTrend;
+
+  /// No balance data title
+  ///
+  /// In en, this message translates to:
+  /// **'No balance data yet'**
+  String get progressNoBalanceData;
+
+  /// Complete assessments subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Complete balance assessments to track your trend.'**
+  String get progressCompleteAssessments;
+
+  /// Fall recorded legend text
+  ///
+  /// In en, this message translates to:
+  /// **'Fall recorded — tap to remove'**
+  String get progressFallRecorded;
+
+  /// No badges yet title
+  ///
+  /// In en, this message translates to:
+  /// **'No badges yet'**
+  String get progressNoBadgesYet;
+
+  /// Keep exercising subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Keep exercising to earn your first badge!'**
+  String get progressKeepExercising;
+
+  /// Body areas section title
+  ///
+  /// In en, this message translates to:
+  /// **'Body Areas Worked This Week'**
+  String get progressBodyAreasThisWeek;
+
+  /// No areas tracked title
+  ///
+  /// In en, this message translates to:
+  /// **'No areas tracked yet'**
+  String get progressNoAreasTracked;
+
+  /// Complete this week subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Complete exercises this week to see which muscle groups you\'ve worked.'**
+  String get progressCompleteThisWeek;
+
+  /// Age display on profile page
+  ///
+  /// In en, this message translates to:
+  /// **'{age} years old'**
+  String profileYearsOld(int age);
+
+  /// Beginner program level
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get profileProgramLevelBeginner;
+
+  /// Intermediate program level
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get profileProgramLevelIntermediate;
+
+  /// Advanced program level
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get profileProgramLevelAdvanced;
+
+  /// Outcome goal label on profile
+  ///
+  /// In en, this message translates to:
+  /// **'Outcome Goal'**
+  String get profileOutcomeGoal;
+
+  /// Behavioural goal label on profile
+  ///
+  /// In en, this message translates to:
+  /// **'Behavioural Goal'**
+  String get profileBehaviouralGoal;
+
+  /// Emergency contacts button label
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Contacts'**
+  String get profileEmergencyContacts;
+
+  /// Log out option on profile page
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get profileLogOut;
+
+  /// Log out confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get profileLogOutConfirmTitle;
+
+  /// Log out confirmation dialog message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get profileLogOutConfirmMessage;
+
+  /// Cancel button in log out dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profileLogOutConfirmCancel;
+
+  /// Confirm log out button
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get profileLogOutConfirmButton;
+
+  /// Title of edit profile page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfileTitle;
+
+  /// Full name label on edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get editProfileFullName;
+
+  /// Name field hint on edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get editProfileNameHint;
+
+  /// Validation error when name is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Name cannot be empty'**
+  String get editProfileNameEmpty;
+
+  /// Save button on edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get editProfileSave;
+
+  /// Error message when profile update fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update profile. Please try again.'**
+  String get editProfileFailedToUpdate;
+
+  /// Voice cues setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Cues'**
+  String get settingsVoiceCues;
+
+  /// Voice cues setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Play audio prompts during exercises'**
+  String get settingsVoiceCuesSubtitle;
+
+  /// Daily reminder setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Receive a daily reminder to complete your exercises'**
+  String get settingsDailyReminderSubtitle;
+
+  /// Account section header in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settingsAccount;
+
+  /// Notification permission denied dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Permission Denied'**
+  String get settingsNotificationPermissionDeniedTitle;
+
+  /// Notification permission denied dialog message
+  ///
+  /// In en, this message translates to:
+  /// **'Notification permission was denied. Please enable notifications in your device settings to receive reminders.'**
+  String get settingsNotificationPermissionDeniedMessage;
+
+  /// Empty state title on SOS page
+  ///
+  /// In en, this message translates to:
+  /// **'No emergency contacts'**
+  String get sosNoEmergencyContacts;
+
+  /// Empty state subtitle on SOS page
+  ///
+  /// In en, this message translates to:
+  /// **'Add emergency contacts in your profile to use this feature.'**
+  String get sosAddContactsMessage;
+
+  /// Error when calling is not supported
+  ///
+  /// In en, this message translates to:
+  /// **'Calling is not supported on this device.'**
+  String get sosCallingNotSupported;
+
+  /// Full safety reminder on SOS page
+  ///
+  /// In en, this message translates to:
+  /// **'If you have fallen and cannot get up, remain calm and stay on the floor until help arrives. Call emergency services or a contact below.'**
+  String get sosSafetyReminderFull;
+
+  /// Retry button label
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get commonRetry;
+
+  /// OK button label
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get commonOk;
+
+  /// Cancel button label
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get commonCancel;
+
+  /// Loading label for dashboard
+  ///
+  /// In en, this message translates to:
+  /// **'Loading dashboard…'**
+  String get loadingDashboard;
+
+  /// Question in onboarding step 4
+  ///
+  /// In en, this message translates to:
+  /// **'Do you use a walking aid?'**
+  String get onboardingStep4Question;
+
+  /// Yes option
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get onboardingYes;
+
+  /// No option
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get onboardingNo;
 }
 
 class _AppLocalizationsDelegate

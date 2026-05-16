@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../features/home/domain/utils/greeting_utils.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// Displays a time-based greeting and the user's first name.
 ///
@@ -19,7 +20,8 @@ class GreetingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final greeting = getGreeting(DateTime.now());
+    final l10n = AppLocalizations.of(context)!;
+    final greeting = getGreeting(DateTime.now(), l10n);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

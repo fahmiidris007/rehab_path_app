@@ -9,6 +9,7 @@ import '../../../../core/widgets/app_loading_widget.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../cubit/settings_cubit.dart';
 
@@ -29,8 +30,9 @@ class _SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: const AppTopAppBar(title: 'Settings'),
+      appBar: AppTopAppBar(title: l10n.settingsTitle),
       body: BlocConsumer<SettingsCubit, SettingsState>(
         listenWhen: (_, current) =>
             current is SettingsNotificationPermissionDenied,
@@ -53,18 +55,16 @@ class _SettingsView extends StatelessWidget {
   }
 
   void _showPermissionDeniedDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog<void>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Notification Permission Denied'),
-        content: const Text(
-          'Notification permission was denied. '
-          'Please enable notifications in your device settings to receive reminders.',
-        ),
+        title: Text(l10n.settingsNotificationPermissionDeniedTitle),
+        content: Text(l10n.settingsNotificationPermissionDeniedMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
+            child: Text(l10n.commonOk),
           ),
         ],
       ),
@@ -79,54 +79,55 @@ class _SettingsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final cubit = context.read<SettingsCubit>();
 
     return ListView(
       children: [
         // ── Appearance ───────────────────────────────────────────────────
-        _SectionHeader(title: 'Appearance'),
-        _SubSectionLabel(label: 'Theme'),
+        _SectionHeader(title: l10n.settingsAppearance),
+        _SubSectionLabel(label: l10n.settingsTheme),
         _RadioGroup<AppThemeMode>(
           groupValue: data.themeMode,
           onChanged: (v) => cubit.changeTheme(v),
-          items: const [
-            (value: AppThemeMode.light, label: 'Light'),
-            (value: AppThemeMode.dark, label: 'Dark'),
-            (value: AppThemeMode.system, label: 'System'),
+          items: [
+            (value: AppThemeMode.light, label: l10n.settingsThemeLight),
+            (value: AppThemeMode.dark, label: l10n.settingsThemeDark),
+            (value: AppThemeMode.system, label: l10n.settingsThemeSystem),
           ],
         ),
         const Divider(height: 1),
-        _SubSectionLabel(label: 'Font Size'),
+        _SubSectionLabel(label: l10n.settingsFontSize),
         _RadioGroup<FontSizeLevel>(
           groupValue: data.fontSizeLevel,
           onChanged: (v) => cubit.changeFontSize(v),
-          items: const [
-            (value: FontSizeLevel.defaultSize, label: 'Default'),
-            (value: FontSizeLevel.large, label: 'Large'),
-            (value: FontSizeLevel.extraLarge, label: 'Extra Large'),
+          items: [
+            (value: FontSizeLevel.defaultSize, label: l10n.settingsFontSizeDefault),
+            (value: FontSizeLevel.large, label: l10n.settingsFontSizeLarge),
+            (value: FontSizeLevel.extraLarge, label: l10n.settingsFontSizeExtraLarge),
           ],
         ),
 
         // ── Language ─────────────────────────────────────────────────────
-        _SectionHeader(title: 'Language'),
+        _SectionHeader(title: l10n.settingsLanguage),
         _RadioGroup<AppLocale>(
           groupValue: data.locale,
           onChanged: (v) => cubit.changeLocale(v),
-          items: const [
-            (value: AppLocale.en, label: 'English'),
-            (value: AppLocale.id, label: 'Indonesian'),
+          items: [
+            (value: AppLocale.en, label: l10n.settingsLanguageEn),
+            (value: AppLocale.id, label: l10n.settingsLanguageId),
           ],
         ),
 
         // ── Notifications ────────────────────────────────────────────────
-        _SectionHeader(title: 'Notifications'),
+        _SectionHeader(title: l10n.settingsNotifications),
         SwitchListTile(
           title: Text(
-            'Daily Reminder',
+            l10n.settingsDailyReminder,
             style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
           ),
           subtitle: Text(
-            'Receive a daily reminder to complete your exercises',
+            l10n.settingsDailyReminderSubtitle,
             style: AppTextStyles.body.copyWith(
               color: AppColors.textSecondary,
               fontSize: 14,
@@ -138,11 +139,11 @@ class _SettingsContent extends StatelessWidget {
         ),
         SwitchListTile(
           title: Text(
-            'Voice Cues',
+            l10n.settingsVoiceCues,
             style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
           ),
           subtitle: Text(
-            'Play audio prompts during exercises',
+            l10n.settingsVoiceCuesSubtitle,
             style: AppTextStyles.body.copyWith(
               color: AppColors.textSecondary,
               fontSize: 14,
@@ -154,10 +155,10 @@ class _SettingsContent extends StatelessWidget {
         ),
 
         // ── Account ──────────────────────────────────────────────────────
-        _SectionHeader(title: 'Account'),
+        _SectionHeader(title: l10n.settingsAccount),
         ListTile(
           title: Text(
-            'Privacy Policy',
+            l10n.settingsPrivacyPolicy,
             style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
           ),
           trailing: const Icon(
@@ -168,7 +169,7 @@ class _SettingsContent extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            'Terms of Service',
+            l10n.settingsTermsOfService,
             style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
           ),
           trailing: const Icon(
@@ -179,7 +180,7 @@ class _SettingsContent extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            'Log Out',
+            l10n.settingsLogout,
             style: AppTextStyles.body.copyWith(color: AppColors.error),
           ),
           leading: const Icon(Icons.logout, color: AppColors.error),

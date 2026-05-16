@@ -10,6 +10,7 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/balance_score_point.dart';
 import '../../../../shared/domain/entities/fall_event_entity.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
@@ -71,9 +72,14 @@ class _ProgressView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(
-          'My Progress',
-          style: AppTextStyles.h2AppBar.copyWith(color: AppColors.textPrimary),
+        title: Builder(
+          builder: (context) {
+            final l10n = AppLocalizations.of(context)!;
+            return Text(
+              l10n.progressMyProgress,
+              style: AppTextStyles.h2AppBar.copyWith(color: AppColors.textPrimary),
+            );
+          },
         ),
         backgroundColor: AppColors.surfaceWhite,
         elevation: 0,
@@ -151,44 +157,45 @@ class _AdherenceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final hasData = weeklyRate > 0 || monthlyRate > 0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Adherence', style: AppTextStyles.h3Section),
+        Text(l10n.progressAdherence, style: AppTextStyles.h3Section),
         const SizedBox(height: AppDimensions.cardGap),
         AppCard(
           child: hasData
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('This Week', style: AppTextStyles.bodySemiBold),
+                    Text(l10n.progressThisWeek, style: AppTextStyles.bodySemiBold),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 120,
                       child: _AdherenceBarChart(
-                        label: 'Weekly',
+                        label: l10n.progressWeeklyAdherence,
                         value: weeklyRate,
                         color: AppColors.primary,
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text('This Month', style: AppTextStyles.bodySemiBold),
+                    Text(l10n.progressThisMonth, style: AppTextStyles.bodySemiBold),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 120,
                       child: _AdherenceBarChart(
-                        label: 'Monthly',
+                        label: l10n.progressMonthlyAdherence,
                         value: monthlyRate,
                         color: AppColors.accent,
                       ),
                     ),
                   ],
                 )
-              : const ZeroStateWidget(
-                  title: 'No data yet',
-                  subtitle: 'Complete exercises to see your progress.',
+              : ZeroStateWidget(
+                  title: l10n.progressNoDataYet,
+                  subtitle: l10n.progressCompleteExercises,
                 ),
         ),
       ],
@@ -279,18 +286,18 @@ class _BalanceScoreSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Balance Score Trend', style: AppTextStyles.h3Section),
+        Text(l10n.progressBalanceScoreTrend, style: AppTextStyles.h3Section),
         const SizedBox(height: AppDimensions.cardGap),
         AppCard(
           padding: const EdgeInsets.all(AppDimensions.cardPadding),
           child: scores.isEmpty
-              ? const ZeroStateWidget(
-                  title: 'No balance data yet',
-                  subtitle:
-                      'Complete balance assessments to track your trend.',
+              ? ZeroStateWidget(
+                  title: l10n.progressNoBalanceData,
+                  subtitle: l10n.progressCompleteAssessments,
                 )
               : SizedBox(
                   height: 200,
@@ -477,10 +484,11 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Falls Diary', style: AppTextStyles.h3Section),
+        Text(l10n.progressFallsDiary, style: AppTextStyles.h3Section),
         const SizedBox(height: AppDimensions.cardGap),
         AppCard(
           padding: const EdgeInsets.all(8),
@@ -555,12 +563,17 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
               ),
             ),
             const SizedBox(width: 6),
-            Text(
-              'Fall recorded — tap to remove',
-              style: AppTextStyles.body.copyWith(
-                fontSize: 13,
-                color: AppColors.textSecondary,
-              ),
+            Builder(
+              builder: (context) {
+                final l10n = AppLocalizations.of(context)!;
+                return Text(
+                  l10n.progressFallRecorded,
+                  style: AppTextStyles.body.copyWith(
+                    fontSize: 13,
+                    color: AppColors.textSecondary,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -578,16 +591,17 @@ class _AchievementsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Achievements', style: AppTextStyles.h3Section),
+        Text(l10n.progressAchievements, style: AppTextStyles.h3Section),
         const SizedBox(height: AppDimensions.cardGap),
         badges.isEmpty
             ? AppCard(
-                child: const ZeroStateWidget(
-                  title: 'No badges yet',
-                  subtitle: 'Keep exercising to earn your first badge!',
+                child: ZeroStateWidget(
+                  title: l10n.progressNoBadgesYet,
+                  subtitle: l10n.progressKeepExercising,
                 ),
               )
             : GridView.count(
@@ -618,17 +632,17 @@ class _BodyAreasSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Body Areas Worked This Week', style: AppTextStyles.h3Section),
+        Text(l10n.progressBodyAreasThisWeek, style: AppTextStyles.h3Section),
         const SizedBox(height: AppDimensions.cardGap),
         AppCard(
           child: muscleGroups.isEmpty
-              ? const ZeroStateWidget(
-                  title: 'No areas tracked yet',
-                  subtitle:
-                      'Complete exercises this week to see which muscle groups you\'ve worked.',
+              ? ZeroStateWidget(
+                  title: l10n.progressNoAreasTracked,
+                  subtitle: l10n.progressCompleteThisWeek,
                 )
               : Wrap(
                   spacing: 8,

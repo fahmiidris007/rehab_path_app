@@ -5,6 +5,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_pill_button.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -17,27 +18,6 @@ class _WelcomePageState extends State<WelcomePage> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  static const _slides = [
-    _SlideData(
-      icon: Icons.self_improvement,
-      title: 'Stay Steady',
-      subtitle:
-          'Build confidence and reduce your risk of falls with guided balance exercises designed for you.',
-    ),
-    _SlideData(
-      icon: Icons.fitness_center,
-      title: 'Exercise Daily',
-      subtitle:
-          'Follow evidence-based FaME and Otago programs tailored to your fitness level and goals.',
-    ),
-    _SlideData(
-      icon: Icons.bar_chart,
-      title: 'Track Progress',
-      subtitle:
-          'Monitor your improvement over time and celebrate milestones on your rehabilitation journey.',
-    ),
-  ];
-
   @override
   void dispose() {
     _pageController.dispose();
@@ -46,6 +26,26 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final slides = [
+      _SlideData(
+        icon: Icons.self_improvement,
+        title: l10n.welcomeSlide1Title,
+        subtitle: l10n.welcomeSlide1Subtitle,
+      ),
+      _SlideData(
+        icon: Icons.fitness_center,
+        title: l10n.welcomeSlide2Title,
+        subtitle: l10n.welcomeSlide2Subtitle,
+      ),
+      _SlideData(
+        icon: Icons.bar_chart,
+        title: l10n.welcomeSlide3Title,
+        subtitle: l10n.welcomeSlide3Subtitle,
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -55,12 +55,12 @@ class _WelcomePageState extends State<WelcomePage> {
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: _slides.length,
+                itemCount: slides.length,
                 onPageChanged: (index) {
                   setState(() => _currentPage = index);
                 },
                 itemBuilder: (context, index) {
-                  final slide = _slides[index];
+                  final slide = slides[index];
                   return _SlideView(slide: slide);
                 },
               ),
@@ -69,7 +69,7 @@ class _WelcomePageState extends State<WelcomePage> {
             // Page indicator dots
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_slides.length, (index) {
+              children: List.generate(slides.length, (index) {
                 final isActive = index == _currentPage;
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
@@ -95,29 +95,19 @@ class _WelcomePageState extends State<WelcomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AppPillButton(
-                    label: 'Get Started',
+                    label: l10n.welcomeGetStarted,
                     onPressed: () => context.push('/register'),
                   ),
                   const SizedBox(height: 12),
                   TextButton(
                     onPressed: () => context.push('/login'),
                     child: Text(
-                      'Log In',
+                      l10n.authLoginButton,
                       style: AppTextStyles.bodySemiBold.copyWith(
                         color: AppColors.primary,
                       ),
                     ),
                   ),
-                  // TextButton(
-                  //   onPressed: () =>
-                  //       context.read<AuthCubit>().continueAsGuest(),
-                  //   child: Text(
-                  //     'Continue as Guest',
-                  //     style: AppTextStyles.body.copyWith(
-                  //       color: AppColors.textSecondary,
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 8),
                 ],
               ),
