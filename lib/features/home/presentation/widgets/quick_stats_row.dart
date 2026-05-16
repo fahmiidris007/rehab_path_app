@@ -44,7 +44,7 @@ class QuickStatsRow extends StatelessWidget {
         Expanded(
           child: _StatChip(
             value: '$streakDays',
-            label: l10n.homeStatDayStreak,
+            label: l10n.homeStatDays,
             icon: Icons.local_fire_department_outlined,
             iconColor: AppColors.accent,
           ),

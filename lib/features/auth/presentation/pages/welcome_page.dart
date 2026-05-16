@@ -5,6 +5,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_pill_button.dart';
+import '../../../../core/widgets/language_selector_button.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -51,6 +52,15 @@ class _WelcomePageState extends State<WelcomePage> {
       body: SafeArea(
         child: Column(
           children: [
+            // Language selector row
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8, top: 4),
+                child: const LanguageSelectorButton(),
+              ),
+            ),
+
             // Slides
             Expanded(
               child: PageView.builder(

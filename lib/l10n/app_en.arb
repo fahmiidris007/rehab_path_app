@@ -46,7 +46,7 @@
     "description": "Hint text for the password field on login"
   },
 
-  "authLoginPasswordError": "Password must be 8–64 characters.",
+  "authLoginPasswordError": "Password must be at least 8 characters.",
   "@authLoginPasswordError": {
     "description": "Validation error for invalid password on login"
   },
@@ -86,7 +86,7 @@
     "description": "Hint text for the password field on registration"
   },
 
-  "authRegisterPasswordError": "Password must be 8–64 characters.",
+  "authRegisterPasswordError": "Password must be at least 8 characters.",
   "@authRegisterPasswordError": {
     "description": "Validation error for invalid password on registration"
   },
@@ -538,6 +538,107 @@
     "description": "Button label to call emergency services"
   },
 
+  "sosAddContact": "Add Contact",
+  "@sosAddContact": {
+    "description": "FAB label to add a new emergency contact"
+  },
+
+  "sosAddContactTitle": "Add Emergency Contact",
+  "@sosAddContactTitle": {
+    "description": "Title of the add contact bottom sheet"
+  },
+
+  "sosEditContactTitle": "Edit Emergency Contact",
+  "@sosEditContactTitle": {
+    "description": "Title of the edit contact bottom sheet"
+  },
+
+  "sosEditContact": "Edit",
+  "@sosEditContact": {
+    "description": "Menu item label to edit a contact"
+  },
+
+  "sosDeleteContact": "Delete",
+  "@sosDeleteContact": {
+    "description": "Menu item label to delete a contact"
+  },
+
+  "sosDeleteContactTitle": "Delete Contact",
+  "@sosDeleteContactTitle": {
+    "description": "Title of the delete confirmation dialog"
+  },
+
+  "sosDeleteContactMessage": "Remove {name} from your emergency contacts?",
+  "@sosDeleteContactMessage": {
+    "description": "Body of the delete confirmation dialog",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "John"
+      }
+    }
+  },
+
+  "sosSaveContact": "Save Contact",
+  "@sosSaveContact": {
+    "description": "Button label to save a contact in the bottom sheet"
+  },
+
+  "sosContactName": "Name",
+  "@sosContactName": {
+    "description": "Label for the name field in the contact form"
+  },
+
+  "sosContactNameHint": "e.g. John Smith",
+  "@sosContactNameHint": {
+    "description": "Hint for the name field in the contact form"
+  },
+
+  "sosContactNameRequired": "Please enter a name.",
+  "@sosContactNameRequired": {
+    "description": "Validation error when name is empty"
+  },
+
+  "sosContactRelationship": "Relationship",
+  "@sosContactRelationship": {
+    "description": "Label for the relationship field in the contact form"
+  },
+
+  "sosContactRelationshipHint": "e.g. Son, Daughter, Neighbour",
+  "@sosContactRelationshipHint": {
+    "description": "Hint for the relationship field in the contact form"
+  },
+
+  "sosContactRelationshipRequired": "Please enter the relationship.",
+  "@sosContactRelationshipRequired": {
+    "description": "Validation error when relationship is empty"
+  },
+
+  "sosContactPhone": "Phone Number",
+  "@sosContactPhone": {
+    "description": "Label for the phone field in the contact form"
+  },
+
+  "sosContactPhoneHint": "e.g. +62 812 3456 7890",
+  "@sosContactPhoneHint": {
+    "description": "Hint for the phone field in the contact form"
+  },
+
+  "sosContactPhoneRequired": "Please enter a phone number.",
+  "@sosContactPhoneRequired": {
+    "description": "Validation error when phone is empty"
+  },
+
+  "sosContactPhoneInvalid": "Please enter a valid phone number.",
+  "@sosContactPhoneInvalid": {
+    "description": "Validation error when phone number is too short"
+  },
+
+  "sosAddContactsPrompt": "Tap the button below to add your first emergency contact.",
+  "@sosAddContactsPrompt": {
+    "description": "Subtitle on the empty state when no contacts exist"
+  },
+
   "notificationDailyReminderTitle": "Time to Exercise!",
   "@notificationDailyReminderTitle": {
     "description": "Title of the daily reminder notification"
@@ -739,6 +840,9 @@
 
   "homeStatDayStreak": "Day Streak",
   "@homeStatDayStreak": { "description": "Day streak stat label in quick stats row" },
+
+  "homeStatDays": "Days",
+  "@homeStatDays": { "description": "Short days label in quick stats row" },
 
   "homeGuestBannerMessage": "You are in Guest mode. Register or log in to save your progress.",
   "@homeGuestBannerMessage": { "description": "Guest banner message on home page" },
@@ -997,5 +1101,155 @@
   "@onboardingYes": { "description": "Yes option" },
 
   "onboardingNo": "No",
-  "@onboardingNo": { "description": "No option" }
+  "@onboardingNo": { "description": "No option" },
+
+  "onboardingStep1AgeLabel": "Your Age",
+  "@onboardingStep1AgeLabel": { "description": "Age field label in step 1" },
+
+  "onboardingStep1AgeHint": "Enter your age",
+  "@onboardingStep1AgeHint": { "description": "Age field hint in step 1" },
+
+  "onboardingStep1AgeSuffix": "years",
+  "@onboardingStep1AgeSuffix": { "description": "Age field suffix in step 1" },
+
+  "onboardingStep1AgeRequired": "Please enter your age",
+  "@onboardingStep1AgeRequired": { "description": "Age required validation in step 1" },
+
+  "onboardingStep1AgeRange": "Age must be between 18 and 120",
+  "@onboardingStep1AgeRange": { "description": "Age range validation in step 1" },
+
+  "onboardingStep1GenderLabel": "Gender",
+  "@onboardingStep1GenderLabel": { "description": "Gender field label in step 1" },
+
+  "onboardingStep1GenderMale": "Male",
+  "@onboardingStep1GenderMale": { "description": "Male gender option" },
+
+  "onboardingStep1GenderFemale": "Female",
+  "@onboardingStep1GenderFemale": { "description": "Female gender option" },
+
+  "onboardingStep1GenderOther": "Other",
+  "@onboardingStep1GenderOther": { "description": "Other gender option" },
+
+  "onboardingStep1GenderPreferNotToSay": "Prefer not to say",
+  "@onboardingStep1GenderPreferNotToSay": { "description": "Prefer not to say gender option" },
+
+  "onboardingStep2Question": "How many times have you fallen in the last 12 months?",
+  "@onboardingStep2Question": { "description": "Question in step 2" },
+
+  "onboardingStep2Hint": "Enter number of falls",
+  "@onboardingStep2Hint": { "description": "Falls field hint in step 2" },
+
+  "onboardingStep2Suffix": "times",
+  "@onboardingStep2Suffix": { "description": "Falls field suffix in step 2" },
+
+  "onboardingStep2Required": "Please enter the number of falls (enter 0 if none)",
+  "@onboardingStep2Required": { "description": "Falls required validation in step 2" },
+
+  "onboardingStep2Invalid": "Please enter a valid number (0 or more)",
+  "@onboardingStep2Invalid": { "description": "Falls invalid validation in step 2" },
+
+  "onboardingStep3Question": "Do you have any of the following health conditions?",
+  "@onboardingStep3Question": { "description": "Question in step 3" },
+
+  "onboardingStep3SelectAll": "Select all that apply",
+  "@onboardingStep3SelectAll": { "description": "Select all hint in step 3" },
+
+  "onboardingStep3Musculoskeletal": "Muskuloskeletal",
+  "@onboardingStep3Musculoskeletal": { "description": "Musculoskeletal condition" },
+
+  "onboardingStep3MusculoskeletalSub": "Joint/bone problems",
+  "@onboardingStep3MusculoskeletalSub": { "description": "Musculoskeletal subtitle" },
+
+  "onboardingStep3Circulatory": "Sirkulasi",
+  "@onboardingStep3Circulatory": { "description": "Circulatory condition" },
+
+  "onboardingStep3CirculatorySub": "Heart/blood pressure",
+  "@onboardingStep3CirculatorySub": { "description": "Circulatory subtitle" },
+
+  "onboardingStep3Respiratory": "Pernapasan",
+  "@onboardingStep3Respiratory": { "description": "Respiratory condition" },
+
+  "onboardingStep3RespiratorySub": "Breathing problems",
+  "@onboardingStep3RespiratorySub": { "description": "Respiratory subtitle" },
+
+  "onboardingStep3Neurological": "Neurologis",
+  "@onboardingStep3Neurological": { "description": "Neurological condition" },
+
+  "onboardingStep3NeurologicalSub": "Nerve/brain conditions",
+  "@onboardingStep3NeurologicalSub": { "description": "Neurological subtitle" },
+
+  "onboardingStep3Other": "Lainnya",
+  "@onboardingStep3Other": { "description": "Other condition" },
+
+  "onboardingStep5Question": "How concerned are you about falling?",
+  "@onboardingStep5Question": { "description": "Question in step 5" },
+
+  "onboardingStep5Level1": "Not at all concerned",
+  "@onboardingStep5Level1": { "description": "Fear level 1 description" },
+
+  "onboardingStep5Level2": "Slightly concerned",
+  "@onboardingStep5Level2": { "description": "Fear level 2 description" },
+
+  "onboardingStep5Level3": "Moderately concerned",
+  "@onboardingStep5Level3": { "description": "Fear level 3 description" },
+
+  "onboardingStep5Level4": "Very concerned",
+  "@onboardingStep5Level4": { "description": "Fear level 4 description" },
+
+  "onboardingStep5Level5": "Extremely concerned",
+  "@onboardingStep5Level5": { "description": "Fear level 5 description" },
+
+  "onboardingStep6TimeLabel": "Preferred exercise time",
+  "@onboardingStep6TimeLabel": { "description": "Time label in step 6" },
+
+  "onboardingStep6TimeHint": "Select time",
+  "@onboardingStep6TimeHint": { "description": "Time hint in step 6" },
+
+  "onboardingStep6DurationLabel": "Session duration",
+  "@onboardingStep6DurationLabel": { "description": "Duration label in step 6" },
+
+  "onboardingStep6DurationHint": "Enter duration",
+  "@onboardingStep6DurationHint": { "description": "Duration hint in step 6" },
+
+  "onboardingStep6DurationSuffix": "minutes",
+  "@onboardingStep6DurationSuffix": { "description": "Duration suffix in step 6" },
+
+  "onboardingStep6DurationRequired": "Please enter session duration",
+  "@onboardingStep6DurationRequired": { "description": "Duration required validation" },
+
+  "onboardingStep6DurationRange": "Duration must be between 10 and 120 minutes",
+  "@onboardingStep6DurationRange": { "description": "Duration range validation" },
+
+  "onboardingStep6FrequencyLabel": "Weekly frequency",
+  "@onboardingStep6FrequencyLabel": { "description": "Frequency label in step 6" },
+
+  "onboardingStep6FrequencyHint": "Enter frequency",
+  "@onboardingStep6FrequencyHint": { "description": "Frequency hint in step 6" },
+
+  "onboardingStep6FrequencySuffix": "days per week",
+  "@onboardingStep6FrequencySuffix": { "description": "Frequency suffix in step 6" },
+
+  "onboardingStep6FrequencyRequired": "Please enter weekly frequency",
+  "@onboardingStep6FrequencyRequired": { "description": "Frequency required validation" },
+
+  "onboardingStep6FrequencyRange": "Frequency must be between 1 and 7 days per week",
+  "@onboardingStep6FrequencyRange": { "description": "Frequency range validation" },
+
+  "onboardingStep7OutcomeLabel": "Outcome Goal",
+  "@onboardingStep7OutcomeLabel": { "description": "Outcome goal label in step 7" },
+
+  "onboardingStep7OutcomeHint": "What do you want to achieve? (e.g., Walk to the market independently)",
+  "@onboardingStep7OutcomeHint": { "description": "Outcome goal hint in step 7" },
+
+  "onboardingStep7OutcomeRequired": "Please describe what you want to achieve",
+  "@onboardingStep7OutcomeRequired": { "description": "Outcome goal required validation" },
+
+  "onboardingStep7BehaviouralLabel": "Behavioural Goal",
+  "@onboardingStep7BehaviouralLabel": { "description": "Behavioural goal label in step 7" },
+
+  "onboardingStep7BehaviouralHint": "What exercise will you do and when? (e.g., Exercise every morning)",
+  "@onboardingStep7BehaviouralHint": { "description": "Behavioural goal hint in step 7" },
+
+  "onboardingStep7BehaviouralRequired": "Please describe your exercise plan",
+  "@onboardingStep7BehaviouralRequired": { "description": "Behavioural goal required validation" }
 }

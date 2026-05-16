@@ -155,7 +155,7 @@ abstract class AppLocalizations {
   /// Validation error for invalid password on login
   ///
   /// In en, this message translates to:
-  /// **'Password must be 8–64 characters.'**
+  /// **'Password must be at least 8 characters.'**
   String get authLoginPasswordError;
 
   /// Label for the login button
@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// Validation error for invalid password on registration
   ///
   /// In en, this message translates to:
-  /// **'Password must be 8–64 characters.'**
+  /// **'Password must be at least 8 characters.'**
   String get authRegisterPasswordError;
 
   /// Hint text for the confirm password field on registration
@@ -716,6 +716,120 @@ abstract class AppLocalizations {
   /// **'Call Emergency Services'**
   String get sosEmergencyButton;
 
+  /// FAB label to add a new emergency contact
+  ///
+  /// In en, this message translates to:
+  /// **'Add Contact'**
+  String get sosAddContact;
+
+  /// Title of the add contact bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Add Emergency Contact'**
+  String get sosAddContactTitle;
+
+  /// Title of the edit contact bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Emergency Contact'**
+  String get sosEditContactTitle;
+
+  /// Menu item label to edit a contact
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get sosEditContact;
+
+  /// Menu item label to delete a contact
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get sosDeleteContact;
+
+  /// Title of the delete confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Contact'**
+  String get sosDeleteContactTitle;
+
+  /// Body of the delete confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from your emergency contacts?'**
+  String sosDeleteContactMessage(String name);
+
+  /// Button label to save a contact in the bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Save Contact'**
+  String get sosSaveContact;
+
+  /// Label for the name field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get sosContactName;
+
+  /// Hint for the name field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. John Smith'**
+  String get sosContactNameHint;
+
+  /// Validation error when name is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a name.'**
+  String get sosContactNameRequired;
+
+  /// Label for the relationship field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'Relationship'**
+  String get sosContactRelationship;
+
+  /// Hint for the relationship field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Son, Daughter, Neighbour'**
+  String get sosContactRelationshipHint;
+
+  /// Validation error when relationship is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the relationship.'**
+  String get sosContactRelationshipRequired;
+
+  /// Label for the phone field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get sosContactPhone;
+
+  /// Hint for the phone field in the contact form
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. +62 812 3456 7890'**
+  String get sosContactPhoneHint;
+
+  /// Validation error when phone is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a phone number.'**
+  String get sosContactPhoneRequired;
+
+  /// Validation error when phone number is too short
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get sosContactPhoneInvalid;
+
+  /// Subtitle on the empty state when no contacts exist
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the button below to add your first emergency contact.'**
+  String get sosAddContactsPrompt;
+
   /// Title of the daily reminder notification
   ///
   /// In en, this message translates to:
@@ -1021,6 +1135,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Day Streak'**
   String get homeStatDayStreak;
+
+  /// Short days label in quick stats row
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get homeStatDays;
 
   /// Guest banner message on home page
   ///
@@ -1489,6 +1609,306 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No'**
   String get onboardingNo;
+
+  /// Age field label in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'Your Age'**
+  String get onboardingStep1AgeLabel;
+
+  /// Age field hint in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your age'**
+  String get onboardingStep1AgeHint;
+
+  /// Age field suffix in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'years'**
+  String get onboardingStep1AgeSuffix;
+
+  /// Age required validation in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your age'**
+  String get onboardingStep1AgeRequired;
+
+  /// Age range validation in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'Age must be between 18 and 120'**
+  String get onboardingStep1AgeRange;
+
+  /// Gender field label in step 1
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get onboardingStep1GenderLabel;
+
+  /// Male gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get onboardingStep1GenderMale;
+
+  /// Female gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get onboardingStep1GenderFemale;
+
+  /// Other gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get onboardingStep1GenderOther;
+
+  /// Prefer not to say gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer not to say'**
+  String get onboardingStep1GenderPreferNotToSay;
+
+  /// Question in step 2
+  ///
+  /// In en, this message translates to:
+  /// **'How many times have you fallen in the last 12 months?'**
+  String get onboardingStep2Question;
+
+  /// Falls field hint in step 2
+  ///
+  /// In en, this message translates to:
+  /// **'Enter number of falls'**
+  String get onboardingStep2Hint;
+
+  /// Falls field suffix in step 2
+  ///
+  /// In en, this message translates to:
+  /// **'times'**
+  String get onboardingStep2Suffix;
+
+  /// Falls required validation in step 2
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the number of falls (enter 0 if none)'**
+  String get onboardingStep2Required;
+
+  /// Falls invalid validation in step 2
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number (0 or more)'**
+  String get onboardingStep2Invalid;
+
+  /// Question in step 3
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have any of the following health conditions?'**
+  String get onboardingStep3Question;
+
+  /// Select all hint in step 3
+  ///
+  /// In en, this message translates to:
+  /// **'Select all that apply'**
+  String get onboardingStep3SelectAll;
+
+  /// Musculoskeletal condition
+  ///
+  /// In en, this message translates to:
+  /// **'Muskuloskeletal'**
+  String get onboardingStep3Musculoskeletal;
+
+  /// Musculoskeletal subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Joint/bone problems'**
+  String get onboardingStep3MusculoskeletalSub;
+
+  /// Circulatory condition
+  ///
+  /// In en, this message translates to:
+  /// **'Sirkulasi'**
+  String get onboardingStep3Circulatory;
+
+  /// Circulatory subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Heart/blood pressure'**
+  String get onboardingStep3CirculatorySub;
+
+  /// Respiratory condition
+  ///
+  /// In en, this message translates to:
+  /// **'Pernapasan'**
+  String get onboardingStep3Respiratory;
+
+  /// Respiratory subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Breathing problems'**
+  String get onboardingStep3RespiratorySub;
+
+  /// Neurological condition
+  ///
+  /// In en, this message translates to:
+  /// **'Neurologis'**
+  String get onboardingStep3Neurological;
+
+  /// Neurological subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Nerve/brain conditions'**
+  String get onboardingStep3NeurologicalSub;
+
+  /// Other condition
+  ///
+  /// In en, this message translates to:
+  /// **'Lainnya'**
+  String get onboardingStep3Other;
+
+  /// Question in step 5
+  ///
+  /// In en, this message translates to:
+  /// **'How concerned are you about falling?'**
+  String get onboardingStep5Question;
+
+  /// Fear level 1 description
+  ///
+  /// In en, this message translates to:
+  /// **'Not at all concerned'**
+  String get onboardingStep5Level1;
+
+  /// Fear level 2 description
+  ///
+  /// In en, this message translates to:
+  /// **'Slightly concerned'**
+  String get onboardingStep5Level2;
+
+  /// Fear level 3 description
+  ///
+  /// In en, this message translates to:
+  /// **'Moderately concerned'**
+  String get onboardingStep5Level3;
+
+  /// Fear level 4 description
+  ///
+  /// In en, this message translates to:
+  /// **'Very concerned'**
+  String get onboardingStep5Level4;
+
+  /// Fear level 5 description
+  ///
+  /// In en, this message translates to:
+  /// **'Extremely concerned'**
+  String get onboardingStep5Level5;
+
+  /// Time label in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred exercise time'**
+  String get onboardingStep6TimeLabel;
+
+  /// Time hint in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Select time'**
+  String get onboardingStep6TimeHint;
+
+  /// Duration label in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Session duration'**
+  String get onboardingStep6DurationLabel;
+
+  /// Duration hint in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Enter duration'**
+  String get onboardingStep6DurationHint;
+
+  /// Duration suffix in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'minutes'**
+  String get onboardingStep6DurationSuffix;
+
+  /// Duration required validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter session duration'**
+  String get onboardingStep6DurationRequired;
+
+  /// Duration range validation
+  ///
+  /// In en, this message translates to:
+  /// **'Duration must be between 10 and 120 minutes'**
+  String get onboardingStep6DurationRange;
+
+  /// Frequency label in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly frequency'**
+  String get onboardingStep6FrequencyLabel;
+
+  /// Frequency hint in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'Enter frequency'**
+  String get onboardingStep6FrequencyHint;
+
+  /// Frequency suffix in step 6
+  ///
+  /// In en, this message translates to:
+  /// **'days per week'**
+  String get onboardingStep6FrequencySuffix;
+
+  /// Frequency required validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter weekly frequency'**
+  String get onboardingStep6FrequencyRequired;
+
+  /// Frequency range validation
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency must be between 1 and 7 days per week'**
+  String get onboardingStep6FrequencyRange;
+
+  /// Outcome goal label in step 7
+  ///
+  /// In en, this message translates to:
+  /// **'Outcome Goal'**
+  String get onboardingStep7OutcomeLabel;
+
+  /// Outcome goal hint in step 7
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to achieve? (e.g., Walk to the market independently)'**
+  String get onboardingStep7OutcomeHint;
+
+  /// Outcome goal required validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please describe what you want to achieve'**
+  String get onboardingStep7OutcomeRequired;
+
+  /// Behavioural goal label in step 7
+  ///
+  /// In en, this message translates to:
+  /// **'Behavioural Goal'**
+  String get onboardingStep7BehaviouralLabel;
+
+  /// Behavioural goal hint in step 7
+  ///
+  /// In en, this message translates to:
+  /// **'What exercise will you do and when? (e.g., Exercise every morning)'**
+  String get onboardingStep7BehaviouralHint;
+
+  /// Behavioural goal required validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please describe your exercise plan'**
+  String get onboardingStep7BehaviouralRequired;
 }
 
 class _AppLocalizationsDelegate

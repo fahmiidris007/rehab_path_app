@@ -12,7 +12,7 @@ class AppCubit extends Cubit<AppState> {
       : super(
           const AppState(
             themeMode: AppThemeMode.system,
-            locale: AppLocale.en,
+            locale: AppLocale.id,
             fontSizeLevel: FontSizeLevel.defaultSize,
           ),
         );
@@ -44,7 +44,7 @@ class AppCubit extends Cubit<AppState> {
       final fontResult = await settingsRepo.getFontSizeLevel();
 
       final theme = themeResult.getOrElse(() => AppThemeMode.system);
-      final locale = localeResult.getOrElse(() => AppLocale.en);
+      final locale = localeResult.getOrElse(() => AppLocale.id);
       final font = fontResult.getOrElse(() => FontSizeLevel.defaultSize);
 
       emit(state.copyWith(themeMode: theme, locale: locale, fontSizeLevel: font));

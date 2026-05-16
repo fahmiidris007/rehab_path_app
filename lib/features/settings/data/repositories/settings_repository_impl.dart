@@ -61,9 +61,9 @@ class SettingsRepositoryImpl implements SettingsRepository {
       final locale = value != null
           ? AppLocale.values.firstWhere(
               (e) => e.name == value,
-              orElse: () => AppLocale.en,
+              orElse: () => AppLocale.id,
             )
-          : AppLocale.en;
+          : AppLocale.id;
       return Right(locale);
     } catch (e, st) {
       _logger.e('GetLocale failed', error: e, stackTrace: st);

@@ -38,7 +38,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get authLoginPasswordHint => 'Kata sandi';
 
   @override
-  String get authLoginPasswordError => 'Kata sandi harus 8–64 karakter.';
+  String get authLoginPasswordError => 'Kata sandi minimal 8 karakter.';
 
   @override
   String get authLoginButton => 'Masuk';
@@ -62,7 +62,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get authRegisterPasswordHint => 'Kata sandi';
 
   @override
-  String get authRegisterPasswordError => 'Kata sandi harus 8–64 karakter.';
+  String get authRegisterPasswordError => 'Kata sandi minimal 8 karakter.';
 
   @override
   String get authRegisterConfirmPasswordHint => 'Konfirmasi kata sandi';
@@ -342,6 +342,66 @@ class AppLocalizationsId extends AppLocalizations {
   String get sosEmergencyButton => 'Hubungi Layanan Darurat';
 
   @override
+  String get sosAddContact => 'Tambah Kontak';
+
+  @override
+  String get sosAddContactTitle => 'Tambah Kontak Darurat';
+
+  @override
+  String get sosEditContactTitle => 'Edit Kontak Darurat';
+
+  @override
+  String get sosEditContact => 'Edit';
+
+  @override
+  String get sosDeleteContact => 'Hapus';
+
+  @override
+  String get sosDeleteContactTitle => 'Hapus Kontak';
+
+  @override
+  String sosDeleteContactMessage(String name) {
+    return 'Hapus $name dari kontak darurat Anda?';
+  }
+
+  @override
+  String get sosSaveContact => 'Simpan Kontak';
+
+  @override
+  String get sosContactName => 'Nama';
+
+  @override
+  String get sosContactNameHint => 'mis. Budi Santoso';
+
+  @override
+  String get sosContactNameRequired => 'Masukkan nama.';
+
+  @override
+  String get sosContactRelationship => 'Hubungan';
+
+  @override
+  String get sosContactRelationshipHint => 'mis. Anak, Tetangga, Saudara';
+
+  @override
+  String get sosContactRelationshipRequired => 'Masukkan hubungan.';
+
+  @override
+  String get sosContactPhone => 'Nomor Telepon';
+
+  @override
+  String get sosContactPhoneHint => 'mis. +62 812 3456 7890';
+
+  @override
+  String get sosContactPhoneRequired => 'Masukkan nomor telepon.';
+
+  @override
+  String get sosContactPhoneInvalid => 'Masukkan nomor telepon yang valid.';
+
+  @override
+  String get sosAddContactsPrompt =>
+      'Ketuk tombol di bawah untuk menambahkan kontak darurat pertama Anda.';
+
+  @override
   String get notificationDailyReminderTitle => 'Waktunya Latihan!';
 
   @override
@@ -513,6 +573,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get homeStatDayStreak => 'Hari Berturut';
+
+  @override
+  String get homeStatDays => 'Hari';
 
   @override
   String get homeGuestBannerMessage =>
@@ -771,4 +834,165 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onboardingNo => 'Tidak';
+
+  @override
+  String get onboardingStep1AgeLabel => 'Usia Anda';
+
+  @override
+  String get onboardingStep1AgeHint => 'Masukkan usia Anda';
+
+  @override
+  String get onboardingStep1AgeSuffix => 'tahun';
+
+  @override
+  String get onboardingStep1AgeRequired => 'Silakan masukkan usia Anda';
+
+  @override
+  String get onboardingStep1AgeRange => 'Usia harus antara 18 dan 120';
+
+  @override
+  String get onboardingStep1GenderLabel => 'Jenis Kelamin';
+
+  @override
+  String get onboardingStep1GenderMale => 'Laki-laki';
+
+  @override
+  String get onboardingStep1GenderFemale => 'Perempuan';
+
+  @override
+  String get onboardingStep1GenderOther => 'Lainnya';
+
+  @override
+  String get onboardingStep1GenderPreferNotToSay => 'Tidak ingin menyebutkan';
+
+  @override
+  String get onboardingStep2Question =>
+      'Berapa kali Anda jatuh dalam 12 bulan terakhir?';
+
+  @override
+  String get onboardingStep2Hint => 'Masukkan jumlah jatuh';
+
+  @override
+  String get onboardingStep2Suffix => 'kali';
+
+  @override
+  String get onboardingStep2Required =>
+      'Silakan masukkan jumlah jatuh (masukkan 0 jika tidak ada)';
+
+  @override
+  String get onboardingStep2Invalid =>
+      'Silakan masukkan angka yang valid (0 atau lebih)';
+
+  @override
+  String get onboardingStep3Question =>
+      'Apakah Anda memiliki kondisi kesehatan berikut?';
+
+  @override
+  String get onboardingStep3SelectAll => 'Pilih semua yang berlaku';
+
+  @override
+  String get onboardingStep3Musculoskeletal => 'Muskuloskeletal';
+
+  @override
+  String get onboardingStep3MusculoskeletalSub => 'Masalah sendi/tulang';
+
+  @override
+  String get onboardingStep3Circulatory => 'Sirkulasi';
+
+  @override
+  String get onboardingStep3CirculatorySub => 'Jantung/tekanan darah';
+
+  @override
+  String get onboardingStep3Respiratory => 'Pernapasan';
+
+  @override
+  String get onboardingStep3RespiratorySub => 'Masalah pernapasan';
+
+  @override
+  String get onboardingStep3Neurological => 'Neurologis';
+
+  @override
+  String get onboardingStep3NeurologicalSub => 'Kondisi saraf/otak';
+
+  @override
+  String get onboardingStep3Other => 'Lainnya';
+
+  @override
+  String get onboardingStep5Question => 'Seberapa khawatir Anda tentang jatuh?';
+
+  @override
+  String get onboardingStep5Level1 => 'Sama sekali tidak khawatir';
+
+  @override
+  String get onboardingStep5Level2 => 'Sedikit khawatir';
+
+  @override
+  String get onboardingStep5Level3 => 'Cukup khawatir';
+
+  @override
+  String get onboardingStep5Level4 => 'Sangat khawatir';
+
+  @override
+  String get onboardingStep5Level5 => 'Sangat amat khawatir';
+
+  @override
+  String get onboardingStep6TimeLabel => 'Waktu latihan yang disukai';
+
+  @override
+  String get onboardingStep6TimeHint => 'Pilih waktu';
+
+  @override
+  String get onboardingStep6DurationLabel => 'Durasi sesi';
+
+  @override
+  String get onboardingStep6DurationHint => 'Masukkan durasi';
+
+  @override
+  String get onboardingStep6DurationSuffix => 'menit';
+
+  @override
+  String get onboardingStep6DurationRequired => 'Silakan masukkan durasi sesi';
+
+  @override
+  String get onboardingStep6DurationRange =>
+      'Durasi harus antara 10 dan 120 menit';
+
+  @override
+  String get onboardingStep6FrequencyLabel => 'Frekuensi mingguan';
+
+  @override
+  String get onboardingStep6FrequencyHint => 'Masukkan frekuensi';
+
+  @override
+  String get onboardingStep6FrequencySuffix => 'hari per minggu';
+
+  @override
+  String get onboardingStep6FrequencyRequired =>
+      'Silakan masukkan frekuensi mingguan';
+
+  @override
+  String get onboardingStep6FrequencyRange =>
+      'Frekuensi harus antara 1 dan 7 hari per minggu';
+
+  @override
+  String get onboardingStep7OutcomeLabel => 'Tujuan Hasil';
+
+  @override
+  String get onboardingStep7OutcomeHint =>
+      'Apa yang ingin Anda capai? (mis., Berjalan ke pasar secara mandiri)';
+
+  @override
+  String get onboardingStep7OutcomeRequired =>
+      'Silakan jelaskan apa yang ingin Anda capai';
+
+  @override
+  String get onboardingStep7BehaviouralLabel => 'Tujuan Perilaku';
+
+  @override
+  String get onboardingStep7BehaviouralHint =>
+      'Latihan apa yang akan Anda lakukan dan kapan? (mis., Latihan setiap pagi)';
+
+  @override
+  String get onboardingStep7BehaviouralRequired =>
+      'Silakan jelaskan rencana latihan Anda';
 }

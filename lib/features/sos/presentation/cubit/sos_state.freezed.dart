@@ -20,6 +20,7 @@ mixin _$SosState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
     required TResult Function(String message) error,
     required TResult Function() callNotSupported,
   }) =>
@@ -28,6 +29,7 @@ mixin _$SosState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
     TResult? Function(String message)? error,
     TResult? Function()? callNotSupported,
   }) =>
@@ -36,6 +38,7 @@ mixin _$SosState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
     TResult Function(String message)? error,
     TResult Function()? callNotSupported,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$SosState {
   TResult map<TResult extends Object?>({
     required TResult Function(SosLoading value) loading,
     required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
     required TResult Function(SosError value) error,
     required TResult Function(SosCallNotSupported value) callNotSupported,
   }) =>
@@ -53,6 +57,7 @@ mixin _$SosState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SosLoading value)? loading,
     TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
     TResult? Function(SosError value)? error,
     TResult? Function(SosCallNotSupported value)? callNotSupported,
   }) =>
@@ -61,6 +66,7 @@ mixin _$SosState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SosLoading value)? loading,
     TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
     TResult Function(SosError value)? error,
     TResult Function(SosCallNotSupported value)? callNotSupported,
     required TResult orElse(),
@@ -125,6 +131,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
     required TResult Function(String message) error,
     required TResult Function() callNotSupported,
   }) {
@@ -136,6 +143,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
     TResult? Function(String message)? error,
     TResult? Function()? callNotSupported,
   }) {
@@ -147,6 +155,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
     TResult Function(String message)? error,
     TResult Function()? callNotSupported,
     required TResult orElse(),
@@ -162,6 +171,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(SosLoading value) loading,
     required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
     required TResult Function(SosError value) error,
     required TResult Function(SosCallNotSupported value) callNotSupported,
   }) {
@@ -173,6 +183,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SosLoading value)? loading,
     TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
     TResult? Function(SosError value)? error,
     TResult? Function(SosCallNotSupported value)? callNotSupported,
   }) {
@@ -184,6 +195,7 @@ class _$SosLoadingImpl implements SosLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SosLoading value)? loading,
     TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
     TResult Function(SosError value)? error,
     TResult Function(SosCallNotSupported value)? callNotSupported,
     required TResult orElse(),
@@ -272,6 +284,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
     required TResult Function(String message) error,
     required TResult Function() callNotSupported,
   }) {
@@ -283,6 +296,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
     TResult? Function(String message)? error,
     TResult? Function()? callNotSupported,
   }) {
@@ -294,6 +308,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
     TResult Function(String message)? error,
     TResult Function()? callNotSupported,
     required TResult orElse(),
@@ -309,6 +324,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(SosLoading value) loading,
     required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
     required TResult Function(SosError value) error,
     required TResult Function(SosCallNotSupported value) callNotSupported,
   }) {
@@ -320,6 +336,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SosLoading value)? loading,
     TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
     TResult? Function(SosError value)? error,
     TResult? Function(SosCallNotSupported value)? callNotSupported,
   }) {
@@ -331,6 +348,7 @@ class _$SosLoadedImpl implements SosLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SosLoading value)? loading,
     TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
     TResult Function(SosError value)? error,
     TResult Function(SosCallNotSupported value)? callNotSupported,
     required TResult orElse(),
@@ -349,6 +367,165 @@ abstract class SosLoaded implements SosState {
   List<EmergencyContactEntity> get contacts;
   @JsonKey(ignore: true)
   _$$SosLoadedImplCopyWith<_$SosLoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SosSavingImplCopyWith<$Res> {
+  factory _$$SosSavingImplCopyWith(
+          _$SosSavingImpl value, $Res Function(_$SosSavingImpl) then) =
+      __$$SosSavingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<EmergencyContactEntity> contacts});
+}
+
+/// @nodoc
+class __$$SosSavingImplCopyWithImpl<$Res>
+    extends _$SosStateCopyWithImpl<$Res, _$SosSavingImpl>
+    implements _$$SosSavingImplCopyWith<$Res> {
+  __$$SosSavingImplCopyWithImpl(
+      _$SosSavingImpl _value, $Res Function(_$SosSavingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contacts = null,
+  }) {
+    return _then(_$SosSavingImpl(
+      null == contacts
+          ? _value._contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<EmergencyContactEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SosSavingImpl implements SosSaving {
+  const _$SosSavingImpl(final List<EmergencyContactEntity> contacts)
+      : _contacts = contacts;
+
+  final List<EmergencyContactEntity> _contacts;
+  @override
+  List<EmergencyContactEntity> get contacts {
+    if (_contacts is EqualUnmodifiableListView) return _contacts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contacts);
+  }
+
+  @override
+  String toString() {
+    return 'SosState.saving(contacts: $contacts)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SosSavingImpl &&
+            const DeepCollectionEquality().equals(other._contacts, _contacts));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_contacts));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SosSavingImplCopyWith<_$SosSavingImpl> get copyWith =>
+      __$$SosSavingImplCopyWithImpl<_$SosSavingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
+    required TResult Function(String message) error,
+    required TResult Function() callNotSupported,
+  }) {
+    return saving(contacts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
+    TResult? Function(String message)? error,
+    TResult? Function()? callNotSupported,
+  }) {
+    return saving?.call(contacts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
+    TResult Function(String message)? error,
+    TResult Function()? callNotSupported,
+    required TResult orElse(),
+  }) {
+    if (saving != null) {
+      return saving(contacts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SosLoading value) loading,
+    required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
+    required TResult Function(SosError value) error,
+    required TResult Function(SosCallNotSupported value) callNotSupported,
+  }) {
+    return saving(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SosLoading value)? loading,
+    TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
+    TResult? Function(SosError value)? error,
+    TResult? Function(SosCallNotSupported value)? callNotSupported,
+  }) {
+    return saving?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SosLoading value)? loading,
+    TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
+    TResult Function(SosError value)? error,
+    TResult Function(SosCallNotSupported value)? callNotSupported,
+    required TResult orElse(),
+  }) {
+    if (saving != null) {
+      return saving(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SosSaving implements SosState {
+  const factory SosSaving(final List<EmergencyContactEntity> contacts) =
+      _$SosSavingImpl;
+
+  List<EmergencyContactEntity> get contacts;
+  @JsonKey(ignore: true)
+  _$$SosSavingImplCopyWith<_$SosSavingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -418,6 +595,7 @@ class _$SosErrorImpl implements SosError {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
     required TResult Function(String message) error,
     required TResult Function() callNotSupported,
   }) {
@@ -429,6 +607,7 @@ class _$SosErrorImpl implements SosError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
     TResult? Function(String message)? error,
     TResult? Function()? callNotSupported,
   }) {
@@ -440,6 +619,7 @@ class _$SosErrorImpl implements SosError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
     TResult Function(String message)? error,
     TResult Function()? callNotSupported,
     required TResult orElse(),
@@ -455,6 +635,7 @@ class _$SosErrorImpl implements SosError {
   TResult map<TResult extends Object?>({
     required TResult Function(SosLoading value) loading,
     required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
     required TResult Function(SosError value) error,
     required TResult Function(SosCallNotSupported value) callNotSupported,
   }) {
@@ -466,6 +647,7 @@ class _$SosErrorImpl implements SosError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SosLoading value)? loading,
     TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
     TResult? Function(SosError value)? error,
     TResult? Function(SosCallNotSupported value)? callNotSupported,
   }) {
@@ -477,6 +659,7 @@ class _$SosErrorImpl implements SosError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SosLoading value)? loading,
     TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
     TResult Function(SosError value)? error,
     TResult Function(SosCallNotSupported value)? callNotSupported,
     required TResult orElse(),
@@ -538,6 +721,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<EmergencyContactEntity> contacts) loaded,
+    required TResult Function(List<EmergencyContactEntity> contacts) saving,
     required TResult Function(String message) error,
     required TResult Function() callNotSupported,
   }) {
@@ -549,6 +733,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult? Function(List<EmergencyContactEntity> contacts)? saving,
     TResult? Function(String message)? error,
     TResult? Function()? callNotSupported,
   }) {
@@ -560,6 +745,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<EmergencyContactEntity> contacts)? loaded,
+    TResult Function(List<EmergencyContactEntity> contacts)? saving,
     TResult Function(String message)? error,
     TResult Function()? callNotSupported,
     required TResult orElse(),
@@ -575,6 +761,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult map<TResult extends Object?>({
     required TResult Function(SosLoading value) loading,
     required TResult Function(SosLoaded value) loaded,
+    required TResult Function(SosSaving value) saving,
     required TResult Function(SosError value) error,
     required TResult Function(SosCallNotSupported value) callNotSupported,
   }) {
@@ -586,6 +773,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SosLoading value)? loading,
     TResult? Function(SosLoaded value)? loaded,
+    TResult? Function(SosSaving value)? saving,
     TResult? Function(SosError value)? error,
     TResult? Function(SosCallNotSupported value)? callNotSupported,
   }) {
@@ -597,6 +785,7 @@ class _$SosCallNotSupportedImpl implements SosCallNotSupported {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SosLoading value)? loading,
     TResult Function(SosLoaded value)? loaded,
+    TResult Function(SosSaving value)? saving,
     TResult Function(SosError value)? error,
     TResult Function(SosCallNotSupported value)? callNotSupported,
     required TResult orElse(),

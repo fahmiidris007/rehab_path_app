@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
 /// Step 1 — Age & Gender
-///
-/// Collects the user's age (18–120) and gender via a radio group.
 class Step1AgeGenderWidget extends StatefulWidget {
   const Step1AgeGenderWidget({
     super.key,
@@ -25,14 +24,18 @@ class Step1AgeGenderWidget extends StatefulWidget {
 class Step1AgeGenderWidgetState extends State<Step1AgeGenderWidget> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _ageController;
-  String _gender = 'Prefer not to say';
 
-  static const _genderOptions = [
-    'Male',
-    'Female',
-    'Other',
-    'Prefer not to say',
+  // Internal key used to store the selected gender — always English so data
+  // is locale-independent in storage.
+  static const _keyMale = 'Male';
+  static const _keyFemale = 'Female';
+
+  static const _genderKeys = [
+    _keyMale,
+    _keyFemale,
   ];
+
+  String _gender = _keyMale;
 
   @override
   void initState() {
@@ -77,40 +80,50 @@ class Step1AgeGenderWidgetState extends State<Step1AgeGenderWidget> {
         programLevel: ProgramLevel.beginner,
       );
 
-  /// Validates and returns true if the form is valid.
   bool validate() => _formKey.currentState?.validate() ?? false;
+
+  /// Maps an internal English key to its localized display label.
+  String _genderLabel(String key, AppLocalizations l10n) {
+    return switch (key) {
+      _keyMale => l10n.onboardingStep1GenderMale,
+      _keyFemale => l10n.onboardingStep1GenderFemale,
+      _ => l10n.onboardingStep1GenderMale,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Your Age', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep1AgeLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           TextFormField(
             controller: _ageController,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: const InputDecoration(
-              hintText: 'Enter your age',
-              suffixText: 'years',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep1AgeHint,
+              suffixText: l10n.onboardingStep1AgeSuffix,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your age';
+                return l10n.onboardingStep1AgeRequired;
               }
               final age = int.tryParse(value);
               if (age == null || age < 18 || age > 120) {
-                return 'Age must be between 18 and 120';
+                return l10n.onboardingStep1AgeRange;
               }
               return null;
             },
           ),
           const SizedBox(height: 24),
-          Text('Gender', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep1GenderLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           RadioGroup<String>(
             groupValue: _gender,
@@ -121,11 +134,14 @@ class Step1AgeGenderWidgetState extends State<Step1AgeGenderWidget> {
               }
             },
             child: Column(
-              children: _genderOptions
+              children: _genderKeys
                   .map(
-                    (option) => RadioListTile<String>(
-                      title: Text(option, style: AppTextStyles.body),
-                      value: option,
+                    (key) => RadioListTile<String>(
+                      title: Text(
+                        _genderLabel(key, l10n),
+                        style: AppTextStyles.body,
+                      ),
+                      value: key,
                       contentPadding: EdgeInsets.zero,
                     ),
                   )

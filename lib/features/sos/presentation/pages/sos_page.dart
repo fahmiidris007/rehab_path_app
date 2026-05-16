@@ -13,6 +13,7 @@ import '../../../../features/auth/presentation/cubit/auth_state.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../cubit/sos_cubit.dart';
 import '../cubit/sos_state.dart';
+import '../widgets/add_edit_contact_bottom_sheet.dart';
 import '../widgets/emergency_contact_card.dart';
 
 /// Emergency SOS page.
@@ -44,6 +45,7 @@ class _SosView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppTopAppBar(title: l10n.sosTitle),
+      floatingActionButton: _AddContactFab(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -71,6 +73,12 @@ class _SosView extends StatelessWidget {
                 return switch (state) {
                   SosLoading() => const Center(
                       child: CircularProgressIndicator.adaptive(),
+                    ),
+                  SosSaving(:final contacts) when contacts.isEmpty =>
+                    const Center(child: CircularProgressIndicator.adaptive()),
+                  SosSaving(:final contacts) => _ContactList(
+                      contacts: contacts,
+                      isSaving: true,
                     ),
                   SosError(:final message) => Padding(
                       padding: const EdgeInsets.symmetric(
@@ -105,19 +113,11 @@ class _SosView extends StatelessWidget {
                         size: 64,
                       ),
                       title: l10n.sosNoEmergencyContacts,
-                      subtitle: l10n.sosAddContactsMessage,
+                      subtitle: l10n.sosAddContactsPrompt,
                     ),
-                  SosLoaded(:final contacts) => ListView.separated(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimensions.screenPaddingH,
-                        vertical: 8,
-                      ),
-                      itemCount: contacts.length,
-                      separatorBuilder: (_, __) =>
-                          const SizedBox(height: AppDimensions.cardGap),
-                      itemBuilder: (context, index) => EmergencyContactCard(
-                        contact: contacts[index],
-                      ),
+                  SosLoaded(:final contacts) => _ContactList(
+                      contacts: contacts,
+                      isSaving: false,
                     ),
                 };
               },
@@ -129,8 +129,75 @@ class _SosView extends StatelessWidget {
   }
 }
 
-/// Emergency SOS page.
-///
-/// Provides [SosCubit] via [BlocProvider], loads the current user's emergency
-/// contacts on init, and renders them in a [ListView] of [EmergencyContactCard]
-/// widgets. A safety reminder is always visible above the list.
+// ── Contact list ─────────────────────────────────────────────────────────────
+
+class _ContactList extends StatelessWidget {
+  const _ContactList({required this.contacts, required this.isSaving});
+
+  final List contacts;
+  final bool isSaving;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ListView.separated(
+          padding: const EdgeInsets.fromLTRB(
+            AppDimensions.screenPaddingH,
+            8,
+            AppDimensions.screenPaddingH,
+            // Extra bottom padding so FAB doesn't overlap last card
+            96,
+          ),
+          itemCount: contacts.length,
+          separatorBuilder: (_, __) =>
+              const SizedBox(height: AppDimensions.cardGap),
+          itemBuilder: (context, index) => EmergencyContactCard(
+            contact: contacts[index],
+            index: index,
+          ),
+        ),
+        if (isSaving)
+          const Positioned(
+            top: 8,
+            left: 0,
+            right: 0,
+            child: LinearProgressIndicator(
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+// ── FAB ──────────────────────────────────────────────────────────────────────
+
+class _AddContactFab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return FloatingActionButton.extended(
+      onPressed: () => showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (_) => BlocProvider.value(
+          value: context.read<SosCubit>(),
+          child: const AddEditContactBottomSheet(),
+        ),
+      ),
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.textOnPrimary,
+      icon: const Icon(Icons.person_add_outlined),
+      label: Text(
+        l10n.sosAddContact,
+        style: AppTextStyles.button.copyWith(
+          color: AppColors.textOnPrimary,
+          fontSize: 16,
+        ),
+      ),
+    );
+  }
+}

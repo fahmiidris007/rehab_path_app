@@ -37,7 +37,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLoginPasswordHint => 'Password';
 
   @override
-  String get authLoginPasswordError => 'Password must be 8–64 characters.';
+  String get authLoginPasswordError =>
+      'Password must be at least 8 characters.';
 
   @override
   String get authLoginButton => 'Log In';
@@ -61,7 +62,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authRegisterPasswordHint => 'Password';
 
   @override
-  String get authRegisterPasswordError => 'Password must be 8–64 characters.';
+  String get authRegisterPasswordError =>
+      'Password must be at least 8 characters.';
 
   @override
   String get authRegisterConfirmPasswordHint => 'Confirm password';
@@ -343,6 +345,66 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sosEmergencyButton => 'Call Emergency Services';
 
   @override
+  String get sosAddContact => 'Add Contact';
+
+  @override
+  String get sosAddContactTitle => 'Add Emergency Contact';
+
+  @override
+  String get sosEditContactTitle => 'Edit Emergency Contact';
+
+  @override
+  String get sosEditContact => 'Edit';
+
+  @override
+  String get sosDeleteContact => 'Delete';
+
+  @override
+  String get sosDeleteContactTitle => 'Delete Contact';
+
+  @override
+  String sosDeleteContactMessage(String name) {
+    return 'Remove $name from your emergency contacts?';
+  }
+
+  @override
+  String get sosSaveContact => 'Save Contact';
+
+  @override
+  String get sosContactName => 'Name';
+
+  @override
+  String get sosContactNameHint => 'e.g. John Smith';
+
+  @override
+  String get sosContactNameRequired => 'Please enter a name.';
+
+  @override
+  String get sosContactRelationship => 'Relationship';
+
+  @override
+  String get sosContactRelationshipHint => 'e.g. Son, Daughter, Neighbour';
+
+  @override
+  String get sosContactRelationshipRequired => 'Please enter the relationship.';
+
+  @override
+  String get sosContactPhone => 'Phone Number';
+
+  @override
+  String get sosContactPhoneHint => 'e.g. +62 812 3456 7890';
+
+  @override
+  String get sosContactPhoneRequired => 'Please enter a phone number.';
+
+  @override
+  String get sosContactPhoneInvalid => 'Please enter a valid phone number.';
+
+  @override
+  String get sosAddContactsPrompt =>
+      'Tap the button below to add your first emergency contact.';
+
+  @override
   String get notificationDailyReminderTitle => 'Time to Exercise!';
 
   @override
@@ -513,6 +575,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeStatDayStreak => 'Day Streak';
+
+  @override
+  String get homeStatDays => 'Days';
 
   @override
   String get homeGuestBannerMessage =>
@@ -770,4 +835,165 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingNo => 'No';
+
+  @override
+  String get onboardingStep1AgeLabel => 'Your Age';
+
+  @override
+  String get onboardingStep1AgeHint => 'Enter your age';
+
+  @override
+  String get onboardingStep1AgeSuffix => 'years';
+
+  @override
+  String get onboardingStep1AgeRequired => 'Please enter your age';
+
+  @override
+  String get onboardingStep1AgeRange => 'Age must be between 18 and 120';
+
+  @override
+  String get onboardingStep1GenderLabel => 'Gender';
+
+  @override
+  String get onboardingStep1GenderMale => 'Male';
+
+  @override
+  String get onboardingStep1GenderFemale => 'Female';
+
+  @override
+  String get onboardingStep1GenderOther => 'Other';
+
+  @override
+  String get onboardingStep1GenderPreferNotToSay => 'Prefer not to say';
+
+  @override
+  String get onboardingStep2Question =>
+      'How many times have you fallen in the last 12 months?';
+
+  @override
+  String get onboardingStep2Hint => 'Enter number of falls';
+
+  @override
+  String get onboardingStep2Suffix => 'times';
+
+  @override
+  String get onboardingStep2Required =>
+      'Please enter the number of falls (enter 0 if none)';
+
+  @override
+  String get onboardingStep2Invalid =>
+      'Please enter a valid number (0 or more)';
+
+  @override
+  String get onboardingStep3Question =>
+      'Do you have any of the following health conditions?';
+
+  @override
+  String get onboardingStep3SelectAll => 'Select all that apply';
+
+  @override
+  String get onboardingStep3Musculoskeletal => 'Muskuloskeletal';
+
+  @override
+  String get onboardingStep3MusculoskeletalSub => 'Joint/bone problems';
+
+  @override
+  String get onboardingStep3Circulatory => 'Sirkulasi';
+
+  @override
+  String get onboardingStep3CirculatorySub => 'Heart/blood pressure';
+
+  @override
+  String get onboardingStep3Respiratory => 'Pernapasan';
+
+  @override
+  String get onboardingStep3RespiratorySub => 'Breathing problems';
+
+  @override
+  String get onboardingStep3Neurological => 'Neurologis';
+
+  @override
+  String get onboardingStep3NeurologicalSub => 'Nerve/brain conditions';
+
+  @override
+  String get onboardingStep3Other => 'Lainnya';
+
+  @override
+  String get onboardingStep5Question => 'How concerned are you about falling?';
+
+  @override
+  String get onboardingStep5Level1 => 'Not at all concerned';
+
+  @override
+  String get onboardingStep5Level2 => 'Slightly concerned';
+
+  @override
+  String get onboardingStep5Level3 => 'Moderately concerned';
+
+  @override
+  String get onboardingStep5Level4 => 'Very concerned';
+
+  @override
+  String get onboardingStep5Level5 => 'Extremely concerned';
+
+  @override
+  String get onboardingStep6TimeLabel => 'Preferred exercise time';
+
+  @override
+  String get onboardingStep6TimeHint => 'Select time';
+
+  @override
+  String get onboardingStep6DurationLabel => 'Session duration';
+
+  @override
+  String get onboardingStep6DurationHint => 'Enter duration';
+
+  @override
+  String get onboardingStep6DurationSuffix => 'minutes';
+
+  @override
+  String get onboardingStep6DurationRequired => 'Please enter session duration';
+
+  @override
+  String get onboardingStep6DurationRange =>
+      'Duration must be between 10 and 120 minutes';
+
+  @override
+  String get onboardingStep6FrequencyLabel => 'Weekly frequency';
+
+  @override
+  String get onboardingStep6FrequencyHint => 'Enter frequency';
+
+  @override
+  String get onboardingStep6FrequencySuffix => 'days per week';
+
+  @override
+  String get onboardingStep6FrequencyRequired =>
+      'Please enter weekly frequency';
+
+  @override
+  String get onboardingStep6FrequencyRange =>
+      'Frequency must be between 1 and 7 days per week';
+
+  @override
+  String get onboardingStep7OutcomeLabel => 'Outcome Goal';
+
+  @override
+  String get onboardingStep7OutcomeHint =>
+      'What do you want to achieve? (e.g., Walk to the market independently)';
+
+  @override
+  String get onboardingStep7OutcomeRequired =>
+      'Please describe what you want to achieve';
+
+  @override
+  String get onboardingStep7BehaviouralLabel => 'Behavioural Goal';
+
+  @override
+  String get onboardingStep7BehaviouralHint =>
+      'What exercise will you do and when? (e.g., Exercise every morning)';
+
+  @override
+  String get onboardingStep7BehaviouralRequired =>
+      'Please describe your exercise plan';
 }

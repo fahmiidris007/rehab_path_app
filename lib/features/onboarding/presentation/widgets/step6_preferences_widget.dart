@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
 /// Step 6 — Exercise Preferences
-///
-/// Collects preferred exercise time (time picker), session duration (10–120 min),
-/// and weekly frequency (1–7 days).
 class Step6PreferencesWidget extends StatefulWidget {
   const Step6PreferencesWidget({
     super.key,
@@ -34,13 +32,8 @@ class Step6PreferencesWidgetState extends State<Step6PreferencesWidget> {
   void initState() {
     super.initState();
     final p = widget.profile;
-
-    // Parse stored time string (HH:mm) or default to 08:00
     _preferredTime = _parseTime(p?.preferredExerciseTime ?? '08:00');
-
-    _timeController = TextEditingController(
-      text: _formatTime(_preferredTime),
-    );
+    _timeController = TextEditingController(text: _formatTime(_preferredTime));
     _durationController = TextEditingController(
       text: (p != null && p.sessionDurationMinutes > 0)
           ? p.sessionDurationMinutes.toString()
@@ -118,18 +111,19 @@ class Step6PreferencesWidgetState extends State<Step6PreferencesWidget> {
         programLevel: ProgramLevel.beginner,
       );
 
-  /// Validates and returns true if the form is valid.
   bool validate() => _formKey.currentState?.validate() ?? false;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Preferred exercise time ──────────────────────────────────────
-          Text('Preferred exercise time', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep6TimeLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           GestureDetector(
             onTap: _pickTime,
@@ -137,9 +131,9 @@ class Step6PreferencesWidgetState extends State<Step6PreferencesWidget> {
               child: TextFormField(
                 controller: _timeController,
                 readOnly: true,
-                decoration: const InputDecoration(
-                  hintText: 'Select time',
-                  suffixIcon: Icon(Icons.access_time),
+                decoration: InputDecoration(
+                  hintText: l10n.onboardingStep6TimeHint,
+                  suffixIcon: const Icon(Icons.access_time),
                 ),
               ),
             ),
@@ -147,24 +141,24 @@ class Step6PreferencesWidgetState extends State<Step6PreferencesWidget> {
           const SizedBox(height: 24),
 
           // ── Session duration ─────────────────────────────────────────────
-          Text('Session duration', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep6DurationLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           TextFormField(
             controller: _durationController,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: const InputDecoration(
-              hintText: 'Enter duration',
-              suffixText: 'minutes',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep6DurationHint,
+              suffixText: l10n.onboardingStep6DurationSuffix,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter session duration';
+                return l10n.onboardingStep6DurationRequired;
               }
               final mins = int.tryParse(value);
               if (mins == null || mins < 10 || mins > 120) {
-                return 'Duration must be between 10 and 120 minutes';
+                return l10n.onboardingStep6DurationRange;
               }
               return null;
             },
@@ -172,24 +166,24 @@ class Step6PreferencesWidgetState extends State<Step6PreferencesWidget> {
           const SizedBox(height: 24),
 
           // ── Weekly frequency ─────────────────────────────────────────────
-          Text('Weekly frequency', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep6FrequencyLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           TextFormField(
             controller: _frequencyController,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: const InputDecoration(
-              hintText: 'Enter frequency',
-              suffixText: 'days per week',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep6FrequencyHint,
+              suffixText: l10n.onboardingStep6FrequencySuffix,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter weekly frequency';
+                return l10n.onboardingStep6FrequencyRequired;
               }
               final days = int.tryParse(value);
               if (days == null || days < 1 || days > 7) {
-                return 'Frequency must be between 1 and 7 days per week';
+                return l10n.onboardingStep6FrequencyRange;
               }
               return null;
             },

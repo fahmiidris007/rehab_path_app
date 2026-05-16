@@ -140,7 +140,7 @@ class _NavTabItem extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   label,
-                  style: AppTextStyles.labelBottomNavBar.copyWith(color: color),
+                  style: AppTextStyles.labelBottomNavBar.copyWith(color: color, fontSize: 14),
                 ),
               ],
             ),
