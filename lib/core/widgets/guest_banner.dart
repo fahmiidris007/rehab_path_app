@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rehab_path_app/app/theme/app_colors.dart';
 import 'package:rehab_path_app/app/theme/app_text_styles.dart';
+import 'package:rehab_path_app/l10n/app_localizations.dart';
 
 /// A non-dismissible banner shown to guest (unauthenticated) users.
-///
-/// Styled like a [MaterialBanner] but implemented as a plain widget so it can
-/// be embedded anywhere in the layout without requiring a [ScaffoldMessenger].
-/// There is intentionally no close/dismiss button.
 class GuestBanner extends StatelessWidget {
   const GuestBanner({
     super.key,
@@ -14,15 +11,12 @@ class GuestBanner extends StatelessWidget {
     this.onRegisterTap,
   });
 
-  /// The message to display inside the banner.
   final String message;
-
-  /// Optional callback invoked when the user taps the "Register" button.
-  /// When null, no action button is shown.
   final VoidCallback? onRegisterTap;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       color: AppColors.accent,
@@ -52,7 +46,7 @@ class GuestBanner extends StatelessWidget {
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               child: Text(
-                'Register',
+                l10n.guestBannerRegister,
                 style: AppTextStyles.bodySemiBold.copyWith(
                   color: AppColors.accentDark,
                 ),

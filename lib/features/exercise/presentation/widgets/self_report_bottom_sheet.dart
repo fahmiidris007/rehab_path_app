@@ -8,6 +8,7 @@ import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../features/auth/presentation/cubit/auth_state.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../cubit/exercise_player_cubit.dart';
@@ -78,6 +79,7 @@ class _SelfReportBottomSheetState extends State<SelfReportBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
@@ -105,7 +107,7 @@ class _SelfReportBottomSheetState extends State<SelfReportBottomSheet> {
           const SizedBox(height: 20),
           // Title
           Text(
-            'How did it go?',
+            l10n.exerciseSelfReportTitle,
             style: AppTextStyles.h3Section.copyWith(
               color: AppColors.textPrimary,
             ),
@@ -113,7 +115,7 @@ class _SelfReportBottomSheetState extends State<SelfReportBottomSheet> {
           const SizedBox(height: 24),
           // Body condition
           Text(
-            'Body position',
+            l10n.exerciseSelfReportBodyPosition,
             style: AppTextStyles.bodySemiBold.copyWith(
               color: AppColors.textPrimary,
             ),
@@ -121,16 +123,16 @@ class _SelfReportBottomSheetState extends State<SelfReportBottomSheet> {
           const SizedBox(height: 8),
           _RadioGroup<BodyCondition>(
             value: _bodyCondition,
-            options: const [
-              (BodyCondition.sitting, 'Sitting'),
-              (BodyCondition.standing, 'Standing'),
+            options: [
+              (BodyCondition.sitting, l10n.exerciseSelfReportSitting),
+              (BodyCondition.standing, l10n.exerciseSelfReportStanding),
             ],
             onChanged: (v) => setState(() => _bodyCondition = v),
           ),
           const SizedBox(height: 20),
           // Support used
           Text(
-            'Support used',
+            l10n.exerciseSelfReportSupport,
             style: AppTextStyles.bodySemiBold.copyWith(
               color: AppColors.textPrimary,
             ),
@@ -138,17 +140,17 @@ class _SelfReportBottomSheetState extends State<SelfReportBottomSheet> {
           const SizedBox(height: 8),
           _RadioGroup<SupportUsed>(
             value: _supportUsed,
-            options: const [
-              (SupportUsed.walkingAid, 'Walking aid'),
-              (SupportUsed.kitchenWorktop, 'Kitchen worktop'),
-              (SupportUsed.noSupport, 'No support'),
+            options: [
+              (SupportUsed.walkingAid, l10n.exerciseSelfReportWalkingAid),
+              (SupportUsed.kitchenWorktop, l10n.exerciseSelfReportKitchenWorktop),
+              (SupportUsed.noSupport, l10n.exerciseSelfReportNoSupport),
             ],
             onChanged: (v) => setState(() => _supportUsed = v),
           ),
           const SizedBox(height: 28),
           // Submit button
           AppPrimaryButton(
-            label: 'Submit',
+            label: l10n.exerciseSelfReportSubmit,
             onPressed: _submit,
           ),
         ],

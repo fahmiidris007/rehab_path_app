@@ -82,6 +82,7 @@ class AppPrimaryButton extends StatelessWidget {
                                 label,
                                 style: AppTextStyles.button.copyWith(
                                   color: AppColors.textOnPrimary,
+                                  fontSize: 16
                                 ),
                               ),
                             ],

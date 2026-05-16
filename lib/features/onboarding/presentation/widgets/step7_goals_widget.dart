@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
 /// Step 7 — Goals
-///
-/// Collects outcome goal and behavioural goal (max 500 chars each, multiline).
 class Step7GoalsWidget extends StatefulWidget {
   const Step7GoalsWidget({
     super.key,
@@ -30,8 +29,7 @@ class Step7GoalsWidgetState extends State<Step7GoalsWidget> {
   void initState() {
     super.initState();
     final p = widget.profile;
-    _outcomeController =
-        TextEditingController(text: p?.outcomeGoal ?? '');
+    _outcomeController = TextEditingController(text: p?.outcomeGoal ?? '');
     _behaviouralController =
         TextEditingController(text: p?.behaviouralGoal ?? '');
   }
@@ -67,18 +65,19 @@ class Step7GoalsWidgetState extends State<Step7GoalsWidget> {
         programLevel: ProgramLevel.beginner,
       );
 
-  /// Validates and returns true if the form is valid.
   bool validate() => _formKey.currentState?.validate() ?? false;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Outcome goal ─────────────────────────────────────────────────
-          Text('Outcome Goal', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep7OutcomeLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           TextFormField(
             controller: _outcomeController,
@@ -86,15 +85,14 @@ class Step7GoalsWidgetState extends State<Step7GoalsWidget> {
             maxLines: 4,
             keyboardType: TextInputType.multiline,
             textInputAction: TextInputAction.newline,
-            decoration: const InputDecoration(
-              hintText:
-                  'What do you want to achieve? (e.g., Walk to the market independently)',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep7OutcomeHint,
               alignLabelWithHint: true,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please describe what you want to achieve';
+                return l10n.onboardingStep7OutcomeRequired;
               }
               return null;
             },
@@ -102,7 +100,7 @@ class Step7GoalsWidgetState extends State<Step7GoalsWidget> {
           const SizedBox(height: 24),
 
           // ── Behavioural goal ─────────────────────────────────────────────
-          Text('Behavioural Goal', style: AppTextStyles.bodySemiBold),
+          Text(l10n.onboardingStep7BehaviouralLabel, style: AppTextStyles.bodySemiBold),
           const SizedBox(height: 8),
           TextFormField(
             controller: _behaviouralController,
@@ -110,15 +108,14 @@ class Step7GoalsWidgetState extends State<Step7GoalsWidget> {
             maxLines: 4,
             keyboardType: TextInputType.multiline,
             textInputAction: TextInputAction.newline,
-            decoration: const InputDecoration(
-              hintText:
-                  'What exercise will you do and when? (e.g., Exercise every morning)',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep7BehaviouralHint,
               alignLabelWithHint: true,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please describe your exercise plan';
+                return l10n.onboardingStep7BehaviouralRequired;
               }
               return null;
             },

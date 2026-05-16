@@ -376,6 +376,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i852.GetProfileUseCase>(),
           gh<_i695.UpdateProfileUseCase>(),
         ));
+    gh.factory<_i37.SosCubit>(() => _i37.SosCubit(
+          gh<_i852.GetProfileUseCase>(),
+          gh<_i695.UpdateProfileUseCase>(),
+        ));
     gh.lazySingleton<_i761.AuthCubit>(() => _i761.AuthCubit(
           gh<_i457.LoginUseCase>(),
           gh<_i569.RegisterUseCase>(),
@@ -402,8 +406,6 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i938.ExerciseCubit>(
         () => _i938.ExerciseCubit(gh<_i30.GetAllExercisesUseCase>()));
-    gh.factory<_i37.SosCubit>(
-        () => _i37.SosCubit(gh<_i852.GetProfileUseCase>()));
     gh.lazySingleton<_i414.ProgressCubit>(() => _i414.ProgressCubit(
           gh<_i725.GetWeeklyAdherenceUseCase>(),
           gh<_i528.GetMonthlyAdherenceUseCase>(),

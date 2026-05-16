@@ -8,8 +8,8 @@ class PasswordInput extends FormzInput<String, PasswordValidationError> {
 
   @override
   PasswordValidationError? validator(String value) {
-    // Valid if length is between 8 and 64 characters (inclusive)
-    if (value.length < 8 || value.length > 64) {
+    // Valid if length is at least 8 characters
+    if (value.length < 8) {
       return PasswordValidationError.invalid;
     }
     return null;

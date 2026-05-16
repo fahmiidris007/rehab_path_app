@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
 /// Step 2 — Falls History
-///
-/// Collects the number of falls in the last 12 months (non-negative integer).
 class Step2FallsWidget extends StatefulWidget {
   const Step2FallsWidget({
     super.key,
@@ -65,18 +64,19 @@ class Step2FallsWidgetState extends State<Step2FallsWidget> {
         programLevel: ProgramLevel.beginner,
       );
 
-  /// Validates and returns true if the form is valid.
   bool validate() => _formKey.currentState?.validate() ?? false;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'How many times have you fallen in the last 12 months?',
+            l10n.onboardingStep2Question,
             style: AppTextStyles.bodySemiBold,
           ),
           const SizedBox(height: 8),
@@ -84,18 +84,18 @@ class Step2FallsWidgetState extends State<Step2FallsWidget> {
             controller: _fallsController,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: const InputDecoration(
-              hintText: 'Enter number of falls',
-              suffixText: 'times',
+            decoration: InputDecoration(
+              hintText: l10n.onboardingStep2Hint,
+              suffixText: l10n.onboardingStep2Suffix,
             ),
             onChanged: (_) => _notify(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter the number of falls (enter 0 if none)';
+                return l10n.onboardingStep2Required;
               }
               final falls = int.tryParse(value);
               if (falls == null || falls < 0) {
-                return 'Please enter a valid number (0 or more)';
+                return l10n.onboardingStep2Invalid;
               }
               return null;
             },

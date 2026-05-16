@@ -8,12 +8,11 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_emergency_button.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/app_loading_widget.dart';
-import '../../../../core/widgets/app_outline_button.dart';
-import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../features/auth/presentation/cubit/auth_state.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/user_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../cubit/profile_cubit.dart';
@@ -42,8 +41,9 @@ class _ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: const AppTopAppBar(title: 'Profile'),
+      appBar: AppTopAppBar(title: l10n.profileTitle),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           return switch (state) {
@@ -69,16 +69,17 @@ class _ProfileContent extends StatelessWidget {
     return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
   }
 
-  String _programLevelLabel(ProgramLevel level) {
+  String _programLevelLabel(ProgramLevel level, AppLocalizations l10n) {
     return switch (level) {
-      ProgramLevel.beginner => 'Beginner',
-      ProgramLevel.intermediate => 'Intermediate',
-      ProgramLevel.advanced => 'Advanced',
+      ProgramLevel.beginner => l10n.profileProgramLevelBeginner,
+      ProgramLevel.intermediate => l10n.profileProgramLevelIntermediate,
+      ProgramLevel.advanced => l10n.profileProgramLevelAdvanced,
     };
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final onboarding = user.onboardingProfile;
 
     return SingleChildScrollView(
@@ -114,7 +115,7 @@ class _ProfileContent extends StatelessWidget {
 
           // ── Age ──────────────────────────────────────────────────────────
           Text(
-            '${user.age} years old',
+            l10n.profileYearsOld(user.age),
             style: AppTextStyles.body.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -129,7 +130,7 @@ class _ProfileContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.radiusPill),
             ),
             child: Text(
-              _programLevelLabel(user.programLevel),
+              _programLevelLabel(user.programLevel, l10n),
               style: AppTextStyles.label.copyWith(
                 color: Colors.white,
               ),
@@ -139,7 +140,7 @@ class _ProfileContent extends StatelessWidget {
 
           // ── Health conditions ────────────────────────────────────────────
           if (user.healthConditions.isNotEmpty) ...[
-            _SectionHeader(title: 'Health Conditions'),
+            _SectionHeader(title: l10n.profileHealthConditions),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
@@ -153,33 +154,23 @@ class _ProfileContent extends StatelessWidget {
 
           // ── Goals ────────────────────────────────────────────────────────
           if (onboarding != null) ...[
-            _SectionHeader(title: 'Goals'),
+            _SectionHeader(title: l10n.profileGoals),
             const SizedBox(height: 12),
             _GoalTile(
-              label: 'Outcome Goal',
+              label: l10n.profileOutcomeGoal,
               value: onboarding.outcomeGoal,
             ),
             const SizedBox(height: 8),
             _GoalTile(
-              label: 'Behavioural Goal',
+              label: l10n.profileBehaviouralGoal,
               value: onboarding.behaviouralGoal,
             ),
             const SizedBox(height: AppDimensions.sectionGap),
           ],
 
           // ── Actions ──────────────────────────────────────────────────────
-          // AppPrimaryButton(
-          //   label: 'Edit Profile',
-          //   onPressed: () => context.pushNamed('edit-profile'),
-          // ),
-          // const SizedBox(height: 12),
-          // AppOutlineButton(
-          //   label: 'Update Goals',
-          //   onPressed: () => context.push('/onboarding'),
-          // ),
-          // const SizedBox(height: 12),
           AppEmergencyButton(
-            label: 'Emergency Contacts',
+            label: l10n.profileEmergencyContacts,
             onPressed: () => context.pushNamed('sos'),
           ),
           const SizedBox(height: AppDimensions.sectionGap),
@@ -190,26 +181,26 @@ class _ProfileContent extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout, color: AppColors.error),
             title: Text(
-              'Log Out',
+              l10n.profileLogOut,
               style: AppTextStyles.body.copyWith(color: AppColors.error),
             ),
             onTap: () async {
               final confirmed = await showDialog<bool>(
                 context: context,
                 builder: (ctx) => AlertDialog(
-                  title: const Text('Log Out'),
-                  content: const Text('Are you sure you want to log out?'),
+                  title: Text(l10n.profileLogOutConfirmTitle),
+                  content: Text(l10n.profileLogOutConfirmMessage),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(ctx).pop(false),
-                      child: const Text('Cancel'),
+                      child: Text(l10n.profileLogOutConfirmCancel),
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(ctx).pop(true),
                       style: TextButton.styleFrom(
                         foregroundColor: AppColors.error,
                       ),
-                      child: const Text('Log Out'),
+                      child: Text(l10n.profileLogOutConfirmButton),
                     ),
                   ],
                 ),

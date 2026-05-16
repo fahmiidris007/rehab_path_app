@@ -4,6 +4,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_card.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// A horizontal row of three stat chips: total minutes, total sessions, and
 /// streak days.
@@ -15,23 +16,19 @@ class QuickStatsRow extends StatelessWidget {
     super.key,
   });
 
-  /// Cumulative exercise minutes across all sessions.
   final int totalMinutes;
-
-  /// Total number of completed exercise sessions.
   final int totalSessions;
-
-  /// Current consecutive-day streak.
   final int streakDays;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Expanded(
           child: _StatChip(
             value: '$totalMinutes',
-            label: 'Minutes',
+            label: l10n.homeStatMinutes,
             icon: Icons.timer_outlined,
           ),
         ),
@@ -39,7 +36,7 @@ class QuickStatsRow extends StatelessWidget {
         Expanded(
           child: _StatChip(
             value: '$totalSessions',
-            label: 'Sessions',
+            label: l10n.homeStatSessions,
             icon: Icons.check_circle_outline,
           ),
         ),
@@ -47,7 +44,7 @@ class QuickStatsRow extends StatelessWidget {
         Expanded(
           child: _StatChip(
             value: '$streakDays',
-            label: 'Day Streak',
+            label: l10n.homeStatDays,
             icon: Icons.local_fire_department_outlined,
             iconColor: AppColors.accent,
           ),

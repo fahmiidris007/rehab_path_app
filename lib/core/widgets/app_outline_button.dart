@@ -68,6 +68,7 @@ class AppOutlineButton extends StatelessWidget {
                             label,
                             style: AppTextStyles.button.copyWith(
                               color: AppColors.primary,
+                              fontSize: 16,
                             ),
                           ),
                   ),

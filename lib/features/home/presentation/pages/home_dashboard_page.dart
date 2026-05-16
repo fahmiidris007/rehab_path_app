@@ -16,6 +16,7 @@ import '../../../../core/widgets/app_top_app_bar.dart';
 import '../../../../core/widgets/guest_banner.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
 import '../../../auth/presentation/cubit/auth_state.dart';
@@ -74,13 +75,13 @@ class _HomeDashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return switch (state) {
-          HomeLoading() => const Scaffold(
-              body: AppLoadingWidget(label: 'Loading dashboard…'),
-            ),
-          HomeError(:final message) => Scaffold(
+          HomeLoading() => Scaffold(
+              body: AppLoadingWidget(label: l10n.loadingDashboard),
+            ),          HomeError(:final message) => Scaffold(
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.screenPaddingH),
@@ -112,6 +113,7 @@ class _LoadedDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final authState = context.watch<AuthCubit>().state;
     final isGuest = authState is AuthGuest;
 
@@ -141,7 +143,7 @@ class _LoadedDashboard extends StatelessWidget {
       body: Column(
         children: [
           AppTopAppBar(
-            title: 'RehabPath',
+            title: l10n.appName,
             actions: [
               // IconButton(
               //   icon: const Icon(Icons.emergency, color: AppColors.error),
@@ -153,7 +155,7 @@ class _LoadedDashboard extends StatelessWidget {
               // ),
               AppStreakBadge(
                 streakDays: data.streakDays,
-                label: 'Day Streak',
+                label: l10n.homeStatDayStreak,
               ),
               const SizedBox(width: 8),
               // User avatar
@@ -173,7 +175,7 @@ class _LoadedDashboard extends StatelessWidget {
           ),
           if (isGuest)
             GuestBanner(
-              message: 'You are in Guest mode. Register or log in to save your progress.',
+              message: l10n.homeGuestBannerMessage,
               onRegisterTap: () => context.pushNamed(RouteNames.register),
             ),
           Expanded(
@@ -199,7 +201,7 @@ class _LoadedDashboard extends StatelessWidget {
                     Center(
                       child: AppProgressRing(
                         percentage: progressPercent,
-                        label: 'Complete',
+                        label: l10n.homeDone,
                       ),
                     ),
                     const SizedBox(height: AppDimensions.sectionGap),
@@ -233,9 +235,8 @@ class _LoadedDashboard extends StatelessWidget {
                         color: AppColors.textDisabled,
                         size: 64,
                       ),
-                      title: 'No exercises today',
-                      subtitle:
-                          'Enjoy your rest day or browse recommended exercises below.',
+                      title: l10n.homeNoExercisesToday,
+                      subtitle: l10n.homeRestDayMessage,
                     ),
                     const SizedBox(height: AppDimensions.sectionGap),
                   ],
@@ -256,7 +257,7 @@ class _LoadedDashboard extends StatelessWidget {
 
                   // ── Recommended section ───────────────────────────────
                   Text(
-                    'Recommended for You',
+                    l10n.homeRecommendedFor,
                     style: AppTextStyles.h3Section
                         .copyWith(color: AppColors.textPrimary),
                   ),
@@ -264,7 +265,7 @@ class _LoadedDashboard extends StatelessWidget {
 
                   if (data.recommendedExercises.isEmpty)
                     Text(
-                      'No recommendations available.',
+                      l10n.homeNoRecommendations,
                       style: AppTextStyles.body
                           .copyWith(color: AppColors.textSecondary),
                     )

@@ -4,12 +4,15 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -20,7 +23,7 @@ class ForgotPasswordPage extends StatelessWidget {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          'Forgot Password',
+          l10n.authForgotPasswordTitle,
           style: AppTextStyles.h2AppBar.copyWith(
             color: AppColors.textPrimary,
           ),
@@ -43,7 +46,7 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
               const SizedBox(height: AppDimensions.sectionGap),
               Text(
-                'Reset link sent!',
+                l10n.authForgotPasswordResetSent,
                 style: AppTextStyles.displayH1.copyWith(
                   color: AppColors.textPrimary,
                 ),
@@ -51,8 +54,7 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Check your email for a link to reset your password. '
-                'If it doesn\'t appear within a few minutes, check your spam folder.',
+                l10n.authForgotPasswordResetBody,
                 style: AppTextStyles.body.copyWith(
                   color: AppColors.textSecondary,
                 ),
@@ -62,7 +64,7 @@ class ForgotPasswordPage extends StatelessWidget {
               TextButton(
                 onPressed: () => context.pop(),
                 child: Text(
-                  'Back to Log In',
+                  l10n.authForgotPasswordBackToLogin,
                   style: AppTextStyles.bodySemiBold.copyWith(
                     color: AppColors.primary,
                   ),

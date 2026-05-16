@@ -6,6 +6,8 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
+import '../../../../core/widgets/language_selector_button.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/validators/email_input.dart';
 import '../../domain/validators/password_input.dart';
 import '../cubit/auth_cubit.dart';
@@ -59,6 +61,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthError) {
@@ -76,6 +80,11 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: AppColors.background,
           elevation: 0,
           leading: BackButton(color: AppColors.textPrimary),
+          actions: [
+            // Language selector
+            const LanguageSelectorButton(),
+            const SizedBox(width: 8),
+          ],
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -89,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Log In',
+                    l10n.authLoginTitle,
                     style: AppTextStyles.displayH1.copyWith(
                       color: AppColors.textPrimary,
                     ),
@@ -103,9 +112,9 @@ class _LoginPageState extends State<LoginPage> {
                     textInputAction: TextInputAction.next,
                     onChanged: _onEmailChanged,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: l10n.authLoginEmailHint,
                       errorText: _email.displayError != null
-                          ? 'Please enter a valid email address'
+                          ? l10n.authLoginEmailError
                           : null,
                     ),
                   ),
@@ -119,9 +128,9 @@ class _LoginPageState extends State<LoginPage> {
                     onChanged: _onPasswordChanged,
                     onFieldSubmitted: (_) => _submit(),
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: l10n.authLoginPasswordHint,
                       errorText: _password.displayError != null
-                          ? 'Password must be 8–64 characters'
+                          ? l10n.authLoginPasswordError
                           : null,
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -143,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextButton(
                       onPressed: () => context.push('/forgot-password'),
                       child: Text(
-                        'Forgot Password?',
+                        l10n.authLoginForgotPassword,
                         style: AppTextStyles.body.copyWith(
                           color: AppColors.primary,
                         ),
@@ -157,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                     builder: (context, state) {
                       final isLoading = state is AuthLoading;
                       return AppPrimaryButton(
-                        label: 'Log In',
+                        label: l10n.authLoginButton,
                         isLoading: isLoading,
                         onPressed: isLoading ? null : _submit,
                       );
@@ -165,24 +174,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: AppDimensions.cardGap),
 
-                  // Continue as Guest
-                  // TextButton(
-                  //   onPressed: () =>
-                  //       context.read<AuthCubit>().continueAsGuest(),
-                  //   child: Text(
-                  //     'Continue as Guest',
-                  //     style: AppTextStyles.body.copyWith(
-                  //       color: AppColors.textSecondary,
-                  //     ),
-                  //   ),
-                  // ),
-
                   // Register link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account?",
+                        l10n.authLoginNoAccount,
                         style: AppTextStyles.body.copyWith(
                           color: AppColors.textSecondary,
                         ),
@@ -190,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextButton(
                         onPressed: () => context.push('/register'),
                         child: Text(
-                          'Register',
+                          l10n.authLoginRegisterLink,
                           style: AppTextStyles.bodySemiBold.copyWith(
                             color: AppColors.primary,
                           ),

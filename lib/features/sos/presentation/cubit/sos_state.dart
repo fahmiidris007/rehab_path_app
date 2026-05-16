@@ -7,6 +7,7 @@ part 'sos_state.freezed.dart';
 sealed class SosState with _$SosState {
   const factory SosState.loading() = SosLoading;
   const factory SosState.loaded(List<EmergencyContactEntity> contacts) = SosLoaded;
+  const factory SosState.saving(List<EmergencyContactEntity> contacts) = SosSaving;
   const factory SosState.error(String message) = SosError;
   const factory SosState.callNotSupported() = SosCallNotSupported;
 }

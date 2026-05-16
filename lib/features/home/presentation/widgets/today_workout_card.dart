@@ -5,6 +5,7 @@ import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_primary_button.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// Card summarising today's workout: exercise count, total duration, and a
 /// "Start Exercise" call-to-action button.
@@ -31,15 +32,16 @@ class TodayWorkoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final allDone = completedCount >= exerciseCount && exerciseCount > 0;
     final inProgress = completedCount > 0 && !allDone;
     final remaining = (exerciseCount - completedCount).clamp(0, exerciseCount);
 
     final buttonLabel = allDone
-        ? 'All Done Today 🎉'
+        ? l10n.homeAllDoneToday
         : inProgress
-            ? 'Continue ($remaining left)'
-            : 'Start Exercise';
+            ? l10n.homeContinueLeft(remaining)
+            : l10n.homeStartExercise;
 
     return AppCard(
       padding: const EdgeInsets.all(AppDimensions.cardInnerPadding),
@@ -47,7 +49,7 @@ class TodayWorkoutCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Today's Workout",
+            l10n.homeTodayWorkout,
             style: AppTextStyles.h3Section
                 .copyWith(color: AppColors.textPrimary),
           ),
@@ -58,18 +60,20 @@ class TodayWorkoutCard extends StatelessWidget {
               _StatItem(
                 icon: Icons.fitness_center,
                 value: '$exerciseCount',
-                label: exerciseCount == 1 ? 'Exercise' : 'Exercises',
+                label: exerciseCount == 1
+                    ? l10n.homeExerciseSingular
+                    : l10n.homeExercisePlural,
               ),
               _StatItem(
                 icon: Icons.timer_outlined,
                 value: '$totalMinutes',
-                label: 'Minutes',
+                label: l10n.homeMinutes,
               ),
               if (completedCount > 0) ...[
                 _StatItem(
                   icon: Icons.check_circle_outline,
                   value: '$completedCount',
-                  label: 'Done',
+                  label: l10n.homeDone,
                   iconColor: AppColors.success,
                 ),
               ],

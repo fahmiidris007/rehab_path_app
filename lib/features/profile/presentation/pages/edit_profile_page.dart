@@ -9,14 +9,12 @@ import '../../../../core/widgets/app_loading_widget.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/app_top_app_bar.dart';
 import '../../../../di/injection.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
 import '../../../auth/presentation/cubit/auth_state.dart';
 import '../cubit/profile_cubit.dart';
 
 /// Edit profile page.
-///
-/// Provides its own [ProfileCubit] so it can be pushed as a standalone route
-/// without depending on a parent [ProfileCubit] in the widget tree.
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
 
@@ -52,7 +50,6 @@ class _EditProfileViewState extends State<_EditProfileView> {
     super.dispose();
   }
 
-  /// Lazily initialise the controller once the profile is loaded.
   void _initController(String currentName) {
     if (!_initialized) {
       _nameController = TextEditingController(text: currentName);
@@ -79,10 +76,11 @@ class _EditProfileViewState extends State<_EditProfileView> {
     if (success) {
       context.pop();
     } else {
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Failed to update profile. Please try again.',
+            l10n.editProfileFailedToUpdate,
             style: AppTextStyles.body.copyWith(color: Colors.white),
           ),
           backgroundColor: AppColors.error,
@@ -93,6 +91,8 @@ class _EditProfileViewState extends State<_EditProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         if (state is ProfileLoading) {
@@ -101,7 +101,7 @@ class _EditProfileViewState extends State<_EditProfileView> {
 
         if (state is ProfileError) {
           return Scaffold(
-            appBar: const AppTopAppBar(title: 'Edit Profile'),
+            appBar: AppTopAppBar(title: l10n.editProfileTitle),
             body: Center(
               child: Text(
                 state.message,
@@ -116,7 +116,7 @@ class _EditProfileViewState extends State<_EditProfileView> {
         _initController(loaded.user.name);
 
         return Scaffold(
-          appBar: const AppTopAppBar(title: 'Edit Profile'),
+          appBar: AppTopAppBar(title: l10n.editProfileTitle),
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(
               horizontal: AppDimensions.screenPaddingH,
@@ -128,7 +128,7 @@ class _EditProfileViewState extends State<_EditProfileView> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Full Name',
+                    l10n.editProfileFullName,
                     style: AppTextStyles.bodySemiBold.copyWith(
                       color: AppColors.textSecondary,
                     ),
@@ -141,7 +141,7 @@ class _EditProfileViewState extends State<_EditProfileView> {
                       color: AppColors.textPrimary,
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Enter your full name',
+                      hintText: l10n.editProfileNameHint,
                       hintStyle: AppTextStyles.body.copyWith(
                         color: AppColors.textDisabled,
                       ),
@@ -180,14 +180,14 @@ class _EditProfileViewState extends State<_EditProfileView> {
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Name cannot be empty';
+                        return l10n.editProfileNameEmpty;
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: AppDimensions.sectionGap),
                   AppPrimaryButton(
-                    label: 'Save',
+                    label: l10n.editProfileSave,
                     onPressed: _isSaving ? null : _save,
                     isLoading: _isSaving,
                   ),
@@ -200,3 +200,8 @@ class _EditProfileViewState extends State<_EditProfileView> {
     );
   }
 }
+
+/// Edit profile page.
+///
+/// Provides its own [ProfileCubit] so it can be pushed as a standalone route
+/// without depending on a parent [ProfileCubit] in the widget tree.

@@ -38,7 +38,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get authLoginPasswordHint => 'Kata sandi';
 
   @override
-  String get authLoginPasswordError => 'Kata sandi harus 8–64 karakter.';
+  String get authLoginPasswordError => 'Kata sandi minimal 8 karakter.';
 
   @override
   String get authLoginButton => 'Masuk';
@@ -62,7 +62,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get authRegisterPasswordHint => 'Kata sandi';
 
   @override
-  String get authRegisterPasswordError => 'Kata sandi harus 8–64 karakter.';
+  String get authRegisterPasswordError => 'Kata sandi minimal 8 karakter.';
 
   @override
   String get authRegisterConfirmPasswordHint => 'Konfirmasi kata sandi';
@@ -342,6 +342,66 @@ class AppLocalizationsId extends AppLocalizations {
   String get sosEmergencyButton => 'Hubungi Layanan Darurat';
 
   @override
+  String get sosAddContact => 'Tambah Kontak';
+
+  @override
+  String get sosAddContactTitle => 'Tambah Kontak Darurat';
+
+  @override
+  String get sosEditContactTitle => 'Edit Kontak Darurat';
+
+  @override
+  String get sosEditContact => 'Edit';
+
+  @override
+  String get sosDeleteContact => 'Hapus';
+
+  @override
+  String get sosDeleteContactTitle => 'Hapus Kontak';
+
+  @override
+  String sosDeleteContactMessage(String name) {
+    return 'Hapus $name dari kontak darurat Anda?';
+  }
+
+  @override
+  String get sosSaveContact => 'Simpan Kontak';
+
+  @override
+  String get sosContactName => 'Nama';
+
+  @override
+  String get sosContactNameHint => 'mis. Budi Santoso';
+
+  @override
+  String get sosContactNameRequired => 'Masukkan nama.';
+
+  @override
+  String get sosContactRelationship => 'Hubungan';
+
+  @override
+  String get sosContactRelationshipHint => 'mis. Anak, Tetangga, Saudara';
+
+  @override
+  String get sosContactRelationshipRequired => 'Masukkan hubungan.';
+
+  @override
+  String get sosContactPhone => 'Nomor Telepon';
+
+  @override
+  String get sosContactPhoneHint => 'mis. +62 812 3456 7890';
+
+  @override
+  String get sosContactPhoneRequired => 'Masukkan nomor telepon.';
+
+  @override
+  String get sosContactPhoneInvalid => 'Masukkan nomor telepon yang valid.';
+
+  @override
+  String get sosAddContactsPrompt =>
+      'Ketuk tombol di bawah untuk menambahkan kontak darurat pertama Anda.';
+
+  @override
   String get notificationDailyReminderTitle => 'Waktunya Latihan!';
 
   @override
@@ -400,4 +460,539 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get errorLoadData => 'Gagal memuat data. Silakan coba lagi.';
+
+  @override
+  String get navHome => 'Beranda';
+
+  @override
+  String get navExercise => 'Latihan';
+
+  @override
+  String get navProgress => 'Kemajuan';
+
+  @override
+  String get navProfile => 'Profil';
+
+  @override
+  String get selectLanguage => 'Pilih Bahasa';
+
+  @override
+  String get authLoginNoAccount => 'Belum punya akun?';
+
+  @override
+  String get authLoginRegisterLink => 'Daftar';
+
+  @override
+  String get authLoginForgotPassword => 'Lupa Kata Sandi?';
+
+  @override
+  String get authRegisterHaveAccount => 'Sudah punya akun?';
+
+  @override
+  String get authRegisterLoginLink => 'Masuk';
+
+  @override
+  String get authRegisterSuccessMessage =>
+      'Akun berhasil dibuat! Silakan masuk untuk melanjutkan.';
+
+  @override
+  String get authForgotPasswordResetSent => 'Tautan reset terkirim!';
+
+  @override
+  String get authForgotPasswordResetBody =>
+      'Periksa email Anda untuk tautan reset kata sandi. Jika tidak muncul dalam beberapa menit, periksa folder spam Anda.';
+
+  @override
+  String get authForgotPasswordBackToLogin => 'Kembali ke Masuk';
+
+  @override
+  String get welcomeGetStarted => 'Mulai';
+
+  @override
+  String get welcomeSlide1Title => 'Tetap Stabil';
+
+  @override
+  String get welcomeSlide1Subtitle =>
+      'Bangun kepercayaan diri dan kurangi risiko jatuh dengan latihan keseimbangan terpandu yang dirancang untuk Anda.';
+
+  @override
+  String get welcomeSlide2Title => 'Latihan Setiap Hari';
+
+  @override
+  String get welcomeSlide2Subtitle =>
+      'Ikuti program FaME dan Otago berbasis bukti yang disesuaikan dengan tingkat kebugaran dan tujuan Anda.';
+
+  @override
+  String get welcomeSlide3Title => 'Pantau Kemajuan';
+
+  @override
+  String get welcomeSlide3Subtitle =>
+      'Pantau perkembangan Anda dari waktu ke waktu dan rayakan pencapaian dalam perjalanan rehabilitasi Anda.';
+
+  @override
+  String get homeNoExercisesToday => 'Tidak ada latihan hari ini';
+
+  @override
+  String get homeRestDayMessage =>
+      'Nikmati hari istirahat Anda atau jelajahi latihan yang direkomendasikan di bawah.';
+
+  @override
+  String get homeNoRecommendations => 'Tidak ada rekomendasi tersedia.';
+
+  @override
+  String get homeRecommendedFor => 'Direkomendasikan untuk Anda';
+
+  @override
+  String get homeTodayWorkout => 'Latihan Hari Ini';
+
+  @override
+  String get homeExerciseSingular => 'Latihan';
+
+  @override
+  String get homeExercisePlural => 'Latihan';
+
+  @override
+  String get homeMinutes => 'Menit';
+
+  @override
+  String get homeDone => 'Selesai';
+
+  @override
+  String get homeAllDoneToday => 'Semua Selesai Hari Ini 🎉';
+
+  @override
+  String homeContinueLeft(int remaining) {
+    return 'Lanjutkan ($remaining tersisa)';
+  }
+
+  @override
+  String get homeStatMinutes => 'Menit';
+
+  @override
+  String get homeStatSessions => 'Sesi';
+
+  @override
+  String get homeStatDayStreak => 'Hari Berturut';
+
+  @override
+  String get homeStatDays => 'Hari';
+
+  @override
+  String get homeGuestBannerMessage =>
+      'Anda dalam mode Tamu. Daftar atau masuk untuk menyimpan kemajuan Anda.';
+
+  @override
+  String get guestBannerRegister => 'Daftar';
+
+  @override
+  String get exerciseCompletedToday => 'Selesai hari ini';
+
+  @override
+  String get exerciseRedoButton => 'Ulangi Latihan';
+
+  @override
+  String get exerciseCouldNotLoad => 'Tidak dapat memuat latihan';
+
+  @override
+  String get exerciseDifficultyLabel => 'Kesulitan';
+
+  @override
+  String get exerciseHowToDoIt => 'Cara melakukannya';
+
+  @override
+  String get exerciseSafetyTips => 'Tips Keamanan';
+
+  @override
+  String exerciseNext(String name) {
+    return 'Berikutnya: $name';
+  }
+
+  @override
+  String exerciseDurationMin(int duration) {
+    return '$duration menit';
+  }
+
+  @override
+  String exerciseSets(int sets) {
+    return '$sets set';
+  }
+
+  @override
+  String exerciseReps(int reps) {
+    return '$reps repetisi';
+  }
+
+  @override
+  String get exerciseDifficultyEasy => 'Mudah';
+
+  @override
+  String get exerciseDifficultyMedium => 'Sedang';
+
+  @override
+  String get exerciseDifficultyHard => 'Sulit';
+
+  @override
+  String get exercisePlayerPaused => 'Dijeda';
+
+  @override
+  String get exerciseSomethingWentWrong => 'Terjadi kesalahan';
+
+  @override
+  String get exerciseNoExercisesYet => 'Belum ada latihan';
+
+  @override
+  String get exerciseCheckBackSoon =>
+      'Kembali lagi segera untuk program latihan Anda.';
+
+  @override
+  String get exerciseCategoryWarmUp => 'Pemanasan';
+
+  @override
+  String get exerciseCategoryBalanceTraining => 'Latihan Keseimbangan';
+
+  @override
+  String get exerciseCategoryStrengthTraining => 'Latihan Kekuatan';
+
+  @override
+  String get exerciseCategoryEnduranceAerobic => 'Daya Tahan / Aerobik';
+
+  @override
+  String get exerciseCategoryTaiChi => 'Tai Chi';
+
+  @override
+  String get exerciseCategoryWalkingProgram => 'Program Berjalan';
+
+  @override
+  String get exerciseCategoryGettingUpFromFloor => 'Bangun dari Lantai';
+
+  @override
+  String get exerciseCategoryCoolDown => 'Pendinginan';
+
+  @override
+  String get exerciseSelfReportBodyPosition => 'Posisi tubuh';
+
+  @override
+  String get progressMyProgress => 'Kemajuan Saya';
+
+  @override
+  String get progressAdherence => 'Kepatuhan';
+
+  @override
+  String get progressThisWeek => 'Minggu Ini';
+
+  @override
+  String get progressThisMonth => 'Bulan Ini';
+
+  @override
+  String get progressNoDataYet => 'Belum ada data';
+
+  @override
+  String get progressCompleteExercises =>
+      'Selesaikan latihan untuk melihat kemajuan Anda.';
+
+  @override
+  String get progressBalanceScoreTrend => 'Tren Skor Keseimbangan';
+
+  @override
+  String get progressNoBalanceData => 'Belum ada data keseimbangan';
+
+  @override
+  String get progressCompleteAssessments =>
+      'Selesaikan penilaian keseimbangan untuk melacak tren Anda.';
+
+  @override
+  String get progressFallRecorded => 'Jatuh tercatat — ketuk untuk menghapus';
+
+  @override
+  String get progressNoBadgesYet => 'Belum ada lencana';
+
+  @override
+  String get progressKeepExercising =>
+      'Terus berlatih untuk mendapatkan lencana pertama Anda!';
+
+  @override
+  String get progressBodyAreasThisWeek => 'Area Tubuh yang Dilatih Minggu Ini';
+
+  @override
+  String get progressNoAreasTracked => 'Belum ada area yang dilacak';
+
+  @override
+  String get progressCompleteThisWeek =>
+      'Selesaikan latihan minggu ini untuk melihat kelompok otot yang telah Anda latih.';
+
+  @override
+  String profileYearsOld(int age) {
+    return '$age tahun';
+  }
+
+  @override
+  String get profileProgramLevelBeginner => 'Pemula';
+
+  @override
+  String get profileProgramLevelIntermediate => 'Menengah';
+
+  @override
+  String get profileProgramLevelAdvanced => 'Mahir';
+
+  @override
+  String get profileOutcomeGoal => 'Tujuan Hasil';
+
+  @override
+  String get profileBehaviouralGoal => 'Tujuan Perilaku';
+
+  @override
+  String get profileEmergencyContacts => 'Kontak Darurat';
+
+  @override
+  String get profileLogOut => 'Keluar';
+
+  @override
+  String get profileLogOutConfirmTitle => 'Keluar';
+
+  @override
+  String get profileLogOutConfirmMessage => 'Apakah Anda yakin ingin keluar?';
+
+  @override
+  String get profileLogOutConfirmCancel => 'Batal';
+
+  @override
+  String get profileLogOutConfirmButton => 'Keluar';
+
+  @override
+  String get editProfileTitle => 'Edit Profil';
+
+  @override
+  String get editProfileFullName => 'Nama Lengkap';
+
+  @override
+  String get editProfileNameHint => 'Masukkan nama lengkap Anda';
+
+  @override
+  String get editProfileNameEmpty => 'Nama tidak boleh kosong';
+
+  @override
+  String get editProfileSave => 'Simpan';
+
+  @override
+  String get editProfileFailedToUpdate =>
+      'Gagal memperbarui profil. Silakan coba lagi.';
+
+  @override
+  String get settingsVoiceCues => 'Isyarat Suara';
+
+  @override
+  String get settingsVoiceCuesSubtitle => 'Putar petunjuk audio selama latihan';
+
+  @override
+  String get settingsDailyReminderSubtitle =>
+      'Terima pengingat harian untuk menyelesaikan latihan Anda';
+
+  @override
+  String get settingsAccount => 'Akun';
+
+  @override
+  String get settingsNotificationPermissionDeniedTitle =>
+      'Izin Notifikasi Ditolak';
+
+  @override
+  String get settingsNotificationPermissionDeniedMessage =>
+      'Izin notifikasi ditolak. Aktifkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat.';
+
+  @override
+  String get sosNoEmergencyContacts => 'Tidak ada kontak darurat';
+
+  @override
+  String get sosAddContactsMessage =>
+      'Tambahkan kontak darurat di profil Anda untuk menggunakan fitur ini.';
+
+  @override
+  String get sosCallingNotSupported =>
+      'Panggilan tidak didukung di perangkat ini.';
+
+  @override
+  String get sosSafetyReminderFull =>
+      'Jika Anda jatuh dan tidak bisa bangun, tetap tenang dan tetap di lantai sampai bantuan tiba. Hubungi layanan darurat atau kontak di bawah.';
+
+  @override
+  String get commonRetry => 'Coba Lagi';
+
+  @override
+  String get commonOk => 'OK';
+
+  @override
+  String get commonCancel => 'Batal';
+
+  @override
+  String get loadingDashboard => 'Memuat dasbor…';
+
+  @override
+  String get onboardingStep4Question =>
+      'Apakah Anda menggunakan alat bantu jalan?';
+
+  @override
+  String get onboardingYes => 'Ya';
+
+  @override
+  String get onboardingNo => 'Tidak';
+
+  @override
+  String get onboardingStep1AgeLabel => 'Usia Anda';
+
+  @override
+  String get onboardingStep1AgeHint => 'Masukkan usia Anda';
+
+  @override
+  String get onboardingStep1AgeSuffix => 'tahun';
+
+  @override
+  String get onboardingStep1AgeRequired => 'Silakan masukkan usia Anda';
+
+  @override
+  String get onboardingStep1AgeRange => 'Usia harus antara 18 dan 120';
+
+  @override
+  String get onboardingStep1GenderLabel => 'Jenis Kelamin';
+
+  @override
+  String get onboardingStep1GenderMale => 'Laki-laki';
+
+  @override
+  String get onboardingStep1GenderFemale => 'Perempuan';
+
+  @override
+  String get onboardingStep1GenderOther => 'Lainnya';
+
+  @override
+  String get onboardingStep1GenderPreferNotToSay => 'Tidak ingin menyebutkan';
+
+  @override
+  String get onboardingStep2Question =>
+      'Berapa kali Anda jatuh dalam 12 bulan terakhir?';
+
+  @override
+  String get onboardingStep2Hint => 'Masukkan jumlah jatuh';
+
+  @override
+  String get onboardingStep2Suffix => 'kali';
+
+  @override
+  String get onboardingStep2Required =>
+      'Silakan masukkan jumlah jatuh (masukkan 0 jika tidak ada)';
+
+  @override
+  String get onboardingStep2Invalid =>
+      'Silakan masukkan angka yang valid (0 atau lebih)';
+
+  @override
+  String get onboardingStep3Question =>
+      'Apakah Anda memiliki kondisi kesehatan berikut?';
+
+  @override
+  String get onboardingStep3SelectAll => 'Pilih semua yang berlaku';
+
+  @override
+  String get onboardingStep3Musculoskeletal => 'Muskuloskeletal';
+
+  @override
+  String get onboardingStep3MusculoskeletalSub => 'Masalah sendi/tulang';
+
+  @override
+  String get onboardingStep3Circulatory => 'Sirkulasi';
+
+  @override
+  String get onboardingStep3CirculatorySub => 'Jantung/tekanan darah';
+
+  @override
+  String get onboardingStep3Respiratory => 'Pernapasan';
+
+  @override
+  String get onboardingStep3RespiratorySub => 'Masalah pernapasan';
+
+  @override
+  String get onboardingStep3Neurological => 'Neurologis';
+
+  @override
+  String get onboardingStep3NeurologicalSub => 'Kondisi saraf/otak';
+
+  @override
+  String get onboardingStep3Other => 'Lainnya';
+
+  @override
+  String get onboardingStep5Question => 'Seberapa khawatir Anda tentang jatuh?';
+
+  @override
+  String get onboardingStep5Level1 => 'Sama sekali tidak khawatir';
+
+  @override
+  String get onboardingStep5Level2 => 'Sedikit khawatir';
+
+  @override
+  String get onboardingStep5Level3 => 'Cukup khawatir';
+
+  @override
+  String get onboardingStep5Level4 => 'Sangat khawatir';
+
+  @override
+  String get onboardingStep5Level5 => 'Sangat amat khawatir';
+
+  @override
+  String get onboardingStep6TimeLabel => 'Waktu latihan yang disukai';
+
+  @override
+  String get onboardingStep6TimeHint => 'Pilih waktu';
+
+  @override
+  String get onboardingStep6DurationLabel => 'Durasi sesi';
+
+  @override
+  String get onboardingStep6DurationHint => 'Masukkan durasi';
+
+  @override
+  String get onboardingStep6DurationSuffix => 'menit';
+
+  @override
+  String get onboardingStep6DurationRequired => 'Silakan masukkan durasi sesi';
+
+  @override
+  String get onboardingStep6DurationRange =>
+      'Durasi harus antara 10 dan 120 menit';
+
+  @override
+  String get onboardingStep6FrequencyLabel => 'Frekuensi mingguan';
+
+  @override
+  String get onboardingStep6FrequencyHint => 'Masukkan frekuensi';
+
+  @override
+  String get onboardingStep6FrequencySuffix => 'hari per minggu';
+
+  @override
+  String get onboardingStep6FrequencyRequired =>
+      'Silakan masukkan frekuensi mingguan';
+
+  @override
+  String get onboardingStep6FrequencyRange =>
+      'Frekuensi harus antara 1 dan 7 hari per minggu';
+
+  @override
+  String get onboardingStep7OutcomeLabel => 'Tujuan Hasil';
+
+  @override
+  String get onboardingStep7OutcomeHint =>
+      'Apa yang ingin Anda capai? (mis., Berjalan ke pasar secara mandiri)';
+
+  @override
+  String get onboardingStep7OutcomeRequired =>
+      'Silakan jelaskan apa yang ingin Anda capai';
+
+  @override
+  String get onboardingStep7BehaviouralLabel => 'Tujuan Perilaku';
+
+  @override
+  String get onboardingStep7BehaviouralHint =>
+      'Latihan apa yang akan Anda lakukan dan kapan? (mis., Latihan setiap pagi)';
+
+  @override
+  String get onboardingStep7BehaviouralRequired =>
+      'Silakan jelaskan rencana latihan Anda';
 }

@@ -11,6 +11,7 @@ import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
 import '../../../../features/home/presentation/cubit/home_cubit.dart';
 import '../../../../features/home/presentation/cubit/home_state.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/data/datasources/hive_data_source.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
@@ -75,20 +76,25 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
           foregroundColor: AppColors.textPrimary,
           elevation: 0,
         ),
-        body: ZeroStateWidget(
-          icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
-          title: 'Could not load exercise',
-          subtitle: _error,
-          action: TextButton(
-            onPressed: () {
-              setState(() {
-                _loading = true;
-                _error = null;
-              });
-              _loadExercise();
-            },
-            child: const Text('Retry'),
-          ),
+        body: Builder(
+          builder: (context) {
+            final l10n = AppLocalizations.of(context)!;
+            return ZeroStateWidget(
+              icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
+              title: l10n.exerciseCouldNotLoad,
+              subtitle: _error,
+              action: TextButton(
+                onPressed: () {
+                  setState(() {
+                    _loading = true;
+                    _error = null;
+                  });
+                  _loadExercise();
+                },
+                child: Text(l10n.commonRetry),
+              ),
+            );
+          },
         ),
       );
     }
@@ -147,6 +153,7 @@ class _ExerciseDetailView extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       bloc: getIt<HomeCubit>(),
       builder: (context, _) {
+        final l10n = AppLocalizations.of(context)!;
         final isCompleted = _isCompletedToday(context);
         final nextExercise = _getNextExercise(context);
 
@@ -190,12 +197,12 @@ class _ExerciseDetailView extends StatelessWidget {
                         _StatsRow(exercise: exercise),
                         const SizedBox(height: 24),
                         // Difficulty
-                        _SectionLabel(label: 'Difficulty'),
+                        _SectionLabel(label: l10n.exerciseDifficultyLabel),
                         const SizedBox(height: 8),
                         _DifficultyIndicator(difficulty: exercise.difficulty),
                         const SizedBox(height: 24),
                         // Step-by-step description
-                        _SectionLabel(label: 'How to do it'),
+                        _SectionLabel(label: l10n.exerciseHowToDoIt),
                         const SizedBox(height: 8),
                         if (exercise.steps.isNotEmpty)
                           _StepList(steps: exercise.steps)
@@ -209,7 +216,7 @@ class _ExerciseDetailView extends StatelessWidget {
                         const SizedBox(height: 24),
                         // Safety tips
                         if (exercise.safetyTips.isNotEmpty) ...[
-                          _SectionLabel(label: 'Safety Tips'),
+                          _SectionLabel(label: l10n.exerciseSafetyTips),
                           const SizedBox(height: 8),
                           _SafetyTipsList(tips: exercise.safetyTips),
                           const SizedBox(height: 24),
@@ -231,7 +238,9 @@ class _ExerciseDetailView extends StatelessWidget {
                     children: [
                       // Primary action: start or redo
                       AppPrimaryButton(
-                        label: isCompleted ? 'Redo Exercise' : 'Start Exercise',
+                        label: isCompleted
+                            ? l10n.exerciseRedoButton
+                            : l10n.exerciseStartButton,
                         onPressed: () => context.pushNamed(
                           RouteNames.exercisePlayer,
                           pathParameters: {'id': exercise.id},
@@ -257,7 +266,7 @@ class _ExerciseDetailView extends StatelessWidget {
                                   AppDimensions.radiusButton),
                             ),
                           ),
-                          child: Text('Next: ${nextExercise.name}'),
+                          child: Text(l10n.exerciseNext(nextExercise.name)),
                         ),
                       ],
                     ],
@@ -277,6 +286,7 @@ class _ExerciseDetailView extends StatelessWidget {
 class _CompletedBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
@@ -290,7 +300,7 @@ class _CompletedBadge extends StatelessWidget {
           const Icon(Icons.check_circle, size: 16, color: AppColors.success),
           const SizedBox(width: 6),
           Text(
-            'Completed today',
+            l10n.exerciseCompletedToday,
             style: AppTextStyles.body.copyWith(
               fontSize: 13,
               color: AppColors.success,
@@ -335,22 +345,23 @@ class _StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final durationMin = (exercise.durationSeconds / 60).ceil();
     return Row(
       children: [
         _StatChip(
           icon: Icons.timer_outlined,
-          label: '$durationMin min',
+          label: l10n.exerciseDurationMin(durationMin),
         ),
         const SizedBox(width: 12),
         _StatChip(
           icon: Icons.repeat,
-          label: '${exercise.sets} sets',
+          label: l10n.exerciseSets(exercise.sets),
         ),
         const SizedBox(width: 12),
         _StatChip(
           icon: Icons.fitness_center,
-          label: '${exercise.reps} reps',
+          label: l10n.exerciseReps(exercise.reps),
         ),
       ],
     );
@@ -474,9 +485,14 @@ class _DifficultyIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     const maxDots = 3;
     final filled = difficulty.clamp(1, maxDots);
-    final labels = ['Easy', 'Medium', 'Hard'];
+    final labels = [
+      l10n.exerciseDifficultyEasy,
+      l10n.exerciseDifficultyMedium,
+      l10n.exerciseDifficultyHard,
+    ];
     return Row(
       children: [
         ...List.generate(maxDots, (index) {

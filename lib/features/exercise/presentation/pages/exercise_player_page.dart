@@ -13,6 +13,7 @@ import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../features/auth/presentation/cubit/auth_state.dart';
 import '../../../../features/home/presentation/cubit/home_cubit.dart';
 import '../../../../features/progress/presentation/cubit/progress_cubit.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
 import '../cubit/exercise_player_cubit.dart';
 import '../cubit/player_state.dart';
@@ -99,10 +100,15 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
           foregroundColor: AppColors.textPrimary,
           elevation: 0,
         ),
-        body: ZeroStateWidget(
-          icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
-          title: 'Could not load exercise',
-          subtitle: _error,
+        body: Builder(
+          builder: (context) {
+            final l10n = AppLocalizations.of(context)!;
+            return ZeroStateWidget(
+              icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
+              title: l10n.exerciseCouldNotLoad,
+              subtitle: _error,
+            );
+          },
         ),
       );
     }
@@ -288,9 +294,14 @@ class _CountdownDisplay extends StatelessWidget {
         ),
         if (isPaused) ...[
           const SizedBox(height: 8),
-          Text(
-            'Paused',
-            style: AppTextStyles.body.copyWith(color: AppColors.textDisabled),
+          Builder(
+            builder: (context) {
+              final l10n = AppLocalizations.of(context)!;
+              return Text(
+                l10n.exercisePlayerPaused,
+                style: AppTextStyles.body.copyWith(color: AppColors.textDisabled),
+              );
+            },
           ),
         ],
       ],
@@ -347,6 +358,7 @@ class _ControlsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final cubit = context.read<ExercisePlayerCubit>();
     final isPlaying = state is PlayerPlaying;
     final isActive = state is PlayerPlaying || state is PlayerPaused;
@@ -357,7 +369,7 @@ class _ControlsRow extends StatelessWidget {
         // Pause / Resume button
         Expanded(
           child: AppPrimaryButton(
-            label: isPlaying ? 'Pause' : 'Resume',
+            label: isPlaying ? l10n.exercisePause : l10n.exerciseResume,
             icon: Icon(
               isPlaying ? Icons.pause : Icons.play_arrow,
               color: AppColors.textOnPrimary,
@@ -378,7 +390,7 @@ class _ControlsRow extends StatelessWidget {
         OutlinedButton.icon(
           onPressed: isActive ? cubit.skip : null,
           icon: const Icon(Icons.skip_next),
-          label: const Text('Skip'),
+          label: Text(l10n.exerciseSkip),
           style: OutlinedButton.styleFrom(
             minimumSize: const Size(
               AppDimensions.minTouchTarget,

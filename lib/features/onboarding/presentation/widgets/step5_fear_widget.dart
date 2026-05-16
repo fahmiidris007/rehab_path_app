@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/entities/onboarding_profile_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 
-/// Step 5 — Fear of Falling Scale
-///
-/// 1–5 scale with descriptive labels for each level.
+/// Step 5 — Fear of Falling Scale (1–5)
 class Step5FearWidget extends StatefulWidget {
   const Step5FearWidget({
     super.key,
@@ -24,14 +23,6 @@ class Step5FearWidget extends StatefulWidget {
 
 class _Step5FearWidgetState extends State<Step5FearWidget> {
   late int _score;
-
-  static const _descriptions = {
-    1: 'Not at all concerned',
-    2: 'Slightly concerned',
-    3: 'Moderately concerned',
-    4: 'Very concerned',
-    5: 'Extremely concerned',
-  };
 
   @override
   void initState() {
@@ -62,25 +53,34 @@ class _Step5FearWidgetState extends State<Step5FearWidget> {
         programLevel: ProgramLevel.beginner,
       );
 
+  String _levelDescription(int level, AppLocalizations l10n) => switch (level) {
+        1 => l10n.onboardingStep5Level1,
+        2 => l10n.onboardingStep5Level2,
+        3 => l10n.onboardingStep5Level3,
+        4 => l10n.onboardingStep5Level4,
+        _ => l10n.onboardingStep5Level5,
+      };
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'How concerned are you about falling?',
+          l10n.onboardingStep5Question,
           style: AppTextStyles.bodySemiBold,
         ),
         const SizedBox(height: 24),
         ...List.generate(5, (i) {
           final level = i + 1;
-          final isSelected = _score == level;
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: _FearLevelButton(
               level: level,
-              description: _descriptions[level]!,
-              isSelected: isSelected,
+              description: _levelDescription(level, l10n),
+              isSelected: _score == level,
               onTap: () => _select(level),
             ),
           );
@@ -140,7 +140,7 @@ class _FearLevelButton extends StatelessWidget {
                 child: Text(
                   '$level',
                   style: AppTextStyles.bodySemiBold.copyWith(
-                    color: isSelected ? AppColors.primary : AppColors.primary,
+                    color: AppColors.primary,
                   ),
                 ),
               ),
