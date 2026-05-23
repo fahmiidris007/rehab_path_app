@@ -26,6 +26,9 @@ mixin _$ProgressViewData {
   List<ExerciseSessionEntity> get recentSessions =>
       throw _privateConstructorUsedError;
   Set<String> get workedMuscleGroups => throw _privateConstructorUsedError;
+  int get totalMinutes => throw _privateConstructorUsedError;
+  int get totalSessions => throw _privateConstructorUsedError;
+  int get streakDays => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProgressViewDataCopyWith<ProgressViewData> get copyWith =>
@@ -45,7 +48,10 @@ abstract class $ProgressViewDataCopyWith<$Res> {
       List<FallEventEntity> fallEventsThisMonth,
       List<BadgeEntity> badges,
       List<ExerciseSessionEntity> recentSessions,
-      Set<String> workedMuscleGroups});
+      Set<String> workedMuscleGroups,
+      int totalMinutes,
+      int totalSessions,
+      int streakDays});
 }
 
 /// @nodoc
@@ -68,6 +74,9 @@ class _$ProgressViewDataCopyWithImpl<$Res, $Val extends ProgressViewData>
     Object? badges = null,
     Object? recentSessions = null,
     Object? workedMuscleGroups = null,
+    Object? totalMinutes = null,
+    Object? totalSessions = null,
+    Object? streakDays = null,
   }) {
     return _then(_value.copyWith(
       weeklyAdherenceRate: null == weeklyAdherenceRate
@@ -98,6 +107,18 @@ class _$ProgressViewDataCopyWithImpl<$Res, $Val extends ProgressViewData>
           ? _value.workedMuscleGroups
           : workedMuscleGroups // ignore: cast_nullable_to_non_nullable
               as Set<String>,
+      totalMinutes: null == totalMinutes
+          ? _value.totalMinutes
+          : totalMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalSessions: null == totalSessions
+          ? _value.totalSessions
+          : totalSessions // ignore: cast_nullable_to_non_nullable
+              as int,
+      streakDays: null == streakDays
+          ? _value.streakDays
+          : streakDays // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -117,7 +138,10 @@ abstract class _$$ProgressViewDataImplCopyWith<$Res>
       List<FallEventEntity> fallEventsThisMonth,
       List<BadgeEntity> badges,
       List<ExerciseSessionEntity> recentSessions,
-      Set<String> workedMuscleGroups});
+      Set<String> workedMuscleGroups,
+      int totalMinutes,
+      int totalSessions,
+      int streakDays});
 }
 
 /// @nodoc
@@ -138,6 +162,9 @@ class __$$ProgressViewDataImplCopyWithImpl<$Res>
     Object? badges = null,
     Object? recentSessions = null,
     Object? workedMuscleGroups = null,
+    Object? totalMinutes = null,
+    Object? totalSessions = null,
+    Object? streakDays = null,
   }) {
     return _then(_$ProgressViewDataImpl(
       weeklyAdherenceRate: null == weeklyAdherenceRate
@@ -168,6 +195,18 @@ class __$$ProgressViewDataImplCopyWithImpl<$Res>
           ? _value._workedMuscleGroups
           : workedMuscleGroups // ignore: cast_nullable_to_non_nullable
               as Set<String>,
+      totalMinutes: null == totalMinutes
+          ? _value.totalMinutes
+          : totalMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalSessions: null == totalSessions
+          ? _value.totalSessions
+          : totalSessions // ignore: cast_nullable_to_non_nullable
+              as int,
+      streakDays: null == streakDays
+          ? _value.streakDays
+          : streakDays // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -182,7 +221,10 @@ class _$ProgressViewDataImpl implements _ProgressViewData {
       required final List<FallEventEntity> fallEventsThisMonth,
       required final List<BadgeEntity> badges,
       required final List<ExerciseSessionEntity> recentSessions,
-      required final Set<String> workedMuscleGroups})
+      required final Set<String> workedMuscleGroups,
+      this.totalMinutes = 0,
+      this.totalSessions = 0,
+      this.streakDays = 0})
       : _balanceScores = balanceScores,
         _fallEventsThisMonth = fallEventsThisMonth,
         _badges = badges,
@@ -236,8 +278,18 @@ class _$ProgressViewDataImpl implements _ProgressViewData {
   }
 
   @override
+  @JsonKey()
+  final int totalMinutes;
+  @override
+  @JsonKey()
+  final int totalSessions;
+  @override
+  @JsonKey()
+  final int streakDays;
+
+  @override
   String toString() {
-    return 'ProgressViewData(weeklyAdherenceRate: $weeklyAdherenceRate, monthlyAdherenceRate: $monthlyAdherenceRate, balanceScores: $balanceScores, fallEventsThisMonth: $fallEventsThisMonth, badges: $badges, recentSessions: $recentSessions, workedMuscleGroups: $workedMuscleGroups)';
+    return 'ProgressViewData(weeklyAdherenceRate: $weeklyAdherenceRate, monthlyAdherenceRate: $monthlyAdherenceRate, balanceScores: $balanceScores, fallEventsThisMonth: $fallEventsThisMonth, badges: $badges, recentSessions: $recentSessions, workedMuscleGroups: $workedMuscleGroups, totalMinutes: $totalMinutes, totalSessions: $totalSessions, streakDays: $streakDays)';
   }
 
   @override
@@ -257,7 +309,13 @@ class _$ProgressViewDataImpl implements _ProgressViewData {
             const DeepCollectionEquality()
                 .equals(other._recentSessions, _recentSessions) &&
             const DeepCollectionEquality()
-                .equals(other._workedMuscleGroups, _workedMuscleGroups));
+                .equals(other._workedMuscleGroups, _workedMuscleGroups) &&
+            (identical(other.totalMinutes, totalMinutes) ||
+                other.totalMinutes == totalMinutes) &&
+            (identical(other.totalSessions, totalSessions) ||
+                other.totalSessions == totalSessions) &&
+            (identical(other.streakDays, streakDays) ||
+                other.streakDays == streakDays));
   }
 
   @override
@@ -269,7 +327,10 @@ class _$ProgressViewDataImpl implements _ProgressViewData {
       const DeepCollectionEquality().hash(_fallEventsThisMonth),
       const DeepCollectionEquality().hash(_badges),
       const DeepCollectionEquality().hash(_recentSessions),
-      const DeepCollectionEquality().hash(_workedMuscleGroups));
+      const DeepCollectionEquality().hash(_workedMuscleGroups),
+      totalMinutes,
+      totalSessions,
+      streakDays);
 
   @JsonKey(ignore: true)
   @override
@@ -287,7 +348,10 @@ abstract class _ProgressViewData implements ProgressViewData {
       required final List<FallEventEntity> fallEventsThisMonth,
       required final List<BadgeEntity> badges,
       required final List<ExerciseSessionEntity> recentSessions,
-      required final Set<String> workedMuscleGroups}) = _$ProgressViewDataImpl;
+      required final Set<String> workedMuscleGroups,
+      final int totalMinutes,
+      final int totalSessions,
+      final int streakDays}) = _$ProgressViewDataImpl;
 
   @override
   double get weeklyAdherenceRate;
@@ -303,6 +367,12 @@ abstract class _ProgressViewData implements ProgressViewData {
   List<ExerciseSessionEntity> get recentSessions;
   @override
   Set<String> get workedMuscleGroups;
+  @override
+  int get totalMinutes;
+  @override
+  int get totalSessions;
+  @override
+  int get streakDays;
   @override
   @JsonKey(ignore: true)
   _$$ProgressViewDataImplCopyWith<_$ProgressViewDataImpl> get copyWith =>

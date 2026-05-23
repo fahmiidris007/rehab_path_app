@@ -1508,6 +1508,12 @@ abstract class AppLocalizations {
   /// **'Failed to update profile. Please try again.'**
   String get editProfileFailedToUpdate;
 
+  /// Success message after the phone number is upserted on the edit profile page
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number updated'**
+  String get editProfilePhoneUpdated;
+
   /// Voice cues setting label
   ///
   /// In en, this message translates to:
@@ -1585,6 +1591,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get commonCancel;
+
+  /// Confirm button label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get commonConfirm;
 
   /// Loading label for dashboard
   ///
@@ -1909,6 +1921,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please describe your exercise plan'**
   String get onboardingStep7BehaviouralRequired;
+
+  /// Label for the phone number field on auth pages
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get authPhoneLabel;
+
+  /// Hint text for the phone number field showing the local Indonesian mobile format
+  ///
+  /// In en, this message translates to:
+  /// **'08...'**
+  String get authPhoneHint;
+
+  /// Validation error when phone number is not in E.164 format
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid phone number with at least 10 digits (e.g. 081234567890)'**
+  String get authPhoneInvalid;
+
+  /// Validation error when phone number is already registered to another account
+  ///
+  /// In en, this message translates to:
+  /// **'This phone number is already registered'**
+  String get authPhoneAlreadyTaken;
+
+  /// Error shown when login fails due to wrong phone number or password
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number or password is incorrect'**
+  String get authInvalidCredentials;
+
+  /// Accessibility semantic label for the biometric sign-in icon on the login page
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with biometrics'**
+  String get authBiometricSemanticLabel;
+
+  /// Message shown when the device has no biometric sensor or no enrolled biometric
+  ///
+  /// In en, this message translates to:
+  /// **'Biometrics are not available on this device'**
+  String get authBiometricUnavailable;
+
+  /// Message shown when biometric login is available but the user has not enabled it
+  ///
+  /// In en, this message translates to:
+  /// **'Enable biometric login from Settings after you sign in'**
+  String get authBiometricNotEnabled;
+
+  /// Localized reason shown by the OS biometric prompt during biometric login
+  ///
+  /// In en, this message translates to:
+  /// **'Verify to sign in to RehabPath'**
+  String get authBiometricReason;
+
+  /// Message shown when stored biometric credentials no longer match a Hive account and have been cleared
+  ///
+  /// In en, this message translates to:
+  /// **'Your biometric session has expired, please sign in again'**
+  String get authBiometricSessionExpired;
+
+  /// Banner shown to legacy accounts (without phoneNumber) prompting them to add a phone number
+  ///
+  /// In en, this message translates to:
+  /// **'Add a phone number to your account to keep using sign in'**
+  String get authLegacyAccountNeedsPhone;
+
+  /// Generic error shown when the biometric prompt fails, is cancelled, or is locked out
+  ///
+  /// In en, this message translates to:
+  /// **'Biometric verification failed'**
+  String get authBiometricFailed;
+
+  /// Call-to-action label on the legacy-account banner to add a phone number
+  ///
+  /// In en, this message translates to:
+  /// **'Add phone number'**
+  String get authLegacyAccountAddPhoneCta;
+
+  /// Toggle label and section header for the all-exercises mode of the exercise list
+  ///
+  /// In en, this message translates to:
+  /// **'All Exercises'**
+  String get exerciseListAllExercises;
+
+  /// Toggle label and section header for the today-only mode of the exercise list
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Exercises'**
+  String get exerciseListTodayExercises;
+
+  /// Empty state message on the exercise list when today's schedule is empty
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises scheduled for today'**
+  String get exerciseListNoneToday;
+
+  /// Message shown when every exercise scheduled for today has been completed
+  ///
+  /// In en, this message translates to:
+  /// **'All today\'s exercises are complete'**
+  String get exerciseListAllDoneToday;
+
+  /// Accessibility label for the previous-week button on the dashboard date selector
+  ///
+  /// In en, this message translates to:
+  /// **'Previous week'**
+  String get dashboardDateSelectorPrev;
+
+  /// Accessibility label for the next-week button on the dashboard date selector
+  ///
+  /// In en, this message translates to:
+  /// **'Next week'**
+  String get dashboardDateSelectorNext;
+
+  /// Banner shown on the dashboard when the user is viewing a date other than today
+  ///
+  /// In en, this message translates to:
+  /// **'Viewing: {date}'**
+  String dashboardViewingDate(String date);
+
+  /// Button label to reset the dashboard date selector back to the current day
+  ///
+  /// In en, this message translates to:
+  /// **'Back to today'**
+  String get dashboardBackToToday;
+
+  /// Tooltip/disabled-button hint shown on the Start Exercise button when viewing a non-today date
+  ///
+  /// In en, this message translates to:
+  /// **'Only available on the current day'**
+  String get dashboardStartOnlyToday;
+
+  /// Label shown for a future date that has not yet begun on the dashboard
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet started'**
+  String get dashboardNotYetStarted;
+
+  /// Label for the biometric-login toggle in Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Biometric login'**
+  String get settingsBiometricToggle;
+
+  /// Title for the dialog that confirms enabling biometric login
+  ///
+  /// In en, this message translates to:
+  /// **'Enable biometric login'**
+  String get settingsBiometricEnableTitle;
+
+  /// Prompt asking the user to re-enter their password to enable biometric login
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter your password to confirm'**
+  String get settingsBiometricVerifyPassword;
+
+  /// Error shown when enabling biometric login fails
+  ///
+  /// In en, this message translates to:
+  /// **'Could not enable biometric login'**
+  String get settingsBiometricEnableFailed;
+
+  /// Generic loading label used for buttons and inline indicators
+  ///
+  /// In en, this message translates to:
+  /// **'Loading…'**
+  String get commonLoading;
 }
 
 class _AppLocalizationsDelegate

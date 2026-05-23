@@ -703,6 +703,7 @@ class __$$PlayerSelfReportImplCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Deprecated('Auto-save replaces self-report; see task 13.1')
 class _$PlayerSelfReportImpl implements PlayerSelfReport {
   const _$PlayerSelfReportImpl(this.exercise);
 

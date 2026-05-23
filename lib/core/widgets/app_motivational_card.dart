@@ -29,7 +29,7 @@ class AppMotivationalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: AppColors.primaryLight,
         // Speech-bubble shape: top-left is square (0dp), others are 12dp.
@@ -52,6 +52,7 @@ class AppMotivationalCard extends StatelessWidget {
             message,
             style: AppTextStyles.body.copyWith(
               color: Colors.white,
+              fontSize: 14
             ),
           ),
           if (author != null) ...[

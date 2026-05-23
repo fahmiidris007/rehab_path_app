@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../di/injection.dart';
 import '../../features/settings/domain/repositories/settings_repository.dart';
@@ -7,6 +8,7 @@ import 'app_state.dart';
 
 export 'app_state.dart';
 
+@lazySingleton
 class AppCubit extends Cubit<AppState> {
   AppCubit()
       : super(

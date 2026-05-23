@@ -8,9 +8,9 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/validators/confirm_password_input.dart';
-import '../../domain/validators/email_input.dart';
 import '../../domain/validators/name_input.dart';
 import '../../domain/validators/password_input.dart';
+import '../../domain/validators/phone_input.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 
@@ -23,14 +23,19 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   NameInput _name = const NameInput.pure();
-  EmailInput _email = const EmailInput.pure();
+  PhoneNumberInput _phone = const PhoneNumberInput.pure();
   PasswordInput _password = const PasswordInput.pure();
   ConfirmPasswordInput _confirmPassword = const ConfirmPasswordInput.pure();
+
+  /// Server-side error for the phone field surfaced through `AuthCubit`
+  /// (e.g. duplicate phone). Reset on every keystroke in the phone field
+  /// and overrides any inline `formz` validation error when set.
+  String? _phoneServerError;
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -38,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void dispose() {
     _nameController.dispose();
-    _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -48,8 +53,12 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() => _name = NameInput.dirty(value));
   }
 
-  void _onEmailChanged(String value) {
-    setState(() => _email = EmailInput.dirty(value));
+  void _onPhoneChanged(String value) {
+    setState(() {
+      _phone = PhoneNumberInput.dirty(value);
+      // User edited the field — drop any stale server-side error.
+      _phoneServerError = null;
+    });
   }
 
   void _onPasswordChanged(String value) {
@@ -73,24 +82,39 @@ class _RegisterPageState extends State<RegisterPage> {
 
   bool get _isFormValid =>
       _name.isValid &&
-      _email.isValid &&
+      _phone.isValid &&
       _password.isValid &&
       _confirmPassword.isValid;
+
+  String? _phoneErrorText(AppLocalizations l10n) {
+    if (_phoneServerError != null) return _phoneServerError;
+    final error = _phone.displayError;
+    if (error == null) return null;
+    switch (error) {
+      case PhoneNumberValidationError.empty:
+        return null;
+      case PhoneNumberValidationError.invalidFormat:
+        return l10n.authPhoneInvalid;
+      case PhoneNumberValidationError.alreadyTaken:
+        return l10n.authPhoneAlreadyTaken;
+    }
+  }
 
   void _submit() {
     setState(() {
       _name = NameInput.dirty(_nameController.text);
-      _email = EmailInput.dirty(_emailController.text);
+      _phone = PhoneNumberInput.dirty(_phoneController.text);
       _password = PasswordInput.dirty(_passwordController.text);
       _confirmPassword = ConfirmPasswordInput.dirty(
         password: _passwordController.text,
         value: _confirmPasswordController.text,
       );
+      _phoneServerError = null;
     });
     if (_isFormValid) {
-      context.read<AuthCubit>().register(
+      context.read<AuthCubit>().registerWithPhone(
             _nameController.text.trim(),
-            _emailController.text.trim(),
+            _phoneController.text.trim(),
             _passwordController.text,
           );
     }
@@ -111,12 +135,21 @@ class _RegisterPageState extends State<RegisterPage> {
           );
           context.go('/login');
         } else if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: AppColors.error,
-            ),
-          );
+          // Duplicate phone is signalled by the repo with the localized key
+          // `authPhoneAlreadyTaken`; surface it inline rather than as a
+          // SnackBar so the affected field is obvious to the user.
+          if (state.message == 'authPhoneAlreadyTaken') {
+            setState(() {
+              _phoneServerError = l10n.authPhoneAlreadyTaken;
+            });
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
+                backgroundColor: AppColors.error,
+              ),
+            );
+          }
         }
       },
       child: Scaffold(
@@ -159,17 +192,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: AppDimensions.cardGap),
 
-                // Email field
+                // Phone field
                 TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.next,
-                  onChanged: _onEmailChanged,
+                  onChanged: _onPhoneChanged,
                   decoration: InputDecoration(
-                    labelText: l10n.authRegisterEmailHint,
-                    errorText: _email.displayError != null
-                        ? l10n.authRegisterEmailError
-                        : null,
+                    labelText: l10n.authPhoneLabel,
+                    hintText: l10n.authPhoneHint,
+                    errorText: _phoneErrorText(l10n),
                   ),
                 ),
                 const SizedBox(height: AppDimensions.cardGap),

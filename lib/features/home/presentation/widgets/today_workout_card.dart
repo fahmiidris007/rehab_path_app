@@ -28,7 +28,10 @@ class TodayWorkoutCard extends StatelessWidget {
   final int totalMinutes;
 
   /// Callback invoked when the user taps the action button.
-  final VoidCallback onStartPressed;
+  ///
+  /// When `null` (e.g. when the dashboard is in read-only view-mode for a
+  /// non-today date), the button renders disabled.
+  final VoidCallback? onStartPressed;
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@
   {
     "id": "user_001",
     "name": "Siti Rahayu",
+    "phoneNumber": "+6281100000001",
     "email": "siti.rahayu@example.com",
     "age": 72,
     "gender": "female",
@@ -44,6 +45,7 @@
   {
     "id": "user_002",
     "name": "Budi Santoso",
+    "phoneNumber": "+6281100000002",
     "email": "budi.santoso@example.com",
     "age": 67,
     "gender": "male",
@@ -81,6 +83,7 @@
   {
     "id": "user_003",
     "name": "Dewi Kusuma",
+    "phoneNumber": "+6281100000003",
     "email": "dewi.kusuma@example.com",
     "age": 62,
     "gender": "female",

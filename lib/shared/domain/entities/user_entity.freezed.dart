@@ -18,13 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserEntity {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   ProgramLevel get programLevel => throw _privateConstructorUsedError;
   List<String> get healthConditions => throw _privateConstructorUsedError;
   List<EmergencyContactEntity> get emergencyContacts =>
       throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   String? get avatarPath => throw _privateConstructorUsedError;
   OnboardingProfileEntity? get onboardingProfile =>
       throw _privateConstructorUsedError;
@@ -43,12 +44,13 @@ abstract class $UserEntityCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String email,
+      String phoneNumber,
       int age,
       String gender,
       ProgramLevel programLevel,
       List<String> healthConditions,
       List<EmergencyContactEntity> emergencyContacts,
+      String? email,
       String? avatarPath,
       OnboardingProfileEntity? onboardingProfile});
 
@@ -70,12 +72,13 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? phoneNumber = null,
     Object? age = null,
     Object? gender = null,
     Object? programLevel = null,
     Object? healthConditions = null,
     Object? emergencyContacts = null,
+    Object? email = freezed,
     Object? avatarPath = freezed,
     Object? onboardingProfile = freezed,
   }) {
@@ -88,9 +91,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -112,6 +115,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.emergencyContacts
           : emergencyContacts // ignore: cast_nullable_to_non_nullable
               as List<EmergencyContactEntity>,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       avatarPath: freezed == avatarPath
           ? _value.avatarPath
           : avatarPath // ignore: cast_nullable_to_non_nullable
@@ -148,12 +155,13 @@ abstract class _$$UserEntityImplCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      String email,
+      String phoneNumber,
       int age,
       String gender,
       ProgramLevel programLevel,
       List<String> healthConditions,
       List<EmergencyContactEntity> emergencyContacts,
+      String? email,
       String? avatarPath,
       OnboardingProfileEntity? onboardingProfile});
 
@@ -174,12 +182,13 @@ class __$$UserEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? phoneNumber = null,
     Object? age = null,
     Object? gender = null,
     Object? programLevel = null,
     Object? healthConditions = null,
     Object? emergencyContacts = null,
+    Object? email = freezed,
     Object? avatarPath = freezed,
     Object? onboardingProfile = freezed,
   }) {
@@ -192,9 +201,9 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -216,6 +225,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value._emergencyContacts
           : emergencyContacts // ignore: cast_nullable_to_non_nullable
               as List<EmergencyContactEntity>,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       avatarPath: freezed == avatarPath
           ? _value.avatarPath
           : avatarPath // ignore: cast_nullable_to_non_nullable
@@ -234,12 +247,13 @@ class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
       {required this.id,
       required this.name,
-      required this.email,
+      required this.phoneNumber,
       required this.age,
       required this.gender,
       required this.programLevel,
       required final List<String> healthConditions,
       required final List<EmergencyContactEntity> emergencyContacts,
+      this.email,
       this.avatarPath,
       this.onboardingProfile})
       : _healthConditions = healthConditions,
@@ -250,7 +264,7 @@ class _$UserEntityImpl implements _UserEntity {
   @override
   final String name;
   @override
-  final String email;
+  final String phoneNumber;
   @override
   final int age;
   @override
@@ -276,13 +290,15 @@ class _$UserEntityImpl implements _UserEntity {
   }
 
   @override
+  final String? email;
+  @override
   final String? avatarPath;
   @override
   final OnboardingProfileEntity? onboardingProfile;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, name: $name, email: $email, age: $age, gender: $gender, programLevel: $programLevel, healthConditions: $healthConditions, emergencyContacts: $emergencyContacts, avatarPath: $avatarPath, onboardingProfile: $onboardingProfile)';
+    return 'UserEntity(id: $id, name: $name, phoneNumber: $phoneNumber, age: $age, gender: $gender, programLevel: $programLevel, healthConditions: $healthConditions, emergencyContacts: $emergencyContacts, email: $email, avatarPath: $avatarPath, onboardingProfile: $onboardingProfile)';
   }
 
   @override
@@ -292,7 +308,8 @@ class _$UserEntityImpl implements _UserEntity {
             other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.programLevel, programLevel) ||
@@ -301,6 +318,7 @@ class _$UserEntityImpl implements _UserEntity {
                 .equals(other._healthConditions, _healthConditions) &&
             const DeepCollectionEquality()
                 .equals(other._emergencyContacts, _emergencyContacts) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.avatarPath, avatarPath) ||
                 other.avatarPath == avatarPath) &&
             (identical(other.onboardingProfile, onboardingProfile) ||
@@ -312,12 +330,13 @@ class _$UserEntityImpl implements _UserEntity {
       runtimeType,
       id,
       name,
-      email,
+      phoneNumber,
       age,
       gender,
       programLevel,
       const DeepCollectionEquality().hash(_healthConditions),
       const DeepCollectionEquality().hash(_emergencyContacts),
+      email,
       avatarPath,
       onboardingProfile);
 
@@ -332,12 +351,13 @@ abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
       {required final String id,
       required final String name,
-      required final String email,
+      required final String phoneNumber,
       required final int age,
       required final String gender,
       required final ProgramLevel programLevel,
       required final List<String> healthConditions,
       required final List<EmergencyContactEntity> emergencyContacts,
+      final String? email,
       final String? avatarPath,
       final OnboardingProfileEntity? onboardingProfile}) = _$UserEntityImpl;
 
@@ -346,7 +366,7 @@ abstract class _UserEntity implements UserEntity {
   @override
   String get name;
   @override
-  String get email;
+  String get phoneNumber;
   @override
   int get age;
   @override
@@ -357,6 +377,8 @@ abstract class _UserEntity implements UserEntity {
   List<String> get healthConditions;
   @override
   List<EmergencyContactEntity> get emergencyContacts;
+  @override
+  String? get email;
   @override
   String? get avatarPath;
   @override

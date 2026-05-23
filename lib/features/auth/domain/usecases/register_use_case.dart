@@ -9,17 +9,17 @@ import '../repositories/auth_repository.dart';
 
 class RegisterParams extends Equatable {
   final String name;
-  final String email;
+  final String phoneNumber;
   final String password;
 
   const RegisterParams({
     required this.name,
-    required this.email,
+    required this.phoneNumber,
     required this.password,
   });
 
   @override
-  List<Object?> get props => [name, email, password];
+  List<Object?> get props => [name, phoneNumber, password];
 }
 
 @injectable
@@ -30,5 +30,9 @@ class RegisterUseCase extends UseCase<UserEntity, RegisterParams> {
 
   @override
   Future<Either<Failure, UserEntity>> call(RegisterParams params) =>
-      _repository.register(params.name, params.email, params.password);
+      _repository.register(
+        name: params.name,
+        phoneNumber: params.phoneNumber,
+        password: params.password,
+      );
 }

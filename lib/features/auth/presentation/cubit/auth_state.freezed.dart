@@ -27,6 +27,11 @@ mixin _$AuthState {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +45,11 @@ mixin _$AuthState {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +63,11 @@ mixin _$AuthState {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +83,14 @@ mixin _$AuthState {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +104,12 @@ mixin _$AuthState {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +123,12 @@ mixin _$AuthState {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +198,11 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return initial();
   }
@@ -179,6 +219,11 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return initial?.call();
   }
@@ -195,6 +240,11 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -216,6 +266,14 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return initial(this);
   }
@@ -232,6 +290,12 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return initial?.call(this);
   }
@@ -248,6 +312,12 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -308,6 +378,11 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return loading();
   }
@@ -324,6 +399,11 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return loading?.call();
   }
@@ -340,6 +420,11 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -361,6 +446,14 @@ class _$AuthLoadingImpl implements AuthLoading {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return loading(this);
   }
@@ -377,6 +470,12 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return loading?.call(this);
   }
@@ -393,6 +492,12 @@ class _$AuthLoadingImpl implements AuthLoading {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -490,6 +595,11 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return authenticated(user);
   }
@@ -506,6 +616,11 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return authenticated?.call(user);
   }
@@ -522,6 +637,11 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -543,6 +663,14 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return authenticated(this);
   }
@@ -559,6 +687,12 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return authenticated?.call(this);
   }
@@ -575,6 +709,12 @@ class _$AuthAuthenticatedImpl implements AuthAuthenticated {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -678,6 +818,11 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return needsOnboarding(user);
   }
@@ -694,6 +839,11 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return needsOnboarding?.call(user);
   }
@@ -710,6 +860,11 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (needsOnboarding != null) {
@@ -731,6 +886,14 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return needsOnboarding(this);
   }
@@ -747,6 +910,12 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return needsOnboarding?.call(this);
   }
@@ -763,6 +932,12 @@ class _$AuthNeedsOnboardingImpl implements AuthNeedsOnboarding {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (needsOnboarding != null) {
@@ -832,6 +1007,11 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return registrationSuccess();
   }
@@ -848,6 +1028,11 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return registrationSuccess?.call();
   }
@@ -864,6 +1049,11 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (registrationSuccess != null) {
@@ -885,6 +1075,14 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return registrationSuccess(this);
   }
@@ -901,6 +1099,12 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return registrationSuccess?.call(this);
   }
@@ -917,6 +1121,12 @@ class _$AuthRegistrationSuccessImpl implements AuthRegistrationSuccess {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (registrationSuccess != null) {
@@ -977,6 +1187,11 @@ class _$AuthGuestImpl implements AuthGuest {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return guest();
   }
@@ -993,6 +1208,11 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return guest?.call();
   }
@@ -1009,6 +1229,11 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (guest != null) {
@@ -1030,6 +1255,14 @@ class _$AuthGuestImpl implements AuthGuest {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return guest(this);
   }
@@ -1046,6 +1279,12 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return guest?.call(this);
   }
@@ -1062,6 +1301,12 @@ class _$AuthGuestImpl implements AuthGuest {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (guest != null) {
@@ -1123,6 +1368,11 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return unauthenticated();
   }
@@ -1139,6 +1389,11 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return unauthenticated?.call();
   }
@@ -1155,6 +1410,11 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1176,6 +1436,14 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return unauthenticated(this);
   }
@@ -1192,6 +1460,12 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return unauthenticated?.call(this);
   }
@@ -1208,6 +1482,12 @@ class _$AuthUnauthenticatedImpl implements AuthUnauthenticated {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1268,6 +1548,11 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return requiresLogin();
   }
@@ -1284,6 +1569,11 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return requiresLogin?.call();
   }
@@ -1300,6 +1590,11 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -1321,6 +1616,14 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return requiresLogin(this);
   }
@@ -1337,6 +1640,12 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return requiresLogin?.call(this);
   }
@@ -1353,6 +1662,12 @@ class _$AuthRequiresLoginImpl implements AuthRequiresLogin {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -1439,6 +1754,11 @@ class _$AuthErrorImpl implements AuthError {
     required TResult Function() unauthenticated,
     required TResult Function() requiresLogin,
     required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
   }) {
     return error(message);
   }
@@ -1455,6 +1775,11 @@ class _$AuthErrorImpl implements AuthError {
     TResult? Function()? unauthenticated,
     TResult? Function()? requiresLogin,
     TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
   }) {
     return error?.call(message);
   }
@@ -1471,6 +1796,11 @@ class _$AuthErrorImpl implements AuthError {
     TResult Function()? unauthenticated,
     TResult Function()? requiresLogin,
     TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1492,6 +1822,14 @@ class _$AuthErrorImpl implements AuthError {
     required TResult Function(AuthUnauthenticated value) unauthenticated,
     required TResult Function(AuthRequiresLogin value) requiresLogin,
     required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
   }) {
     return error(this);
   }
@@ -1508,6 +1846,12 @@ class _$AuthErrorImpl implements AuthError {
     TResult? Function(AuthUnauthenticated value)? unauthenticated,
     TResult? Function(AuthRequiresLogin value)? requiresLogin,
     TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
   }) {
     return error?.call(this);
   }
@@ -1524,6 +1868,12 @@ class _$AuthErrorImpl implements AuthError {
     TResult Function(AuthUnauthenticated value)? unauthenticated,
     TResult Function(AuthRequiresLogin value)? requiresLogin,
     TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1540,4 +1890,991 @@ abstract class AuthError implements AuthState {
   @JsonKey(ignore: true)
   _$$AuthErrorImplCopyWith<_$AuthErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthBiometricUnavailableImplCopyWith<$Res> {
+  factory _$$AuthBiometricUnavailableImplCopyWith(
+          _$AuthBiometricUnavailableImpl value,
+          $Res Function(_$AuthBiometricUnavailableImpl) then) =
+      __$$AuthBiometricUnavailableImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthBiometricUnavailableImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthBiometricUnavailableImpl>
+    implements _$$AuthBiometricUnavailableImplCopyWith<$Res> {
+  __$$AuthBiometricUnavailableImplCopyWithImpl(
+      _$AuthBiometricUnavailableImpl _value,
+      $Res Function(_$AuthBiometricUnavailableImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthBiometricUnavailableImpl implements AuthBiometricUnavailable {
+  const _$AuthBiometricUnavailableImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.biometricUnavailable()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthBiometricUnavailableImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
+  }) {
+    return biometricUnavailable();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
+  }) {
+    return biometricUnavailable?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricUnavailable != null) {
+      return biometricUnavailable();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricUnavailable(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricUnavailable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricUnavailable != null) {
+      return biometricUnavailable(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthBiometricUnavailable implements AuthState {
+  const factory AuthBiometricUnavailable() = _$AuthBiometricUnavailableImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthBiometricNotEnabledImplCopyWith<$Res> {
+  factory _$$AuthBiometricNotEnabledImplCopyWith(
+          _$AuthBiometricNotEnabledImpl value,
+          $Res Function(_$AuthBiometricNotEnabledImpl) then) =
+      __$$AuthBiometricNotEnabledImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthBiometricNotEnabledImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthBiometricNotEnabledImpl>
+    implements _$$AuthBiometricNotEnabledImplCopyWith<$Res> {
+  __$$AuthBiometricNotEnabledImplCopyWithImpl(
+      _$AuthBiometricNotEnabledImpl _value,
+      $Res Function(_$AuthBiometricNotEnabledImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthBiometricNotEnabledImpl implements AuthBiometricNotEnabled {
+  const _$AuthBiometricNotEnabledImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.biometricNotEnabled()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthBiometricNotEnabledImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
+  }) {
+    return biometricNotEnabled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
+  }) {
+    return biometricNotEnabled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricNotEnabled != null) {
+      return biometricNotEnabled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricNotEnabled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricNotEnabled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricNotEnabled != null) {
+      return biometricNotEnabled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthBiometricNotEnabled implements AuthState {
+  const factory AuthBiometricNotEnabled() = _$AuthBiometricNotEnabledImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthBiometricRestoringImplCopyWith<$Res> {
+  factory _$$AuthBiometricRestoringImplCopyWith(
+          _$AuthBiometricRestoringImpl value,
+          $Res Function(_$AuthBiometricRestoringImpl) then) =
+      __$$AuthBiometricRestoringImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AuthBiometricRestoringImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthBiometricRestoringImpl>
+    implements _$$AuthBiometricRestoringImplCopyWith<$Res> {
+  __$$AuthBiometricRestoringImplCopyWithImpl(
+      _$AuthBiometricRestoringImpl _value,
+      $Res Function(_$AuthBiometricRestoringImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AuthBiometricRestoringImpl implements AuthBiometricRestoring {
+  const _$AuthBiometricRestoringImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.biometricRestoring()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthBiometricRestoringImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
+  }) {
+    return biometricRestoring();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
+  }) {
+    return biometricRestoring?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricRestoring != null) {
+      return biometricRestoring();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricRestoring(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricRestoring?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricRestoring != null) {
+      return biometricRestoring(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthBiometricRestoring implements AuthState {
+  const factory AuthBiometricRestoring() = _$AuthBiometricRestoringImpl;
+}
+
+/// @nodoc
+abstract class _$$AuthBiometricFailedImplCopyWith<$Res> {
+  factory _$$AuthBiometricFailedImplCopyWith(_$AuthBiometricFailedImpl value,
+          $Res Function(_$AuthBiometricFailedImpl) then) =
+      __$$AuthBiometricFailedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$AuthBiometricFailedImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthBiometricFailedImpl>
+    implements _$$AuthBiometricFailedImplCopyWith<$Res> {
+  __$$AuthBiometricFailedImplCopyWithImpl(_$AuthBiometricFailedImpl _value,
+      $Res Function(_$AuthBiometricFailedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$AuthBiometricFailedImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthBiometricFailedImpl implements AuthBiometricFailed {
+  const _$AuthBiometricFailedImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'AuthState.biometricFailed(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthBiometricFailedImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthBiometricFailedImplCopyWith<_$AuthBiometricFailedImpl> get copyWith =>
+      __$$AuthBiometricFailedImplCopyWithImpl<_$AuthBiometricFailedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
+  }) {
+    return biometricFailed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
+  }) {
+    return biometricFailed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricFailed != null) {
+      return biometricFailed(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+  }) {
+    return biometricFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (biometricFailed != null) {
+      return biometricFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthBiometricFailed implements AuthState {
+  const factory AuthBiometricFailed(final String message) =
+      _$AuthBiometricFailedImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$AuthBiometricFailedImplCopyWith<_$AuthBiometricFailedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthLegacyAccountNeedsPhoneImplCopyWith<$Res> {
+  factory _$$AuthLegacyAccountNeedsPhoneImplCopyWith(
+          _$AuthLegacyAccountNeedsPhoneImpl value,
+          $Res Function(_$AuthLegacyAccountNeedsPhoneImpl) then) =
+      __$$AuthLegacyAccountNeedsPhoneImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserEntity user});
+
+  $UserEntityCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$AuthLegacyAccountNeedsPhoneImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthLegacyAccountNeedsPhoneImpl>
+    implements _$$AuthLegacyAccountNeedsPhoneImplCopyWith<$Res> {
+  __$$AuthLegacyAccountNeedsPhoneImplCopyWithImpl(
+      _$AuthLegacyAccountNeedsPhoneImpl _value,
+      $Res Function(_$AuthLegacyAccountNeedsPhoneImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$AuthLegacyAccountNeedsPhoneImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res> get user {
+    return $UserEntityCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AuthLegacyAccountNeedsPhoneImpl implements AuthLegacyAccountNeedsPhone {
+  const _$AuthLegacyAccountNeedsPhoneImpl(this.user);
+
+  @override
+  final UserEntity user;
+
+  @override
+  String toString() {
+    return 'AuthState.legacyAccountNeedsPhone(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthLegacyAccountNeedsPhoneImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthLegacyAccountNeedsPhoneImplCopyWith<_$AuthLegacyAccountNeedsPhoneImpl>
+      get copyWith => __$$AuthLegacyAccountNeedsPhoneImplCopyWithImpl<
+          _$AuthLegacyAccountNeedsPhoneImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserEntity user) authenticated,
+    required TResult Function(UserEntity user) needsOnboarding,
+    required TResult Function() registrationSuccess,
+    required TResult Function() guest,
+    required TResult Function() unauthenticated,
+    required TResult Function() requiresLogin,
+    required TResult Function(String message) error,
+    required TResult Function() biometricUnavailable,
+    required TResult Function() biometricNotEnabled,
+    required TResult Function() biometricRestoring,
+    required TResult Function(String message) biometricFailed,
+    required TResult Function(UserEntity user) legacyAccountNeedsPhone,
+  }) {
+    return legacyAccountNeedsPhone(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserEntity user)? authenticated,
+    TResult? Function(UserEntity user)? needsOnboarding,
+    TResult? Function()? registrationSuccess,
+    TResult? Function()? guest,
+    TResult? Function()? unauthenticated,
+    TResult? Function()? requiresLogin,
+    TResult? Function(String message)? error,
+    TResult? Function()? biometricUnavailable,
+    TResult? Function()? biometricNotEnabled,
+    TResult? Function()? biometricRestoring,
+    TResult? Function(String message)? biometricFailed,
+    TResult? Function(UserEntity user)? legacyAccountNeedsPhone,
+  }) {
+    return legacyAccountNeedsPhone?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserEntity user)? authenticated,
+    TResult Function(UserEntity user)? needsOnboarding,
+    TResult Function()? registrationSuccess,
+    TResult Function()? guest,
+    TResult Function()? unauthenticated,
+    TResult Function()? requiresLogin,
+    TResult Function(String message)? error,
+    TResult Function()? biometricUnavailable,
+    TResult Function()? biometricNotEnabled,
+    TResult Function()? biometricRestoring,
+    TResult Function(String message)? biometricFailed,
+    TResult Function(UserEntity user)? legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (legacyAccountNeedsPhone != null) {
+      return legacyAccountNeedsPhone(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(AuthLoading value) loading,
+    required TResult Function(AuthAuthenticated value) authenticated,
+    required TResult Function(AuthNeedsOnboarding value) needsOnboarding,
+    required TResult Function(AuthRegistrationSuccess value)
+        registrationSuccess,
+    required TResult Function(AuthGuest value) guest,
+    required TResult Function(AuthUnauthenticated value) unauthenticated,
+    required TResult Function(AuthRequiresLogin value) requiresLogin,
+    required TResult Function(AuthError value) error,
+    required TResult Function(AuthBiometricUnavailable value)
+        biometricUnavailable,
+    required TResult Function(AuthBiometricNotEnabled value)
+        biometricNotEnabled,
+    required TResult Function(AuthBiometricRestoring value) biometricRestoring,
+    required TResult Function(AuthBiometricFailed value) biometricFailed,
+    required TResult Function(AuthLegacyAccountNeedsPhone value)
+        legacyAccountNeedsPhone,
+  }) {
+    return legacyAccountNeedsPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(AuthLoading value)? loading,
+    TResult? Function(AuthAuthenticated value)? authenticated,
+    TResult? Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult? Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult? Function(AuthGuest value)? guest,
+    TResult? Function(AuthUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthRequiresLogin value)? requiresLogin,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult? Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult? Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult? Function(AuthBiometricFailed value)? biometricFailed,
+    TResult? Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+  }) {
+    return legacyAccountNeedsPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(AuthLoading value)? loading,
+    TResult Function(AuthAuthenticated value)? authenticated,
+    TResult Function(AuthNeedsOnboarding value)? needsOnboarding,
+    TResult Function(AuthRegistrationSuccess value)? registrationSuccess,
+    TResult Function(AuthGuest value)? guest,
+    TResult Function(AuthUnauthenticated value)? unauthenticated,
+    TResult Function(AuthRequiresLogin value)? requiresLogin,
+    TResult Function(AuthError value)? error,
+    TResult Function(AuthBiometricUnavailable value)? biometricUnavailable,
+    TResult Function(AuthBiometricNotEnabled value)? biometricNotEnabled,
+    TResult Function(AuthBiometricRestoring value)? biometricRestoring,
+    TResult Function(AuthBiometricFailed value)? biometricFailed,
+    TResult Function(AuthLegacyAccountNeedsPhone value)?
+        legacyAccountNeedsPhone,
+    required TResult orElse(),
+  }) {
+    if (legacyAccountNeedsPhone != null) {
+      return legacyAccountNeedsPhone(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthLegacyAccountNeedsPhone implements AuthState {
+  const factory AuthLegacyAccountNeedsPhone(final UserEntity user) =
+      _$AuthLegacyAccountNeedsPhoneImpl;
+
+  UserEntity get user;
+  @JsonKey(ignore: true)
+  _$$AuthLegacyAccountNeedsPhoneImplCopyWith<_$AuthLegacyAccountNeedsPhoneImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -39,6 +39,9 @@ class UserHiveModel extends HiveObject {
   @HiveField(9)
   OnboardingProfileHiveModel? onboardingProfile;
 
+  @HiveField(10, defaultValue: '')
+  String phoneNumber;
+
   UserHiveModel({
     required this.id,
     required this.name,
@@ -48,6 +51,7 @@ class UserHiveModel extends HiveObject {
     required this.programLevel,
     required this.healthConditions,
     required this.emergencyContacts,
+    required this.phoneNumber,
     this.avatarPath,
     this.onboardingProfile,
   });
@@ -56,7 +60,8 @@ class UserHiveModel extends HiveObject {
     return UserEntity(
       id: id,
       name: name,
-      email: email,
+      email: email.isEmpty ? null : email,
+      phoneNumber: phoneNumber,
       age: age,
       gender: gender,
       programLevel: ProgramLevel.values.firstWhere(
@@ -75,7 +80,8 @@ class UserHiveModel extends HiveObject {
     return UserHiveModel(
       id: entity.id,
       name: entity.name,
-      email: entity.email,
+      email: entity.email ?? '',
+      phoneNumber: entity.phoneNumber,
       age: entity.age,
       gender: entity.gender,
       programLevel: entity.programLevel.name,

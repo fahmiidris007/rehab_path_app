@@ -780,6 +780,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Failed to update profile. Please try again.';
 
   @override
+  String get editProfilePhoneUpdated => 'Phone number updated';
+
+  @override
   String get settingsVoiceCues => 'Voice Cues';
 
   @override
@@ -823,6 +826,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonCancel => 'Cancel';
+
+  @override
+  String get commonConfirm => 'Confirm';
 
   @override
   String get loadingDashboard => 'Loading dashboard…';
@@ -996,4 +1002,97 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingStep7BehaviouralRequired =>
       'Please describe your exercise plan';
+
+  @override
+  String get authPhoneLabel => 'Phone number';
+
+  @override
+  String get authPhoneHint => '08...';
+
+  @override
+  String get authPhoneInvalid =>
+      'Enter a valid phone number with at least 10 digits (e.g. 081234567890)';
+
+  @override
+  String get authPhoneAlreadyTaken => 'This phone number is already registered';
+
+  @override
+  String get authInvalidCredentials => 'Phone number or password is incorrect';
+
+  @override
+  String get authBiometricSemanticLabel => 'Sign in with biometrics';
+
+  @override
+  String get authBiometricUnavailable =>
+      'Biometrics are not available on this device';
+
+  @override
+  String get authBiometricNotEnabled =>
+      'Enable biometric login from Settings after you sign in';
+
+  @override
+  String get authBiometricReason => 'Verify to sign in to RehabPath';
+
+  @override
+  String get authBiometricSessionExpired =>
+      'Your biometric session has expired, please sign in again';
+
+  @override
+  String get authLegacyAccountNeedsPhone =>
+      'Add a phone number to your account to keep using sign in';
+
+  @override
+  String get authBiometricFailed => 'Biometric verification failed';
+
+  @override
+  String get authLegacyAccountAddPhoneCta => 'Add phone number';
+
+  @override
+  String get exerciseListAllExercises => 'All Exercises';
+
+  @override
+  String get exerciseListTodayExercises => 'Today\'s Exercises';
+
+  @override
+  String get exerciseListNoneToday => 'No exercises scheduled for today';
+
+  @override
+  String get exerciseListAllDoneToday => 'All today\'s exercises are complete';
+
+  @override
+  String get dashboardDateSelectorPrev => 'Previous week';
+
+  @override
+  String get dashboardDateSelectorNext => 'Next week';
+
+  @override
+  String dashboardViewingDate(String date) {
+    return 'Viewing: $date';
+  }
+
+  @override
+  String get dashboardBackToToday => 'Back to today';
+
+  @override
+  String get dashboardStartOnlyToday => 'Only available on the current day';
+
+  @override
+  String get dashboardNotYetStarted => 'Not yet started';
+
+  @override
+  String get settingsBiometricToggle => 'Biometric login';
+
+  @override
+  String get settingsBiometricEnableTitle => 'Enable biometric login';
+
+  @override
+  String get settingsBiometricVerifyPassword =>
+      'Re-enter your password to confirm';
+
+  @override
+  String get settingsBiometricEnableFailed =>
+      'Could not enable biometric login';
+
+  @override
+  String get commonLoading => 'Loading…';
 }

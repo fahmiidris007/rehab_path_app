@@ -16,6 +16,9 @@ class ProgressViewData with _$ProgressViewData {
     required List<BadgeEntity> badges,
     required List<ExerciseSessionEntity> recentSessions,
     required Set<String> workedMuscleGroups,
+    @Default(0) int totalMinutes,
+    @Default(0) int totalSessions,
+    @Default(0) int streakDays,
   }) = _ProgressViewData;
 }
 

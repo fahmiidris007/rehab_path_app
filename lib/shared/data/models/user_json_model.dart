@@ -11,6 +11,8 @@ part 'user_json_model.g.dart';
 class UserJsonModel {
   final String id;
   final String name;
+  @JsonKey(defaultValue: '')
+  final String phoneNumber;
   final String email;
   final int age;
   final String gender;
@@ -23,6 +25,7 @@ class UserJsonModel {
   const UserJsonModel({
     required this.id,
     required this.name,
+    required this.phoneNumber,
     required this.email,
     required this.age,
     required this.gender,
@@ -42,7 +45,8 @@ class UserJsonModel {
     return UserEntity(
       id: id,
       name: name,
-      email: email,
+      phoneNumber: phoneNumber,
+      email: email.isEmpty ? null : email,
       age: age,
       gender: gender,
       programLevel: ProgramLevel.values.firstWhere(

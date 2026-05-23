@@ -12,6 +12,8 @@ class SettingsData with _$SettingsData {
     required FontSizeLevel fontSizeLevel,
     required bool notificationsEnabled,
     @Default(false) bool voiceCuesEnabled,
+    @Default(false) bool biometricEnabled,
+    @Default(false) bool biometricCapable,
   }) = _SettingsData;
 }
 
