@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/errors/failures.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../../../shared/domain/entities/exercise_session_entity.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
@@ -17,6 +18,7 @@ class ExercisePlayerCubit extends Cubit<PlayerState> {
 
   Timer? _timer;
   String? _currentSessionId;
+  String? _currentUserId;
 
   ExercisePlayerCubit(
     this._saveSessionUseCase,
@@ -35,8 +37,10 @@ class ExercisePlayerCubit extends Cubit<PlayerState> {
           imagePath: '',
         )));
 
-  void startExercise(ExerciseEntity exercise) {
-    _currentSessionId = 'session_${DateTime.now().millisecondsSinceEpoch}';
+  void startExercise(ExerciseEntity exercise, {required String userId}) {
+    _currentUserId = userId;
+    _currentSessionId =
+        'session_${userId}_${DateTime.now().microsecondsSinceEpoch}';
     emit(PlayerState.playing(
       exercise: exercise,
       remainingSeconds: exercise.durationSeconds,
@@ -51,7 +55,10 @@ class ExercisePlayerCubit extends Cubit<PlayerState> {
         final current = state as PlayerPlaying;
         if (current.remainingSeconds <= 1) {
           timer.cancel();
-          emit(PlayerState.selfReport(exercise));
+          // Fire-and-forget: Timer.periodic callback cannot be async cleanly.
+          // _persistAndEmitSaved will cancel any residual timer and emit
+          // saving → saved/error states.
+          unawaited(_persistAndEmitSaved(exercise));
         } else {
           emit(PlayerState.playing(
             exercise: exercise,
@@ -73,6 +80,10 @@ class ExercisePlayerCubit extends Cubit<PlayerState> {
     }
   }
 
+  /// Public alias for [pause], invoked when the host app reports a
+  /// lifecycle transition to paused/inactive (R12.2).
+  Future<void> onAppPaused() async => pause();
+
   void resume() {
     if (state is PlayerPaused) {
       final current = state as PlayerPaused;
@@ -84,46 +95,55 @@ class ExercisePlayerCubit extends Cubit<PlayerState> {
     }
   }
 
-  void skip() {
+  Future<void> skip() async {
     _timer?.cancel();
     if (state is PlayerPlaying || state is PlayerPaused) {
       final exercise = state is PlayerPlaying
           ? (state as PlayerPlaying).exercise
           : (state as PlayerPaused).exercise;
-      emit(PlayerState.selfReport(exercise));
+      await _persistAndEmitSaved(exercise);
     }
   }
 
+  Future<void> _persistAndEmitSaved(ExerciseEntity exercise) async {
+    _timer?.cancel();
+    emit(const PlayerState.saving());
+    final session = ExerciseSessionEntity(
+      id: _currentSessionId ??
+          'session_${_currentUserId ?? 'unknown'}_${DateTime.now().microsecondsSinceEpoch}',
+      exerciseId: exercise.id,
+      userId: _currentUserId ?? '',
+      completedAt: DateTime.now(),
+      bodyCondition: BodyCondition.standing,
+      supportUsed: SupportUsed.noSupport,
+    );
+    final result =
+        await _saveSessionUseCase(SaveExerciseSessionParams(session));
+    result.fold(
+      (failure) => emit(PlayerState.error(_messageOf(failure))),
+      (_) {
+        _currentSessionId = null;
+        emit(const PlayerState.saved());
+      },
+    );
+  }
+
+  String _messageOf(Failure failure) => failure.when(
+        server: (m, _) => m,
+        cache: (m) => m,
+        validation: (m, _) => m,
+        unexpected: (m) => m,
+      );
+
+  @Deprecated('Use auto-save flow; see task 13.1')
   Future<void> submitSelfReport({
     required String userId,
     required ExerciseEntity exercise,
     required BodyCondition bodyCondition,
     required SupportUsed supportUsed,
   }) async {
-    emit(const PlayerState.saving());
-    final session = ExerciseSessionEntity(
-      id: _currentSessionId ??
-          'session_${DateTime.now().millisecondsSinceEpoch}',
-      exerciseId: exercise.id,
-      userId: userId,
-      completedAt: DateTime.now(),
-      bodyCondition: bodyCondition,
-      supportUsed: supportUsed,
-    );
-    final result =
-        await _saveSessionUseCase(SaveExerciseSessionParams(session));
-    result.fold(
-      (failure) => emit(PlayerState.error(failure.when(
-        server: (msg, _) => msg,
-        cache: (msg) => msg,
-        validation: (msg, _) => msg,
-        unexpected: (msg) => msg,
-      ))),
-      (_) {
-        _currentSessionId = null;
-        emit(const PlayerState.saved());
-      },
-    );
+    _currentUserId ??= userId;
+    await _persistAndEmitSaved(exercise);
   }
 
   Future<void> cancelSession() async {

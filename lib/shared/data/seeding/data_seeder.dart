@@ -26,6 +26,13 @@ class DataSeeder {
     this._logger,
   );
 
+  /// On first launch (when [PrefKeys.seedingComplete] is unset), seed the
+  /// user catalogue and historical session data from JSON assets and mark
+  /// seeding complete. Subsequent launches return early so existing user
+  /// records — including manual `phoneNumber` updates from the profile
+  /// screen — are never overwritten.
+  ///
+  /// Validates: Requirement 14.5.
   Future<void> seedIfNeeded() async {
     if (_prefsDataSource.getBool(PrefKeys.seedingComplete) == true) return;
 

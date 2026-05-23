@@ -7,7 +7,7 @@ class AppDimensions {
   // ── Layout ────────────────────────────────────────────────────────────────
   static const double screenPaddingH = 24.0;
   static const double cardPadding = 17.0;
-  static const double cardInnerPadding = 24.0;
+  static const double cardInnerPadding = 16.0;
   static const double sectionGap = 32.0;
   static const double cardGap = 16.0;
 
@@ -24,10 +24,11 @@ class AppDimensions {
 
   // ── Touch targets ─────────────────────────────────────────────────────────
   static const double minTouchTarget = 48.0;
+  static const double minTouchTarget2 = 32.0;
   static const double recTouchTarget = 56.0;
 
   // ── Progress indicators ───────────────────────────────────────────────────
-  static const double progressRingSize = 192.0;
+  static const double progressRingSize = 166.0;
   static const double progressBarH = 12.0;
 
   // ── Exercise path nodes ───────────────────────────────────────────────────

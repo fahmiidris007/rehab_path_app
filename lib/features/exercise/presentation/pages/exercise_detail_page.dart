@@ -9,6 +9,8 @@ import '../../../../app/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
+import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../features/auth/presentation/cubit/auth_state.dart';
 import '../../../../features/home/presentation/cubit/home_cubit.dart';
 import '../../../../features/home/presentation/cubit/home_state.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -106,10 +108,21 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
 
 // ── Detail view ───────────────────────────────────────────────────────────────
 
-class _ExerciseDetailView extends StatelessWidget {
+class _ExerciseDetailView extends StatefulWidget {
   const _ExerciseDetailView({required this.exercise});
 
   final ExerciseEntity exercise;
+
+  @override
+  State<_ExerciseDetailView> createState() => _ExerciseDetailViewState();
+}
+
+class _ExerciseDetailViewState extends State<_ExerciseDetailView> {
+  /// Guards against re-scheduling [HomeCubit.loadDashboard] on every rebuild
+  /// while the dashboard is still loading.
+  bool _loadDashboardScheduled = false;
+
+  ExerciseEntity get exercise => widget.exercise;
 
   /// Returns true if this exercise has been completed today by the current user.
   bool _isCompletedToday(BuildContext context) {
@@ -133,17 +146,54 @@ class _ExerciseDetailView extends StatelessWidget {
     }
   }
 
-  /// Returns the next exercise in today's schedule after this one, or null.
-  ExerciseEntity? _getNextExercise(BuildContext context) {
+  /// Resolves the next exercise in today's schedule alongside a loading flag
+  /// driven by [HomeState].
+  ///
+  /// - When [HomeCubit] is in [HomeLoading], schedules a `loadDashboard` for
+  ///   the authenticated user (post-frame, guarded against re-entry) and
+  ///   returns `(next: null, isLoading: true)`.
+  /// - When [HomeCubit] is in [HomeLoaded], finds the current exercise in
+  ///   `data.todaySchedule` and returns the following entry if present.
+  /// - On any other state (including errors), returns
+  ///   `(next: null, isLoading: false)`.
+  ({ExerciseEntity? next, bool isLoading}) _getNextExercise(
+    BuildContext context,
+  ) {
     try {
       final homeCubit = getIt<HomeCubit>();
-      if (homeCubit.state is! HomeLoaded) return null;
-      final schedule = (homeCubit.state as HomeLoaded).data.todaySchedule;
-      final idx = schedule.indexWhere((e) => e.id == exercise.id);
-      if (idx == -1 || idx >= schedule.length - 1) return null;
-      return schedule[idx + 1];
+      final state = homeCubit.state;
+
+      if (state is HomeLoading) {
+        // Trigger a single dashboard load for the current user. Guarded so
+        // we don't re-schedule on every rebuild while loading is in flight.
+        if (!_loadDashboardScheduled) {
+          _loadDashboardScheduled = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            final authState = getIt<AuthCubit>().state;
+            if (authState is AuthAuthenticated) {
+              homeCubit.loadDashboard(authState.user);
+            }
+          });
+        }
+        return (next: null, isLoading: true);
+      }
+
+      if (state is HomeLoaded) {
+        // Reset the guard so a future loading state can re-trigger a load.
+        _loadDashboardScheduled = false;
+        final schedule = state.data.todaySchedule;
+        final idx = schedule.indexWhere((e) => e.id == exercise.id);
+        if (idx == -1 || idx >= schedule.length - 1) {
+          return (next: null, isLoading: false);
+        }
+        return (next: schedule[idx + 1], isLoading: false);
+      }
+
+      // HomeError or any unknown state — surface as not-loading with no next.
+      return (next: null, isLoading: false);
     } catch (_) {
-      return null;
+      return (next: null, isLoading: false);
     }
   }
 
@@ -155,7 +205,9 @@ class _ExerciseDetailView extends StatelessWidget {
       builder: (context, _) {
         final l10n = AppLocalizations.of(context)!;
         final isCompleted = _isCompletedToday(context);
-        final nextExercise = _getNextExercise(context);
+        final nextResult = _getNextExercise(context);
+        final nextExercise = nextResult.next;
+        final isNextLoading = nextResult.isLoading;
 
         return Scaffold(
           backgroundColor: AppColors.background,
@@ -249,24 +301,11 @@ class _ExerciseDetailView extends StatelessWidget {
                       // Secondary: skip to next (only if in today's schedule and not last)
                       if (nextExercise != null) ...[
                         const SizedBox(height: 12),
-                        OutlinedButton(
-                          onPressed: () => context.goNamed(
-                            RouteNames.exerciseDetail,
-                            pathParameters: {'id': nextExercise.id},
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            minimumSize: const Size(
-                              double.infinity,
-                              AppDimensions.primaryButtonH,
-                            ),
-                            foregroundColor: AppColors.primary,
-                            side: const BorderSide(color: AppColors.primary),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  AppDimensions.radiusButton),
-                            ),
-                          ),
-                          child: Text(l10n.exerciseNext(nextExercise.name)),
+                        NextExerciseButton(
+                          nextExercise: nextExercise,
+                          isLoading: isNextLoading,
+                          loadingLabel: l10n.commonLoading,
+                          enabledLabel: l10n.exerciseNext(nextExercise.name),
                         ),
                       ],
                     ],
@@ -281,7 +320,63 @@ class _ExerciseDetailView extends StatelessWidget {
   }
 }
 
-// ── Completed badge ───────────────────────────────────────────────────────────
+// ── Next exercise button ──────────────────────────────────────────────────────
+
+/// Outlined "Berikutnya: …" button shown beneath the primary action.
+///
+/// - When [isLoading] is true: the button is disabled (`onPressed: null`) and
+///   shows [loadingLabel]. It is wrapped in a [Tooltip] so screen readers and
+///   long-press users can discover the loading state on the disabled control.
+/// - When [isLoading] is false: the button is enabled and a tap calls
+///   `context.goNamed(RouteNames.exerciseDetail, …)` synchronously, so
+///   tap-to-navigation latency stays well under the 500 ms goal.
+///
+/// Public so widget tests can pump it directly without standing up the full
+/// [ExerciseDetailPage] dependency graph (HomeCubit, AuthCubit, Hive, …).
+class NextExerciseButton extends StatelessWidget {
+  const NextExerciseButton({
+    super.key,
+    required this.nextExercise,
+    required this.isLoading,
+    required this.loadingLabel,
+    required this.enabledLabel,
+  });
+
+  final ExerciseEntity nextExercise;
+  final bool isLoading;
+  final String loadingLabel;
+  final String enabledLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final button = OutlinedButton(
+      onPressed: isLoading
+          ? null
+          : () => context.goNamed(
+                RouteNames.exerciseDetail,
+                pathParameters: {'id': nextExercise.id},
+              ),
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(
+          double.infinity,
+          AppDimensions.primaryButtonH,
+        ),
+        foregroundColor: AppColors.primary,
+        side: const BorderSide(color: AppColors.primary),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppDimensions.radiusButton),
+        ),
+      ),
+      child: Text(isLoading ? loadingLabel : enabledLabel),
+    );
+
+    if (isLoading) {
+      return Tooltip(message: loadingLabel, child: button);
+    }
+    return button;
+  }
+}
+
 
 class _CompletedBadge extends StatelessWidget {
   @override

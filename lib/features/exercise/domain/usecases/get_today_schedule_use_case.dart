@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/use_case.dart';
+import '../../../../core/utils/date_utils.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../repositories/exercise_repository.dart';
 
@@ -18,7 +19,10 @@ class GetTodayScheduleUseCase
   Future<Either<Failure, List<ExerciseEntity>>> call(
     GetTodayScheduleParams params,
   ) {
-    return _repository.getTodaySchedule(params.userId);
+    return _repository.getScheduleForDate(
+      userId: params.userId,
+      date: AppDateUtils.todayLocal(),
+    );
   }
 }
 

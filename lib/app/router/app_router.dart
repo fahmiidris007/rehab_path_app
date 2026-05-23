@@ -212,8 +212,14 @@ class AppRouter {
         // Stay on /register — RegisterPage's BlocListener handles navigation to /login.
         return null;
 
-      case AuthRequiresLogin():
-        // Had a previous session — go straight to login, skip welcome carousel.
+      case AuthRequiresLogin() ||
+            AuthBiometricUnavailable() ||
+            AuthBiometricNotEnabled() ||
+            AuthBiometricRestoring() ||
+            AuthBiometricFailed() ||
+            AuthLegacyAccountNeedsPhone():
+        // Had a previous session or is mid-biometric/legacy login flow —
+        // stay on /login; redirect any other non-public route there.
         if (location == '/login') return null;
         if (_publicRoutes.contains(location)) return null;
         return '/login';

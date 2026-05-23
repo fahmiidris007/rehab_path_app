@@ -11,12 +11,13 @@ class UserEntity with _$UserEntity {
   const factory UserEntity({
     required String id,
     required String name,
-    required String email,
+    required String phoneNumber,
     required int age,
     required String gender,
     required ProgramLevel programLevel,
     required List<String> healthConditions,
     required List<EmergencyContactEntity> emergencyContacts,
+    String? email,
     String? avatarPath,
     OnboardingProfileEntity? onboardingProfile,
   }) = _UserEntity;

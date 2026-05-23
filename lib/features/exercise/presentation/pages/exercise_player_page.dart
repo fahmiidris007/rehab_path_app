@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
@@ -17,18 +18,18 @@ import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
 import '../cubit/exercise_player_cubit.dart';
 import '../cubit/player_state.dart';
-import '../widgets/self_report_bottom_sheet.dart';
+import 'post_save_navigation.dart';
 
 /// Plays an exercise session for the given [exerciseId].
 ///
 /// Provides its own [ExercisePlayerCubit] via [BlocProvider] and starts the
-/// exercise on initialisation. Handles all [PlayerState] transitions:
+/// exercise on initialisation. Handles all relevant [PlayerState] transitions:
 /// - [PlayerPlaying] / [PlayerPaused]: shows countdown timer + controls
-/// - [PlayerSelfReport]: shows [SelfReportBottomSheet]
-/// - [PlayerSaved]: navigates back to the exercise list
-/// - [PlayerError]: shows an error state
+/// - [PlayerSaved]: navigates to the next incomplete exercise (or home)
+/// - [PlayerError]: shows an error snackbar
 ///
-/// Back press calls [ExercisePlayerCubit.cancelSession] before popping.
+/// Back press calls [ExercisePlayerCubit.cancelSession] before popping. The
+/// player observes app lifecycle changes and auto-pauses on background.
 class ExercisePlayerPage extends StatelessWidget {
   const ExercisePlayerPage({super.key, required this.exerciseId});
 
@@ -79,7 +80,17 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
         _loading = false;
       }),
       (exercise) {
-        context.read<ExercisePlayerCubit>().startExercise(exercise);
+        // Resolve the current userId from AuthCubit. Falls back to empty
+        // string when no authenticated user is present; the cubit handles
+        // that case gracefully.
+        final authState = getIt<AuthCubit>().state;
+        final userId = switch (authState) {
+          AuthAuthenticated(:final user) => user.id,
+          _ => '',
+        };
+        context
+            .read<ExercisePlayerCubit>()
+            .startExercise(exercise, userId: userId);
         setState(() => _loading = false);
       },
     );
@@ -126,27 +137,83 @@ class _PlayerView extends StatefulWidget {
   State<_PlayerView> createState() => _PlayerViewState();
 }
 
-class _PlayerViewState extends State<_PlayerView> {
-  bool _selfReportShown = false;
+class _PlayerViewState extends State<_PlayerView>
+    with WidgetsBindingObserver {
+  /// Cached cubit reference used from lifecycle callbacks where reading
+  /// from [BuildContext] may not be safe (e.g. when the framework reports
+  /// a backgrounded app).
+  ExercisePlayerCubit? _cubitRef;
+
+  final Logger _log = Logger();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Capture the cubit so didChangeAppLifecycleState can call onAppPaused
+    // without touching the widget tree.
+    _cubitRef = context.read<ExercisePlayerCubit>();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.hidden) {
+      final cubit = _cubitRef;
+      if (cubit != null) {
+        cubit.onAppPaused();
+      }
+    }
+  }
 
   /// After a session is saved, navigate to the next incomplete exercise in
-  /// today's schedule, or back to home if all exercises are done.
+  /// today's schedule, or back to home if all exercises are done. When all
+  /// of today's schedule is complete, also surface a localized SnackBar.
+  ///
+  /// Routing decision is delegated to [PostSaveNavigation.decide] so the
+  /// pure routing logic can be exercised by property tests without spinning
+  /// up a widget tree (Property 15 / Requirement 10.5).
   void _navigateAfterSave(BuildContext context) {
     try {
       final homeCubit = getIt<HomeCubit>();
-      final nextExercise = homeCubit.getNextIncompleteExercise();
+      final route = PostSaveNavigation.decide(
+        nextExercise: homeCubit.getNextIncompleteExercise(),
+        allTodayDone: homeCubit.allTodayExercisesDone,
+      );
 
-      if (nextExercise != null && !homeCubit.allTodayExercisesDone) {
-        // Go to the detail page of the next exercise.
-        // Use goNamed to replace the current player in the stack with the
-        // next exercise detail, keeping the shell nav bar visible.
-        context.goNamed(
-          RouteNames.exerciseDetail,
-          pathParameters: {'id': nextExercise.id},
-        );
-      } else {
-        // All done — go back to home dashboard.
-        context.goNamed(RouteNames.home);
+      switch (route) {
+        case ExerciseDetailRoute(:final id):
+          // Replace the current player route with the next exercise's
+          // detail page; keeps the shell nav bar visible.
+          context.goNamed(
+            RouteNames.exerciseDetail,
+            pathParameters: {'id': id},
+          );
+        case HomeRoute(:final allTodayDone):
+          // All of today's schedule is complete (or no next exercise) —
+          // return to home and, when the schedule is fully done, surface
+          // a localized confirmation message.
+          context.goNamed(RouteNames.home);
+          if (allTodayDone) {
+            final l10n = AppLocalizations.of(context);
+            if (l10n != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.exerciseListAllDoneToday)),
+              );
+            }
+          }
       }
     } catch (_) {
       context.goNamed(RouteNames.home);
@@ -155,9 +222,12 @@ class _PlayerViewState extends State<_PlayerView> {
 
   /// Triggers a data refresh on HomeCubit and ProgressCubit after a session
   /// is saved, so both the dashboard and progress page reflect the new data.
-  void _refreshDashboardAndProgress(BuildContext context) {
-    // Both cubits are @lazySingleton — we can access them via getIt and
-    // call refresh methods directly, regardless of where we are in the tree.
+  ///
+  /// Returns a Future that completes only after [HomeCubit.refreshAfterSession]
+  /// has finished. Callers MUST await this before navigating, otherwise the
+  /// destination page may render before the dashboard has emitted a
+  /// non-loading state (R11.5, R11.6).
+  Future<void> _refreshDashboardAndProgress(BuildContext context) async {
     try {
       final authState = getIt<AuthCubit>().state;
       final userId = switch (authState) {
@@ -165,10 +235,14 @@ class _PlayerViewState extends State<_PlayerView> {
         _ => null,
       };
       if (userId != null) {
-        // Refresh home dashboard stats (streak, completedToday, etc.)
-        getIt<HomeCubit>().refreshAfterSession();
+        // Refresh home dashboard stats (streak, completedToday, etc.) and
+        // wait for the cubit to settle on a non-loading state before
+        // returning so the listener can safely navigate.
+        await getIt<HomeCubit>().refreshAfterSession();
 
-        // Reload progress data (adherence, badges, etc.)
+        // Reload progress data (adherence, badges, etc.) — fire and forget
+        // is fine here; the progress page is not the immediate post-save
+        // destination.
         getIt<ProgressCubit>().loadProgress(userId);
       }
     } catch (_) {
@@ -179,19 +253,15 @@ class _PlayerViewState extends State<_PlayerView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ExercisePlayerCubit, PlayerState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         switch (state) {
-          case PlayerSelfReport(:final exercise):
-            if (!_selfReportShown) {
-              _selfReportShown = true;
-              SelfReportBottomSheet.show(context, exercise: exercise).then((_) {
-                _selfReportShown = false;
-              });
-            }
           case PlayerSaved():
-            // Refresh data first, then navigate to the next incomplete exercise
-            // or back to home if all are done.
-            _refreshDashboardAndProgress(context);
+            // Refresh data first, then navigate to the next incomplete
+            // exercise or back to home if all are done. Awaiting the
+            // refresh guarantees HomeCubit has emitted a non-loading
+            // state before the destination page renders (R11.5, R11.6).
+            await _refreshDashboardAndProgress(context);
+            if (!context.mounted) return;
             _navigateAfterSave(context);
           case PlayerError(:final message):
             ScaffoldMessenger.of(context).showSnackBar(
@@ -206,7 +276,13 @@ class _PlayerViewState extends State<_PlayerView> {
           canPop: false,
           onPopInvokedWithResult: (didPop, _) async {
             if (didPop) return;
-            await context.read<ExercisePlayerCubit>().cancelSession();
+            try {
+              await context.read<ExercisePlayerCubit>().cancelSession();
+            } catch (e, st) {
+              // Cancellation is best-effort; log and proceed so the user is
+              // never trapped on the player screen.
+              _log.w('cancelSession failed during back press', error: e, stackTrace: st);
+            }
             if (context.mounted) context.pop();
           },
           child: Scaffold(
@@ -248,7 +324,6 @@ class _PlayerViewState extends State<_PlayerView> {
     final name = switch (state) {
       PlayerPlaying(:final exercise) => exercise.name,
       PlayerPaused(:final exercise) => exercise.name,
-      PlayerSelfReport(:final exercise) => exercise.name,
       PlayerIdle(:final exercise) => exercise.name,
       _ => null,
     };

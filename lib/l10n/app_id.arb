@@ -76,7 +76,7 @@
   "exerciseSelfReportNoSupport": "Tanpa dukungan",
   "exerciseSelfReportSubmit": "Kirim",
 
-  "progressTitle": "Kemajuan",
+  "progressTitle": "Progres",
   "progressWeeklyAdherence": "Kepatuhan Mingguan",
   "progressMonthlyAdherence": "Kepatuhan Bulanan",
   "progressBalanceScore": "Skor Keseimbangan",
@@ -157,7 +157,7 @@
 
   "navHome": "Beranda",
   "navExercise": "Latihan",
-  "navProgress": "Kemajuan",
+  "navProgress": "Progres",
   "navProfile": "Profil",
 
   "selectLanguage": "Pilih Bahasa",
@@ -179,7 +179,7 @@
   "welcomeSlide1Subtitle": "Bangun kepercayaan diri dan kurangi risiko jatuh dengan latihan keseimbangan terpandu yang dirancang untuk Anda.",
   "welcomeSlide2Title": "Latihan Setiap Hari",
   "welcomeSlide2Subtitle": "Ikuti program FaME dan Otago berbasis bukti yang disesuaikan dengan tingkat kebugaran dan tujuan Anda.",
-  "welcomeSlide3Title": "Pantau Kemajuan",
+  "welcomeSlide3Title": "Pantau Progres",
   "welcomeSlide3Subtitle": "Pantau perkembangan Anda dari waktu ke waktu dan rayakan pencapaian dalam perjalanan rehabilitasi Anda.",
 
   "homeNoExercisesToday": "Tidak ada latihan hari ini",
@@ -228,7 +228,7 @@
   "exerciseCategoryCoolDown": "Pendinginan",
   "exerciseSelfReportBodyPosition": "Posisi tubuh",
 
-  "progressMyProgress": "Kemajuan Saya",
+  "progressMyProgress": "Progres Saya",
   "progressAdherence": "Kepatuhan",
   "progressThisWeek": "Minggu Ini",
   "progressThisMonth": "Bulan Ini",
@@ -263,6 +263,7 @@
   "editProfileNameEmpty": "Nama tidak boleh kosong",
   "editProfileSave": "Simpan",
   "editProfileFailedToUpdate": "Gagal memperbarui profil. Silakan coba lagi.",
+  "editProfilePhoneUpdated": "Nomor telepon diperbarui",
 
   "settingsVoiceCues": "Isyarat Suara",
   "settingsVoiceCuesSubtitle": "Putar petunjuk audio selama latihan",
@@ -279,6 +280,7 @@
   "commonRetry": "Coba Lagi",
   "commonOk": "OK",
   "commonCancel": "Batal",
+  "commonConfirm": "Konfirmasi",
   "loadingDashboard": "Memuat dasbor…",
 
   "onboardingStep4Question": "Apakah Anda menggunakan alat bantu jalan?",
@@ -340,5 +342,47 @@
   "onboardingStep7OutcomeRequired": "Silakan jelaskan apa yang ingin Anda capai",
   "onboardingStep7BehaviouralLabel": "Tujuan Perilaku",
   "onboardingStep7BehaviouralHint": "Latihan apa yang akan Anda lakukan dan kapan? (mis., Latihan setiap pagi)",
-  "onboardingStep7BehaviouralRequired": "Silakan jelaskan rencana latihan Anda"
+  "onboardingStep7BehaviouralRequired": "Silakan jelaskan rencana latihan Anda",
+
+  "authPhoneLabel": "Nomor telepon",
+  "authPhoneHint": "08...",
+  "authPhoneInvalid": "Masukkan nomor telepon minimal 10 digit (mis. 081234567890)",
+  "authPhoneAlreadyTaken": "Nomor telepon ini sudah terdaftar",
+  "authInvalidCredentials": "No HP atau kata sandi salah",
+
+  "authBiometricSemanticLabel": "Masuk dengan biometrik",
+  "authBiometricUnavailable": "Biometrik tidak tersedia di perangkat ini",
+  "authBiometricNotEnabled": "Aktifkan login biometrik di menu Pengaturan setelah login",
+  "authBiometricReason": "Verifikasi untuk masuk ke RehabPath",
+  "authBiometricSessionExpired": "Sesi biometrik telah kedaluwarsa, silakan login ulang",
+  "authLegacyAccountNeedsPhone": "Tambahkan nomor telepon ke akun Anda untuk tetap dapat masuk",
+  "authBiometricFailed": "Verifikasi biometrik gagal",
+  "authLegacyAccountAddPhoneCta": "Tambahkan nomor telepon",
+
+  "exerciseListAllExercises": "Semua Latihan",
+  "exerciseListTodayExercises": "Latihan Hari Ini",
+  "exerciseListNoneToday": "Tidak ada latihan hari ini",
+  "exerciseListAllDoneToday": "Semua latihan hari ini selesai",
+
+  "dashboardDateSelectorPrev": "Minggu sebelumnya",
+  "dashboardDateSelectorNext": "Minggu berikutnya",
+  "dashboardViewingDate": "Melihat: {date}",
+  "@dashboardViewingDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Sen, 4 Nov"
+      }
+    }
+  },
+  "dashboardBackToToday": "Kembali ke Hari Ini",
+  "dashboardStartOnlyToday": "Hanya tersedia di hari berjalan",
+  "dashboardNotYetStarted": "Belum berlangsung",
+
+  "settingsBiometricToggle": "Login biometrik",
+  "settingsBiometricEnableTitle": "Aktifkan login biometrik",
+  "settingsBiometricVerifyPassword": "Masukkan ulang kata sandi untuk konfirmasi",
+  "settingsBiometricEnableFailed": "Gagal mengaktifkan login biometrik",
+
+  "commonLoading": "Memuat…"
 }

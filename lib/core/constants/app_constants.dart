@@ -42,6 +42,7 @@ class AppConstants {
   static const String hiveBoxOnboarding = 'onboardingBox';
   static const String hiveBoxSettings = 'settingsBox';
   static const String hiveBoxNotification = 'notificationBox';
+  static const String hiveBoxSchedule = 'scheduleBox';
 
   // Asset paths
   static const String assetDummyUsers = 'assets/data/dummy_users.json';

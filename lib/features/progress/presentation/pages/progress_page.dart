@@ -18,6 +18,7 @@ import '../../../auth/presentation/cubit/auth_state.dart';
 import '../cubit/progress_cubit.dart';
 import '../cubit/progress_state.dart';
 import '../widgets/badge_card.dart';
+import '../widgets/quick_stats_row.dart';
 
 /// The Progress tab page.
 ///
@@ -77,7 +78,9 @@ class _ProgressView extends StatelessWidget {
             final l10n = AppLocalizations.of(context)!;
             return Text(
               l10n.progressMyProgress,
-              style: AppTextStyles.h2AppBar.copyWith(color: AppColors.textPrimary),
+              style: AppTextStyles.h2AppBar.copyWith(
+                color: AppColors.textPrimary,
+              ),
             );
           },
         ),
@@ -89,54 +92,62 @@ class _ProgressView extends StatelessWidget {
         builder: (context, state) {
           return switch (state) {
             ProgressLoading() => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: CircularProgressIndicator(),
+            ),
             ProgressError(:final message) => Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(AppDimensions.screenPaddingH),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.error_outline,
-                          color: AppColors.error, size: 48),
-                      const SizedBox(height: 16),
-                      Text(
-                        message,
-                        style: AppTextStyles.body
-                            .copyWith(color: AppColors.textSecondary),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ProgressLoaded(:final data) => SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.screenPaddingH,
-                  vertical: AppDimensions.sectionGap / 2,
-                ),
+              child: Padding(
+                padding: const EdgeInsets.all(AppDimensions.screenPaddingH),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    _AdherenceSection(
-                      weeklyRate: data.weeklyAdherenceRate,
-                      monthlyRate: data.monthlyAdherenceRate,
+                    const Icon(
+                      Icons.error_outline,
+                      color: AppColors.error,
+                      size: 48,
                     ),
-                    const SizedBox(height: AppDimensions.sectionGap),
-                    _BalanceScoreSection(scores: data.balanceScores),
-                    const SizedBox(height: AppDimensions.sectionGap),
-                    _FallsDiarySection(
-                      fallEvents: data.fallEventsThisMonth,
+                    const SizedBox(height: 16),
+                    Text(
+                      message,
+                      style: AppTextStyles.body.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: AppDimensions.sectionGap),
-                    _AchievementsSection(badges: data.badges),
-                    const SizedBox(height: AppDimensions.sectionGap),
-                    _BodyAreasSection(
-                        muscleGroups: data.workedMuscleGroups),
-                    const SizedBox(height: AppDimensions.sectionGap),
                   ],
                 ),
               ),
+            ),
+            ProgressLoaded(:final data) => SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimensions.screenPaddingH,
+                vertical: AppDimensions.sectionGap / 2,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  QuickStatsRow(
+                    totalMinutes: data.totalMinutes,
+                    totalSessions: data.totalSessions,
+                    streakDays: data.streakDays,
+                  ),
+                  // const SizedBox(height: AppDimensions.sectionGap),
+                  // _AdherenceSection(
+                  //   weeklyRate: data.weeklyAdherenceRate,
+                  //   monthlyRate: data.monthlyAdherenceRate,
+                  // ),
+                  // const SizedBox(height: AppDimensions.sectionGap),
+                  // _BalanceScoreSection(scores: data.balanceScores),
+                  const SizedBox(height: AppDimensions.sectionGap),
+                  _FallsDiarySection(fallEvents: data.fallEventsThisMonth),
+                  // const SizedBox(height: AppDimensions.sectionGap),
+                  // _AchievementsSection(badges: data.badges),
+                  // const SizedBox(height: AppDimensions.sectionGap),
+                  // _BodyAreasSection(
+                  //     muscleGroups: data.workedMuscleGroups),
+                  // const SizedBox(height: AppDimensions.sectionGap),
+                ],
+              ),
+            ),
           };
         },
       ),
@@ -170,7 +181,10 @@ class _AdherenceSection extends StatelessWidget {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(l10n.progressThisWeek, style: AppTextStyles.bodySemiBold),
+                    Text(
+                      l10n.progressThisWeek,
+                      style: AppTextStyles.bodySemiBold,
+                    ),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 120,
@@ -181,7 +195,10 @@ class _AdherenceSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text(l10n.progressThisMonth, style: AppTextStyles.bodySemiBold),
+                    Text(
+                      l10n.progressThisMonth,
+                      style: AppTextStyles.bodySemiBold,
+                    ),
                     const SizedBox(height: 8),
                     SizedBox(
                       height: 120,
@@ -236,16 +253,19 @@ class _AdherenceBarChart extends StatelessWidget {
         ],
         titlesData: FlTitlesData(
           topTitles: const AxisTitles(
-              sideTitles: SideTitles(showTitles: false)),
+            sideTitles: SideTitles(showTitles: false),
+          ),
           rightTitles: const AxisTitles(
-              sideTitles: SideTitles(showTitles: false)),
+            sideTitles: SideTitles(showTitles: false),
+          ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
               getTitlesWidget: (value, meta) => Text(
                 '$pct%',
-                style: AppTextStyles.bodySemiBold
-                    .copyWith(color: AppColors.textPrimary),
+                style: AppTextStyles.bodySemiBold.copyWith(
+                  color: AppColors.textPrimary,
+                ),
               ),
             ),
           ),
@@ -257,7 +277,9 @@ class _AdherenceBarChart extends StatelessWidget {
               getTitlesWidget: (value, meta) => Text(
                 '${value.toInt()}%',
                 style: const TextStyle(
-                    fontSize: 10, color: AppColors.textSecondary),
+                  fontSize: 10,
+                  color: AppColors.textSecondary,
+                ),
               ),
             ),
           ),
@@ -299,10 +321,7 @@ class _BalanceScoreSection extends StatelessWidget {
                   title: l10n.progressNoBalanceData,
                   subtitle: l10n.progressCompleteAssessments,
                 )
-              : SizedBox(
-                  height: 200,
-                  child: _BalanceLineChart(scores: scores),
-                ),
+              : SizedBox(height: 200, child: _BalanceLineChart(scores: scores)),
         ),
       ],
     );
@@ -317,8 +336,7 @@ class _BalanceLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Sort by date ascending
-    final sorted = [...scores]
-      ..sort((a, b) => a.date.compareTo(b.date));
+    final sorted = [...scores]..sort((a, b) => a.date.compareTo(b.date));
 
     final spots = sorted.asMap().entries.map((e) {
       return FlSpot(e.key.toDouble(), e.value.score.toDouble());
@@ -345,16 +363,22 @@ class _BalanceLineChart extends StatelessWidget {
           show: true,
           border: Border(
             bottom: BorderSide(
-                color: AppColors.border.withValues(alpha: 0.8), width: 1),
+              color: AppColors.border.withValues(alpha: 0.8),
+              width: 1,
+            ),
             left: BorderSide(
-                color: AppColors.border.withValues(alpha: 0.8), width: 1),
+              color: AppColors.border.withValues(alpha: 0.8),
+              width: 1,
+            ),
           ),
         ),
         titlesData: FlTitlesData(
-          topTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -370,7 +394,9 @@ class _BalanceLineChart extends StatelessWidget {
                   child: Text(
                     dateLabels[idx],
                     style: const TextStyle(
-                        fontSize: 10, color: AppColors.textSecondary),
+                      fontSize: 10,
+                      color: AppColors.textSecondary,
+                    ),
                   ),
                 );
               },
@@ -384,7 +410,9 @@ class _BalanceLineChart extends StatelessWidget {
               getTitlesWidget: (value, meta) => Text(
                 value.toInt().toString(),
                 style: const TextStyle(
-                    fontSize: 10, color: AppColors.textSecondary),
+                  fontSize: 10,
+                  color: AppColors.textSecondary,
+                ),
               ),
             ),
           ),
@@ -397,8 +425,7 @@ class _BalanceLineChart extends StatelessWidget {
             barWidth: 2.5,
             dotData: FlDotData(
               show: true,
-              getDotPainter: (spot, pct, bar, idx) =>
-                  FlDotCirclePainter(
+              getDotPainter: (spot, pct, bar, idx) => FlDotCirclePainter(
                 radius: 4,
                 color: AppColors.primary,
                 strokeWidth: 2,
@@ -449,11 +476,18 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
     return _fallDates.contains(normalized);
   }
 
-  void _onDaySelected(BuildContext context, DateTime selectedDay,
-      DateTime focusedDay) {
+  void _onDaySelected(
+    BuildContext context,
+    DateTime selectedDay,
+    DateTime focusedDay,
+  ) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
-    final tapped = DateTime(selectedDay.year, selectedDay.month, selectedDay.day);
+    final tapped = DateTime(
+      selectedDay.year,
+      selectedDay.month,
+      selectedDay.day,
+    );
 
     // Future dates have no effect
     if (tapped.isAfter(today)) return;
@@ -473,8 +507,7 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
     if (_isFallDay(selectedDay)) {
       // Find the event ID and remove it
       final event = widget.fallEvents.firstWhere(
-        (e) =>
-            DateTime(e.date.year, e.date.month, e.date.day) == tapped,
+        (e) => DateTime(e.date.year, e.date.month, e.date.day) == tapped,
       );
       cubit.removeFall(userId, event.id);
     } else {
@@ -507,14 +540,15 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
                 color: AppColors.primary.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
-              todayTextStyle:
-                  const TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold),
+              todayTextStyle: const TextStyle(
+                color: AppColors.primary,
+                fontWeight: FontWeight.bold,
+              ),
               selectedDecoration: const BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
               ),
-              selectedTextStyle:
-                  const TextStyle(color: AppColors.surfaceWhite),
+              selectedTextStyle: const TextStyle(color: AppColors.surfaceWhite),
               markerDecoration: const BoxDecoration(
                 color: AppColors.error,
                 shape: BoxShape.circle,
@@ -523,8 +557,9 @@ class _FallsDiarySectionState extends State<_FallsDiarySection> {
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
-              titleTextStyle: AppTextStyles.bodySemiBold
-                  .copyWith(color: AppColors.textPrimary),
+              titleTextStyle: AppTextStyles.bodySemiBold.copyWith(
+                color: AppColors.textPrimary,
+              ),
             ),
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
@@ -658,10 +693,13 @@ class _BodyAreasSection extends StatelessWidget {
                       ),
                       backgroundColor: AppColors.blueLightBorder,
                       side: const BorderSide(
-                          color: AppColors.primary, width: 1),
+                        color: AppColors.primary,
+                        width: 1,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                            AppDimensions.radiusPill),
+                          AppDimensions.radiusPill,
+                        ),
                       ),
                     );
                   }).toList(),

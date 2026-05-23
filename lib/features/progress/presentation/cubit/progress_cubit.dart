@@ -1,10 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/usecases/use_case.dart';
+import '../../../../shared/data/datasources/hive_data_source.dart';
 import '../../../../shared/domain/entities/badge_entity.dart';
 import '../../../../shared/domain/entities/balance_score_point.dart';
+import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../../../shared/domain/entities/exercise_session_entity.dart';
 import '../../../../shared/domain/entities/fall_event_entity.dart';
+import '../../../exercise/domain/usecases/get_all_exercises_use_case.dart';
+import '../../../home/domain/usecases/get_streak_use_case.dart';
 import '../../domain/usecases/check_and_award_badges_use_case.dart';
 import '../../domain/usecases/get_badges_use_case.dart';
 import '../../domain/usecases/get_balance_scores_use_case.dart';
@@ -25,6 +30,9 @@ class ProgressCubit extends Cubit<ProgressState> {
   final GetFallEventsForMonthUseCase _fallEventsUseCase;
   final GetBadgesUseCase _badgesUseCase;
   final CheckAndAwardBadgesUseCase _checkBadgesUseCase;
+  final GetStreakUseCase _getStreakUseCase;
+  final GetAllExercisesUseCase _getAllExercisesUseCase;
+  final HiveDataSource _hiveDataSource;
 
   ProgressCubit(
     this._weeklyAdherenceUseCase,
@@ -35,6 +43,9 @@ class ProgressCubit extends Cubit<ProgressState> {
     this._fallEventsUseCase,
     this._badgesUseCase,
     this._checkBadgesUseCase,
+    this._getStreakUseCase,
+    this._getAllExercisesUseCase,
+    this._hiveDataSource,
   ) : super(const ProgressState.loading());
 
   Future<void> loadProgress(String userId) async {
@@ -49,6 +60,8 @@ class ProgressCubit extends Cubit<ProgressState> {
         _balanceScoresUseCase(userId),
         _fallEventsUseCase(now),
         _badgesUseCase(userId),
+        _getStreakUseCase(GetStreakParams(userId: userId)),
+        _getAllExercisesUseCase(const NoParams()),
       ]);
 
       final weeklyRate =
@@ -61,6 +74,25 @@ class ProgressCubit extends Cubit<ProgressState> {
           .fold((_) => <FallEventEntity>[], (v) => v as List<FallEventEntity>);
       final badges = results[4]
           .fold((_) => <BadgeEntity>[], (v) => v as List<BadgeEntity>);
+      final streak = results[5].fold((_) => 0, (v) => v as int);
+      final allExercises = results[6]
+          .fold((_) => <ExerciseEntity>[], (v) => v as List<ExerciseEntity>);
+
+      // Compute totalSessions / totalMinutes from Hive sessions for this user.
+      // Mirrors HomeCubit: fold sessions by per-exercise duration, falling back
+      // to 10 minutes when the exercise is not found in the catalog.
+      final userSessions = _hiveDataSource
+          .getAllSessions()
+          .where((s) => s.userId == userId)
+          .toList();
+      final totalSessions = userSessions.length;
+      final exerciseDurationMap = <String, int>{
+        for (final e in allExercises) e.id: (e.durationSeconds / 60).ceil(),
+      };
+      final totalMinutes = userSessions.fold<int>(0, (sum, s) {
+        final mins = exerciseDurationMap[s.exerciseId] ?? 10;
+        return sum + mins;
+      });
 
       // Compute worked muscle groups for this week
       final workedGroups = _computeWorkedMuscleGroups([]);
@@ -71,8 +103,11 @@ class ProgressCubit extends Cubit<ProgressState> {
         balanceScores: balanceScores,
         fallEventsThisMonth: fallEvents,
         badges: badges,
-        recentSessions: [],
+        recentSessions: const [],
         workedMuscleGroups: workedGroups,
+        totalMinutes: totalMinutes,
+        totalSessions: totalSessions,
+        streakDays: streak,
       )));
     } catch (e) {
       emit(ProgressState.error(e.toString()));

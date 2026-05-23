@@ -10,6 +10,7 @@ UserJsonModel _$UserJsonModelFromJson(Map<String, dynamic> json) =>
     UserJsonModel(
       id: json['id'] as String,
       name: json['name'] as String,
+      phoneNumber: json['phoneNumber'] as String? ?? '',
       email: json['email'] as String,
       age: (json['age'] as num).toInt(),
       gender: json['gender'] as String,
@@ -32,6 +33,7 @@ Map<String, dynamic> _$UserJsonModelToJson(UserJsonModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'phoneNumber': instance.phoneNumber,
       'email': instance.email,
       'age': instance.age,
       'gender': instance.gender,

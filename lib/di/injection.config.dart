@@ -10,17 +10,27 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as _i163;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:hive/hive.dart' as _i979;
 import 'package:hive_flutter/hive_flutter.dart' as _i986;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:local_auth/local_auth.dart' as _i152;
 import 'package:logger/logger.dart' as _i974;
 import 'package:rehab_path_app/app/app_module.dart' as _i828;
 import 'package:rehab_path_app/app/cubit/app_cubit.dart' as _i768;
 import 'package:rehab_path_app/features/auth/data/repositories/auth_repository_impl.dart'
     as _i434;
+import 'package:rehab_path_app/features/auth/data/repositories/biometric_credential_repository_impl.dart'
+    as _i1050;
 import 'package:rehab_path_app/features/auth/domain/repositories/auth_repository.dart'
     as _i9;
+import 'package:rehab_path_app/features/auth/domain/repositories/biometric_credential_repository.dart'
+    as _i233;
+import 'package:rehab_path_app/features/auth/domain/usecases/check_biometric_availability_use_case.dart'
+    as _i998;
+import 'package:rehab_path_app/features/auth/domain/usecases/clear_biometric_credentials_use_case.dart'
+    as _i481;
 import 'package:rehab_path_app/features/auth/domain/usecases/create_guest_session_use_case.dart'
     as _i310;
 import 'package:rehab_path_app/features/auth/domain/usecases/get_session_use_case.dart'
@@ -31,6 +41,12 @@ import 'package:rehab_path_app/features/auth/domain/usecases/logout_use_case.dar
     as _i134;
 import 'package:rehab_path_app/features/auth/domain/usecases/register_use_case.dart'
     as _i569;
+import 'package:rehab_path_app/features/auth/domain/usecases/restore_biometric_credentials_use_case.dart'
+    as _i387;
+import 'package:rehab_path_app/features/auth/domain/usecases/store_biometric_credentials_use_case.dart'
+    as _i58;
+import 'package:rehab_path_app/features/auth/domain/usecases/upsert_phone_number_use_case.dart'
+    as _i80;
 import 'package:rehab_path_app/features/auth/presentation/cubit/auth_cubit.dart'
     as _i761;
 import 'package:rehab_path_app/features/exercise/data/repositories/exercise_repository_impl.dart'
@@ -45,12 +61,16 @@ import 'package:rehab_path_app/features/exercise/domain/usecases/get_exercise_by
     as _i716;
 import 'package:rehab_path_app/features/exercise/domain/usecases/get_exercises_by_level_use_case.dart'
     as _i774;
+import 'package:rehab_path_app/features/exercise/domain/usecases/get_schedule_for_date_use_case.dart'
+    as _i721;
 import 'package:rehab_path_app/features/exercise/domain/usecases/get_today_schedule_use_case.dart'
     as _i510;
 import 'package:rehab_path_app/features/exercise/domain/usecases/save_exercise_session_use_case.dart'
     as _i277;
 import 'package:rehab_path_app/features/exercise/presentation/cubit/exercise_cubit.dart'
     as _i938;
+import 'package:rehab_path_app/features/exercise/presentation/cubit/exercise_list_cubit.dart'
+    as _i591;
 import 'package:rehab_path_app/features/exercise/presentation/cubit/exercise_player_cubit.dart'
     as _i565;
 import 'package:rehab_path_app/features/home/data/repositories/message_repository_impl.dart'
@@ -181,6 +201,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.Logger>(() => appModule.logger);
     gh.lazySingleton<_i163.FlutterLocalNotificationsPlugin>(
         () => appModule.flutterLocalNotificationsPlugin);
+    gh.lazySingleton<_i152.LocalAuthentication>(() => appModule.localAuth);
+    gh.lazySingleton<_i558.FlutterSecureStorage>(() => appModule.secureStorage);
+    gh.lazySingleton<_i768.AppCubit>(() => _i768.AppCubit());
     gh.lazySingleton<_i912.DummyDataSource>(() => _i912.DummyDataSource());
     gh.lazySingleton<_i986.Box<dynamic>>(
       () => appModule.userBox,
@@ -204,6 +227,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => appModule.notificationBox,
       instanceName: 'notificationBox',
     );
+    gh.lazySingleton<_i233.BiometricCredentialRepository>(
+        () => _i1050.BiometricCredentialRepositoryImpl(
+              gh<_i152.LocalAuthentication>(),
+              gh<_i558.FlutterSecureStorage>(),
+              gh<_i153.SharedPreferencesDataSource>(),
+              gh<_i974.Logger>(),
+            ));
     gh.lazySingleton<_i986.Box<dynamic>>(
       () => appModule.badgeBox,
       instanceName: 'badgeBox',
@@ -222,6 +252,18 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i912.DummyDataSource>(),
           gh<_i974.Logger>(),
         ));
+    gh.factory<_i998.CheckBiometricAvailabilityUseCase>(() =>
+        _i998.CheckBiometricAvailabilityUseCase(
+            gh<_i233.BiometricCredentialRepository>()));
+    gh.factory<_i481.ClearBiometricCredentialsUseCase>(() =>
+        _i481.ClearBiometricCredentialsUseCase(
+            gh<_i233.BiometricCredentialRepository>()));
+    gh.factory<_i387.RestoreBiometricCredentialsUseCase>(() =>
+        _i387.RestoreBiometricCredentialsUseCase(
+            gh<_i233.BiometricCredentialRepository>()));
+    gh.factory<_i58.StoreBiometricCredentialsUseCase>(() =>
+        _i58.StoreBiometricCredentialsUseCase(
+            gh<_i233.BiometricCredentialRepository>()));
     gh.lazySingleton<_i217.HiveDataSource>(() => _i217.HiveDataSource(
           gh<_i979.Box<dynamic>>(instanceName: 'userBox'),
           gh<_i979.Box<dynamic>>(instanceName: 'sessionBox'),
@@ -270,6 +312,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i460.GetNotificationsEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i682.GetThemeModeUseCase>(
         () => _i682.GetThemeModeUseCase(gh<_i400.SettingsRepository>()));
+    gh.factory<_i656.GetVoiceCuesEnabledUseCase>(
+        () => _i656.GetVoiceCuesEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i801.SaveFontSizeLevelUseCase>(
         () => _i801.SaveFontSizeLevelUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i598.SaveLocaleUseCase>(
@@ -278,8 +322,6 @@ extension GetItInjectableX on _i174.GetIt {
         _i587.SaveNotificationsEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i40.SaveThemeModeUseCase>(
         () => _i40.SaveThemeModeUseCase(gh<_i400.SettingsRepository>()));
-    gh.factory<_i656.GetVoiceCuesEnabledUseCase>(
-        () => _i656.GetVoiceCuesEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i299.SaveVoiceCuesEnabledUseCase>(() =>
         _i299.SaveVoiceCuesEnabledUseCase(gh<_i400.SettingsRepository>()));
     gh.factory<_i310.CreateGuestSessionUseCase>(
@@ -292,6 +334,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i134.LogoutUseCase(gh<_i9.AuthRepository>()));
     gh.factory<_i569.RegisterUseCase>(
         () => _i569.RegisterUseCase(gh<_i9.AuthRepository>()));
+    gh.factory<_i80.UpsertPhoneNumberUseCase>(
+        () => _i80.UpsertPhoneNumberUseCase(gh<_i9.AuthRepository>()));
     gh.factory<_i186.CancelDailyReminderUseCase>(() =>
         _i186.CancelDailyReminderUseCase(gh<_i183.NotificationRepository>()));
     gh.factory<_i130.CheckStreakMilestoneUseCase>(() =>
@@ -309,6 +353,17 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i912.DummyDataSource>(),
               gh<_i974.Logger>(),
             ));
+    gh.lazySingleton<_i761.AuthCubit>(() => _i761.AuthCubit(
+          gh<_i457.LoginUseCase>(),
+          gh<_i569.RegisterUseCase>(),
+          gh<_i134.LogoutUseCase>(),
+          gh<_i1056.GetSessionUseCase>(),
+          gh<_i310.CreateGuestSessionUseCase>(),
+          gh<_i153.SharedPreferencesDataSource>(),
+          gh<_i998.CheckBiometricAvailabilityUseCase>(),
+          gh<_i387.RestoreBiometricCredentialsUseCase>(),
+          gh<_i481.ClearBiometricCredentialsUseCase>(),
+        ));
     gh.factory<_i467.GetRandomMessageUseCase>(
         () => _i467.GetRandomMessageUseCase(gh<_i84.MessageRepository>()));
     gh.lazySingleton<_i217.DataSeeder>(() => _i217.DataSeeder(
@@ -335,25 +390,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1018.LogFallEventUseCase(gh<_i190.ProgressRepository>()));
     gh.factory<_i639.RemoveFallEventUseCase>(
         () => _i639.RemoveFallEventUseCase(gh<_i190.ProgressRepository>()));
-    gh.factory<_i866.SettingsCubit>(() => _i866.SettingsCubit(
-          gh<_i682.GetThemeModeUseCase>(),
-          gh<_i40.SaveThemeModeUseCase>(),
-          gh<_i46.GetLocaleUseCase>(),
-          gh<_i598.SaveLocaleUseCase>(),
-          gh<_i133.GetFontSizeLevelUseCase>(),
-          gh<_i801.SaveFontSizeLevelUseCase>(),
-          gh<_i460.GetNotificationsEnabledUseCase>(),
-          gh<_i587.SaveNotificationsEnabledUseCase>(),
-          gh<_i242.RequestNotificationPermissionUseCase>(),
-          gh<_i656.GetVoiceCuesEnabledUseCase>(),
-          gh<_i299.SaveVoiceCuesEnabledUseCase>(),
-          gh<_i768.AppCubit>(),
-        ));
     gh.factory<_i489.OnboardingCubit>(() => _i489.OnboardingCubit(
           gh<_i561.SaveOnboardingProfileUseCase>(),
           gh<_i465.GetPartialOnboardingUseCase>(),
           gh<_i1017.ComputeProgramLevelUseCase>(),
         ));
+    gh.factory<_i721.GetScheduleForDateUseCase>(
+        () => _i721.GetScheduleForDateUseCase(gh<_i8.ExerciseRepository>()));
     gh.factory<_i547.GetTodayScheduleUseCase>(
         () => _i547.GetTodayScheduleUseCase(gh<_i8.ExerciseRepository>()));
     gh.lazySingleton<_i535.DeletePartialSessionUseCase>(
@@ -368,6 +411,31 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i510.GetTodayScheduleUseCase(gh<_i8.ExerciseRepository>()));
     gh.lazySingleton<_i277.SaveExerciseSessionUseCase>(
         () => _i277.SaveExerciseSessionUseCase(gh<_i8.ExerciseRepository>()));
+    gh.factory<_i591.ExerciseListCubit>(() => _i591.ExerciseListCubit(
+          gh<_i510.GetTodayScheduleUseCase>(),
+          gh<_i30.GetAllExercisesUseCase>(),
+        ));
+    gh.factory<_i866.SettingsCubit>(() => _i866.SettingsCubit(
+          gh<_i682.GetThemeModeUseCase>(),
+          gh<_i40.SaveThemeModeUseCase>(),
+          gh<_i46.GetLocaleUseCase>(),
+          gh<_i598.SaveLocaleUseCase>(),
+          gh<_i133.GetFontSizeLevelUseCase>(),
+          gh<_i801.SaveFontSizeLevelUseCase>(),
+          gh<_i460.GetNotificationsEnabledUseCase>(),
+          gh<_i587.SaveNotificationsEnabledUseCase>(),
+          gh<_i242.RequestNotificationPermissionUseCase>(),
+          gh<_i656.GetVoiceCuesEnabledUseCase>(),
+          gh<_i299.SaveVoiceCuesEnabledUseCase>(),
+          gh<_i768.AppCubit>(),
+          gh<_i998.CheckBiometricAvailabilityUseCase>(),
+          gh<_i58.StoreBiometricCredentialsUseCase>(),
+          gh<_i481.ClearBiometricCredentialsUseCase>(),
+          gh<_i457.LoginUseCase>(),
+          gh<_i233.BiometricCredentialRepository>(),
+          gh<_i761.AuthCubit>(),
+          gh<_i153.SharedPreferencesDataSource>(),
+        ));
     gh.factory<_i852.GetProfileUseCase>(
         () => _i852.GetProfileUseCase(gh<_i448.ProfileRepository>()));
     gh.factory<_i695.UpdateProfileUseCase>(
@@ -380,24 +448,17 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i852.GetProfileUseCase>(),
           gh<_i695.UpdateProfileUseCase>(),
         ));
-    gh.lazySingleton<_i761.AuthCubit>(() => _i761.AuthCubit(
-          gh<_i457.LoginUseCase>(),
-          gh<_i569.RegisterUseCase>(),
-          gh<_i134.LogoutUseCase>(),
-          gh<_i1056.GetSessionUseCase>(),
-          gh<_i310.CreateGuestSessionUseCase>(),
-          gh<_i153.SharedPreferencesDataSource>(),
-        ));
-    gh.factory<_i565.ExercisePlayerCubit>(() => _i565.ExercisePlayerCubit(
-          gh<_i277.SaveExerciseSessionUseCase>(),
-          gh<_i535.DeletePartialSessionUseCase>(),
-        ));
     gh.lazySingleton<_i343.HomeCubit>(() => _i343.HomeCubit(
           gh<_i467.GetRandomMessageUseCase>(),
           gh<_i484.GetStreakUseCase>(),
           gh<_i547.GetTodayScheduleUseCase>(),
           gh<_i774.GetExercisesByLevelUseCase>(),
+          gh<_i721.GetScheduleForDateUseCase>(),
           gh<_i217.HiveDataSource>(),
+        ));
+    gh.factory<_i565.ExercisePlayerCubit>(() => _i565.ExercisePlayerCubit(
+          gh<_i277.SaveExerciseSessionUseCase>(),
+          gh<_i535.DeletePartialSessionUseCase>(),
         ));
     gh.factory<_i145.CheckAndAwardBadgesUseCase>(
         () => _i145.CheckAndAwardBadgesUseCase(
@@ -415,6 +476,9 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i617.GetFallEventsForMonthUseCase>(),
           gh<_i969.GetBadgesUseCase>(),
           gh<_i145.CheckAndAwardBadgesUseCase>(),
+          gh<_i484.GetStreakUseCase>(),
+          gh<_i30.GetAllExercisesUseCase>(),
+          gh<_i217.HiveDataSource>(),
         ));
     return this;
   }

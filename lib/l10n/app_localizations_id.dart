@@ -229,7 +229,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseSelfReportSubmit => 'Kirim';
 
   @override
-  String get progressTitle => 'Kemajuan';
+  String get progressTitle => 'Progres';
 
   @override
   String get progressWeeklyAdherence => 'Kepatuhan Mingguan';
@@ -468,7 +468,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get navExercise => 'Latihan';
 
   @override
-  String get navProgress => 'Kemajuan';
+  String get navProgress => 'Progres';
 
   @override
   String get navProfile => 'Profil';
@@ -523,7 +523,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Ikuti program FaME dan Otago berbasis bukti yang disesuaikan dengan tingkat kebugaran dan tujuan Anda.';
 
   @override
-  String get welcomeSlide3Title => 'Pantau Kemajuan';
+  String get welcomeSlide3Title => 'Pantau Progres';
 
   @override
   String get welcomeSlide3Subtitle =>
@@ -672,7 +672,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseSelfReportBodyPosition => 'Posisi tubuh';
 
   @override
-  String get progressMyProgress => 'Kemajuan Saya';
+  String get progressMyProgress => 'Progres Saya';
 
   @override
   String get progressAdherence => 'Kepatuhan';
@@ -778,6 +778,9 @@ class AppLocalizationsId extends AppLocalizations {
       'Gagal memperbarui profil. Silakan coba lagi.';
 
   @override
+  String get editProfilePhoneUpdated => 'Nomor telepon diperbarui';
+
+  @override
   String get settingsVoiceCues => 'Isyarat Suara';
 
   @override
@@ -821,6 +824,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get commonCancel => 'Batal';
+
+  @override
+  String get commonConfirm => 'Konfirmasi';
 
   @override
   String get loadingDashboard => 'Memuat dasbor…';
@@ -995,4 +1001,97 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get onboardingStep7BehaviouralRequired =>
       'Silakan jelaskan rencana latihan Anda';
+
+  @override
+  String get authPhoneLabel => 'Nomor telepon';
+
+  @override
+  String get authPhoneHint => '08...';
+
+  @override
+  String get authPhoneInvalid =>
+      'Masukkan nomor telepon minimal 10 digit (mis. 081234567890)';
+
+  @override
+  String get authPhoneAlreadyTaken => 'Nomor telepon ini sudah terdaftar';
+
+  @override
+  String get authInvalidCredentials => 'No HP atau kata sandi salah';
+
+  @override
+  String get authBiometricSemanticLabel => 'Masuk dengan biometrik';
+
+  @override
+  String get authBiometricUnavailable =>
+      'Biometrik tidak tersedia di perangkat ini';
+
+  @override
+  String get authBiometricNotEnabled =>
+      'Aktifkan login biometrik di menu Pengaturan setelah login';
+
+  @override
+  String get authBiometricReason => 'Verifikasi untuk masuk ke RehabPath';
+
+  @override
+  String get authBiometricSessionExpired =>
+      'Sesi biometrik telah kedaluwarsa, silakan login ulang';
+
+  @override
+  String get authLegacyAccountNeedsPhone =>
+      'Tambahkan nomor telepon ke akun Anda untuk tetap dapat masuk';
+
+  @override
+  String get authBiometricFailed => 'Verifikasi biometrik gagal';
+
+  @override
+  String get authLegacyAccountAddPhoneCta => 'Tambahkan nomor telepon';
+
+  @override
+  String get exerciseListAllExercises => 'Semua Latihan';
+
+  @override
+  String get exerciseListTodayExercises => 'Latihan Hari Ini';
+
+  @override
+  String get exerciseListNoneToday => 'Tidak ada latihan hari ini';
+
+  @override
+  String get exerciseListAllDoneToday => 'Semua latihan hari ini selesai';
+
+  @override
+  String get dashboardDateSelectorPrev => 'Minggu sebelumnya';
+
+  @override
+  String get dashboardDateSelectorNext => 'Minggu berikutnya';
+
+  @override
+  String dashboardViewingDate(String date) {
+    return 'Melihat: $date';
+  }
+
+  @override
+  String get dashboardBackToToday => 'Kembali ke Hari Ini';
+
+  @override
+  String get dashboardStartOnlyToday => 'Hanya tersedia di hari berjalan';
+
+  @override
+  String get dashboardNotYetStarted => 'Belum berlangsung';
+
+  @override
+  String get settingsBiometricToggle => 'Login biometrik';
+
+  @override
+  String get settingsBiometricEnableTitle => 'Aktifkan login biometrik';
+
+  @override
+  String get settingsBiometricVerifyPassword =>
+      'Masukkan ulang kata sandi untuk konfirmasi';
+
+  @override
+  String get settingsBiometricEnableFailed =>
+      'Gagal mengaktifkan login biometrik';
+
+  @override
+  String get commonLoading => 'Memuat…';
 }

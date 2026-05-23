@@ -28,6 +28,11 @@ mixin _$HomeData {
       throw _privateConstructorUsedError;
   int get totalMinutes => throw _privateConstructorUsedError;
   int get totalSessions => throw _privateConstructorUsedError;
+  DateTime get selectedDate => throw _privateConstructorUsedError;
+  DateTime get todayLocal => throw _privateConstructorUsedError;
+  List<ExerciseEntity> get selectedDateSchedule =>
+      throw _privateConstructorUsedError;
+  int get selectedDateCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeDataCopyWith<HomeData> get copyWith =>
@@ -48,7 +53,11 @@ abstract class $HomeDataCopyWith<$Res> {
       MotivationalMessageEntity motivationalMessage,
       List<DateTime> completedDaysThisWeek,
       int totalMinutes,
-      int totalSessions});
+      int totalSessions,
+      DateTime selectedDate,
+      DateTime todayLocal,
+      List<ExerciseEntity> selectedDateSchedule,
+      int selectedDateCompleted});
 
   $UserEntityCopyWith<$Res> get user;
   $MotivationalMessageEntityCopyWith<$Res> get motivationalMessage;
@@ -76,6 +85,10 @@ class _$HomeDataCopyWithImpl<$Res, $Val extends HomeData>
     Object? completedDaysThisWeek = null,
     Object? totalMinutes = null,
     Object? totalSessions = null,
+    Object? selectedDate = null,
+    Object? todayLocal = null,
+    Object? selectedDateSchedule = null,
+    Object? selectedDateCompleted = null,
   }) {
     return _then(_value.copyWith(
       user: null == user
@@ -113,6 +126,22 @@ class _$HomeDataCopyWithImpl<$Res, $Val extends HomeData>
       totalSessions: null == totalSessions
           ? _value.totalSessions
           : totalSessions // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      todayLocal: null == todayLocal
+          ? _value.todayLocal
+          : todayLocal // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      selectedDateSchedule: null == selectedDateSchedule
+          ? _value.selectedDateSchedule
+          : selectedDateSchedule // ignore: cast_nullable_to_non_nullable
+              as List<ExerciseEntity>,
+      selectedDateCompleted: null == selectedDateCompleted
+          ? _value.selectedDateCompleted
+          : selectedDateCompleted // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -152,7 +181,11 @@ abstract class _$$HomeDataImplCopyWith<$Res>
       MotivationalMessageEntity motivationalMessage,
       List<DateTime> completedDaysThisWeek,
       int totalMinutes,
-      int totalSessions});
+      int totalSessions,
+      DateTime selectedDate,
+      DateTime todayLocal,
+      List<ExerciseEntity> selectedDateSchedule,
+      int selectedDateCompleted});
 
   @override
   $UserEntityCopyWith<$Res> get user;
@@ -180,6 +213,10 @@ class __$$HomeDataImplCopyWithImpl<$Res>
     Object? completedDaysThisWeek = null,
     Object? totalMinutes = null,
     Object? totalSessions = null,
+    Object? selectedDate = null,
+    Object? todayLocal = null,
+    Object? selectedDateSchedule = null,
+    Object? selectedDateCompleted = null,
   }) {
     return _then(_$HomeDataImpl(
       user: null == user
@@ -218,13 +255,29 @@ class __$$HomeDataImplCopyWithImpl<$Res>
           ? _value.totalSessions
           : totalSessions // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      todayLocal: null == todayLocal
+          ? _value.todayLocal
+          : todayLocal // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      selectedDateSchedule: null == selectedDateSchedule
+          ? _value._selectedDateSchedule
+          : selectedDateSchedule // ignore: cast_nullable_to_non_nullable
+              as List<ExerciseEntity>,
+      selectedDateCompleted: null == selectedDateCompleted
+          ? _value.selectedDateCompleted
+          : selectedDateCompleted // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HomeDataImpl implements _HomeData {
+class _$HomeDataImpl extends _HomeData {
   const _$HomeDataImpl(
       {required this.user,
       required this.streakDays,
@@ -234,10 +287,16 @@ class _$HomeDataImpl implements _HomeData {
       required this.motivationalMessage,
       required final List<DateTime> completedDaysThisWeek,
       required this.totalMinutes,
-      required this.totalSessions})
+      required this.totalSessions,
+      required this.selectedDate,
+      required this.todayLocal,
+      required final List<ExerciseEntity> selectedDateSchedule,
+      required this.selectedDateCompleted})
       : _todaySchedule = todaySchedule,
         _recommendedExercises = recommendedExercises,
-        _completedDaysThisWeek = completedDaysThisWeek;
+        _completedDaysThisWeek = completedDaysThisWeek,
+        _selectedDateSchedule = selectedDateSchedule,
+        super._();
 
   @override
   final UserEntity user;
@@ -277,10 +336,25 @@ class _$HomeDataImpl implements _HomeData {
   final int totalMinutes;
   @override
   final int totalSessions;
+  @override
+  final DateTime selectedDate;
+  @override
+  final DateTime todayLocal;
+  final List<ExerciseEntity> _selectedDateSchedule;
+  @override
+  List<ExerciseEntity> get selectedDateSchedule {
+    if (_selectedDateSchedule is EqualUnmodifiableListView)
+      return _selectedDateSchedule;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedDateSchedule);
+  }
+
+  @override
+  final int selectedDateCompleted;
 
   @override
   String toString() {
-    return 'HomeData(user: $user, streakDays: $streakDays, todaySchedule: $todaySchedule, completedToday: $completedToday, recommendedExercises: $recommendedExercises, motivationalMessage: $motivationalMessage, completedDaysThisWeek: $completedDaysThisWeek, totalMinutes: $totalMinutes, totalSessions: $totalSessions)';
+    return 'HomeData(user: $user, streakDays: $streakDays, todaySchedule: $todaySchedule, completedToday: $completedToday, recommendedExercises: $recommendedExercises, motivationalMessage: $motivationalMessage, completedDaysThisWeek: $completedDaysThisWeek, totalMinutes: $totalMinutes, totalSessions: $totalSessions, selectedDate: $selectedDate, todayLocal: $todayLocal, selectedDateSchedule: $selectedDateSchedule, selectedDateCompleted: $selectedDateCompleted)';
   }
 
   @override
@@ -304,7 +378,15 @@ class _$HomeDataImpl implements _HomeData {
             (identical(other.totalMinutes, totalMinutes) ||
                 other.totalMinutes == totalMinutes) &&
             (identical(other.totalSessions, totalSessions) ||
-                other.totalSessions == totalSessions));
+                other.totalSessions == totalSessions) &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate) &&
+            (identical(other.todayLocal, todayLocal) ||
+                other.todayLocal == todayLocal) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedDateSchedule, _selectedDateSchedule) &&
+            (identical(other.selectedDateCompleted, selectedDateCompleted) ||
+                other.selectedDateCompleted == selectedDateCompleted));
   }
 
   @override
@@ -318,7 +400,11 @@ class _$HomeDataImpl implements _HomeData {
       motivationalMessage,
       const DeepCollectionEquality().hash(_completedDaysThisWeek),
       totalMinutes,
-      totalSessions);
+      totalSessions,
+      selectedDate,
+      todayLocal,
+      const DeepCollectionEquality().hash(_selectedDateSchedule),
+      selectedDateCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -327,7 +413,7 @@ class _$HomeDataImpl implements _HomeData {
       __$$HomeDataImplCopyWithImpl<_$HomeDataImpl>(this, _$identity);
 }
 
-abstract class _HomeData implements HomeData {
+abstract class _HomeData extends HomeData {
   const factory _HomeData(
       {required final UserEntity user,
       required final int streakDays,
@@ -337,7 +423,12 @@ abstract class _HomeData implements HomeData {
       required final MotivationalMessageEntity motivationalMessage,
       required final List<DateTime> completedDaysThisWeek,
       required final int totalMinutes,
-      required final int totalSessions}) = _$HomeDataImpl;
+      required final int totalSessions,
+      required final DateTime selectedDate,
+      required final DateTime todayLocal,
+      required final List<ExerciseEntity> selectedDateSchedule,
+      required final int selectedDateCompleted}) = _$HomeDataImpl;
+  const _HomeData._() : super._();
 
   @override
   UserEntity get user;
@@ -357,6 +448,14 @@ abstract class _HomeData implements HomeData {
   int get totalMinutes;
   @override
   int get totalSessions;
+  @override
+  DateTime get selectedDate;
+  @override
+  DateTime get todayLocal;
+  @override
+  List<ExerciseEntity> get selectedDateSchedule;
+  @override
+  int get selectedDateCompleted;
   @override
   @JsonKey(ignore: true)
   _$$HomeDataImplCopyWith<_$HomeDataImpl> get copyWith =>

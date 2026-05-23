@@ -12,6 +12,7 @@ import '../../../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/domain/enums/app_enums.dart';
 import '../cubit/settings_cubit.dart';
+import '../widgets/biometric_login_toggle.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -32,7 +33,14 @@ class _SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppTopAppBar(title: l10n.settingsTitle),
+      appBar: AppTopAppBar(
+        title: l10n.settingsTitle,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: AppColors.textPrimary,
+          onPressed: () => context.pop(),
+        ),
+      ),
       body: BlocConsumer<SettingsCubit, SettingsState>(
         listenWhen: (_, current) =>
             current is SettingsNotificationPermissionDenied,
@@ -85,28 +93,28 @@ class _SettingsContent extends StatelessWidget {
     return ListView(
       children: [
         // ── Appearance ───────────────────────────────────────────────────
-        _SectionHeader(title: l10n.settingsAppearance),
-        _SubSectionLabel(label: l10n.settingsTheme),
-        _RadioGroup<AppThemeMode>(
-          groupValue: data.themeMode,
-          onChanged: (v) => cubit.changeTheme(v),
-          items: [
-            (value: AppThemeMode.light, label: l10n.settingsThemeLight),
-            (value: AppThemeMode.dark, label: l10n.settingsThemeDark),
-            (value: AppThemeMode.system, label: l10n.settingsThemeSystem),
-          ],
-        ),
-        const Divider(height: 1),
-        _SubSectionLabel(label: l10n.settingsFontSize),
-        _RadioGroup<FontSizeLevel>(
-          groupValue: data.fontSizeLevel,
-          onChanged: (v) => cubit.changeFontSize(v),
-          items: [
-            (value: FontSizeLevel.defaultSize, label: l10n.settingsFontSizeDefault),
-            (value: FontSizeLevel.large, label: l10n.settingsFontSizeLarge),
-            (value: FontSizeLevel.extraLarge, label: l10n.settingsFontSizeExtraLarge),
-          ],
-        ),
+        // _SectionHeader(title: l10n.settingsAppearance),
+        // _SubSectionLabel(label: l10n.settingsTheme),
+        // _RadioGroup<AppThemeMode>(
+        //   groupValue: data.themeMode,
+        //   onChanged: (v) => cubit.changeTheme(v),
+        //   items: [
+        //     (value: AppThemeMode.light, label: l10n.settingsThemeLight),
+        //     (value: AppThemeMode.dark, label: l10n.settingsThemeDark),
+        //     (value: AppThemeMode.system, label: l10n.settingsThemeSystem),
+        //   ],
+        // ),
+        // const Divider(height: 1),
+        // _SubSectionLabel(label: l10n.settingsFontSize),
+        // _RadioGroup<FontSizeLevel>(
+        //   groupValue: data.fontSizeLevel,
+        //   onChanged: (v) => cubit.changeFontSize(v),
+        //   items: [
+        //     (value: FontSizeLevel.defaultSize, label: l10n.settingsFontSizeDefault),
+        //     (value: FontSizeLevel.large, label: l10n.settingsFontSizeLarge),
+        //     (value: FontSizeLevel.extraLarge, label: l10n.settingsFontSizeExtraLarge),
+        //   ],
+        // ),
 
         // ── Language ─────────────────────────────────────────────────────
         _SectionHeader(title: l10n.settingsLanguage),
@@ -153,39 +161,40 @@ class _SettingsContent extends StatelessWidget {
           activeThumbColor: AppColors.primary,
           onChanged: (enabled) => cubit.toggleVoiceCues(enabled),
         ),
+        const BiometricLoginToggle(),
 
-        // ── Account ──────────────────────────────────────────────────────
-        _SectionHeader(title: l10n.settingsAccount),
-        ListTile(
-          title: Text(
-            l10n.settingsPrivacyPolicy,
-            style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
-          ),
-          trailing: const Icon(
-            Icons.chevron_right,
-            color: AppColors.textSecondary,
-          ),
-          onTap: () => context.pushNamed('privacy-policy'),
-        ),
-        ListTile(
-          title: Text(
-            l10n.settingsTermsOfService,
-            style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
-          ),
-          trailing: const Icon(
-            Icons.chevron_right,
-            color: AppColors.textSecondary,
-          ),
-          onTap: () => context.pushNamed('terms-of-service'),
-        ),
-        ListTile(
-          title: Text(
-            l10n.settingsLogout,
-            style: AppTextStyles.body.copyWith(color: AppColors.error),
-          ),
-          leading: const Icon(Icons.logout, color: AppColors.error),
-          onTap: () => context.read<AuthCubit>().logout(),
-        ),
+        // // ── Account ──────────────────────────────────────────────────────
+        // _SectionHeader(title: l10n.settingsAccount),
+        // ListTile(
+        //   title: Text(
+        //     l10n.settingsPrivacyPolicy,
+        //     style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+        //   ),
+        //   trailing: const Icon(
+        //     Icons.chevron_right,
+        //     color: AppColors.textSecondary,
+        //   ),
+        //   onTap: () => context.pushNamed('privacy-policy'),
+        // ),
+        // ListTile(
+        //   title: Text(
+        //     l10n.settingsTermsOfService,
+        //     style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+        //   ),
+        //   trailing: const Icon(
+        //     Icons.chevron_right,
+        //     color: AppColors.textSecondary,
+        //   ),
+        //   onTap: () => context.pushNamed('terms-of-service'),
+        // ),
+        // ListTile(
+        //   title: Text(
+        //     l10n.settingsLogout,
+        //     style: AppTextStyles.body.copyWith(color: AppColors.error),
+        //   ),
+        //   leading: const Icon(Icons.logout, color: AppColors.error),
+        //   onTap: () => context.read<AuthCubit>().logout(),
+        // ),
         const SizedBox(height: 32),
       ],
     );

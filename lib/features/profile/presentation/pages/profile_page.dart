@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../core/widgets/app_emergency_button.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/app_loading_widget.dart';
@@ -85,11 +86,12 @@ class _ProfileContent extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(
         horizontal: AppDimensions.screenPaddingH,
-        vertical: AppDimensions.sectionGap,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 8),
+
           // ── Avatar ──────────────────────────────────────────────────────
           CircleAvatar(
             radius: 40,
@@ -101,7 +103,7 @@ class _ProfileContent extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
 
           // ── Full name ────────────────────────────────────────────────────
           Text(
@@ -116,11 +118,9 @@ class _ProfileContent extends StatelessWidget {
           // ── Age ──────────────────────────────────────────────────────────
           Text(
             l10n.profileYearsOld(user.age),
-            style: AppTextStyles.body.copyWith(
-              color: AppColors.textSecondary,
-            ),
+            style: AppTextStyles.body.copyWith(color: AppColors.textSecondary),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
 
           // ── Program level chip ───────────────────────────────────────────
           Container(
@@ -131,12 +131,10 @@ class _ProfileContent extends StatelessWidget {
             ),
             child: Text(
               _programLevelLabel(user.programLevel, l10n),
-              style: AppTextStyles.label.copyWith(
-                color: Colors.white,
-              ),
+              style: AppTextStyles.label.copyWith(color: Colors.white),
             ),
           ),
-          const SizedBox(height: AppDimensions.sectionGap),
+          const SizedBox(height: 20),
 
           // ── Health conditions ────────────────────────────────────────────
           if (user.healthConditions.isNotEmpty) ...[
@@ -169,21 +167,21 @@ class _ProfileContent extends StatelessWidget {
           ],
 
           // ── Actions ──────────────────────────────────────────────────────
-          AppEmergencyButton(
+          _SolidButton(
             label: l10n.profileEmergencyContacts,
-            onPressed: () => context.pushNamed('sos'),
+            color: AppColors.primary,
+            onTap: () => context.pushNamed('sos'),
           ),
-          const SizedBox(height: AppDimensions.sectionGap),
-
-          // ── Logout ───────────────────────────────────────────────────────
-          const Divider(),
-          const SizedBox(height: 8),
-          ListTile(
-            leading: const Icon(Icons.logout, color: AppColors.error),
-            title: Text(
-              l10n.profileLogOut,
-              style: AppTextStyles.body.copyWith(color: AppColors.error),
-            ),
+          const SizedBox(height: 12),
+          _SolidButton(
+            label: l10n.settingsTitle,
+            color: AppColors.primary,
+            onTap: () => context.pushNamed(RouteNames.settings),
+          ),
+          const SizedBox(height: 12),
+          _SolidButton(
+            label: l10n.profileLogOut,
+            color: AppColors.error,
             onTap: () async {
               final confirmed = await showDialog<bool>(
                 context: context,
@@ -225,12 +223,10 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.center,
       child: Text(
         title,
-        style: AppTextStyles.h3Section.copyWith(
-          color: AppColors.textPrimary,
-        ),
+        style: AppTextStyles.h3Section.copyWith(color: AppColors.textPrimary),
       ),
     );
   }
@@ -289,11 +285,66 @@ class _GoalTile extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             value,
-            style: AppTextStyles.body.copyWith(
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// A full-width solid action button matching the style of [AppEmergencyButton].
+class _SolidButton extends StatelessWidget {
+  const _SolidButton({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: AppDimensions.recTouchTarget,
+        minHeight: AppDimensions.recTouchTarget,
+      ),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(AppDimensions.radiusButton),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.2),
+              blurRadius: 6,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: SizedBox(
+          height: AppDimensions.primaryButtonH,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(AppDimensions.radiusButton),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Center(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.button.copyWith(
+                      color: AppColors.textOnPrimary,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

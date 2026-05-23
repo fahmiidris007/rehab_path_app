@@ -21,6 +21,8 @@ mixin _$SettingsData {
   FontSizeLevel get fontSizeLevel => throw _privateConstructorUsedError;
   bool get notificationsEnabled => throw _privateConstructorUsedError;
   bool get voiceCuesEnabled => throw _privateConstructorUsedError;
+  bool get biometricEnabled => throw _privateConstructorUsedError;
+  bool get biometricCapable => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsDataCopyWith<SettingsData> get copyWith =>
@@ -38,7 +40,9 @@ abstract class $SettingsDataCopyWith<$Res> {
       AppLocale locale,
       FontSizeLevel fontSizeLevel,
       bool notificationsEnabled,
-      bool voiceCuesEnabled});
+      bool voiceCuesEnabled,
+      bool biometricEnabled,
+      bool biometricCapable});
 }
 
 /// @nodoc
@@ -59,6 +63,8 @@ class _$SettingsDataCopyWithImpl<$Res, $Val extends SettingsData>
     Object? fontSizeLevel = null,
     Object? notificationsEnabled = null,
     Object? voiceCuesEnabled = null,
+    Object? biometricEnabled = null,
+    Object? biometricCapable = null,
   }) {
     return _then(_value.copyWith(
       themeMode: null == themeMode
@@ -81,6 +87,14 @@ class _$SettingsDataCopyWithImpl<$Res, $Val extends SettingsData>
           ? _value.voiceCuesEnabled
           : voiceCuesEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      biometricEnabled: null == biometricEnabled
+          ? _value.biometricEnabled
+          : biometricEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      biometricCapable: null == biometricCapable
+          ? _value.biometricCapable
+          : biometricCapable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -98,7 +112,9 @@ abstract class _$$SettingsDataImplCopyWith<$Res>
       AppLocale locale,
       FontSizeLevel fontSizeLevel,
       bool notificationsEnabled,
-      bool voiceCuesEnabled});
+      bool voiceCuesEnabled,
+      bool biometricEnabled,
+      bool biometricCapable});
 }
 
 /// @nodoc
@@ -117,6 +133,8 @@ class __$$SettingsDataImplCopyWithImpl<$Res>
     Object? fontSizeLevel = null,
     Object? notificationsEnabled = null,
     Object? voiceCuesEnabled = null,
+    Object? biometricEnabled = null,
+    Object? biometricCapable = null,
   }) {
     return _then(_$SettingsDataImpl(
       themeMode: null == themeMode
@@ -139,6 +157,14 @@ class __$$SettingsDataImplCopyWithImpl<$Res>
           ? _value.voiceCuesEnabled
           : voiceCuesEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      biometricEnabled: null == biometricEnabled
+          ? _value.biometricEnabled
+          : biometricEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      biometricCapable: null == biometricCapable
+          ? _value.biometricCapable
+          : biometricCapable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -151,7 +177,9 @@ class _$SettingsDataImpl implements _SettingsData {
       required this.locale,
       required this.fontSizeLevel,
       required this.notificationsEnabled,
-      this.voiceCuesEnabled = false});
+      this.voiceCuesEnabled = false,
+      this.biometricEnabled = false,
+      this.biometricCapable = false});
 
   @override
   final AppThemeMode themeMode;
@@ -164,10 +192,16 @@ class _$SettingsDataImpl implements _SettingsData {
   @override
   @JsonKey()
   final bool voiceCuesEnabled;
+  @override
+  @JsonKey()
+  final bool biometricEnabled;
+  @override
+  @JsonKey()
+  final bool biometricCapable;
 
   @override
   String toString() {
-    return 'SettingsData(themeMode: $themeMode, locale: $locale, fontSizeLevel: $fontSizeLevel, notificationsEnabled: $notificationsEnabled, voiceCuesEnabled: $voiceCuesEnabled)';
+    return 'SettingsData(themeMode: $themeMode, locale: $locale, fontSizeLevel: $fontSizeLevel, notificationsEnabled: $notificationsEnabled, voiceCuesEnabled: $voiceCuesEnabled, biometricEnabled: $biometricEnabled, biometricCapable: $biometricCapable)';
   }
 
   @override
@@ -183,12 +217,23 @@ class _$SettingsDataImpl implements _SettingsData {
             (identical(other.notificationsEnabled, notificationsEnabled) ||
                 other.notificationsEnabled == notificationsEnabled) &&
             (identical(other.voiceCuesEnabled, voiceCuesEnabled) ||
-                other.voiceCuesEnabled == voiceCuesEnabled));
+                other.voiceCuesEnabled == voiceCuesEnabled) &&
+            (identical(other.biometricEnabled, biometricEnabled) ||
+                other.biometricEnabled == biometricEnabled) &&
+            (identical(other.biometricCapable, biometricCapable) ||
+                other.biometricCapable == biometricCapable));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themeMode, locale, fontSizeLevel,
-      notificationsEnabled, voiceCuesEnabled);
+  int get hashCode => Object.hash(
+      runtimeType,
+      themeMode,
+      locale,
+      fontSizeLevel,
+      notificationsEnabled,
+      voiceCuesEnabled,
+      biometricEnabled,
+      biometricCapable);
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +248,9 @@ abstract class _SettingsData implements SettingsData {
       required final AppLocale locale,
       required final FontSizeLevel fontSizeLevel,
       required final bool notificationsEnabled,
-      final bool voiceCuesEnabled}) = _$SettingsDataImpl;
+      final bool voiceCuesEnabled,
+      final bool biometricEnabled,
+      final bool biometricCapable}) = _$SettingsDataImpl;
 
   @override
   AppThemeMode get themeMode;
@@ -215,6 +262,10 @@ abstract class _SettingsData implements SettingsData {
   bool get notificationsEnabled;
   @override
   bool get voiceCuesEnabled;
+  @override
+  bool get biometricEnabled;
+  @override
+  bool get biometricCapable;
   @override
   @JsonKey(ignore: true)
   _$$SettingsDataImplCopyWith<_$SettingsDataImpl> get copyWith =>

@@ -1052,6 +1052,9 @@
   "editProfileFailedToUpdate": "Failed to update profile. Please try again.",
   "@editProfileFailedToUpdate": { "description": "Error message when profile update fails" },
 
+  "editProfilePhoneUpdated": "Phone number updated",
+  "@editProfilePhoneUpdated": { "description": "Success message after the phone number is upserted on the edit profile page" },
+
   "settingsVoiceCues": "Voice Cues",
   "@settingsVoiceCues": { "description": "Voice cues setting label" },
 
@@ -1090,6 +1093,9 @@
 
   "commonCancel": "Cancel",
   "@commonCancel": { "description": "Cancel button label" },
+
+  "commonConfirm": "Confirm",
+  "@commonConfirm": { "description": "Confirm button label" },
 
   "loadingDashboard": "Loading dashboard…",
   "@loadingDashboard": { "description": "Loading label for dashboard" },
@@ -1251,5 +1257,151 @@
   "@onboardingStep7BehaviouralHint": { "description": "Behavioural goal hint in step 7" },
 
   "onboardingStep7BehaviouralRequired": "Please describe your exercise plan",
-  "@onboardingStep7BehaviouralRequired": { "description": "Behavioural goal required validation" }
+  "@onboardingStep7BehaviouralRequired": { "description": "Behavioural goal required validation" },
+
+  "authPhoneLabel": "Phone number",
+  "@authPhoneLabel": {
+    "description": "Label for the phone number field on auth pages"
+  },
+
+  "authPhoneHint": "08...",
+  "@authPhoneHint": {
+    "description": "Hint text for the phone number field showing the local Indonesian mobile format"
+  },
+
+  "authPhoneInvalid": "Enter a valid phone number with at least 10 digits (e.g. 081234567890)",
+  "@authPhoneInvalid": {
+    "description": "Validation error when phone number is not in E.164 format"
+  },
+
+  "authPhoneAlreadyTaken": "This phone number is already registered",
+  "@authPhoneAlreadyTaken": {
+    "description": "Validation error when phone number is already registered to another account"
+  },
+
+  "authInvalidCredentials": "Phone number or password is incorrect",
+  "@authInvalidCredentials": {
+    "description": "Error shown when login fails due to wrong phone number or password"
+  },
+
+  "authBiometricSemanticLabel": "Sign in with biometrics",
+  "@authBiometricSemanticLabel": {
+    "description": "Accessibility semantic label for the biometric sign-in icon on the login page"
+  },
+
+  "authBiometricUnavailable": "Biometrics are not available on this device",
+  "@authBiometricUnavailable": {
+    "description": "Message shown when the device has no biometric sensor or no enrolled biometric"
+  },
+
+  "authBiometricNotEnabled": "Enable biometric login from Settings after you sign in",
+  "@authBiometricNotEnabled": {
+    "description": "Message shown when biometric login is available but the user has not enabled it"
+  },
+
+  "authBiometricReason": "Verify to sign in to RehabPath",
+  "@authBiometricReason": {
+    "description": "Localized reason shown by the OS biometric prompt during biometric login"
+  },
+
+  "authBiometricSessionExpired": "Your biometric session has expired, please sign in again",
+  "@authBiometricSessionExpired": {
+    "description": "Message shown when stored biometric credentials no longer match a Hive account and have been cleared"
+  },
+
+  "authLegacyAccountNeedsPhone": "Add a phone number to your account to keep using sign in",
+  "@authLegacyAccountNeedsPhone": {
+    "description": "Banner shown to legacy accounts (without phoneNumber) prompting them to add a phone number"
+  },
+
+  "authBiometricFailed": "Biometric verification failed",
+  "@authBiometricFailed": {
+    "description": "Generic error shown when the biometric prompt fails, is cancelled, or is locked out"
+  },
+
+  "authLegacyAccountAddPhoneCta": "Add phone number",
+  "@authLegacyAccountAddPhoneCta": {
+    "description": "Call-to-action label on the legacy-account banner to add a phone number"
+  },
+
+  "exerciseListAllExercises": "All Exercises",
+  "@exerciseListAllExercises": {
+    "description": "Toggle label and section header for the all-exercises mode of the exercise list"
+  },
+
+  "exerciseListTodayExercises": "Today's Exercises",
+  "@exerciseListTodayExercises": {
+    "description": "Toggle label and section header for the today-only mode of the exercise list"
+  },
+
+  "exerciseListNoneToday": "No exercises scheduled for today",
+  "@exerciseListNoneToday": {
+    "description": "Empty state message on the exercise list when today's schedule is empty"
+  },
+
+  "exerciseListAllDoneToday": "All today's exercises are complete",
+  "@exerciseListAllDoneToday": {
+    "description": "Message shown when every exercise scheduled for today has been completed"
+  },
+
+  "dashboardDateSelectorPrev": "Previous week",
+  "@dashboardDateSelectorPrev": {
+    "description": "Accessibility label for the previous-week button on the dashboard date selector"
+  },
+
+  "dashboardDateSelectorNext": "Next week",
+  "@dashboardDateSelectorNext": {
+    "description": "Accessibility label for the next-week button on the dashboard date selector"
+  },
+
+  "dashboardViewingDate": "Viewing: {date}",
+  "@dashboardViewingDate": {
+    "description": "Banner shown on the dashboard when the user is viewing a date other than today",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "Mon, 4 Nov"
+      }
+    }
+  },
+
+  "dashboardBackToToday": "Back to today",
+  "@dashboardBackToToday": {
+    "description": "Button label to reset the dashboard date selector back to the current day"
+  },
+
+  "dashboardStartOnlyToday": "Only available on the current day",
+  "@dashboardStartOnlyToday": {
+    "description": "Tooltip/disabled-button hint shown on the Start Exercise button when viewing a non-today date"
+  },
+
+  "dashboardNotYetStarted": "Not yet started",
+  "@dashboardNotYetStarted": {
+    "description": "Label shown for a future date that has not yet begun on the dashboard"
+  },
+
+  "settingsBiometricToggle": "Biometric login",
+  "@settingsBiometricToggle": {
+    "description": "Label for the biometric-login toggle in Settings"
+  },
+
+  "settingsBiometricEnableTitle": "Enable biometric login",
+  "@settingsBiometricEnableTitle": {
+    "description": "Title for the dialog that confirms enabling biometric login"
+  },
+
+  "settingsBiometricVerifyPassword": "Re-enter your password to confirm",
+  "@settingsBiometricVerifyPassword": {
+    "description": "Prompt asking the user to re-enter their password to enable biometric login"
+  },
+
+  "settingsBiometricEnableFailed": "Could not enable biometric login",
+  "@settingsBiometricEnableFailed": {
+    "description": "Error shown when enabling biometric login fails"
+  },
+
+  "commonLoading": "Loading…",
+  "@commonLoading": {
+    "description": "Generic loading label used for buttons and inline indicators"
+  }
 }

@@ -15,6 +15,11 @@ sealed class PlayerState with _$PlayerState {
     required ExerciseEntity exercise,
     required int remainingSeconds,
   }) = PlayerPaused;
+  /// Deprecated as of task 13.1: the player now auto-saves on timer-zero
+  /// or skip rather than transitioning through a self-report sheet. The
+  /// case is retained in the union for type-compatibility with existing
+  /// pattern matches; new code SHOULD NOT emit this state.
+  @Deprecated('Auto-save replaces self-report; see task 13.1')
   const factory PlayerState.selfReport(ExerciseEntity exercise) =
       PlayerSelfReport;
   const factory PlayerState.saving() = PlayerSaving;
