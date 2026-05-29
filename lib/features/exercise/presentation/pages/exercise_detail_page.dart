@@ -6,6 +6,7 @@ import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
@@ -17,6 +18,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/data/datasources/hive_data_source.dart';
 import '../../../../shared/domain/entities/exercise_entity.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
+import '../widgets/exercise_video.dart';
 
 /// Displays the full details of a single exercise.
 ///
@@ -82,7 +84,11 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
           builder: (context) {
             final l10n = AppLocalizations.of(context)!;
             return ZeroStateWidget(
-              icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
+              icon: const Icon(
+                Icons.error_outline,
+                color: AppColors.error,
+                size: 64,
+              ),
               title: l10n.exerciseCouldNotLoad,
               subtitle: _error,
               action: TextButton(
@@ -135,12 +141,12 @@ class _ExerciseDetailViewState extends State<_ExerciseDetailView> {
       final today = DateTime.now();
       final todayStart = DateTime(today.year, today.month, today.day);
 
-      return getIt<HiveDataSource>()
-          .getAllSessions()
-          .any((s) =>
-              s.userId == userId &&
-              s.exerciseId == exercise.id &&
-              s.completedAt.isAfter(todayStart));
+      return getIt<HiveDataSource>().getAllSessions().any(
+        (s) =>
+            s.userId == userId &&
+            s.exerciseId == exercise.id &&
+            s.completedAt.isAfter(todayStart),
+      );
     } catch (_) {
       return false;
     }
@@ -242,8 +248,11 @@ class _ExerciseDetailViewState extends State<_ExerciseDetailView> {
                           _CompletedBadge(),
                         ],
                         const SizedBox(height: 20),
-                        // Placeholder video area
-                        _VideoPlaceholder(),
+                        // Exercise demonstration video (sample clip while
+                        // offline-first; see AppConstants for details).
+                        const ExerciseVideoPreview(
+                          assetPath: AppConstants.assetExerciseDetailVideo,
+                        ),
                         const SizedBox(height: 24),
                         // Stats row: duration, sets, reps
                         _StatsRow(exercise: exercise),
@@ -353,14 +362,11 @@ class NextExerciseButton extends StatelessWidget {
       onPressed: isLoading
           ? null
           : () => context.goNamed(
-                RouteNames.exerciseDetail,
-                pathParameters: {'id': nextExercise.id},
-              ),
+              RouteNames.exerciseDetail,
+              pathParameters: {'id': nextExercise.id},
+            ),
       style: OutlinedButton.styleFrom(
-        minimumSize: const Size(
-          double.infinity,
-          AppDimensions.primaryButtonH,
-        ),
+        minimumSize: const Size(double.infinity, AppDimensions.primaryButtonH),
         foregroundColor: AppColors.primary,
         side: const BorderSide(color: AppColors.primary),
         shape: RoundedRectangleBorder(
@@ -376,7 +382,6 @@ class NextExerciseButton extends StatelessWidget {
     return button;
   }
 }
-
 
 class _CompletedBadge extends StatelessWidget {
   @override
@@ -408,29 +413,6 @@ class _CompletedBadge extends StatelessWidget {
   }
 }
 
-// ── Video placeholder ─────────────────────────────────────────────────────────
-
-class _VideoPlaceholder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.neutralGray,
-        borderRadius: BorderRadius.circular(AppDimensions.radiusCard),
-      ),
-      child: const Center(
-        child: Icon(
-          Icons.play_circle_outline,
-          size: 64,
-          color: AppColors.textDisabled,
-        ),
-      ),
-    );
-  }
-}
-
 // ── Stats row ─────────────────────────────────────────────────────────────────
 
 class _StatsRow extends StatelessWidget {
@@ -444,19 +426,25 @@ class _StatsRow extends StatelessWidget {
     final durationMin = (exercise.durationSeconds / 60).ceil();
     return Row(
       children: [
-        _StatChip(
-          icon: Icons.timer_outlined,
-          label: l10n.exerciseDurationMin(durationMin),
+        Expanded(
+          child: _StatChip(
+            icon: Icons.timer_outlined,
+            label: l10n.exerciseDurationMin(durationMin),
+          ),
         ),
         const SizedBox(width: 12),
-        _StatChip(
-          icon: Icons.repeat,
-          label: l10n.exerciseSets(exercise.sets),
+        Expanded(
+          child: _StatChip(
+            icon: Icons.repeat,
+            label: l10n.exerciseSets(exercise.sets),
+          ),
         ),
         const SizedBox(width: 12),
-        _StatChip(
-          icon: Icons.fitness_center,
-          label: l10n.exerciseReps(exercise.reps),
+        Expanded(
+          child: _StatChip(
+            icon: Icons.fitness_center,
+            label: l10n.exerciseReps(exercise.reps),
+          ),
         ),
       ],
     );
@@ -483,11 +471,15 @@ class _StatChip extends StatelessWidget {
         children: [
           Icon(icon, size: 16, color: AppColors.primary),
           const SizedBox(width: 6),
-          Text(
-            label,
-            style: AppTextStyles.body.copyWith(
-              fontSize: 14,
-              color: AppColors.textPrimary,
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.body.copyWith(
+                fontSize: 14,
+                color: AppColors.textPrimary,
+              ),
             ),
           ),
         ],
@@ -507,9 +499,7 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: AppTextStyles.bodySemiBold.copyWith(
-        color: AppColors.textPrimary,
-      ),
+      style: AppTextStyles.bodySemiBold.copyWith(color: AppColors.textPrimary),
     );
   }
 }

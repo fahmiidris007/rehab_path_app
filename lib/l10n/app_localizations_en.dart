@@ -637,6 +637,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exercisePlayerPaused => 'Paused';
 
   @override
+  String get exerciseVideoUnavailable => 'Video unavailable';
+
+  @override
+  String get exerciseVideoSemanticLabel =>
+      'Exercise demonstration video. Double tap to play or pause.';
+
+  @override
+  String get exerciseVideoMute => 'Mute video';
+
+  @override
+  String get exerciseVideoUnmute => 'Unmute video';
+
+  @override
   String get exerciseSomethingWentWrong => 'Something went wrong';
 
   @override

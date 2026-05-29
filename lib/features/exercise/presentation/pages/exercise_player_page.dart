@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_dimensions.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/widgets/app_primary_button.dart';
 import '../../../../core/widgets/zero_state_widget.dart';
 import '../../../../di/injection.dart';
@@ -18,6 +20,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../domain/usecases/get_exercise_by_id_use_case.dart';
 import '../cubit/exercise_player_cubit.dart';
 import '../cubit/player_state.dart';
+import '../widgets/exercise_video.dart';
 import 'post_save_navigation.dart';
 
 /// Plays an exercise session for the given [exerciseId].
@@ -59,6 +62,12 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
   bool _loading = true;
   String? _error;
 
+  /// Looping demo clip that backs the player. Owned here so its lifecycle is
+  /// tied to the loader; passed down (read-only) to [_PlayerView]. May stay
+  /// null if the asset fails to initialise, in which case the player simply
+  /// shows the countdown with no video.
+  VideoPlayerController? _videoController;
+
   @override
   void initState() {
     super.initState();
@@ -69,31 +78,77 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
     final useCase = getIt<GetExerciseByIdUseCase>();
     final result = await useCase(GetExerciseByIdParams(widget.exerciseId));
     if (!mounted) return;
-    result.fold(
-      (failure) => setState(() {
-        _error = failure.when(
-          server: (msg, _) => msg,
-          cache: (msg) => msg,
-          validation: (msg, _) => msg,
-          unexpected: (msg) => msg,
+
+    final exercise = result.fold((_) => null, (e) => e);
+    if (exercise == null) {
+      setState(() {
+        _error = result.fold(
+          (failure) => failure.when(
+            server: (msg, _) => msg,
+            cache: (msg) => msg,
+            validation: (msg, _) => msg,
+            unexpected: (msg) => msg,
+          ),
+          (_) => null,
         );
         _loading = false;
-      }),
-      (exercise) {
-        // Resolve the current userId from AuthCubit. Falls back to empty
-        // string when no authenticated user is present; the cubit handles
-        // that case gracefully.
-        final authState = getIt<AuthCubit>().state;
-        final userId = switch (authState) {
-          AuthAuthenticated(:final user) => user.id,
-          _ => '',
-        };
-        context
-            .read<ExercisePlayerCubit>()
-            .startExercise(exercise, userId: userId);
-        setState(() => _loading = false);
-      },
+      });
+      return;
+    }
+
+    // Prepare the looping demo clip. While the app is offline-first the same
+    // sample video is reused for every exercise, and the session runs for
+    // `exercisePlayerVideoLoopCount` loops of it. If the asset fails to load
+    // we fall back to the exercise's own configured duration and no video.
+    var sessionExercise = exercise;
+    final controller = VideoPlayerController.asset(
+      AppConstants.assetExercisePlayerVideo,
     );
+    try {
+      await controller.initialize();
+      await controller.setLooping(true);
+      // Audio on: the demo clip narrates/cues the exercise during the session.
+      await controller.setVolume(1.0);
+      final clipMs = controller.value.duration.inMilliseconds;
+      if (clipMs > 0) {
+        final loopedSeconds =
+            (clipMs * AppConstants.exercisePlayerVideoLoopCount / 1000).round();
+        sessionExercise = exercise.copyWith(
+          durationSeconds: loopedSeconds < 1 ? 1 : loopedSeconds,
+        );
+      }
+      await controller.play();
+      _videoController = controller;
+    } catch (_) {
+      await controller.dispose();
+      _videoController = null;
+    }
+
+    if (!mounted) {
+      _videoController?.dispose();
+      _videoController = null;
+      return;
+    }
+
+    // Resolve the current userId from AuthCubit. Falls back to empty string
+    // when no authenticated user is present; the cubit handles that case
+    // gracefully.
+    final authState = getIt<AuthCubit>().state;
+    final userId = switch (authState) {
+      AuthAuthenticated(:final user) => user.id,
+      _ => '',
+    };
+    context.read<ExercisePlayerCubit>().startExercise(
+      sessionExercise,
+      userId: userId,
+    );
+    setState(() => _loading = false);
+  }
+
+  @override
+  void dispose() {
+    _videoController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -115,7 +170,11 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
           builder: (context) {
             final l10n = AppLocalizations.of(context)!;
             return ZeroStateWidget(
-              icon: const Icon(Icons.error_outline, color: AppColors.error, size: 64),
+              icon: const Icon(
+                Icons.error_outline,
+                color: AppColors.error,
+                size: 64,
+              ),
               title: l10n.exerciseCouldNotLoad,
               subtitle: _error,
             );
@@ -124,21 +183,24 @@ class _ExercisePlayerLoaderState extends State<_ExercisePlayerLoader> {
       );
     }
 
-    return const _PlayerView();
+    return _PlayerView(videoController: _videoController);
   }
 }
 
 // ── Player view ───────────────────────────────────────────────────────────────
 
 class _PlayerView extends StatefulWidget {
-  const _PlayerView();
+  const _PlayerView({this.videoController});
+
+  /// Looping demo clip, already initialised and playing. Null when the asset
+  /// could not be loaded — the player then runs without a video surface.
+  final VideoPlayerController? videoController;
 
   @override
   State<_PlayerView> createState() => _PlayerViewState();
 }
 
-class _PlayerViewState extends State<_PlayerView>
-    with WidgetsBindingObserver {
+class _PlayerViewState extends State<_PlayerView> with WidgetsBindingObserver {
   /// Cached cubit reference used from lifecycle callbacks where reading
   /// from [BuildContext] may not be safe (e.g. when the framework reports
   /// a backgrounded app).
@@ -252,8 +314,13 @@ class _PlayerViewState extends State<_PlayerView>
 
   @override
   Widget build(BuildContext context) {
+    final videoController = widget.videoController;
     return BlocConsumer<ExercisePlayerCubit, PlayerState>(
       listener: (context, state) async {
+        // Keep the looping demo clip in lock-step with the session state:
+        // play while the timer runs, pause when paused/saving, and stop once
+        // the session is saved.
+        _syncVideo(state);
         switch (state) {
           case PlayerSaved():
             // Refresh data first, then navigate to the next incomplete
@@ -264,9 +331,9 @@ class _PlayerViewState extends State<_PlayerView>
             if (!context.mounted) return;
             _navigateAfterSave(context);
           case PlayerError(:final message):
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(message)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(message)));
           default:
             break;
         }
@@ -281,7 +348,11 @@ class _PlayerViewState extends State<_PlayerView>
             } catch (e, st) {
               // Cancellation is best-effort; log and proceed so the user is
               // never trapped on the player screen.
-              _log.w('cancelSession failed during back press', error: e, stackTrace: st);
+              _log.w(
+                'cancelSession failed during back press',
+                error: e,
+                stackTrace: st,
+              );
             }
             if (context.mounted) context.pop();
           },
@@ -294,30 +365,70 @@ class _PlayerViewState extends State<_PlayerView>
               title: _exerciseName(state),
             ),
             body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.screenPaddingH,
-                ),
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    // Countdown timer
-                    _CountdownDisplay(state: state),
-                    const SizedBox(height: 16),
-                    // Progress bar
-                    _ProgressSection(state: state),
-                    const Spacer(),
-                    // Controls
-                    _ControlsRow(state: state),
-                    const SizedBox(height: 32),
-                  ],
-                ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimensions.screenPaddingH,
+                    ),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Column(
+                          children: [
+                            // Looping demo clip (only when the asset loaded).
+                            if (videoController != null) ...[
+                              const SizedBox(height: 8),
+                              ExercisePlayerVideo(controller: videoController),
+                            ],
+                            // Countdown + progress take the remaining space and
+                            // stay centered when there's room; on small screens
+                            // or large font scales the whole view scrolls.
+                            Expanded(
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const SizedBox(height: 24),
+                                    _CountdownDisplay(state: state),
+                                    const SizedBox(height: 16),
+                                    _ProgressSection(state: state),
+                                    const SizedBox(height: 24),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            // Controls
+                            _ControlsRow(state: state),
+                            const SizedBox(height: 32),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
         );
       },
     );
+  }
+
+  /// Mirrors the looping demo clip onto the current [PlayerState]: it plays
+  /// while [PlayerPlaying], and pauses for every other state. Safe to call
+  /// when no video was loaded.
+  void _syncVideo(PlayerState state) {
+    final controller = widget.videoController;
+    if (controller == null || !controller.value.isInitialized) return;
+    final shouldPlay = state is PlayerPlaying;
+    if (shouldPlay && !controller.value.isPlaying) {
+      controller.play();
+    } else if (!shouldPlay && controller.value.isPlaying) {
+      controller.pause();
+    }
   }
 
   Widget? _exerciseName(PlayerState state) {
@@ -374,7 +485,9 @@ class _CountdownDisplay extends StatelessWidget {
               final l10n = AppLocalizations.of(context)!;
               return Text(
                 l10n.exercisePlayerPaused,
-                style: AppTextStyles.body.copyWith(color: AppColors.textDisabled),
+                style: AppTextStyles.body.copyWith(
+                  color: AppColors.textDisabled,
+                ),
               );
             },
           ),
@@ -395,13 +508,13 @@ class _ProgressSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final (remaining, total) = switch (state) {
       PlayerPlaying(:final remainingSeconds, :final exercise) => (
-          remainingSeconds,
-          exercise.durationSeconds,
-        ),
+        remainingSeconds,
+        exercise.durationSeconds,
+      ),
       PlayerPaused(:final remainingSeconds, :final exercise) => (
-          remainingSeconds,
-          exercise.durationSeconds,
-        ),
+        remainingSeconds,
+        exercise.durationSeconds,
+      ),
       _ => (0, 1),
     };
 
@@ -415,8 +528,7 @@ class _ProgressSection extends StatelessWidget {
             value: progress.clamp(0.0, 1.0),
             minHeight: AppDimensions.progressBarH,
             backgroundColor: AppColors.neutralGray,
-            valueColor:
-                const AlwaysStoppedAnimation<Color>(AppColors.accent),
+            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
           ),
         ),
       ],

@@ -635,6 +635,19 @@ class AppLocalizationsId extends AppLocalizations {
   String get exercisePlayerPaused => 'Dijeda';
 
   @override
+  String get exerciseVideoUnavailable => 'Video tidak tersedia';
+
+  @override
+  String get exerciseVideoSemanticLabel =>
+      'Video demonstrasi latihan. Ketuk dua kali untuk memutar atau menjeda.';
+
+  @override
+  String get exerciseVideoMute => 'Bisukan video';
+
+  @override
+  String get exerciseVideoUnmute => 'Aktifkan suara video';
+
+  @override
   String get exerciseSomethingWentWrong => 'Terjadi kesalahan';
 
   @override

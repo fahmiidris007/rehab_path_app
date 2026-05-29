@@ -1238,6 +1238,30 @@ abstract class AppLocalizations {
   /// **'Paused'**
   String get exercisePlayerPaused;
 
+  /// Shown when an exercise demo video cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Video unavailable'**
+  String get exerciseVideoUnavailable;
+
+  /// Accessibility label for the tappable exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise demonstration video. Double tap to play or pause.'**
+  String get exerciseVideoSemanticLabel;
+
+  /// Label for the button that mutes the exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Mute video'**
+  String get exerciseVideoMute;
+
+  /// Label for the button that unmutes the exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute video'**
+  String get exerciseVideoUnmute;
+
   /// Error title in exercise list
   ///
   /// In en, this message translates to:

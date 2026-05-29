@@ -912,6 +912,18 @@
   "exercisePlayerPaused": "Paused",
   "@exercisePlayerPaused": { "description": "Paused label in exercise player" },
 
+  "exerciseVideoUnavailable": "Video unavailable",
+  "@exerciseVideoUnavailable": { "description": "Shown when an exercise demo video cannot be loaded" },
+
+  "exerciseVideoSemanticLabel": "Exercise demonstration video. Double tap to play or pause.",
+  "@exerciseVideoSemanticLabel": { "description": "Accessibility label for the tappable exercise demo video" },
+
+  "exerciseVideoMute": "Mute video",
+  "@exerciseVideoMute": { "description": "Label for the button that mutes the exercise demo video" },
+
+  "exerciseVideoUnmute": "Unmute video",
+  "@exerciseVideoUnmute": { "description": "Label for the button that unmutes the exercise demo video" },
+
   "exerciseSomethingWentWrong": "Something went wrong",
   "@exerciseSomethingWentWrong": { "description": "Error title in exercise list" },
 
