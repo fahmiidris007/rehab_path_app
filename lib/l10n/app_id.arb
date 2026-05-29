@@ -215,6 +215,10 @@
   "exerciseDifficultyMedium": "Sedang",
   "exerciseDifficultyHard": "Sulit",
   "exercisePlayerPaused": "Dijeda",
+  "exerciseVideoUnavailable": "Video tidak tersedia",
+  "exerciseVideoSemanticLabel": "Video demonstrasi latihan. Ketuk dua kali untuk memutar atau menjeda.",
+  "exerciseVideoMute": "Bisukan video",
+  "exerciseVideoUnmute": "Aktifkan suara video",
   "exerciseSomethingWentWrong": "Terjadi kesalahan",
   "exerciseNoExercisesYet": "Belum ada latihan",
   "exerciseCheckBackSoon": "Kembali lagi segera untuk program latihan Anda.",
@@ -383,6 +387,15 @@
   "settingsBiometricEnableTitle": "Aktifkan login biometrik",
   "settingsBiometricVerifyPassword": "Masukkan ulang kata sandi untuk konfirmasi",
   "settingsBiometricEnableFailed": "Gagal mengaktifkan login biometrik",
+
+  "dashboardBiometricPromptTitle": "Aktifkan login biometrik?",
+  "dashboardBiometricPromptMessage": "Masuk lebih cepat lain kali dengan sidik jari atau wajah Anda. Anda dapat mengaktifkannya dari menu Pengaturan.",
+  "dashboardBiometricPromptDontShowAgain": "Jangan tampilkan lagi",
+  "dashboardBiometricPromptConfirm": "Buka Pengaturan",
+
+  "authBiometricSimpleTitle": "Selamat datang kembali",
+  "authBiometricSimpleSubtitle": "Ketuk ikon di bawah untuk masuk dengan biometrik",
+  "authUsePasswordInstead": "Gunakan kata sandi",
 
   "commonLoading": "Memuat…"
 }

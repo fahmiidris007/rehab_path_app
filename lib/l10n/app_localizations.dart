@@ -1238,6 +1238,30 @@ abstract class AppLocalizations {
   /// **'Paused'**
   String get exercisePlayerPaused;
 
+  /// Shown when an exercise demo video cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Video unavailable'**
+  String get exerciseVideoUnavailable;
+
+  /// Accessibility label for the tappable exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise demonstration video. Double tap to play or pause.'**
+  String get exerciseVideoSemanticLabel;
+
+  /// Label for the button that mutes the exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Mute video'**
+  String get exerciseVideoMute;
+
+  /// Label for the button that unmutes the exercise demo video
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute video'**
+  String get exerciseVideoUnmute;
+
   /// Error title in exercise list
   ///
   /// In en, this message translates to:
@@ -2083,6 +2107,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not enable biometric login'**
   String get settingsBiometricEnableFailed;
+
+  /// Title of the dialog recommending biometric login shown on the dashboard after a password login
+  ///
+  /// In en, this message translates to:
+  /// **'Enable biometric login?'**
+  String get dashboardBiometricPromptTitle;
+
+  /// Body text of the dialog recommending biometric login on the dashboard
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in faster next time using your fingerprint or face. You can turn this on from Settings.'**
+  String get dashboardBiometricPromptMessage;
+
+  /// Checkbox label letting the user permanently dismiss the biometric recommendation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t show this again'**
+  String get dashboardBiometricPromptDontShowAgain;
+
+  /// Confirm button on the biometric recommendation dialog that navigates to Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Settings'**
+  String get dashboardBiometricPromptConfirm;
+
+  /// Heading on the simplified biometric-only login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get authBiometricSimpleTitle;
+
+  /// Subtitle prompting the user to tap the fingerprint icon on the simplified login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the icon below to sign in with biometrics'**
+  String get authBiometricSimpleSubtitle;
+
+  /// Button that reveals the phone/password form on the simplified biometric login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Use password instead'**
+  String get authUsePasswordInstead;
 
   /// Generic loading label used for buttons and inline indicators
   ///

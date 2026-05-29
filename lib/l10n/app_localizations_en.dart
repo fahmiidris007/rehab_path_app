@@ -637,6 +637,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exercisePlayerPaused => 'Paused';
 
   @override
+  String get exerciseVideoUnavailable => 'Video unavailable';
+
+  @override
+  String get exerciseVideoSemanticLabel =>
+      'Exercise demonstration video. Double tap to play or pause.';
+
+  @override
+  String get exerciseVideoMute => 'Mute video';
+
+  @override
+  String get exerciseVideoUnmute => 'Unmute video';
+
+  @override
   String get exerciseSomethingWentWrong => 'Something went wrong';
 
   @override
@@ -1092,6 +1105,29 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsBiometricEnableFailed =>
       'Could not enable biometric login';
+
+  @override
+  String get dashboardBiometricPromptTitle => 'Enable biometric login?';
+
+  @override
+  String get dashboardBiometricPromptMessage =>
+      'Sign in faster next time using your fingerprint or face. You can turn this on from Settings.';
+
+  @override
+  String get dashboardBiometricPromptDontShowAgain => 'Don\'t show this again';
+
+  @override
+  String get dashboardBiometricPromptConfirm => 'Go to Settings';
+
+  @override
+  String get authBiometricSimpleTitle => 'Welcome back';
+
+  @override
+  String get authBiometricSimpleSubtitle =>
+      'Tap the icon below to sign in with biometrics';
+
+  @override
+  String get authUsePasswordInstead => 'Use password instead';
 
   @override
   String get commonLoading => 'Loading…';

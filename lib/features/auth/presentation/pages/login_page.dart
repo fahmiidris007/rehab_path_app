@@ -14,6 +14,7 @@ import '../../../../core/widgets/language_selector_button.dart';
 import '../../../../di/injection.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/data/datasources/shared_preferences_data_source.dart';
+import '../../domain/repositories/biometric_credential_repository.dart';
 import '../../domain/validators/password_input.dart';
 import '../../domain/validators/phone_input.dart';
 import '../cubit/auth_cubit.dart';
@@ -48,6 +49,20 @@ class _LoginPageState extends State<LoginPage> {
 
   StreamSubscription<({String phoneNumber, String password})>? _autofillSub;
 
+  /// Whether biometric login is enabled & ready on this device. When true the
+  /// page renders the simplified biometric-first layout (phone/password hidden)
+  /// so the user can focus on signing in with biometrics. Null while the
+  /// initial capability check is still in flight.
+  bool? _biometricReady;
+
+  /// When the user taps "Use password instead" on the simplified layout we
+  /// reveal the full form for the rest of this page's lifetime.
+  bool _passwordFallbackRequested = false;
+
+  /// Whether the standard phone/password form should be visible.
+  bool get _showCredentialForm =>
+      _biometricReady != true || _passwordFallbackRequested;
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +78,17 @@ class _LoginPageState extends State<LoginPage> {
         _password = PasswordInput.dirty(creds.password);
       });
     });
+    // Determine whether to show the simplified biometric-only layout. This is
+    // a capability check only — it never triggers the OS prompt.
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _resolveBiometricMode(),
+    );
+  }
+
+  Future<void> _resolveBiometricMode() async {
+    final status = await context.read<AuthCubit>().getBiometricStatus();
+    if (!mounted) return;
+    setState(() => _biometricReady = status == BiometricStatus.ready);
   }
 
   @override
@@ -90,17 +116,17 @@ class _LoginPageState extends State<LoginPage> {
     });
     if (_isFormValid) {
       context.read<AuthCubit>().loginWithPhone(
-            _phoneController.text.trim(),
-            _passwordController.text,
-          );
+        _phoneController.text.trim(),
+        _passwordController.text,
+      );
     }
   }
 
   void _onBiometricPressed() {
     final l10n = AppLocalizations.of(context)!;
-    context
-        .read<AuthCubit>()
-        .requestBiometricLogin(reason: l10n.authBiometricReason);
+    context.read<AuthCubit>().requestBiometricLogin(
+      reason: l10n.authBiometricReason,
+    );
   }
 
   /// Maps a known ARB key emitted by [AuthCubit] error states to its
@@ -143,10 +169,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _showSnack(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: AppColors.error,
-      ),
+      SnackBar(content: Text(message), backgroundColor: AppColors.error),
     );
   }
 
@@ -204,10 +227,7 @@ class _LoginPageState extends State<LoginPage> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.info_outline,
-                color: AppColors.accentDark,
-              ),
+              const Icon(Icons.info_outline, color: AppColors.accentDark),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -244,10 +264,81 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// Builds the simplified, biometric-first sign-in body shown when biometric
+  /// login is enabled and ready. The phone/password form is hidden so the user
+  /// can focus on the prominent biometric action, with a discreet
+  /// "use password instead" fallback that reveals the full form.
+  Widget _buildBiometricFocus(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: AppDimensions.sectionGap),
+        Text(
+          l10n.authBiometricSimpleSubtitle,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.body.copyWith(color: AppColors.textSecondary),
+        ),
+        const SizedBox(height: AppDimensions.sectionGap),
+
+        // Large, prominent biometric action.
+        BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            final isLoading =
+                state is AuthLoading || state is AuthBiometricRestoring;
+            return Center(
+              child: Semantics(
+                label: l10n.authBiometricSemanticLabel,
+                button: true,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(60),
+                  onTap: isLoading ? null : _onBiometricPressed,
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primary.withValues(alpha: 0.12),
+                      border: Border.all(color: AppColors.primary, width: 2),
+                    ),
+                    child: isLoading
+                        ? const Padding(
+                            padding: EdgeInsets.all(36),
+                            child: CircularProgressIndicator(
+                              color: AppColors.primary,
+                            ),
+                          )
+                        : const Icon(
+                            Icons.fingerprint,
+                            size: 64,
+                            color: AppColors.primary,
+                          ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: AppDimensions.sectionGap),
+
+        // Fallback to the standard phone/password form.
+        TextButton(
+          onPressed: () {
+            setState(() => _passwordFallbackRequested = true);
+          },
+          child: Text(
+            l10n.authUsePasswordInstead,
+            style: AppTextStyles.bodySemiBold.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthBiometricUnavailable) {
@@ -286,101 +377,114 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (_showLegacyBanner) _buildLegacyBanner(l10n),
+
+                  // Heading adapts to the active layout: a focused "welcome
+                  // back" greeting for biometric-only, the standard login
+                  // title otherwise.
                   Text(
-                    l10n.authLoginTitle,
+                    _showCredentialForm
+                        ? l10n.authLoginTitle
+                        : l10n.authBiometricSimpleTitle,
                     style: AppTextStyles.displayH1.copyWith(
                       color: AppColors.textPrimary,
                     ),
                   ),
                   const SizedBox(height: AppDimensions.sectionGap),
 
-                  // Phone field
-                  TextFormField(
-                    controller: _phoneController,
-                    keyboardType: TextInputType.phone,
-                    textInputAction: TextInputAction.next,
-                    onChanged: _onPhoneChanged,
-                    decoration: InputDecoration(
-                      labelText: l10n.authPhoneLabel,
-                      hintText: l10n.authPhoneHint,
-                      errorText: _phoneErrorText(l10n),
-                    ),
-                  ),
-                  const SizedBox(height: AppDimensions.cardGap),
-
-                  // Password field
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: _obscurePassword,
-                    textInputAction: TextInputAction.done,
-                    onChanged: _onPasswordChanged,
-                    onFieldSubmitted: (_) => _submit(),
-                    decoration: InputDecoration(
-                      labelText: l10n.authLoginPasswordHint,
-                      errorText: _password.displayError != null
-                          ? l10n.authLoginPasswordError
-                          : null,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        onPressed: () {
-                          setState(() => _obscurePassword = !_obscurePassword);
-                        },
+                  if (_showCredentialForm) ...[
+                    // Phone field
+                    TextFormField(
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone,
+                      textInputAction: TextInputAction.next,
+                      onChanged: _onPhoneChanged,
+                      decoration: InputDecoration(
+                        labelText: l10n.authPhoneLabel,
+                        hintText: l10n.authPhoneHint,
+                        errorText: _phoneErrorText(l10n),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
+                    const SizedBox(height: AppDimensions.cardGap),
 
-                  // Forgot password
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () => context.push('/forgot-password'),
-                      child: Text(
-                        l10n.authLoginForgotPassword,
-                        style: AppTextStyles.body.copyWith(
-                          color: AppColors.primary,
+                    // Password field
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: _obscurePassword,
+                      textInputAction: TextInputAction.done,
+                      onChanged: _onPasswordChanged,
+                      onFieldSubmitted: (_) => _submit(),
+                      decoration: InputDecoration(
+                        labelText: l10n.authLoginPasswordHint,
+                        errorText: _password.displayError != null
+                            ? l10n.authLoginPasswordError
+                            : null,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(
+                              () => _obscurePassword = !_obscurePassword,
+                            );
+                          },
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: AppDimensions.cardGap),
+                    const SizedBox(height: 8),
 
-                  // Log In button
-                  BlocBuilder<AuthCubit, AuthState>(
-                    builder: (context, state) {
-                      final isLoading =
-                          state is AuthLoading || state is AuthBiometricRestoring;
-                      return AppPrimaryButton(
-                        label: l10n.authLoginButton,
-                        isLoading: isLoading,
-                        onPressed: isLoading ? null : _submit,
-                      );
-                    },
-                  ),
-                  const SizedBox(height: AppDimensions.cardGap),
-
-                  // Biometric sign-in button
-                  Center(
-                    child: Semantics(
-                      label: l10n.authBiometricSemanticLabel,
-                      button: true,
-                      child: SizedBox(
-                        width: 56,
-                        height: 56,
-                        child: IconButton(
-                          iconSize: 32,
-                          tooltip: l10n.authBiometricSemanticLabel,
-                          icon: const Icon(Icons.fingerprint),
-                          color: AppColors.primary,
-                          onPressed: _onBiometricPressed,
+                    // Forgot password
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => context.push('/forgot-password'),
+                        child: Text(
+                          l10n.authLoginForgotPassword,
+                          style: AppTextStyles.body.copyWith(
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: AppDimensions.cardGap),
+
+                    // Log In button
+                    BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        final isLoading =
+                            state is AuthLoading ||
+                            state is AuthBiometricRestoring;
+                        return AppPrimaryButton(
+                          label: l10n.authLoginButton,
+                          isLoading: isLoading,
+                          onPressed: isLoading ? null : _submit,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: AppDimensions.cardGap),
+
+                    // Biometric sign-in button (compact icon in full layout)
+                    Center(
+                      child: Semantics(
+                        label: l10n.authBiometricSemanticLabel,
+                        button: true,
+                        child: SizedBox(
+                          width: 56,
+                          height: 56,
+                          child: IconButton(
+                            iconSize: 32,
+                            tooltip: l10n.authBiometricSemanticLabel,
+                            icon: const Icon(Icons.fingerprint),
+                            color: AppColors.primary,
+                            onPressed: _onBiometricPressed,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ] else
+                    _buildBiometricFocus(l10n),
+
                   const SizedBox(height: AppDimensions.cardGap),
 
                   // Register link

@@ -50,4 +50,19 @@ class AppConstants {
   static const String assetDummyPrograms = 'assets/data/dummy_programs.json';
   static const String assetDummyProgress = 'assets/data/dummy_progress.json';
   static const String assetDummyMessages = 'assets/data/dummy_messages.json';
+
+  // Exercise demo videos
+  //
+  // NOTE: These are placeholder sample clips reused for every exercise while
+  // the app runs offline-first with no backend. Once a media service is wired
+  // in, each [ExerciseEntity] should expose its own video URL/path and these
+  // shared constants can be removed.
+  static const String assetExerciseDetailVideo =
+      'assets/videos/exercise_demo_detail.mp4';
+  static const String assetExercisePlayerVideo =
+      'assets/videos/exercise_demo_player.mp4';
+
+  /// While there is no per-exercise video duration metadata, the player runs
+  /// for this many loops of the demo clip before auto-saving the session.
+  static const int exercisePlayerVideoLoopCount = 3;
 }
