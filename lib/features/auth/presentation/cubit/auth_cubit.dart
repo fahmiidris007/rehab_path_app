@@ -34,8 +34,13 @@ class AuthCubit extends Cubit<AuthState> {
   /// text controllers immediately after a successful biometric restore so the
   /// user does not have to retype anything (R3.5).
   final StreamController<({String phoneNumber, String password})>
-      _autofillController =
+  _autofillController =
       StreamController<({String phoneNumber, String password})>.broadcast();
+
+  /// In-session guard so the post-login dashboard evaluates the biometric
+  /// recommendation at most once per authenticated session. Reset on a fresh
+  /// manual login and on logout so a subsequent login re-arms the prompt.
+  bool _biometricRecommendationChecked = false;
 
   AuthCubit(
     this._loginUseCase,
@@ -58,43 +63,41 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> checkSession() async {
     emit(const AuthState.loading());
     final result = await _getSessionUseCase(const NoParams());
-    result.fold(
-      (failure) => emit(const AuthState.unauthenticated()),
-      (user) {
-        if (user == null) {
-          // No session token at all — brand new user, show welcome screen.
-          emit(const AuthState.unauthenticated());
-        } else if (user.id == 'guest') {
-          // Guest sessions are not persisted across launches.
-          // Treat as unauthenticated so the welcome screen is shown.
-          emit(const AuthState.unauthenticated());
-        } else {
-          // A real previous session exists — require the user to log in again.
-          // Show the login screen directly (skip the welcome carousel).
-          emit(const AuthState.requiresLogin());
-        }
-      },
-    );
+    result.fold((failure) => emit(const AuthState.unauthenticated()), (user) {
+      if (user == null) {
+        // No session token at all — brand new user, show welcome screen.
+        emit(const AuthState.unauthenticated());
+      } else if (user.id == 'guest') {
+        // Guest sessions are not persisted across launches.
+        // Treat as unauthenticated so the welcome screen is shown.
+        emit(const AuthState.unauthenticated());
+      } else {
+        // A real previous session exists — require the user to log in again.
+        // Show the login screen directly (skip the welcome carousel).
+        emit(const AuthState.requiresLogin());
+      }
+    });
   }
 
   Future<void> loginWithPhone(String phoneNumber, String password) async {
     emit(const AuthState.loading());
+    // Re-arm the dashboard biometric recommendation for this new session.
+    _biometricRecommendationChecked = false;
     final result = await _loginUseCase(
       LoginParams(phoneNumber: phoneNumber, password: password),
     );
-    result.fold(
-      (failure) => emit(AuthState.error(_messageOf(failure))),
-      (user) {
-        // Login: check if onboarding was previously completed.
-        final onboardingDone =
-            _prefsDataSource.getBool(PrefKeys.onboardingComplete) ?? false;
-        if (onboardingDone) {
-          emit(AuthState.authenticated(user));
-        } else {
-          emit(AuthState.needsOnboarding(user));
-        }
-      },
-    );
+    result.fold((failure) => emit(AuthState.error(_messageOf(failure))), (
+      user,
+    ) {
+      // Login: check if onboarding was previously completed.
+      final onboardingDone =
+          _prefsDataSource.getBool(PrefKeys.onboardingComplete) ?? false;
+      if (onboardingDone) {
+        emit(AuthState.authenticated(user));
+      } else {
+        emit(AuthState.needsOnboarding(user));
+      }
+    });
   }
 
   Future<void> registerWithPhone(
@@ -114,17 +117,27 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  /// Reports the current biometric capability/enablement status without
+  /// triggering an OS prompt. Used by [LoginPage] to decide whether to render
+  /// the simplified biometric-only layout ([BiometricStatus.ready]) or the
+  /// standard phone/password form.
+  Future<BiometricStatus> getBiometricStatus() async {
+    final statusResult = await _checkBiometricUseCase(const NoParams());
+    return statusResult.fold(
+      (_) => BiometricStatus.unavailable,
+      (status) => status,
+    );
+  }
+
   /// Drives the biometric login state machine described in design.md
-  /// "Aliran Login Biometrik".
-  ///
+  /// "Aliran Login Biometrik".  ///
   /// The [reason] string is passed straight through to the OS prompt and must
   /// be a localized copy supplied by the caller (the cubit cannot resolve
   /// `AppLocalizations` without a `BuildContext`).
   Future<void> requestBiometricLogin({required String reason}) async {
     final statusResult = await _checkBiometricUseCase(const NoParams());
     await statusResult.fold(
-      (failure) async =>
-          emit(AuthState.biometricFailed(_messageOf(failure))),
+      (failure) async => emit(AuthState.biometricFailed(_messageOf(failure))),
       (status) async {
         switch (status) {
           case BiometricStatus.unavailable:
@@ -161,12 +174,14 @@ class AuthCubit extends Cubit<AuthState> {
                     emit(const AuthState.error('authBiometricSessionExpired'));
                   },
                   (user) async {
-                    final onboardingDone = _prefsDataSource
-                            .getBool(PrefKeys.onboardingComplete) ??
+                    final onboardingDone =
+                        _prefsDataSource.getBool(PrefKeys.onboardingComplete) ??
                         false;
-                    emit(onboardingDone
-                        ? AuthState.authenticated(user)
-                        : AuthState.needsOnboarding(user));
+                    emit(
+                      onboardingDone
+                          ? AuthState.authenticated(user)
+                          : AuthState.needsOnboarding(user),
+                    );
                   },
                 );
               },
@@ -175,6 +190,40 @@ class AuthCubit extends Cubit<AuthState> {
         }
       },
     );
+  }
+
+  /// Decides whether the dashboard should surface the "enable biometric login"
+  /// recommendation after a successful login that did not use biometrics.
+  ///
+  /// Returns `true` only when ALL of the following hold:
+  /// - it has not already been evaluated during the current session (so it
+  ///   shows at most once per login, not on every dashboard rebuild);
+  /// - the user has not permanently dismissed it via the "don't show again"
+  ///   option ([PrefKeys.biometricPromptDismissed]);
+  /// - the device is biometric-capable but biometric login is not yet enabled
+  ///   ([BiometricStatus.disabled]).
+  ///
+  /// The OS biometric prompt is never triggered here — this is a pure
+  /// capability check.
+  Future<bool> shouldRecommendBiometric() async {
+    if (_biometricRecommendationChecked) return false;
+    _biometricRecommendationChecked = true;
+
+    final dismissed =
+        _prefsDataSource.getBool(PrefKeys.biometricPromptDismissed) ?? false;
+    if (dismissed) return false;
+
+    final statusResult = await _checkBiometricUseCase(const NoParams());
+    return statusResult.fold(
+      (_) => false,
+      (status) => status == BiometricStatus.disabled,
+    );
+  }
+
+  /// Persists the user's choice to never see the biometric recommendation
+  /// again (the "don't show again" option on the dashboard popup).
+  Future<void> dismissBiometricRecommendation() async {
+    await _prefsDataSource.setBool(PrefKeys.biometricPromptDismissed, true);
   }
 
   /// Called by [OnboardingPage] when the user finishes the questionnaire.
@@ -190,12 +239,13 @@ class AuthCubit extends Cubit<AuthState> {
     // Honor the optional `biometricKeepAfterLogout` flag (R4.7). Out-of-scope
     // for the first iteration — flag declared in PrefKeys but not yet exposed
     // in the UI. Default behavior: clear biometric credentials.
-    final keepBiometric =
-        _prefsDataSource.getBool(PrefKeys.biometricKeepAfterLogout) ?? false;
-    if (!keepBiometric) {
-      await _clearBiometricUseCase(const NoParams());
-    }
+    // final keepBiometric =
+    //     _prefsDataSource.getBool(PrefKeys.biometricKeepAfterLogout) ?? false;
+    // if (!keepBiometric) {
+    //   await _clearBiometricUseCase(const NoParams());
+    // }
     await _logoutUseCase(const NoParams());
+    _biometricRecommendationChecked = false;
     emit(const AuthState.unauthenticated());
   }
 
@@ -210,11 +260,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   /// Maps a [Failure] union onto its localized message key.
   String _messageOf(Failure failure) => failure.when(
-        server: (msg, _) => msg,
-        cache: (msg) => msg,
-        validation: (msg, _) => msg,
-        unexpected: (msg) => msg,
-      );
+    server: (msg, _) => msg,
+    cache: (msg) => msg,
+    validation: (msg, _) => msg,
+    unexpected: (msg) => msg,
+  );
 
   @override
   Future<void> close() {

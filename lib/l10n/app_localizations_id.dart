@@ -1093,5 +1093,28 @@ class AppLocalizationsId extends AppLocalizations {
       'Gagal mengaktifkan login biometrik';
 
   @override
+  String get dashboardBiometricPromptTitle => 'Aktifkan login biometrik?';
+
+  @override
+  String get dashboardBiometricPromptMessage =>
+      'Masuk lebih cepat lain kali dengan sidik jari atau wajah Anda. Anda dapat mengaktifkannya dari menu Pengaturan.';
+
+  @override
+  String get dashboardBiometricPromptDontShowAgain => 'Jangan tampilkan lagi';
+
+  @override
+  String get dashboardBiometricPromptConfirm => 'Buka Pengaturan';
+
+  @override
+  String get authBiometricSimpleTitle => 'Selamat datang kembali';
+
+  @override
+  String get authBiometricSimpleSubtitle =>
+      'Ketuk ikon di bawah untuk masuk dengan biometrik';
+
+  @override
+  String get authUsePasswordInstead => 'Gunakan kata sandi';
+
+  @override
   String get commonLoading => 'Memuat…';
 }

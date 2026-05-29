@@ -52,7 +52,10 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
   void initState() {
     super.initState();
     _cubit = getIt<HomeCubit>();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _load();
+      _maybeRecommendBiometric();
+    });
   }
 
   void _load() {
@@ -60,6 +63,86 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
     final authState = context.read<AuthCubit>().state;
     if (authState is AuthAuthenticated) {
       _cubit.loadDashboard(authState.user);
+    }
+  }
+
+  /// After a password-based login, recommend enabling biometric login if the
+  /// device supports it but the user has not turned it on yet. Shows at most
+  /// once per session and never again once the user opts out (handled by
+  /// [AuthCubit.shouldRecommendBiometric]).
+  Future<void> _maybeRecommendBiometric() async {
+    final authCubit = context.read<AuthCubit>();
+    // Only relevant for a real authenticated account — guests have no
+    // credentials to store for biometric login.
+    if (authCubit.state is! AuthAuthenticated) return;
+    final shouldShow = await authCubit.shouldRecommendBiometric();
+    if (!shouldShow || !mounted) return;
+    await _showBiometricRecommendationDialog(authCubit);
+  }
+
+  Future<void> _showBiometricRecommendationDialog(AuthCubit authCubit) async {
+    final l10n = AppLocalizations.of(context)!;
+    var dontShowAgain = false;
+
+    final goToSettings = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setLocalState) {
+            return AlertDialog(
+              title: Text(l10n.dashboardBiometricPromptTitle),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.dashboardBiometricPromptMessage,
+                    style: AppTextStyles.body.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  CheckboxListTile(
+                    value: dontShowAgain,
+                    onChanged: (v) =>
+                        setLocalState(() => dontShowAgain = v ?? false),
+                    contentPadding: EdgeInsets.zero,
+                    controlAffinity: ListTileControlAffinity.leading,
+                    activeColor: AppColors.primary,
+                    title: Text(
+                      l10n.dashboardBiometricPromptDontShowAgain,
+                      style: AppTextStyles.body.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(false),
+                  child: Text(l10n.commonCancel),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(true),
+                  child: Text(l10n.dashboardBiometricPromptConfirm),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+
+    // Persist the opt-out regardless of which button was pressed: tapping
+    // Cancel with "don't show again" checked must suppress the popup even
+    // though biometric is still disabled.
+    if (dontShowAgain) {
+      await authCubit.dismissBiometricRecommendation();
+    }
+
+    if (goToSettings == true && mounted) {
+      context.pushNamed(RouteNames.settings);
     }
   }
 

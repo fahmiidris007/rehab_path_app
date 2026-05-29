@@ -30,6 +30,11 @@ class PrefKeys {
   static const String biometricEnabled = 'biometric_enabled';
   static const String biometricKeepAfterLogout = 'biometric_keep_after_logout';
 
+  /// Set to true once the user permanently dismisses the post-login
+  /// "enable biometric login" recommendation shown on the dashboard.
+  static const String biometricPromptDismissed = 'biometric_prompt_dismissed';
+
   // App flow
-  static const String legacyAccountWarningShown = 'legacy_account_warning_shown';
+  static const String legacyAccountWarningShown =
+      'legacy_account_warning_shown';
 }

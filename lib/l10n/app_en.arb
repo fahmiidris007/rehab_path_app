@@ -1400,6 +1400,41 @@
     "description": "Error shown when enabling biometric login fails"
   },
 
+  "dashboardBiometricPromptTitle": "Enable biometric login?",
+  "@dashboardBiometricPromptTitle": {
+    "description": "Title of the dialog recommending biometric login shown on the dashboard after a password login"
+  },
+
+  "dashboardBiometricPromptMessage": "Sign in faster next time using your fingerprint or face. You can turn this on from Settings.",
+  "@dashboardBiometricPromptMessage": {
+    "description": "Body text of the dialog recommending biometric login on the dashboard"
+  },
+
+  "dashboardBiometricPromptDontShowAgain": "Don't show this again",
+  "@dashboardBiometricPromptDontShowAgain": {
+    "description": "Checkbox label letting the user permanently dismiss the biometric recommendation dialog"
+  },
+
+  "dashboardBiometricPromptConfirm": "Go to Settings",
+  "@dashboardBiometricPromptConfirm": {
+    "description": "Confirm button on the biometric recommendation dialog that navigates to Settings"
+  },
+
+  "authBiometricSimpleTitle": "Welcome back",
+  "@authBiometricSimpleTitle": {
+    "description": "Heading on the simplified biometric-only login screen"
+  },
+
+  "authBiometricSimpleSubtitle": "Tap the icon below to sign in with biometrics",
+  "@authBiometricSimpleSubtitle": {
+    "description": "Subtitle prompting the user to tap the fingerprint icon on the simplified login screen"
+  },
+
+  "authUsePasswordInstead": "Use password instead",
+  "@authUsePasswordInstead": {
+    "description": "Button that reveals the phone/password form on the simplified biometric login screen"
+  },
+
   "commonLoading": "Loading…",
   "@commonLoading": {
     "description": "Generic loading label used for buttons and inline indicators"

@@ -1094,5 +1094,28 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not enable biometric login';
 
   @override
+  String get dashboardBiometricPromptTitle => 'Enable biometric login?';
+
+  @override
+  String get dashboardBiometricPromptMessage =>
+      'Sign in faster next time using your fingerprint or face. You can turn this on from Settings.';
+
+  @override
+  String get dashboardBiometricPromptDontShowAgain => 'Don\'t show this again';
+
+  @override
+  String get dashboardBiometricPromptConfirm => 'Go to Settings';
+
+  @override
+  String get authBiometricSimpleTitle => 'Welcome back';
+
+  @override
+  String get authBiometricSimpleSubtitle =>
+      'Tap the icon below to sign in with biometrics';
+
+  @override
+  String get authUsePasswordInstead => 'Use password instead';
+
+  @override
   String get commonLoading => 'Loading…';
 }

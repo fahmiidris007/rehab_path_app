@@ -384,5 +384,14 @@
   "settingsBiometricVerifyPassword": "Masukkan ulang kata sandi untuk konfirmasi",
   "settingsBiometricEnableFailed": "Gagal mengaktifkan login biometrik",
 
+  "dashboardBiometricPromptTitle": "Aktifkan login biometrik?",
+  "dashboardBiometricPromptMessage": "Masuk lebih cepat lain kali dengan sidik jari atau wajah Anda. Anda dapat mengaktifkannya dari menu Pengaturan.",
+  "dashboardBiometricPromptDontShowAgain": "Jangan tampilkan lagi",
+  "dashboardBiometricPromptConfirm": "Buka Pengaturan",
+
+  "authBiometricSimpleTitle": "Selamat datang kembali",
+  "authBiometricSimpleSubtitle": "Ketuk ikon di bawah untuk masuk dengan biometrik",
+  "authUsePasswordInstead": "Gunakan kata sandi",
+
   "commonLoading": "Memuat…"
 }
