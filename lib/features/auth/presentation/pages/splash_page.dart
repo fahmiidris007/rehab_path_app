@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: AppColors.background,
       body: Center(
         child: Text(
-          'RehabPath',
+          'Teman Lansia',
           style: AppTextStyles.displayH1.copyWith(
             color: AppColors.primary,
           ),

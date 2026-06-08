@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rehab_path_app/app/theme/app_colors.dart';
-import 'package:rehab_path_app/app/theme/app_dimensions.dart';
+import 'package:teman_lansia/app/theme/app_colors.dart';
+import 'package:teman_lansia/app/theme/app_dimensions.dart';
 
-/// A general-purpose card with the RehabPath card style.
+/// A general-purpose card with the Teman Lansia card style.
 ///
 /// Background: [AppColors.background] (#F9F9F9)
 /// Border: 1px [AppColors.border] (#C0C7D3), radius 12dp

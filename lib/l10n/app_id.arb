@@ -1,11 +1,11 @@
 {
   "@@locale": "id",
 
-  "appName": "RehabPath",
-  "appTitle": "RehabPath — Rehabilitasi Pencegahan Jatuh",
+  "appName": "Teman Lansia",
+  "appTitle": "Teman Lansia — Rehabilitasi Pencegahan Jatuh",
 
   "authSplashTagline": "Perjalanan Anda menuju keseimbangan yang lebih baik dimulai di sini.",
-  "authWelcomeTitle": "Selamat Datang di RehabPath",
+  "authWelcomeTitle": "Selamat Datang di Teman Lansia",
   "authWelcomeSubtitle": "Latihan berbasis bukti untuk membantu Anda tetap stabil dan percaya diri.",
 
   "authLoginTitle": "Masuk",
@@ -357,7 +357,7 @@
   "authBiometricSemanticLabel": "Masuk dengan biometrik",
   "authBiometricUnavailable": "Biometrik tidak tersedia di perangkat ini",
   "authBiometricNotEnabled": "Aktifkan login biometrik di menu Pengaturan setelah login",
-  "authBiometricReason": "Verifikasi untuk masuk ke RehabPath",
+  "authBiometricReason": "Verifikasi untuk masuk ke Teman Lansia",
   "authBiometricSessionExpired": "Sesi biometrik telah kedaluwarsa, silakan login ulang",
   "authLegacyAccountNeedsPhone": "Tambahkan nomor telepon ke akun Anda untuk tetap dapat masuk",
   "authBiometricFailed": "Verifikasi biometrik gagal",

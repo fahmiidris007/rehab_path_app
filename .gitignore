@@ -49,3 +49,6 @@ app.*.map.json
 
 # Assets videos
 assets/videos
+
+# FVM Version Cache
+.fvm/

@@ -14,7 +14,7 @@
 // `ExploreConfig.numRuns`).
 
 import 'package:glados/glados.dart';
-import 'package:rehab_path_app/core/utils/phone_number_normalizer.dart';
+import 'package:teman_lansia/core/utils/phone_number_normalizer.dart';
 
 const _digits = '0123456789';
 const _letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

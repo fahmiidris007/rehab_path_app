@@ -61,20 +61,22 @@ void main() async {
   await configureDependencies();
 
   // Initialize flutter_local_notifications
-  const initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const initializationSettingsAndroid = AndroidInitializationSettings(
+    '@mipmap/ic_launcher',
+  );
   const initializationSettingsIOS = DarwinInitializationSettings();
   const initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
     iOS: initializationSettingsIOS,
   );
-  await getIt<FlutterLocalNotificationsPlugin>()
-      .initialize(initializationSettings);
+  await getIt<FlutterLocalNotificationsPlugin>().initialize(
+    initializationSettings,
+  );
 
   // Initialize timezone data
   tz.initializeTimeZones();
 
   await getIt<DataSeeder>().seedIfNeeded();
 
-  runApp(const RehabPathApp());
+  runApp(TemanLansiaApp());
 }

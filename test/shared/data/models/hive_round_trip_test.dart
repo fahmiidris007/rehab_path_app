@@ -31,13 +31,13 @@
 import 'package:glados/glados.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_test/hive_test.dart';
-import 'package:rehab_path_app/shared/data/models/emergency_contact_hive_model.dart';
-import 'package:rehab_path_app/shared/data/models/onboarding_profile_hive_model.dart';
-import 'package:rehab_path_app/shared/data/models/user_hive_model.dart';
-import 'package:rehab_path_app/shared/domain/entities/emergency_contact_entity.dart';
-import 'package:rehab_path_app/shared/domain/entities/onboarding_profile_entity.dart';
-import 'package:rehab_path_app/shared/domain/entities/user_entity.dart';
-import 'package:rehab_path_app/shared/domain/enums/app_enums.dart';
+import 'package:teman_lansia/shared/data/models/emergency_contact_hive_model.dart';
+import 'package:teman_lansia/shared/data/models/onboarding_profile_hive_model.dart';
+import 'package:teman_lansia/shared/data/models/user_hive_model.dart';
+import 'package:teman_lansia/shared/domain/entities/emergency_contact_entity.dart';
+import 'package:teman_lansia/shared/domain/entities/onboarding_profile_entity.dart';
+import 'package:teman_lansia/shared/domain/entities/user_entity.dart';
+import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Generators ───────────────────────────────────────────────────────────────
 

@@ -9,17 +9,17 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
-  String get appName => 'RehabPath';
+  String get appName => 'Teman Lansia';
 
   @override
-  String get appTitle => 'RehabPath — Rehabilitasi Pencegahan Jatuh';
+  String get appTitle => 'Teman Lansia — Rehabilitasi Pencegahan Jatuh';
 
   @override
   String get authSplashTagline =>
       'Perjalanan Anda menuju keseimbangan yang lebih baik dimulai di sini.';
 
   @override
-  String get authWelcomeTitle => 'Selamat Datang di RehabPath';
+  String get authWelcomeTitle => 'Selamat Datang di Teman Lansia';
 
   @override
   String get authWelcomeSubtitle =>
@@ -1043,7 +1043,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Aktifkan login biometrik di menu Pengaturan setelah login';
 
   @override
-  String get authBiometricReason => 'Verifikasi untuk masuk ke RehabPath';
+  String get authBiometricReason => 'Verifikasi untuk masuk ke Teman Lansia';
 
   @override
   String get authBiometricSessionExpired =>

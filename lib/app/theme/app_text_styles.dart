@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Typography tokens for RehabPath.
+/// Typography tokens for Teman Lansia.
 ///
 /// All styles use **Public Sans** loaded via the `google_fonts` package.
 /// Base sizes are defined here; runtime scaling is applied by

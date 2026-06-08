@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Design-token color palette for RehabPath.
+/// Design-token color palette for Teman Lansia.
 ///
 /// All values are `const` — no runtime allocation.
 class AppColors {

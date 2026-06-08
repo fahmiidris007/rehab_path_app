@@ -1,4 +1,4 @@
-/// Spacing and sizing tokens for RehabPath.
+/// Spacing and sizing tokens for Teman Lansia.
 ///
 /// All values are `const` — no runtime allocation.
 class AppDimensions {

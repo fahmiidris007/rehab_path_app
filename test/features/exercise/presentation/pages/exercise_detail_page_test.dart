@@ -63,10 +63,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
 import 'package:go_router/go_router.dart';
-import 'package:rehab_path_app/features/exercise/presentation/pages/exercise_detail_page.dart';
-import 'package:rehab_path_app/l10n/app_localizations.dart';
-import 'package:rehab_path_app/shared/domain/entities/exercise_entity.dart';
-import 'package:rehab_path_app/shared/domain/enums/app_enums.dart';
+import 'package:teman_lansia/features/exercise/presentation/pages/exercise_detail_page.dart';
+import 'package:teman_lansia/l10n/app_localizations.dart';
+import 'package:teman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Fixtures ─────────────────────────────────────────────────────────────────
 

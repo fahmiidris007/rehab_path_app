@@ -9,8 +9,8 @@ import 'cubit/app_cubit.dart';
 import 'router/app_router.dart';
 import 'theme/app_theme.dart';
 
-class RehabPathApp extends StatelessWidget {
-  const RehabPathApp({super.key});
+class TemanLansiaApp extends StatelessWidget {
+  const TemanLansiaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class _AppView extends StatelessWidget {
           minScaleFactor: cubit.fontSizeMultiplier,
           maxScaleFactor: cubit.fontSizeMultiplier,
           child: MaterialApp.router(
-            title: 'RehabPath',
+            title: 'Teman Lansia',
             routerConfig: AppRouter.router,
             // Localization
             locale: _toLocale(state.locale),

@@ -1,12 +1,12 @@
 {
   "@@locale": "en",
 
-  "appName": "RehabPath",
+  "appName": "Teman Lansia",
   "@appName": {
     "description": "The name of the application"
   },
 
-  "appTitle": "RehabPath — Fall Prevention Rehabilitation",
+  "appTitle": "Teman Lansia — Fall Prevention Rehabilitation",
   "@appTitle": {
     "description": "The full title of the application"
   },
@@ -16,7 +16,7 @@
     "description": "Tagline shown on the splash screen"
   },
 
-  "authWelcomeTitle": "Welcome to RehabPath",
+  "authWelcomeTitle": "Welcome to Teman Lansia",
   "@authWelcomeTitle": {
     "description": "Title on the welcome/onboarding carousel"
   },
@@ -1311,7 +1311,7 @@
     "description": "Message shown when biometric login is available but the user has not enabled it"
   },
 
-  "authBiometricReason": "Verify to sign in to RehabPath",
+  "authBiometricReason": "Verify to sign in to Teman Lansia",
   "@authBiometricReason": {
     "description": "Localized reason shown by the OS biometric prompt during biometric login"
   },
