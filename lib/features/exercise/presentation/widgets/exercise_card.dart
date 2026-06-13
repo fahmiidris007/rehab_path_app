@@ -14,10 +14,14 @@ class ExerciseCard extends StatelessWidget {
   const ExerciseCard({
     super.key,
     required this.exercise,
+    this.orderNumber,
     this.onTap,
   });
 
   final ExerciseEntity exercise;
+
+  /// Optional 1-based order number displayed as a leading badge.
+  final int? orderNumber;
   final VoidCallback? onTap;
 
   @override
@@ -37,6 +41,10 @@ class ExerciseCard extends StatelessWidget {
           padding: const EdgeInsets.all(AppDimensions.cardPadding),
           child: Row(
             children: [
+              if (orderNumber != null) ...[
+                _OrderBadge(number: orderNumber!),
+                const SizedBox(width: 12),
+              ],
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,12 +86,37 @@ class ExerciseCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              const Icon(
-                Icons.chevron_right,
-                color: AppColors.textDisabled,
-              ),
+              const Icon(Icons.chevron_right, color: AppColors.textDisabled),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Order badge ───────────────────────────────────────────────────────────────
+
+class _OrderBadge extends StatelessWidget {
+  const _OrderBadge({required this.number});
+
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 32,
+      height: 32,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors.primary,
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        '$number',
+        style: AppTextStyles.bodySemiBold.copyWith(
+          color: Colors.white,
+          fontSize: 14,
         ),
       ),
     );
@@ -119,21 +152,21 @@ class _CategoryChip extends StatelessWidget {
   static String _categoryLabel(ExerciseCategory category) {
     switch (category) {
       case ExerciseCategory.warmUp:
-        return 'Warm Up';
+        return 'Pemanasan';
       case ExerciseCategory.balanceTraining:
-        return 'Balance Training';
+        return 'Latihan Keseimbangan';
       case ExerciseCategory.strengthTraining:
-        return 'Strength Training';
+        return 'Latihan Kekuatan';
       case ExerciseCategory.enduranceAerobic:
-        return 'Endurance / Aerobic';
+        return 'Daya Tahan / Aerobik';
       case ExerciseCategory.taiChi:
         return 'Tai Chi';
       case ExerciseCategory.walkingProgram:
-        return 'Walking Program';
+        return 'Program Jalan';
       case ExerciseCategory.gettingUpFromFloor:
-        return 'Getting Up From Floor';
+        return 'Bangkit dari Lantai';
       case ExerciseCategory.coolDown:
-        return 'Cool Down';
+        return 'Pendinginan';
     }
   }
 }
