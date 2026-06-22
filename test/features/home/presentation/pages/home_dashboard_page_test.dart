@@ -29,18 +29,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:teman_lansia/app/cubit/app_cubit.dart';
-import 'package:teman_lansia/di/injection.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_state.dart';
-import 'package:teman_lansia/features/home/presentation/cubit/home_cubit.dart';
-import 'package:teman_lansia/features/home/presentation/cubit/home_state.dart';
-import 'package:teman_lansia/features/home/presentation/pages/home_dashboard_page.dart';
-import 'package:teman_lansia/features/progress/presentation/widgets/quick_stats_row.dart';
-import 'package:teman_lansia/l10n/app_localizations.dart';
-import 'package:teman_lansia/shared/domain/entities/motivational_message_entity.dart';
-import 'package:teman_lansia/shared/domain/entities/user_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/app/cubit/app_cubit.dart';
+import 'package:laman_lansia/di/injection.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laman_lansia/features/home/presentation/cubit/home_cubit.dart';
+import 'package:laman_lansia/features/home/presentation/cubit/home_state.dart';
+import 'package:laman_lansia/features/home/presentation/pages/home_dashboard_page.dart';
+import 'package:laman_lansia/features/progress/presentation/widgets/quick_stats_row.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
+import 'package:laman_lansia/shared/domain/entities/motivational_message_entity.dart';
+import 'package:laman_lansia/shared/domain/entities/user_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 class _MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
 

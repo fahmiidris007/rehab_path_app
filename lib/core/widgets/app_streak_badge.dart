@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teman_lansia/app/theme/app_colors.dart';
-import 'package:teman_lansia/app/theme/app_dimensions.dart';
-import 'package:teman_lansia/app/theme/app_text_styles.dart';
+import 'package:laman_lansia/app/theme/app_colors.dart';
+import 'package:laman_lansia/app/theme/app_dimensions.dart';
+import 'package:laman_lansia/app/theme/app_text_styles.dart';
 
 /// A pill-shaped badge that displays a streak count with a flame emoji.
 ///

@@ -3,7 +3,7 @@ class AppConstants {
   AppConstants._();
 
   // App identity
-  static const String appName = 'Teman Lansia';
+  static const String appName = 'Laman Lansia';
   static const String appVersion = '0.1.0';
 
   // Splash screen minimum display duration (milliseconds)

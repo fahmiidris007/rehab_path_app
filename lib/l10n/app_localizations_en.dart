@@ -9,16 +9,16 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Teman Lansia';
+  String get appName => 'Laman Lansia';
 
   @override
-  String get appTitle => 'Teman Lansia — Fall Prevention Rehabilitation';
+  String get appTitle => 'Laman Lansia — Fall Prevention Rehabilitation';
 
   @override
   String get authSplashTagline => 'Your journey to better balance starts here.';
 
   @override
-  String get authWelcomeTitle => 'Welcome to Teman Lansia';
+  String get authWelcomeTitle => 'Welcome to Laman Lansia';
 
   @override
   String get authWelcomeSubtitle =>
@@ -1044,7 +1044,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable biometric login from Settings after you sign in';
 
   @override
-  String get authBiometricReason => 'Verify to sign in to Teman Lansia';
+  String get authBiometricReason => 'Verify to sign in to Laman Lansia';
 
   @override
   String get authBiometricSessionExpired =>

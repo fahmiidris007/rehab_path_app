@@ -48,14 +48,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
 import 'package:mocktail/mocktail.dart' as mt;
-import 'package:teman_lansia/core/errors/failures.dart';
-import 'package:teman_lansia/features/exercise/domain/usecases/delete_partial_session_use_case.dart';
-import 'package:teman_lansia/features/exercise/domain/usecases/save_exercise_session_use_case.dart';
-import 'package:teman_lansia/features/exercise/presentation/cubit/exercise_player_cubit.dart';
-import 'package:teman_lansia/features/exercise/presentation/cubit/player_state.dart';
-import 'package:teman_lansia/shared/domain/entities/exercise_entity.dart';
-import 'package:teman_lansia/shared/domain/entities/exercise_session_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/core/errors/failures.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/delete_partial_session_use_case.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/save_exercise_session_use_case.dart';
+import 'package:laman_lansia/features/exercise/presentation/cubit/exercise_player_cubit.dart';
+import 'package:laman_lansia/features/exercise/presentation/cubit/player_state.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_session_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

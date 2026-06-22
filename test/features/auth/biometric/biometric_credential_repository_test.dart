@@ -40,10 +40,10 @@ import 'package:glados/glados.dart'
 import 'package:local_auth/local_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:mocktail/mocktail.dart' as mt;
-import 'package:teman_lansia/core/constants/pref_keys.dart';
-import 'package:teman_lansia/core/errors/failures.dart';
-import 'package:teman_lansia/features/auth/data/repositories/biometric_credential_repository_impl.dart';
-import 'package:teman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
+import 'package:laman_lansia/core/constants/pref_keys.dart';
+import 'package:laman_lansia/core/errors/failures.dart';
+import 'package:laman_lansia/features/auth/data/repositories/biometric_credential_repository_impl.dart';
+import 'package:laman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

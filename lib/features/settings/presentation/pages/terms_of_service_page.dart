@@ -39,13 +39,13 @@ class TermsOfServicePage extends StatelessWidget {
             _Section(
               title: '1. Acceptance of Terms',
               body:
-                  'By accessing or using the Teman Lansia application, you agree to be bound by these Terms of Service. '
+                  'By accessing or using the Laman Lansia application, you agree to be bound by these Terms of Service. '
                   'If you do not agree to these terms, please do not use our application.',
             ),
             _Section(
               title: '2. Medical Disclaimer',
               body:
-                  'Teman Lansia is designed to support rehabilitation exercises and is not a substitute for '
+                  'Laman Lansia is designed to support rehabilitation exercises and is not a substitute for '
                   'professional medical advice, diagnosis, or treatment. Always seek the advice of your '
                   'physician or other qualified health provider with any questions you may have regarding '
                   'a medical condition.',
@@ -67,14 +67,14 @@ class TermsOfServicePage extends StatelessWidget {
             _Section(
               title: '5. Intellectual Property',
               body:
-                  'All content, features, and functionality of the Teman Lansia application are owned by '
-                  'Teman Lansia and are protected by applicable intellectual property laws. '
+                  'All content, features, and functionality of the Laman Lansia application are owned by '
+                  'Laman Lansia and are protected by applicable intellectual property laws. '
                   'You may not reproduce, distribute, or create derivative works without our express permission.',
             ),
             _Section(
               title: '6. Limitation of Liability',
               body:
-                  'To the maximum extent permitted by law, Teman Lansia shall not be liable for any indirect, '
+                  'To the maximum extent permitted by law, Laman Lansia shall not be liable for any indirect, '
                   'incidental, special, consequential, or punitive damages arising from your use of the application.',
             ),
             _Section(
@@ -88,7 +88,7 @@ class TermsOfServicePage extends StatelessWidget {
               title: '8. Contact Us',
               body:
                   'If you have any questions about these Terms of Service, please contact us at '
-                  'legal@temanlansia.app.',
+                  'legal@lamanlansia.app.',
             ),
             const SizedBox(height: 32),
           ],
@@ -120,9 +120,7 @@ class _Section extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             body,
-            style: AppTextStyles.body.copyWith(
-              color: AppColors.textSecondary,
-            ),
+            style: AppTextStyles.body.copyWith(color: AppColors.textSecondary),
           ),
         ],
       ),

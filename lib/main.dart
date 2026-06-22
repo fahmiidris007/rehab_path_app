@@ -78,5 +78,5 @@ void main() async {
 
   await getIt<DataSeeder>().seedIfNeeded();
 
-  runApp(TemanLansiaApp());
+  runApp(LamanLansiaApp());
 }

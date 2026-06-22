@@ -35,9 +35,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
-import 'package:teman_lansia/features/exercise/presentation/pages/post_save_navigation.dart';
-import 'package:teman_lansia/shared/domain/entities/exercise_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/features/exercise/presentation/pages/post_save_navigation.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Fixtures ─────────────────────────────────────────────────────────────────
 

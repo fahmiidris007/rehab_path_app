@@ -42,14 +42,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
 import 'package:mocktail/mocktail.dart' as mt;
-import 'package:teman_lansia/core/errors/failures.dart';
-import 'package:teman_lansia/core/usecases/use_case.dart';
-import 'package:teman_lansia/features/exercise/domain/usecases/get_all_exercises_use_case.dart';
-import 'package:teman_lansia/features/exercise/domain/usecases/get_today_schedule_use_case.dart';
-import 'package:teman_lansia/features/exercise/presentation/cubit/exercise_list_cubit.dart';
-import 'package:teman_lansia/features/exercise/presentation/cubit/exercise_list_state.dart';
-import 'package:teman_lansia/shared/domain/entities/exercise_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/core/errors/failures.dart';
+import 'package:laman_lansia/core/usecases/use_case.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/get_all_exercises_use_case.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/get_today_schedule_use_case.dart';
+import 'package:laman_lansia/features/exercise/presentation/cubit/exercise_list_cubit.dart';
+import 'package:laman_lansia/features/exercise/presentation/cubit/exercise_list_state.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

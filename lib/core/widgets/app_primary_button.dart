@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teman_lansia/app/theme/app_colors.dart';
-import 'package:teman_lansia/app/theme/app_dimensions.dart';
-import 'package:teman_lansia/app/theme/app_text_styles.dart';
+import 'package:laman_lansia/app/theme/app_colors.dart';
+import 'package:laman_lansia/app/theme/app_dimensions.dart';
+import 'package:laman_lansia/app/theme/app_text_styles.dart';
 
 /// A full-width primary action button with the app's brand colour.
 ///

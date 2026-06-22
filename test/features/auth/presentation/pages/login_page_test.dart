@@ -32,15 +32,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:teman_lansia/app/cubit/app_cubit.dart';
-import 'package:teman_lansia/di/injection.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_state.dart';
-import 'package:teman_lansia/features/auth/presentation/pages/login_page.dart';
-import 'package:teman_lansia/l10n/app_localizations.dart';
-import 'package:teman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
-import 'package:teman_lansia/shared/domain/entities/user_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/app/cubit/app_cubit.dart';
+import 'package:laman_lansia/di/injection.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laman_lansia/features/auth/presentation/pages/login_page.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
+import 'package:laman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
+import 'package:laman_lansia/shared/domain/entities/user_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 class _MockAuthCubit extends MockCubit<AuthState> implements AuthCubit {}
 

@@ -24,16 +24,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:teman_lansia/di/injection.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:teman_lansia/features/auth/presentation/cubit/auth_state.dart';
-import 'package:teman_lansia/features/progress/presentation/cubit/progress_cubit.dart';
-import 'package:teman_lansia/features/progress/presentation/cubit/progress_state.dart';
-import 'package:teman_lansia/features/progress/presentation/pages/progress_page.dart';
-import 'package:teman_lansia/features/progress/presentation/widgets/quick_stats_row.dart';
-import 'package:teman_lansia/l10n/app_localizations.dart';
-import 'package:teman_lansia/shared/domain/entities/user_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/di/injection.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laman_lansia/features/progress/presentation/cubit/progress_cubit.dart';
+import 'package:laman_lansia/features/progress/presentation/cubit/progress_state.dart';
+import 'package:laman_lansia/features/progress/presentation/pages/progress_page.dart';
+import 'package:laman_lansia/features/progress/presentation/widgets/quick_stats_row.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
+import 'package:laman_lansia/shared/domain/entities/user_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 class _MockProgressCubit extends MockCubit<ProgressState>
     implements ProgressCubit {}

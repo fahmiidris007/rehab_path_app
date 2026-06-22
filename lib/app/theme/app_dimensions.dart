@@ -1,4 +1,4 @@
-/// Spacing and sizing tokens for Teman Lansia.
+/// Spacing and sizing tokens for Laman Lansia.
 ///
 /// All values are `const` — no runtime allocation.
 class AppDimensions {

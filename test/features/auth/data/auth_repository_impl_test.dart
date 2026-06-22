@@ -43,12 +43,12 @@ import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
 import 'package:logger/logger.dart';
 import 'package:mocktail/mocktail.dart' as mt;
-import 'package:teman_lansia/core/errors/failures.dart';
-import 'package:teman_lansia/core/utils/phone_number_normalizer.dart';
-import 'package:teman_lansia/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:teman_lansia/shared/data/datasources/hive_data_source.dart';
-import 'package:teman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
-import 'package:teman_lansia/shared/data/models/user_hive_model.dart';
+import 'package:laman_lansia/core/errors/failures.dart';
+import 'package:laman_lansia/core/utils/phone_number_normalizer.dart';
+import 'package:laman_lansia/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:laman_lansia/shared/data/datasources/hive_data_source.dart';
+import 'package:laman_lansia/shared/data/datasources/shared_preferences_data_source.dart';
+import 'package:laman_lansia/shared/data/models/user_hive_model.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

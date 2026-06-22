@@ -40,14 +40,14 @@ import 'package:glados/glados.dart'
     hide expect, group, test, setUpAll, setUp, tearDown, tearDownAll;
 import 'package:logger/logger.dart';
 import 'package:mocktail/mocktail.dart' as mt;
-import 'package:teman_lansia/features/exercise/data/repositories/exercise_repository_impl.dart';
-import 'package:teman_lansia/features/exercise/data/utils/schedule_seed_generator.dart';
-import 'package:teman_lansia/shared/data/datasources/dummy_data_source.dart';
-import 'package:teman_lansia/shared/data/datasources/hive_data_source.dart';
-import 'package:teman_lansia/shared/data/models/onboarding_profile_hive_model.dart';
-import 'package:teman_lansia/shared/data/models/user_hive_model.dart';
-import 'package:teman_lansia/shared/domain/entities/exercise_entity.dart';
-import 'package:teman_lansia/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/features/exercise/data/repositories/exercise_repository_impl.dart';
+import 'package:laman_lansia/features/exercise/data/utils/schedule_seed_generator.dart';
+import 'package:laman_lansia/shared/data/datasources/dummy_data_source.dart';
+import 'package:laman_lansia/shared/data/datasources/hive_data_source.dart';
+import 'package:laman_lansia/shared/data/models/onboarding_profile_hive_model.dart';
+import 'package:laman_lansia/shared/data/models/user_hive_model.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

@@ -1,4 +1,4 @@
-package com.arayadev.teman_lansia
+package com.arayadev.laman_lansia
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

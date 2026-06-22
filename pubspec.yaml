@@ -1,5 +1,5 @@
-name: teman_lansia
-description: "Teman Lansia - Aplikasi mobile Flutter untuk mendukung program rehabilitasi pencegahan jatuh bagi lansia."
+name: laman_lansia
+description: "Laman Lansia (Latihan Mandiri Lanjut Usia) - Aplikasi mobile Flutter untuk mendukung program rehabilitasi pencegahan jatuh bagi lansia."
 publish_to: 'none'
 version: 0.1.0
 
