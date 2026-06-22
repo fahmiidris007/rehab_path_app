@@ -37,19 +37,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:rehab_path_app/core/errors/failures.dart';
-import 'package:rehab_path_app/core/usecases/use_case.dart';
-import 'package:rehab_path_app/di/injection.dart';
-import 'package:rehab_path_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:rehab_path_app/features/auth/presentation/cubit/auth_state.dart';
-import 'package:rehab_path_app/features/exercise/domain/usecases/get_all_exercises_use_case.dart';
-import 'package:rehab_path_app/features/exercise/domain/usecases/get_today_schedule_use_case.dart';
-import 'package:rehab_path_app/features/exercise/presentation/cubit/exercise_list_cubit.dart';
-import 'package:rehab_path_app/features/exercise/presentation/pages/exercise_list_page.dart';
-import 'package:rehab_path_app/l10n/app_localizations.dart';
-import 'package:rehab_path_app/shared/domain/entities/exercise_entity.dart';
-import 'package:rehab_path_app/shared/domain/entities/user_entity.dart';
-import 'package:rehab_path_app/shared/domain/enums/app_enums.dart';
+import 'package:laman_lansia/core/errors/failures.dart';
+import 'package:laman_lansia/core/usecases/use_case.dart';
+import 'package:laman_lansia/di/injection.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/get_all_exercises_use_case.dart';
+import 'package:laman_lansia/features/exercise/domain/usecases/get_today_schedule_use_case.dart';
+import 'package:laman_lansia/features/exercise/presentation/cubit/exercise_list_cubit.dart';
+import 'package:laman_lansia/features/exercise/presentation/pages/exercise_list_page.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
+import 'package:laman_lansia/shared/domain/entities/exercise_entity.dart';
+import 'package:laman_lansia/shared/domain/entities/user_entity.dart';
+import 'package:laman_lansia/shared/domain/enums/app_enums.dart';
 
 // ── Mocks ────────────────────────────────────────────────────────────────────
 

@@ -1,20 +1,16 @@
 {
   "@@locale": "id",
-
-  "appName": "RehabPath",
-  "appTitle": "RehabPath — Rehabilitasi Pencegahan Jatuh",
-
+  "appName": "Laman Lansia",
+  "appTitle": "Laman Lansia — Rehabilitasi Pencegahan Jatuh",
   "authSplashTagline": "Perjalanan Anda menuju keseimbangan yang lebih baik dimulai di sini.",
-  "authWelcomeTitle": "Selamat Datang di RehabPath",
+  "authWelcomeTitle": "Selamat Datang di Laman Lansia",
   "authWelcomeSubtitle": "Latihan berbasis bukti untuk membantu Anda tetap stabil dan percaya diri.",
-
   "authLoginTitle": "Masuk",
   "authLoginEmailHint": "Alamat email",
   "authLoginEmailError": "Masukkan alamat email yang valid.",
   "authLoginPasswordHint": "Kata sandi",
   "authLoginPasswordError": "Kata sandi minimal 8 karakter.",
   "authLoginButton": "Masuk",
-
   "authRegisterTitle": "Buat Akun",
   "authRegisterNameHint": "Nama lengkap",
   "authRegisterNameError": "Nama harus 1–50 karakter.",
@@ -25,15 +21,12 @@
   "authRegisterConfirmPasswordHint": "Konfirmasi kata sandi",
   "authRegisterConfirmPasswordError": "Kata sandi tidak cocok.",
   "authRegisterButton": "Buat Akun",
-
   "authForgotPasswordTitle": "Lupa Kata Sandi",
   "authForgotPasswordMessage": "Masukkan alamat email Anda dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.",
   "authForgotPasswordButton": "Kirim Tautan Reset",
-
   "authGuestButton": "Lanjutkan sebagai Tamu",
   "authGuestBannerMessage": "Anda menjelajah sebagai tamu. Buat akun untuk menyimpan kemajuan Anda.",
   "authLogoutButton": "Keluar",
-
   "onboardingTitle": "Ceritakan Tentang Diri Anda",
   "onboardingStepIndicator": "Langkah {current} dari {total}",
   "onboardingStep1Title": "Usia & Jenis Kelamin",
@@ -47,7 +40,6 @@
   "onboardingBackButton": "Kembali",
   "onboardingFinishButton": "Selesai",
   "onboardingValidationRequired": "Kolom ini wajib diisi.",
-
   "homeGreetingMorning": "Selamat pagi",
   "homeGreetingAfternoon": "Selamat siang",
   "homeGreetingEvening": "Selamat malam",
@@ -58,7 +50,6 @@
   "homeRecommendedTitle": "Direkomendasikan untuk Anda",
   "homeTotalMinutes": "Total Menit",
   "homeTotalSessions": "Total Sesi",
-
   "exerciseListTitle": "Latihan",
   "exerciseDifficulty": "Kesulitan: {level}",
   "exerciseStartButton": "Mulai Latihan",
@@ -75,7 +66,6 @@
   "exerciseSelfReportKitchenWorktop": "Meja dapur",
   "exerciseSelfReportNoSupport": "Tanpa dukungan",
   "exerciseSelfReportSubmit": "Kirim",
-
   "progressTitle": "Progres",
   "progressWeeklyAdherence": "Kepatuhan Mingguan",
   "progressMonthlyAdherence": "Kepatuhan Bulanan",
@@ -84,14 +74,12 @@
   "progressAchievements": "Pencapaian",
   "progressBodyAreas": "Area Tubuh yang Dilatih",
   "progressNoData": "Belum ada data. Selesaikan latihan untuk melihat kemajuan Anda.",
-
   "profileTitle": "Profil",
   "profileEditButton": "Edit Profil",
   "profileUpdateGoals": "Perbarui Tujuan",
   "profileProgramLevel": "Tingkat Program",
   "profileHealthConditions": "Kondisi Kesehatan",
   "profileGoals": "Tujuan",
-
   "settingsTitle": "Pengaturan",
   "settingsAppearance": "Tampilan",
   "settingsTheme": "Tema",
@@ -110,13 +98,11 @@
   "settingsPrivacyPolicy": "Kebijakan Privasi",
   "settingsTermsOfService": "Syarat Layanan",
   "settingsLogout": "Keluar",
-
   "sosTitle": "SOS Darurat",
   "sosSafetyReminder": "Jika Anda jatuh dan tidak bisa bangun, segera hubungi layanan darurat.",
   "sosCallButton": "Hubungi",
   "sosNoContacts": "Belum ada kontak darurat. Perbarui profil Anda.",
   "sosEmergencyButton": "Hubungi Layanan Darurat",
-
   "sosAddContact": "Tambah Kontak",
   "sosAddContactTitle": "Tambah Kontak Darurat",
   "sosEditContactTitle": "Edit Kontak Darurat",
@@ -136,7 +122,6 @@
   "sosContactPhoneRequired": "Masukkan nomor telepon.",
   "sosContactPhoneInvalid": "Masukkan nomor telepon yang valid.",
   "sosAddContactsPrompt": "Ketuk tombol di bawah untuk menambahkan kontak darurat pertama Anda.",
-
   "notificationDailyReminderTitle": "Waktunya Latihan!",
   "notificationDailyReminderBody": "Sesi rehabilitasi harian Anda sudah siap. Terus semangat!",
   "notificationStreakTitle": "Pencapaian Streak!",
@@ -146,7 +131,6 @@
   "notificationWeeklySummaryTitle": "Ringkasan Mingguan",
   "notificationWeeklySummaryBody": "Anda menyelesaikan {rate}% latihan minggu ini. Kerja bagus!",
   "notificationPermissionDeniedMessage": "Izin notifikasi ditolak. Aktifkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat.",
-
   "errorServer": "Terjadi kesalahan server. Silakan coba lagi nanti.",
   "errorCache": "Tidak dapat memuat data dari penyimpanan lokal. Silakan mulai ulang aplikasi.",
   "errorUnexpected": "Terjadi kesalahan yang tidak terduga. Silakan coba lagi.",
@@ -154,26 +138,20 @@
   "errorPhoneNotSupported": "Panggilan telepon tidak didukung di perangkat ini.",
   "errorSaveProfile": "Gagal menyimpan profil. Silakan coba lagi.",
   "errorLoadData": "Gagal memuat data. Silakan coba lagi.",
-
   "navHome": "Beranda",
   "navExercise": "Latihan",
   "navProgress": "Progres",
   "navProfile": "Profil",
-
   "selectLanguage": "Pilih Bahasa",
-
   "authLoginNoAccount": "Belum punya akun?",
   "authLoginRegisterLink": "Daftar",
   "authLoginForgotPassword": "Lupa Kata Sandi?",
-
   "authRegisterHaveAccount": "Sudah punya akun?",
   "authRegisterLoginLink": "Masuk",
   "authRegisterSuccessMessage": "Akun berhasil dibuat! Silakan masuk untuk melanjutkan.",
-
   "authForgotPasswordResetSent": "Tautan reset terkirim!",
   "authForgotPasswordResetBody": "Periksa email Anda untuk tautan reset kata sandi. Jika tidak muncul dalam beberapa menit, periksa folder spam Anda.",
   "authForgotPasswordBackToLogin": "Kembali ke Masuk",
-
   "welcomeGetStarted": "Mulai",
   "welcomeSlide1Title": "Tetap Stabil",
   "welcomeSlide1Subtitle": "Bangun kepercayaan diri dan kurangi risiko jatuh dengan latihan keseimbangan terpandu yang dirancang untuk Anda.",
@@ -181,7 +159,6 @@
   "welcomeSlide2Subtitle": "Ikuti program FaME dan Otago berbasis bukti yang disesuaikan dengan tingkat kebugaran dan tujuan Anda.",
   "welcomeSlide3Title": "Pantau Progres",
   "welcomeSlide3Subtitle": "Pantau perkembangan Anda dari waktu ke waktu dan rayakan pencapaian dalam perjalanan rehabilitasi Anda.",
-
   "homeNoExercisesToday": "Tidak ada latihan hari ini",
   "homeRestDayMessage": "Nikmati hari istirahat Anda atau jelajahi latihan yang direkomendasikan di bawah.",
   "homeNoRecommendations": "Tidak ada rekomendasi tersedia.",
@@ -198,9 +175,7 @@
   "homeStatDayStreak": "Hari Berturut",
   "homeStatDays": "Hari",
   "homeGuestBannerMessage": "Anda dalam mode Tamu. Daftar atau masuk untuk menyimpan kemajuan Anda.",
-
   "guestBannerRegister": "Daftar",
-
   "exerciseCompletedToday": "Selesai hari ini",
   "exerciseRedoButton": "Ulangi Latihan",
   "exerciseCouldNotLoad": "Tidak dapat memuat latihan",
@@ -231,7 +206,6 @@
   "exerciseCategoryGettingUpFromFloor": "Bangun dari Lantai",
   "exerciseCategoryCoolDown": "Pendinginan",
   "exerciseSelfReportBodyPosition": "Posisi tubuh",
-
   "progressMyProgress": "Progres Saya",
   "progressAdherence": "Kepatuhan",
   "progressThisWeek": "Minggu Ini",
@@ -247,7 +221,6 @@
   "progressBodyAreasThisWeek": "Area Tubuh yang Dilatih Minggu Ini",
   "progressNoAreasTracked": "Belum ada area yang dilacak",
   "progressCompleteThisWeek": "Selesaikan latihan minggu ini untuk melihat kelompok otot yang telah Anda latih.",
-
   "profileYearsOld": "{age} tahun",
   "profileProgramLevelBeginner": "Pemula",
   "profileProgramLevelIntermediate": "Menengah",
@@ -260,7 +233,6 @@
   "profileLogOutConfirmMessage": "Apakah Anda yakin ingin keluar?",
   "profileLogOutConfirmCancel": "Batal",
   "profileLogOutConfirmButton": "Keluar",
-
   "editProfileTitle": "Edit Profil",
   "editProfileFullName": "Nama Lengkap",
   "editProfileNameHint": "Masukkan nama lengkap Anda",
@@ -268,47 +240,39 @@
   "editProfileSave": "Simpan",
   "editProfileFailedToUpdate": "Gagal memperbarui profil. Silakan coba lagi.",
   "editProfilePhoneUpdated": "Nomor telepon diperbarui",
-
   "settingsVoiceCues": "Isyarat Suara",
   "settingsVoiceCuesSubtitle": "Putar petunjuk audio selama latihan",
   "settingsDailyReminderSubtitle": "Terima pengingat harian untuk menyelesaikan latihan Anda",
   "settingsAccount": "Akun",
   "settingsNotificationPermissionDeniedTitle": "Izin Notifikasi Ditolak",
   "settingsNotificationPermissionDeniedMessage": "Izin notifikasi ditolak. Aktifkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat.",
-
   "sosNoEmergencyContacts": "Tidak ada kontak darurat",
   "sosAddContactsMessage": "Tambahkan kontak darurat di profil Anda untuk menggunakan fitur ini.",
   "sosCallingNotSupported": "Panggilan tidak didukung di perangkat ini.",
   "sosSafetyReminderFull": "Jika Anda jatuh dan tidak bisa bangun, tetap tenang dan tetap di lantai sampai bantuan tiba. Hubungi layanan darurat atau kontak di bawah.",
-
   "commonRetry": "Coba Lagi",
   "commonOk": "OK",
   "commonCancel": "Batal",
   "commonConfirm": "Konfirmasi",
   "loadingDashboard": "Memuat dasbor…",
-
   "onboardingStep4Question": "Apakah Anda menggunakan alat bantu jalan?",
   "onboardingYes": "Ya",
   "onboardingNo": "Tidak",
-
   "onboardingStep1AgeLabel": "Usia Anda",
   "onboardingStep1AgeHint": "Masukkan usia Anda",
   "onboardingStep1AgeSuffix": "tahun",
   "onboardingStep1AgeRequired": "Silakan masukkan usia Anda",
   "onboardingStep1AgeRange": "Usia harus antara 18 dan 120",
-
   "onboardingStep1GenderLabel": "Jenis Kelamin",
   "onboardingStep1GenderMale": "Laki-laki",
   "onboardingStep1GenderFemale": "Perempuan",
   "onboardingStep1GenderOther": "Lainnya",
   "onboardingStep1GenderPreferNotToSay": "Tidak ingin menyebutkan",
-
   "onboardingStep2Question": "Berapa kali Anda jatuh dalam 12 bulan terakhir?",
   "onboardingStep2Hint": "Masukkan jumlah jatuh",
   "onboardingStep2Suffix": "kali",
   "onboardingStep2Required": "Silakan masukkan jumlah jatuh (masukkan 0 jika tidak ada)",
   "onboardingStep2Invalid": "Silakan masukkan angka yang valid (0 atau lebih)",
-
   "onboardingStep3Question": "Apakah Anda memiliki kondisi kesehatan berikut?",
   "onboardingStep3SelectAll": "Pilih semua yang berlaku",
   "onboardingStep3Musculoskeletal": "Muskuloskeletal",
@@ -320,14 +284,12 @@
   "onboardingStep3Neurological": "Neurologis",
   "onboardingStep3NeurologicalSub": "Kondisi saraf/otak",
   "onboardingStep3Other": "Lainnya",
-
   "onboardingStep5Question": "Seberapa khawatir Anda tentang jatuh?",
   "onboardingStep5Level1": "Sama sekali tidak khawatir",
   "onboardingStep5Level2": "Sedikit khawatir",
   "onboardingStep5Level3": "Cukup khawatir",
   "onboardingStep5Level4": "Sangat khawatir",
   "onboardingStep5Level5": "Sangat amat khawatir",
-
   "onboardingStep6TimeLabel": "Waktu latihan yang disukai",
   "onboardingStep6TimeHint": "Pilih waktu",
   "onboardingStep6DurationLabel": "Durasi sesi",
@@ -340,34 +302,29 @@
   "onboardingStep6FrequencySuffix": "hari per minggu",
   "onboardingStep6FrequencyRequired": "Silakan masukkan frekuensi mingguan",
   "onboardingStep6FrequencyRange": "Frekuensi harus antara 1 dan 7 hari per minggu",
-
   "onboardingStep7OutcomeLabel": "Tujuan Hasil",
   "onboardingStep7OutcomeHint": "Apa yang ingin Anda capai? (mis., Berjalan ke pasar secara mandiri)",
   "onboardingStep7OutcomeRequired": "Silakan jelaskan apa yang ingin Anda capai",
   "onboardingStep7BehaviouralLabel": "Tujuan Perilaku",
   "onboardingStep7BehaviouralHint": "Latihan apa yang akan Anda lakukan dan kapan? (mis., Latihan setiap pagi)",
   "onboardingStep7BehaviouralRequired": "Silakan jelaskan rencana latihan Anda",
-
   "authPhoneLabel": "Nomor telepon",
   "authPhoneHint": "08...",
   "authPhoneInvalid": "Masukkan nomor telepon minimal 10 digit (mis. 081234567890)",
   "authPhoneAlreadyTaken": "Nomor telepon ini sudah terdaftar",
   "authInvalidCredentials": "No HP atau kata sandi salah",
-
   "authBiometricSemanticLabel": "Masuk dengan biometrik",
   "authBiometricUnavailable": "Biometrik tidak tersedia di perangkat ini",
   "authBiometricNotEnabled": "Aktifkan login biometrik di menu Pengaturan setelah login",
-  "authBiometricReason": "Verifikasi untuk masuk ke RehabPath",
+  "authBiometricReason": "Verifikasi untuk masuk ke Laman Lansia",
   "authBiometricSessionExpired": "Sesi biometrik telah kedaluwarsa, silakan login ulang",
   "authLegacyAccountNeedsPhone": "Tambahkan nomor telepon ke akun Anda untuk tetap dapat masuk",
   "authBiometricFailed": "Verifikasi biometrik gagal",
   "authLegacyAccountAddPhoneCta": "Tambahkan nomor telepon",
-
   "exerciseListAllExercises": "Semua Latihan",
   "exerciseListTodayExercises": "Latihan Hari Ini",
   "exerciseListNoneToday": "Tidak ada latihan hari ini",
   "exerciseListAllDoneToday": "Semua latihan hari ini selesai",
-
   "dashboardDateSelectorPrev": "Minggu sebelumnya",
   "dashboardDateSelectorNext": "Minggu berikutnya",
   "dashboardViewingDate": "Melihat: {date}",
@@ -382,20 +339,16 @@
   "dashboardBackToToday": "Kembali ke Hari Ini",
   "dashboardStartOnlyToday": "Hanya tersedia di hari berjalan",
   "dashboardNotYetStarted": "Belum berlangsung",
-
   "settingsBiometricToggle": "Login biometrik",
   "settingsBiometricEnableTitle": "Aktifkan login biometrik",
   "settingsBiometricVerifyPassword": "Masukkan ulang kata sandi untuk konfirmasi",
   "settingsBiometricEnableFailed": "Gagal mengaktifkan login biometrik",
-
   "dashboardBiometricPromptTitle": "Aktifkan login biometrik?",
   "dashboardBiometricPromptMessage": "Masuk lebih cepat lain kali dengan sidik jari atau wajah Anda. Anda dapat mengaktifkannya dari menu Pengaturan.",
   "dashboardBiometricPromptDontShowAgain": "Jangan tampilkan lagi",
   "dashboardBiometricPromptConfirm": "Buka Pengaturan",
-
   "authBiometricSimpleTitle": "Selamat datang kembali",
   "authBiometricSimpleSubtitle": "Ketuk ikon di bawah untuk masuk dengan biometrik",
   "authUsePasswordInstead": "Gunakan kata sandi",
-
   "commonLoading": "Memuat…"
 }

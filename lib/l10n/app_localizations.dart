@@ -101,13 +101,13 @@ abstract class AppLocalizations {
   /// The name of the application
   ///
   /// In en, this message translates to:
-  /// **'RehabPath'**
+  /// **'Laman Lansia'**
   String get appName;
 
   /// The full title of the application
   ///
   /// In en, this message translates to:
-  /// **'RehabPath — Fall Prevention Rehabilitation'**
+  /// **'Laman Lansia — Fall Prevention Rehabilitation'**
   String get appTitle;
 
   /// Tagline shown on the splash screen
@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// Title on the welcome/onboarding carousel
   ///
   /// In en, this message translates to:
-  /// **'Welcome to RehabPath'**
+  /// **'Welcome to Laman Lansia'**
   String get authWelcomeTitle;
 
   /// Subtitle on the welcome screen
@@ -1997,7 +1997,7 @@ abstract class AppLocalizations {
   /// Localized reason shown by the OS biometric prompt during biometric login
   ///
   /// In en, this message translates to:
-  /// **'Verify to sign in to RehabPath'**
+  /// **'Verify to sign in to Laman Lansia'**
   String get authBiometricReason;
 
   /// Message shown when stored biometric credentials no longer match a Hive account and have been cleared

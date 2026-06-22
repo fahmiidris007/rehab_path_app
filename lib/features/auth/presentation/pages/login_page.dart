@@ -358,7 +358,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,
-          leading: BackButton(color: AppColors.textPrimary),
+          // leading: BackButton(color: AppColors.textPrimary),
           actions: [
             // Language selector
             const LanguageSelectorButton(),

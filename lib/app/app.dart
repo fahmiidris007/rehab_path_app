@@ -9,8 +9,8 @@ import 'cubit/app_cubit.dart';
 import 'router/app_router.dart';
 import 'theme/app_theme.dart';
 
-class RehabPathApp extends StatelessWidget {
-  const RehabPathApp({super.key});
+class LamanLansiaApp extends StatelessWidget {
+  const LamanLansiaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,7 @@ class RehabPathApp extends StatelessWidget {
         BlocProvider<AppCubit>(
           create: (_) => getIt<AppCubit>()..loadPersistedSettings(),
         ),
-        BlocProvider<AuthCubit>(
-          create: (_) => getIt<AuthCubit>(),
-        ),
+        BlocProvider<AuthCubit>(create: (_) => getIt<AuthCubit>()),
       ],
       child: const _AppView(),
     );
@@ -41,7 +39,7 @@ class _AppView extends StatelessWidget {
           minScaleFactor: cubit.fontSizeMultiplier,
           maxScaleFactor: cubit.fontSizeMultiplier,
           child: MaterialApp.router(
-            title: 'RehabPath',
+            title: 'Laman Lansia',
             routerConfig: AppRouter.router,
             // Localization
             locale: _toLocale(state.locale),

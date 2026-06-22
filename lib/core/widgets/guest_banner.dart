@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rehab_path_app/app/theme/app_colors.dart';
-import 'package:rehab_path_app/app/theme/app_text_styles.dart';
-import 'package:rehab_path_app/l10n/app_localizations.dart';
+import 'package:laman_lansia/app/theme/app_colors.dart';
+import 'package:laman_lansia/app/theme/app_text_styles.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
 
 /// A non-dismissible banner shown to guest (unauthenticated) users.
 class GuestBanner extends StatelessWidget {

@@ -25,11 +25,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:rehab_path_app/app/cubit/app_cubit.dart';
-import 'package:rehab_path_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:rehab_path_app/features/auth/presentation/cubit/auth_state.dart';
-import 'package:rehab_path_app/features/auth/presentation/pages/register_page.dart';
-import 'package:rehab_path_app/l10n/app_localizations.dart';
+import 'package:laman_lansia/app/cubit/app_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laman_lansia/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laman_lansia/features/auth/presentation/pages/register_page.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
 
 class _MockAuthCubit extends MockCubit<AuthState> implements AuthCubit {}
 

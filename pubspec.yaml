@@ -1,5 +1,5 @@
-name: rehab_path_app
-description: "RehabPath - A Flutter mobile application supporting fall-prevention rehabilitation programs for community-dwelling older adults."
+name: laman_lansia
+description: "Laman Lansia (Latihan Mandiri Lanjut Usia) - Aplikasi mobile Flutter untuk mendukung program rehabilitasi pencegahan jatuh bagi lansia."
 publish_to: 'none'
 version: 0.1.0
 

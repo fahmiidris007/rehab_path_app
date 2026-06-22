@@ -36,11 +36,21 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Center(
-        child: Text(
-          'RehabPath',
-          style: AppTextStyles.displayH1.copyWith(
-            color: AppColors.primary,
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Laman Lansia',
+              style: AppTextStyles.displayH1.copyWith(color: AppColors.primary),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Latihan Mandiri Lanjut Usia',
+              style: AppTextStyles.body.copyWith(
+                color: AppColors.textSecondary,
+              ),
+            ),
+          ],
         ),
       ),
     );

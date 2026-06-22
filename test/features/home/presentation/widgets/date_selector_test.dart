@@ -33,8 +33,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rehab_path_app/features/home/presentation/widgets/date_selector.dart';
-import 'package:rehab_path_app/l10n/app_localizations.dart';
+import 'package:laman_lansia/features/home/presentation/widgets/date_selector.dart';
+import 'package:laman_lansia/l10n/app_localizations.dart';
 
 /// Wraps [DateSelector] in the minimum harness it needs:
 /// `AppLocalizations` delegates, English locale, and a [Scaffold] body so

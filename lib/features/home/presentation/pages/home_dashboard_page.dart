@@ -339,14 +339,15 @@ class _LoadedDashboard extends StatelessWidget {
 
                                   // Navigate to the next incomplete exercise, or
                                   // the first one if all are done (restart).
-                                  final nextExercise = cubit
-                                      .getNextIncompleteExercise();
-                                  if (nextExercise != null) {
-                                    context.goNamed(
-                                      RouteNames.exerciseDetail,
-                                      pathParameters: {'id': nextExercise.id},
-                                    );
-                                  }
+                                  // final nextExercise = cubit
+                                  //     .getNextIncompleteExercise();
+                                  // if (nextExercise != null) {
+                                  //   context.goNamed(
+                                  //     RouteNames.exerciseDetail,
+                                  //     pathParameters: {'id': nextExercise.id},
+                                  //   );
+                                  // }
+                                  context.goNamed(RouteNames.exerciseList);
                                 },
                         ),
                       ),
